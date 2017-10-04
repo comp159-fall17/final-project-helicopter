@@ -58,10 +58,7 @@ public class PlayerControls : MonoBehaviour {
         while (true) {
             float angle = ToMouseAngle();
 
-            Vector3 vForce = (Quaternion.AngleAxis(angle, Vector3.up)
-                                       * Vector3.right).normalized;
-
-            Instantiate(bullet, body.position - vForce,
+            Instantiate(bullet, BulletSpawnPoint(angle),
                         Quaternion.Euler(0, angle, 90));
 
             yield return new WaitForSeconds(fireDelay);
@@ -73,18 +70,27 @@ public class PlayerControls : MonoBehaviour {
     }
 
     float ToMouseAngle() {
-        // TODO: figure out how to find mouse direction in 3D
+        // Raycast to corresponding point on screen.
         Ray viewRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         Physics.Raycast(viewRay, out hit);
 
         Vector3 target = hit.point;
 
-        Vector3 targetDir = target - transform.position;
-
+        // TODO: fix -angle
         float angle = Mathf.Atan2(transform.position.z - target.z,
                                   transform.position.x - target.x);
-        Debug.Log(angle * Mathf.Rad2Deg);
+
         return -angle * Mathf.Rad2Deg;
+    }
+
+    /// <summary>
+    /// Find bullet spawn point.
+    /// </summary>
+    /// <returns>Spawn point.</returns>
+    /// <param name="angle">angle of shooting.</param>
+    Vector3 BulletSpawnPoint(float angle) {
+        return body.position - (Quaternion.AngleAxis(angle, Vector3.up) 
+                                * Vector3.right).normalized;
     }
 }
