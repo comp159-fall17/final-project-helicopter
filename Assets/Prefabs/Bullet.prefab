@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 1000
-  lifetime: 5
+  lifetime: 3
 --- !u!136 &136231949915649578
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1719452425394648, guid: 019e76ea5c94ff74281f789932874a68, type: 2}
-  fireDelay: 0
+  fireDelay: 0.1
   walkSpeed: 10
 --- !u!136 &136816488017638488
 CapsuleCollider:

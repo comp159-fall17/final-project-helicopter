@@ -12,10 +12,12 @@ public class BulletController : MonoBehaviour {
         // shoots in the bullet's positive x direction
         body = gameObject.GetComponent<Rigidbody>();
         body.AddForce(transform.up * bulletSpeed);
+
+        body.sleepThreshold = 100f;
     }
 
     void FixedUpdate() {
-        if (Mathf.Abs(body.velocity.magnitude) < Mathf.Epsilon) {
+        if (body.IsSleeping()) {
             Destroy(gameObject, lifetime);
         }
     }

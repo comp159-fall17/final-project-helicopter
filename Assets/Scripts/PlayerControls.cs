@@ -58,10 +58,10 @@ public class PlayerControls : MonoBehaviour {
         while (true) {
             float angle = ToMouseAngle();
 
-            Vector3 vForce = (Quaternion.AngleAxis(angle, Vector3.forward)
+            Vector3 vForce = (Quaternion.AngleAxis(angle, Vector3.up)
                                        * Vector3.right).normalized;
             
-            Instantiate(bullet, body.position - 2 * vForce,
+            Instantiate(bullet, body.position - vForce,
                         Quaternion.Euler(0, angle, 90));
 
             yield return new WaitForSeconds(fireDelay);
@@ -74,6 +74,15 @@ public class PlayerControls : MonoBehaviour {
 
     float ToMouseAngle() {
         // TODO: figure out how to find mouse direction in 3D
-        return 90;
+        Ray target = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        Vector3 targetDir = target.direction - transform.position;
+        float angle = Vector3.Angle(Vector3.forward, targetDir);
+
+        float rotation = 90;
+        rotation += transform.position.x > target.origin.x ? -angle : angle;
+
+        Debug.Log(angle);
+        return rotation;
     }
 }
