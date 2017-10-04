@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour {
     public float bulletSpeed;
-    public float lifetime;
+    public float distance;
 
     Rigidbody body;
+    Vector3 origin;
 
     void Start() {
+        origin = transform.position;
+
         // shoots in the bullet's positive x direction
         body = gameObject.GetComponent<Rigidbody>();
         body.AddForce(transform.up * bulletSpeed);
@@ -17,15 +20,14 @@ public class BulletController : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if (body.IsSleeping()) {
-            Destroy(gameObject, lifetime);
+        if (Vector3.Distance(origin, transform.position) > distance) {
+            Destroy(gameObject);
         }
     }
 
-    void OnCollisionEnter(Collision collision) {
-        string otherTag = collision.gameObject.tag;
-        //if (otherTag != "Ignore") {
-        //    Destroy(gameObject);
-        //}
+    void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "Player") {
+            Destroy(gameObject);
+        }
     }
 }
