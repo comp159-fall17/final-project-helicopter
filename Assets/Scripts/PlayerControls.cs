@@ -14,13 +14,13 @@ public class PlayerControls : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
-        transform.Translate(horizontal * walkSpeed, vertical * walkSpeed, 0);
+        
     }
 
     private void FixedUpdate()
     {
-        
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
+        transform.Translate(horizontal * walkSpeed, vertical * walkSpeed, 0);
     }
 }
