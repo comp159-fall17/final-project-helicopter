@@ -4,35 +4,41 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
     public GameObject bullet;
+
     public float fireDelay;
 
-    public Transform target; //this could be substituted for the player's position
+    Transform target;
 
-	// Use this for initialization
-	void Start() {
+    void Start() {
         StartCoroutine(ShootBullets());
-	}
-	
-	// Update is called once per frame
-	void Update() {
-		
-	}
+    }
 
-    private IEnumerator ShootBullets(){ //fire bullets in the direction of the target
-        while (true){
-            Vector3 targetDir = target.position - transform.position;
-            float angle = Vector3.Angle(transform.forward, targetDir);
+    void Update() {
 
-            float rotation;
-            if (transform.position.x > target.transform.position.x){
-                rotation = 90 - angle;
-            }else{
-                rotation = 90 + angle;
-            }
+    }
 
-            Instantiate(bullet, this.gameObject.transform.position, Quaternion.Euler(0, rotation, 90));
+    IEnumerator ShootBullets() { //fire bullets in the direction of the target
+        while (true) {
+            GetTarget();
+            ToSearchAngle();
+
+            Instantiate(bullet, transform.position, ToSearchAngle());
 
             yield return new WaitForSeconds(fireDelay);
         }
+    }
+
+    void GetTarget() {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    Quaternion ToSearchAngle() {
+        Vector3 targetDir = target.position - transform.position;
+        float angle = Vector3.Angle(transform.forward, targetDir);
+
+        float rotation = 90;
+        rotation += transform.position.x > target.position.x ? -angle : angle;
+
+        return Quaternion.Euler(0, rotation, 90);
     }
 }

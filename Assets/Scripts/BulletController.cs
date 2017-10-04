@@ -3,21 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour {
-    private Rigidbody rb;
-
     public float bulletSpeed;
     public float lifetime;
 
-	// Use this for initialization
-	void Start() {
-        Destroy(this.gameObject, lifetime); //destroy this object after a certain amount of time
+    Rigidbody body;
 
-        rb = gameObject.GetComponent<Rigidbody>();
-        rb.AddForce(transform.up * bulletSpeed); //shoots in the bullet's positive x direction
-	}
-	
-	// Update is called once per frame
-	void Update() {
-		
-	}
+    void Start() {
+        // shoots in the bullet's positive x direction
+        body = gameObject.GetComponent<Rigidbody>();
+        body.AddForce(transform.up * bulletSpeed);
+    }
+
+    void FixedUpdate() {
+        if (Mathf.Abs(body.velocity.magnitude) < Mathf.Epsilon) {
+            Destroy(gameObject, lifetime);
+        }
+    }
+
+    void OnCollisionEnter(Collision collision) {
+        string otherTag = collision.gameObject.tag;
+        //if (otherTag != "Ignore") {
+        //    Destroy(gameObject);
+        //}
+    }
 }
