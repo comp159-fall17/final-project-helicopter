@@ -9,6 +9,17 @@ public class PlayerControls : Shooter {
         }
     }
 
+    protected override Vector3 Target {
+        get {
+            // Raycast to corresponding point on screen.
+            Ray viewRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            Physics.Raycast(viewRay, out hit);
+
+            return hit.point;
+        }
+    }
+
     Vector3 inputAxes;
 
     Camera follow;
@@ -55,12 +66,5 @@ public class PlayerControls : Shooter {
         return to;
     }
 
-    protected override Vector3 GetTarget() {
-        // Raycast to corresponding point on screen.
-        Ray viewRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        Physics.Raycast(viewRay, out hit);
 
-        return hit.point;
-    }
 }

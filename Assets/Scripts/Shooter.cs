@@ -13,7 +13,7 @@ public abstract class Shooter : MonoBehaviour {
 
     protected abstract bool ShouldShoot { get; }
 
-    protected abstract Vector3 GetTarget();
+    protected abstract Vector3 Target { get; }
 
     protected virtual void Start() {
         body = GetComponent<Rigidbody>();
@@ -34,7 +34,7 @@ public abstract class Shooter : MonoBehaviour {
     protected IEnumerator ShootBullets() {
         shooting = true;
         while (true) {
-            float angle = FacePointAngle(GetTarget());
+            float angle = FacePointAngle(Target);
 
             Instantiate(bullet, BulletSpawnPoint(angle),
                         Quaternion.Euler(0, angle, 90));

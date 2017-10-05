@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : Shooter {
-    public bool showRange;
-
     float range = 10;
     float visionCone = 45;
     float facingDistanceScale = 1.5f;
@@ -28,87 +26,49 @@ public class EnemyController : Shooter {
 
     protected override bool ShouldShoot {
         get {
-            Vector3 target = GetTarget();
-            Vector3 direction = target - transform.position;
-            float targetDistance = direction.magnitude;
-
-            float angle = Vector3.Angle(direction, transform.forward);
-
-            if (Mathf.Abs(angle) < VisionCone) {
-                targetDistance /= FacingDistanceScale;
+            if (WithinRange) {
+                transform.LookAt(TargetDirection);
             }
 
-            bool inRange = targetDistance < Range;
-
-            if (inRange) {
-                transform.LookAt(target);
-            }
-
-            return inRange;
+            return WithinRange;
         }
     }
 
-    protected override void Start() {
-        base.Start();
-
-        CreateRangeMarker();
+    protected override Vector3 Target {
+        get {
+            return GameObject.FindGameObjectWithTag("Player")
+                             .transform.position;
+        }
     }
 
-    protected override void Update() {
-        base.Update();
-
-        UpdateRangeMarker();
+    Vector3 TargetDirection {
+        get { return Target - transform.position; }
     }
 
-    void CreateRangeMarker() {
-        rangeMarker = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-
-        rangeMarker.transform.position = transform.position;
-        rangeMarker.GetComponent<Collider>().isTrigger = true;
-
-        Material rangeMaterial = rangeMarker.GetComponent<Renderer>().material;
-
-        ActivateTransparency(rangeMaterial);
-
-        // set color to translucent
-        Color newColor = rangeMaterial.color;
-        newColor.a = 0.3f;
-        rangeMaterial.color = newColor;
+    Ray TargetRay {
+        get { return new Ray(transform.position, TargetDirection); }
     }
 
-    /// <summary>
-    /// Activates shader transparency for a Material.
-    /// 
-    /// From StandardShaderGUI.SetupMaterialWithBlendMode.
-    /// </summary>
-    /// <param name="mat">Material.</param>
-    void ActivateTransparency(Material mat) {
-        mat.SetFloat("_Mode", 3);
-        mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
-        mat.SetInt("_DstBlend",
-                   (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-        mat.SetInt("_ZWrite", 0);
-        mat.DisableKeyword("_ALPHATEST_ON");
-        mat.DisableKeyword("_ALPHABLEND_ON");
-        mat.EnableKeyword("_ALPHAPREMULTIPLY_ON");
-        mat.renderQueue = 3000;
+    float EffectiveRange {
+        get {
+            float thisRange = Range;
+            if (Mathf.Abs(TargetAngle) < VisionCone) {
+                thisRange *= FacingDistanceScale;
+            }
+            return thisRange;
+        }
     }
 
-    // Update is called once per frame
-    void UpdateRangeMarker() {
-        rangeMarker.transform.position = transform.position;
-
-        rangeMarker.SetActive(showRange);
-
-        Vector3 newScale = rangeMarker.transform.localScale;
-        newScale = new Vector3(1, 0, 1) * Range * 2;
-        newScale.y = 0.1f;
-
-        rangeMarker.transform.localScale = newScale;
+    float TargetAngle {
+        get { return Vector3.Angle(TargetDirection, transform.forward); }
     }
 
-    protected override Vector3 GetTarget() {
-        return GameObject.FindGameObjectWithTag("Player")
-                         .transform.position;
+    bool WithinRange {
+        get { return TargetDirection.magnitude < EffectiveRange;  }
+    }
+
+    void OnDrawGizmos() {
+        GizmoDraw.Circle(transform.position, range);
+        GizmoDraw.Ray(TargetRay, EffectiveRange);
     }
 }
