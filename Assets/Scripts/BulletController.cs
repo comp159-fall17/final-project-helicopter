@@ -26,8 +26,21 @@ public class BulletController : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Player") {
-            Destroy(gameObject);
+        switch (other.gameObject.tag) {
+        case "Player":
+            TriggerPlayer(other);
+            break;
+        case "Enemy":
+            TriggerEnemy(other);
+            break;
         }
+    }
+
+    void TriggerPlayer(Collider player) {
+        Destroy(gameObject);
+    }
+
+    void TriggerEnemy(Collider enemy) {
+        Destroy(gameObject);
     }
 }
