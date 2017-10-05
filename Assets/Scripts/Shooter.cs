@@ -11,8 +11,7 @@ public abstract class Shooter : MonoBehaviour {
 
     protected Rigidbody body;
 
-    protected abstract bool StartShooting { get; }
-    protected abstract bool StopShooting { get; }
+    protected abstract bool ShouldShoot { get; }
 
     protected abstract Vector3 GetTarget();
 
@@ -21,7 +20,7 @@ public abstract class Shooter : MonoBehaviour {
     }
 
     protected virtual void Update() {
-        if (StartShooting && !shooting) {
+        if (ShouldShoot && !shooting) {
             StartCoroutine(ShootBullets());
         }
     }
@@ -42,7 +41,7 @@ public abstract class Shooter : MonoBehaviour {
 
             yield return new WaitForSeconds(fireDelay);
 
-            if (StopShooting) {
+            if (!ShouldShoot) {
                 shooting = false;
                 yield break;
             }

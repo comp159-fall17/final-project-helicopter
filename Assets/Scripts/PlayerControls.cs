@@ -3,15 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControls : Shooter {
-    protected override bool StartShooting {
+    protected override bool ShouldShoot {
         get {
-            return Input.GetMouseButtonDown(0);
-        }
-    }
-
-    protected override bool StopShooting {
-        get {
-            return !Input.GetMouseButton(0);
+            return Input.GetMouseButton(0);
         }
     }
 

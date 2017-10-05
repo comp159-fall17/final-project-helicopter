@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : Shooter {
-    protected override bool StartShooting {
-        get { return true; }
-    }
+    protected float range = 10;
 
-    protected override bool StopShooting {
-        get { return false; }
+    Vector3 target;
+
+    protected override bool ShouldShoot {
+        get {
+            return Vector3.Distance(GetTarget(), transform.position) < range;
+        }
     }
 
     protected override void Start() {
         base.Start();
-        StartCoroutine(ShootBullets());
     }
 
     protected override Vector3 GetTarget() {
-        return GameObject.FindGameObjectWithTag("Player").transform.position;
+        return GameObject.FindGameObjectWithTag("Player")
+                         .transform.position; ;
     }
 }
