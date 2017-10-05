@@ -63,7 +63,6 @@ public abstract class Shooter : MonoBehaviour {
     /// <returns>Spawn point.</returns>
     /// <param name="angle">angle of shooting.</param>
     Vector3 BulletSpawnPoint(float angle) {
-        Debug.Log(angle);
         return body.position - (Quaternion.AngleAxis(angle, Vector3.up)
                                 * Vector3.right).normalized;
     }
