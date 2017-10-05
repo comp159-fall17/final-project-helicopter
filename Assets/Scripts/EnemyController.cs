@@ -26,11 +26,14 @@ public class EnemyController : Shooter {
 
     protected override bool ShouldShoot {
         get {
-            if (WithinRange) {
+            bool visible = WithinRange &&              // Not "Player" layer (8)
+                !Physics.Raycast(TargetRay, EffectiveRange, ~(1 << 8));
+
+            if (visible) {
                 transform.LookAt(TargetDirection);
             }
 
-            return WithinRange;
+            return visible;
         }
     }
 
@@ -64,7 +67,7 @@ public class EnemyController : Shooter {
     }
 
     bool WithinRange {
-        get { return TargetDirection.magnitude < EffectiveRange;  }
+        get { return TargetDirection.magnitude < EffectiveRange; }
     }
 
     void OnDrawGizmos() {
