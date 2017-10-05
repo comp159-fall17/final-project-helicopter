@@ -30,7 +30,7 @@ public class EnemyController : Shooter {
                 !Physics.Raycast(TargetRay, EffectiveRange, ~(1 << 8));
 
             if (visible) {
-                transform.LookAt(TargetDirection);
+                transform.LookAt(Target);
             }
 
             return visible;
@@ -72,6 +72,8 @@ public class EnemyController : Shooter {
 
     void OnDrawGizmos() {
         GizmoDraw.Circle(transform.position, range);
-        GizmoDraw.Ray(TargetRay, EffectiveRange);
+        GizmoDraw.Ray(TargetRay, EffectiveRange, Color.red);
+        GizmoDraw.Ray(new Ray(transform.position, transform.forward), 
+                      EffectiveRange, Color.green);
     }
 }

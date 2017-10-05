@@ -13,7 +13,7 @@ public static class GizmoDraw {
         }
     }
 
-    public static void Ray(Ray ray, float length) {
-        Debug.DrawRay(ray.origin, ray.direction * length);
+    public static void Ray(Ray ray, float length, Color color) {
+        Debug.DrawRay(ray.origin, ray.direction * length, color);
     }
 }
