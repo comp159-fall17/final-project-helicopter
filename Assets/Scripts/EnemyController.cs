@@ -5,11 +5,17 @@ using UnityEngine;
 public class EnemyController : Shooter {
     protected float range = 10;
 
-    Vector3 target;
-
     protected override bool ShouldShoot {
         get {
-            return Vector3.Distance(GetTarget(), transform.position) < range;
+            Vector3 target = GetTarget();
+            float targetDistance = Vector3.Distance(target, transform.position);
+            bool inRange = targetDistance < range;
+
+            if (inRange) {
+                transform.LookAt(target);
+            }
+
+            return inRange;
         }
     }
 
@@ -19,6 +25,6 @@ public class EnemyController : Shooter {
 
     protected override Vector3 GetTarget() {
         return GameObject.FindGameObjectWithTag("Player")
-                         .transform.position; ;
+                         .transform.position;
     }
 }
