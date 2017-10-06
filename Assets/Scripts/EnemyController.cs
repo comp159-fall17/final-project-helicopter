@@ -78,12 +78,15 @@ public class EnemyController : Shooter {
         // basic range
         GizmoDraw.Circle(transform.position, range);
 
+        GizmoDraw.Wedge(transform.position, range * FacingDistanceScale,
+                        visionCone * 2, transform.forward, Color.magenta);
+
         // target system
-        GizmoDraw.Ray(TargetRay, TargetDistance, Color.white); // all
+        GizmoDraw.Ray(TargetRay, TargetDistance); // all
         GizmoDraw.Ray(TargetRay, EffectiveRange, Color.red); // viewing portion
 
         // forward facing direction
         GizmoDraw.Ray(new Ray(transform.position, transform.forward),
-                      EffectiveRange, Color.green);
+                      range * FacingDistanceScale, Color.green);
     }
 }
