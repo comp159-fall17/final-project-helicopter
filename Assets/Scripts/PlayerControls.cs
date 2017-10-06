@@ -65,4 +65,11 @@ public class PlayerControls : Shooter {
         to.y = from.y;
         return to;
     }
+
+    void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag.Contains("Pickup")) {
+            Debug.Log("Picked up " + other.gameObject.tag); //for now, just testing the collecting of a pickup
+            Destroy(other.gameObject);
+        }
+    }
 }

@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33279580568278658}
   - component: {fileID: 135732981070217332}
   - component: {fileID: 23207845018222852}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Health Pickup
-  m_TagString: Health
+  m_TagString: Health Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
