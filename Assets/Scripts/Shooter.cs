@@ -40,6 +40,14 @@ public abstract class Shooter : MonoBehaviour {
     protected float TargetDistance { get { return TargetDirection.magnitude; } }
 
     /// <summary>
+    /// Angle relative to forward.
+    /// </summary>
+    /// <value>The target angle.</value>
+    protected float TargetAngle {
+        get { return Vector3.Angle(TargetDirection, transform.forward); }
+    }
+    
+    /// <summary>
     /// Effective moving speed.
     /// </summary>
     /// <value>The speed.</value>

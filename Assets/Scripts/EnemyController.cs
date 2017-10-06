@@ -77,7 +77,7 @@ public class EnemyController : Shooter {
                       Color.red); // viewing portion
 
         // forward facing direction
-        GizmoDraw.Ray(new Ray(transform.position, transform.forward),
-                      range * FacingDistanceScale, Color.green);
+        Debug.DrawRay(transform.position,
+                      transform.forward * range * FacingDistanceScale, Color.green);
     }
 }

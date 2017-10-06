@@ -32,7 +32,7 @@ public class BulletController : MonoBehaviour {
     void LookAhead() {
         RaycastHit hit;
         if (Physics.Raycast(body.position, body.velocity, out hit,
-                            body.velocity.magnitude * Time.deltaTime * 0)) {
+                            body.velocity.magnitude * Time.deltaTime * 2)) {
             OnTriggerEnter(hit.collider);
         }
     }
