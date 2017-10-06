@@ -66,14 +66,24 @@ public class EnemyController : Shooter {
         get { return Vector3.Angle(TargetDirection, transform.forward); }
     }
 
+    float TargetDistance {
+        get { return Vector3.Distance(transform.position, Target); }
+    }
+
     bool WithinRange {
         get { return TargetDirection.magnitude < EffectiveRange; }
     }
 
     void OnDrawGizmos() {
+        // basic range
         GizmoDraw.Circle(transform.position, range);
-        GizmoDraw.Ray(TargetRay, EffectiveRange, Color.red);
-        GizmoDraw.Ray(new Ray(transform.position, transform.forward), 
+
+        // target system
+        GizmoDraw.Ray(TargetRay, TargetDistance, Color.white); // all
+        GizmoDraw.Ray(TargetRay, EffectiveRange, Color.red); // viewing portion
+
+        // forward facing direction
+        GizmoDraw.Ray(new Ray(transform.position, transform.forward),
                       EffectiveRange, Color.green);
     }
 }
