@@ -23,15 +23,28 @@ public class BulletController : MonoBehaviour {
         if (Vector3.Distance(origin, transform.position) > distance) {
             Destroy(gameObject);
         }
+
+        RaycastHit hit;
+        if (Physics.Raycast(body.position, body.velocity, out hit,
+                            body.velocity.magnitude * Time.deltaTime)) {
+            OnTriggerEnter(hit.collider);
+        }
     }
 
     void OnTriggerEnter(Collider other) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast")) {
+            return;
+        }
+
         switch (other.gameObject.tag) {
         case "Player":
             TriggerPlayer(other);
             break;
         case "Enemy":
             TriggerEnemy(other);
+            break;
+        default:
+            Destroy(gameObject);
             break;
         }
     }

@@ -155,6 +155,21 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 54799114264256416, guid: fc50d8564878f7644a2c4c19087be46f,
+        type: 2}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54799114264256416, guid: fc50d8564878f7644a2c4c19087be46f,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65948810067719642, guid: fc50d8564878f7644a2c4c19087be46f,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc50d8564878f7644a2c4c19087be46f, type: 2}
   m_IsPrefabParent: 0
@@ -420,7 +435,7 @@ GameObject:
   - component: {fileID: 1573208319}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Ignore
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

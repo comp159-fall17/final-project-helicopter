@@ -48,7 +48,7 @@ public class PlayerControls : Shooter {
 
     void TrackCamera() {
         follow.transform.position = CopyY(transform.position,
-                                         follow.transform.position);
+                                          follow.transform.position);
     }
 
     void FixedUpdate() {
