@@ -74,7 +74,7 @@ public class EnemyController : Shooter {
         get { return TargetDirection.magnitude < EffectiveRange; }
     }
 
-    void OnDrawGizmos() {
+    void OnDrawGizmosSelected() {
         // basic range
         GizmoDraw.Circle(transform.position, range);
 
