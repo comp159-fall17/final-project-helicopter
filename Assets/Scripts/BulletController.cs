@@ -15,8 +15,6 @@ public class BulletController : MonoBehaviour {
         // shoots in the bullet's positive x direction
         body = gameObject.GetComponent<Rigidbody>();
         body.AddForce(transform.up * bulletSpeed);
-
-        body.sleepThreshold = 100f;
     }
 
     void FixedUpdate() {
@@ -24,6 +22,7 @@ public class BulletController : MonoBehaviour {
             Destroy(gameObject);
         }
 
+        // look ahead two frames
         RaycastHit hit;
         if (Physics.Raycast(body.position, body.velocity, out hit,
                             body.velocity.magnitude * Time.deltaTime)) {
@@ -49,10 +48,18 @@ public class BulletController : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Player trigger handler.
+    /// </summary>
+    /// <param name="player">Player collider.</param>
     void TriggerPlayer(Collider player) {
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// Enemy trigger handler.
+    /// </summary>
+    /// <param name="enemy">Enemy collider.</param>
     void TriggerEnemy(Collider enemy) {
         Destroy(gameObject);
     }

@@ -11,9 +11,23 @@ public abstract class Shooter : MonoBehaviour {
 
     protected Rigidbody body;
 
+    /// <summary>
+    /// Whether this <see cref="T:Shooter"/> should shoot.
+    /// </summary>
+    /// <value><c>true</c> if should shoot; otherwise, <c>false</c>.</value>
     protected abstract bool ShouldShoot { get; }
 
+    /// <summary>
+    /// Target to aim at.
+    /// </summary>
+    /// <value>The target.</value>
     protected abstract Vector3 Target { get; }
+
+    /// <summary>
+    /// Effective moving speed.
+    /// </summary>
+    /// <value>The speed.</value>
+    protected virtual float Speed { get { return walkSpeed; } }
 
     protected virtual void Start() {
         body = GetComponent<Rigidbody>();
@@ -25,30 +39,33 @@ public abstract class Shooter : MonoBehaviour {
         }
     }
 
-    protected virtual float CurrentSpeed() {
-        return walkSpeed;
-    }
-
+    /// <summary>
+    /// True if ShootBullets() is currently running.
+    /// </summary>
     bool shooting;
 
+    /// <summary>
+    /// Shoots bullet at the target until ShouldShoot becomes false.
+    /// </summary>
     protected IEnumerator ShootBullets() {
         shooting = true;
-        while (true) {
-            float angle = FacePointAngle(Target);
+        while (ShouldShoot) {
+            float angle = FaceTargetAngle(Target);
 
             Instantiate(bullet, BulletSpawnPoint(angle),
                         Quaternion.Euler(0, angle, 90));
 
             yield return new WaitForSeconds(fireDelay);
-
-            if (!ShouldShoot) {
-                shooting = false;
-                yield break;
-            }
         }
+        shooting = false;
     }
 
-    float FacePointAngle(Vector3 target) {
+    /// <summary>
+    /// Find angle towards target.
+    /// </summary>
+    /// <returns>Angle towards target from 0 degrees.</returns>
+    /// <param name="target">Target point.</param>
+    float FaceTargetAngle(Vector3 target) {
         // TODO: fix -angle
         float angle = Mathf.Atan2(transform.position.z - target.z,
                                   transform.position.x - target.x);
@@ -60,7 +77,7 @@ public abstract class Shooter : MonoBehaviour {
     /// Find bullet spawn point.
     /// </summary>
     /// <returns>Spawn point.</returns>
-    /// <param name="angle">angle of shooting.</param>
+    /// <param name="angle">Angle of shooting direction.</param>
     Vector3 BulletSpawnPoint(float angle) {
         return body.position - (Quaternion.AngleAxis(angle, Vector3.up)
                                 * Vector3.right).normalized;

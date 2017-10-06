@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PlayerControls : Shooter {
     protected override bool ShouldShoot {
-        get {
-            return Input.GetMouseButton(0);
-        }
+        get { return Input.GetMouseButton(0); }
     }
 
     protected override Vector3 Target {
@@ -43,7 +41,7 @@ public class PlayerControls : Shooter {
         //inputAxes.y;
         inputAxes.z = Input.GetAxis("Vertical");
 
-        inputAxes *= walkSpeed;
+        inputAxes *= Speed;
     }
 
     void TrackCamera() {
