@@ -34,11 +34,11 @@ public class PlayerControls : Shooter {
     protected override void Update() {
         base.Update();
 
-        updateInputAxes();
+        UpdateInputAxes();
         TrackCamera();
     }
 
-    void updateInputAxes() {
+    void UpdateInputAxes() {
         inputAxes.x = Input.GetAxis("Horizontal");
         //inputAxes.y;
         inputAxes.z = Input.GetAxis("Vertical");
@@ -65,6 +65,4 @@ public class PlayerControls : Shooter {
         to.y = from.y;
         return to;
     }
-
-
 }
