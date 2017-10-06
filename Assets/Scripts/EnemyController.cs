@@ -27,7 +27,7 @@ public class EnemyController : Shooter {
     protected override bool ShouldShoot {
         get {
             bool visible = WithinRange &&              // Not "Player" layer (8)
-                !Physics.Raycast(TargetRay, EffectiveRange, ~(1 << 8));
+                !Physics.Raycast(TargetRay, TargetDistance, ~(1 << 8));
 
             if (visible) {
                 transform.LookAt(Target);
