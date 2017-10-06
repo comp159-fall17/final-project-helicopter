@@ -26,7 +26,8 @@ public class EnemyController : Shooter {
     protected override bool ShouldShoot {
         get {
             bool visible = WithinRange &&
-                !Physics.Raycast(TargetRay, TargetDistance,
+                !Physics.Raycast(transform.position, TargetDirection, 
+                                 TargetDistance,
                                  ~(1 << LayerMask.NameToLayer("Player")));
 
             if (visible) {
@@ -44,10 +45,6 @@ public class EnemyController : Shooter {
         }
     }
 
-    Vector3 TargetDirection {
-        get { return Target - transform.position; }
-    }
-
     Ray TargetRay {
         get { return new Ray(transform.position, TargetDirection); }
     }
@@ -62,16 +59,8 @@ public class EnemyController : Shooter {
         }
     }
 
-    float TargetAngle {
-        get { return Vector3.Angle(TargetDirection, transform.forward); }
-    }
-
-    float TargetDistance {
-        get { return Vector3.Distance(transform.position, Target); }
-    }
-
     bool WithinRange {
-        get { return TargetDirection.magnitude < EffectiveRange; }
+        get { return TargetDistance < EffectiveRange; }
     }
 
     void OnDrawGizmosSelected() {
@@ -82,8 +71,10 @@ public class EnemyController : Shooter {
                         visionCone * 2, transform.forward, Color.magenta);
 
         // target system
-        GizmoDraw.Ray(TargetRay, TargetDistance); // all
-        GizmoDraw.Ray(TargetRay, EffectiveRange, Color.red); // viewing portion
+        Debug.DrawRay(transform.position, TargetDirection); // all
+        Debug.DrawRay(transform.position,
+                      TargetDirection.normalized * EffectiveRange,
+                      Color.red); // viewing portion
 
         // forward facing direction
         GizmoDraw.Ray(new Ray(transform.position, transform.forward),

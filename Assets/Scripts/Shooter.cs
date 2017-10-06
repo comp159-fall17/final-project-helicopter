@@ -26,12 +26,27 @@ public abstract class Shooter : MonoBehaviour {
     protected abstract Vector3 Target { get; }
 
     /// <summary>
+    /// Direction of Target relative to position.
+    /// </summary>
+    /// <value>The target direction.</value>
+    protected Vector3 TargetDirection {
+        get { return Target - transform.position; }
+    }
+
+    /// <summary>
+    /// Distance to Target.
+    /// </summary>
+    /// <value>The target distance.</value>
+    protected float TargetDistance { get { return TargetDirection.magnitude; } }
+
+    /// <summary>
     /// Effective moving speed.
     /// </summary>
     /// <value>The speed.</value>
     protected virtual float Speed { get { return walkSpeed; } }
 
     protected virtual void Start() {
+        // nothing.
     }
 
     protected virtual void Update() {
@@ -81,6 +96,6 @@ public abstract class Shooter : MonoBehaviour {
     /// <param name="angle">Angle of shooting direction.</param>
     Vector3 BulletSpawnPoint(float angle) {
         return Body.position - (Quaternion.AngleAxis(angle, Vector3.up)
-                                * Vector3.right).normalized;
+                                * Vector3.right).normalized; ;
     }
 }

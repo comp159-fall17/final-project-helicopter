@@ -16,17 +16,23 @@ public class BulletController : MonoBehaviour {
         // shoots in the bullet's positive x direction
         body = gameObject.GetComponent<Rigidbody>();
         body.AddForce(transform.up * bulletSpeed);
+
+        LookAhead();
     }
 
     void FixedUpdate() {
         if (Vector3.Distance(origin, transform.position) > distance) {
             Destroy(gameObject);
         }
+    }
 
-        // look ahead two frames
+    /// <summary>
+    /// Look ahead two frames.
+    /// </summary>
+    void LookAhead() {
         RaycastHit hit;
         if (Physics.Raycast(body.position, body.velocity, out hit,
-                            body.velocity.magnitude * Time.deltaTime)) {
+                            body.velocity.magnitude * Time.deltaTime * 0)) {
             OnTriggerEnter(hit.collider);
         }
     }

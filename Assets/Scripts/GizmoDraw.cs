@@ -142,25 +142,4 @@ public static class GizmoDraw {
                              Vector3 forwardVector, float d_th = 0.1f) {
         Wedge(center, radius, wedgeAngle, forwardVector, Color.white, d_th);
     }
-
-    /// <summary>
-    /// Draw a ray.
-    /// </summary>
-    /// <returns>The ray.</returns>
-    /// <param name="ray">Ray.</param>
-    /// <param name="length">Length of ray.</param>
-    /// <param name="color">Color of ray.</param>
-    public static void Ray(Ray ray, float length, Color color) {
-        Debug.DrawRay(ray.origin, ray.direction * length, color);
-    }
-
-    /// <summary>
-    /// Draw a white ray.
-    /// </summary>
-    /// <returns>The ray.</returns>
-    /// <param name="ray">Ray.</param>
-    /// <param name="length">Length of ray.</param>
-    public static void Ray(Ray ray, float length) {
-        Ray(ray, length, Color.white);
-    }
 }
