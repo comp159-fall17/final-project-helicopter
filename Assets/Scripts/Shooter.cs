@@ -1,7 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controller for enemy that can shoot.
+/// </summary>
 public abstract class Shooter : MonoBehaviour {
     public GameObject bullet;
 
@@ -9,7 +11,7 @@ public abstract class Shooter : MonoBehaviour {
     public float walkSpeed = 10f;
     //public float runSpeed = 30f;
 
-    protected Rigidbody body;
+    protected Rigidbody Body { get { return GetComponent<Rigidbody>(); } }
 
     /// <summary>
     /// Whether this <see cref="T:Shooter"/> should shoot.
@@ -30,7 +32,6 @@ public abstract class Shooter : MonoBehaviour {
     protected virtual float Speed { get { return walkSpeed; } }
 
     protected virtual void Start() {
-        body = GetComponent<Rigidbody>();
     }
 
     protected virtual void Update() {
@@ -79,7 +80,7 @@ public abstract class Shooter : MonoBehaviour {
     /// <returns>Spawn point.</returns>
     /// <param name="angle">Angle of shooting direction.</param>
     Vector3 BulletSpawnPoint(float angle) {
-        return body.position - (Quaternion.AngleAxis(angle, Vector3.up)
+        return Body.position - (Quaternion.AngleAxis(angle, Vector3.up)
                                 * Vector3.right).normalized;
     }
 }

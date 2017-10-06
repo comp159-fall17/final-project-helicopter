@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Controller for players. Should only have as many instantiated as there are players.
+/// </summary>
 public class PlayerControls : Shooter {
     protected override bool ShouldShoot {
         get { return Input.GetMouseButton(0); }
@@ -50,7 +51,7 @@ public class PlayerControls : Shooter {
     }
 
     void FixedUpdate() {
-        body.velocity = CopyY(inputAxes, body.velocity);
+        Body.velocity = CopyY(inputAxes, Body.velocity);
     }
 
     /// <summary>

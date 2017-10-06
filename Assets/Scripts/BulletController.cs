@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Bullet controller.
+/// </summary>
 public class BulletController : MonoBehaviour {
     public float bulletSpeed;
     public float distance;

@@ -1,6 +1,8 @@
 using UnityEngine;
-using System.Collections;
 
+/// <summary>
+/// Drawing gizmos that aren't already defined in <see cref="Gizmos"/>.
+/// </summary>
 public static class GizmoDraw {
     /// <summary>
     /// Draw circle.

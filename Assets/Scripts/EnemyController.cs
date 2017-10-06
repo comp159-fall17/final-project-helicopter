@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Enemy controller for enemy that targets player.
+/// </summary>
 public class EnemyController : Shooter {
     float range = 10;
     float visionCone = 45;
     float facingDistanceScale = 1.5f;
-
-    GameObject rangeMarker;
 
     /// <summary>
     /// Range of action.
