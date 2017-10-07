@@ -45,10 +45,6 @@ public class EnemyController : Shooter {
         }
     }
 
-    Ray TargetRay {
-        get { return new Ray(transform.position, TargetDirection); }
-    }
-
     float EffectiveRange {
         get {
             float thisRange = Range;

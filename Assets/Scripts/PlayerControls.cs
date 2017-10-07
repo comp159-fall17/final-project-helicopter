@@ -6,9 +6,10 @@
 public class PlayerControls : Shooter {
     protected override bool ShouldShoot {
         get {
+            Vector3 rayDirection = BulletSpawnPoint - transform.position;
+            int notPlayerMask = ~(1 << LayerMask.NameToLayer("Player"));
             bool wallInWay = !Physics.Raycast(transform.position,
-                                              BulletSpawnPoint - transform.position,
-                                              2, ~(1 << LayerMask.NameToLayer("Player")));
+                                              rayDirection, 2, notPlayerMask);
             return Input.GetMouseButton(0) && wallInWay;
         }
     }
