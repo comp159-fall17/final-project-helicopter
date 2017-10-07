@@ -5,7 +5,12 @@
 /// </summary>
 public class PlayerControls : Shooter {
     protected override bool ShouldShoot {
-        get { return Input.GetMouseButton(0); }
+        get {
+            bool wallInWay = !Physics.Raycast(transform.position,
+                                              BulletSpawnPoint - transform.position,
+                                              2, ~(1 << LayerMask.NameToLayer("Player")));
+            return Input.GetMouseButton(0) && wallInWay;
+        }
     }
 
     protected override Vector3 Target {
@@ -15,7 +20,7 @@ public class PlayerControls : Shooter {
             RaycastHit hit;
             Physics.Raycast(viewRay, out hit);
 
-            return hit.point;
+            return CopyY(hit.point, Body.position);
         }
     }
 

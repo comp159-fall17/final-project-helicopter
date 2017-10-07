@@ -24,15 +24,17 @@ public class BulletController : MonoBehaviour {
         if (Vector3.Distance(origin, transform.position) > distance) {
             Destroy(gameObject);
         }
+
+        LookAhead();
     }
 
     /// <summary>
-    /// Look ahead two frames.
+    /// Look ahead a frame.
     /// </summary>
     void LookAhead() {
         RaycastHit hit;
         if (Physics.Raycast(body.position, body.velocity, out hit,
-                            body.velocity.magnitude * Time.deltaTime * 2)) {
+                            body.velocity.magnitude * Time.deltaTime)) {
             OnTriggerEnter(hit.collider);
         }
     }

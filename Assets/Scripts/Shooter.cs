@@ -44,7 +44,13 @@ public abstract class Shooter : MonoBehaviour {
     /// </summary>
     /// <value>The target angle.</value>
     protected float TargetAngle {
-        get { return Vector3.Angle(TargetDirection, transform.forward); }
+        get {
+            // TODO: fix -angle
+            float angle = Mathf.Atan2(transform.position.z - Target.z,
+                                      transform.position.x - Target.x);
+
+            return -angle * Mathf.Rad2Deg;
+        }
     }
     
     /// <summary>
@@ -52,6 +58,18 @@ public abstract class Shooter : MonoBehaviour {
     /// </summary>
     /// <value>The speed.</value>
     protected virtual float Speed { get { return walkSpeed; } }
+
+    /// <summary>
+    /// Find bullet spawn point.
+    /// </summary>
+    /// <returns>Spawn point.</returns>
+    /// <param name="angle">Angle of shooting direction.</param>
+    protected Vector3 BulletSpawnPoint {
+        get {
+            return Body.position - (Quaternion.AngleAxis(TargetAngle, Vector3.up)
+                                    * Vector3.right).normalized;
+        }
+    }
 
     protected virtual void Start() {
         // nothing.
@@ -74,36 +92,11 @@ public abstract class Shooter : MonoBehaviour {
     protected IEnumerator ShootBullets() {
         shooting = true;
         while (ShouldShoot) {
-            float angle = FaceTargetAngle(Target);
-
-            Instantiate(bullet, BulletSpawnPoint(angle),
-                        Quaternion.Euler(0, angle, 90));
+            Instantiate(bullet, BulletSpawnPoint,
+                        Quaternion.Euler(0, TargetAngle, 90));
 
             yield return new WaitForSeconds(fireDelay);
         }
         shooting = false;
-    }
-
-    /// <summary>
-    /// Find angle towards target.
-    /// </summary>
-    /// <returns>Angle towards target from 0 degrees.</returns>
-    /// <param name="target">Target point.</param>
-    float FaceTargetAngle(Vector3 target) {
-        // TODO: fix -angle
-        float angle = Mathf.Atan2(transform.position.z - target.z,
-                                  transform.position.x - target.x);
-
-        return -angle * Mathf.Rad2Deg;
-    }
-
-    /// <summary>
-    /// Find bullet spawn point.
-    /// </summary>
-    /// <returns>Spawn point.</returns>
-    /// <param name="angle">Angle of shooting direction.</param>
-    Vector3 BulletSpawnPoint(float angle) {
-        return Body.position - (Quaternion.AngleAxis(angle, Vector3.up)
-                                * Vector3.right).normalized; ;
     }
 }
