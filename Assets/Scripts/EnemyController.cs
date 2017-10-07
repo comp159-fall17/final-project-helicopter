@@ -26,7 +26,7 @@ public class EnemyController : Shooter {
     protected override bool ShouldShoot {
         get {
             bool visible = WithinRange &&
-                !Physics.Raycast(transform.position, TargetDirection, 
+                !Physics.Raycast(transform.position, TargetDirection,
                                  TargetDistance,
                                  ~(1 << LayerMask.NameToLayer("Player")));
 
@@ -52,7 +52,7 @@ public class EnemyController : Shooter {
     float EffectiveRange {
         get {
             float thisRange = Range;
-            if (Mathf.Abs(TargetAngle) < VisionCone) {
+            if (Mathf.Abs(RelativeTargetAngle) < VisionCone) {
                 thisRange *= FacingDistanceScale;
             }
             return thisRange;

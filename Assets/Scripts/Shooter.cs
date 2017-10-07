@@ -40,10 +40,18 @@ public abstract class Shooter : MonoBehaviour {
     protected float TargetDistance { get { return TargetDirection.magnitude; } }
 
     /// <summary>
-    /// Angle relative to forward.
+    /// Angle relative to local forward.
     /// </summary>
-    /// <value>The target angle.</value>
-    protected float TargetAngle {
+    /// <value>The relative target angle.</value>
+    protected float RelativeTargetAngle {
+        get { return Vector3.Angle(TargetDirection, transform.forward); }
+    }
+
+    /// <summary>
+    /// Angle relative to world forward.
+    /// </summary>
+    /// <value>The absolute target angle.</value>
+    protected float AbsoluteTargetAngle {
         get {
             // TODO: fix -angle
             float angle = Mathf.Atan2(transform.position.z - Target.z,
@@ -52,7 +60,7 @@ public abstract class Shooter : MonoBehaviour {
             return -angle * Mathf.Rad2Deg;
         }
     }
-    
+
     /// <summary>
     /// Effective moving speed.
     /// </summary>
@@ -66,8 +74,9 @@ public abstract class Shooter : MonoBehaviour {
     /// <param name="angle">Angle of shooting direction.</param>
     protected Vector3 BulletSpawnPoint {
         get {
-            return Body.position - (Quaternion.AngleAxis(TargetAngle, Vector3.up)
-                                    * Vector3.right).normalized;
+            Quaternion outside = Quaternion.AngleAxis(AbsoluteTargetAngle,
+                                                      Vector3.up);
+            return Body.position - (outside * Vector3.right).normalized;
         }
     }
 
@@ -93,7 +102,7 @@ public abstract class Shooter : MonoBehaviour {
         shooting = true;
         while (ShouldShoot) {
             Instantiate(bullet, BulletSpawnPoint,
-                        Quaternion.Euler(0, TargetAngle, 90));
+                        Quaternion.Euler(0, AbsoluteTargetAngle, 90));
 
             yield return new WaitForSeconds(fireDelay);
         }
