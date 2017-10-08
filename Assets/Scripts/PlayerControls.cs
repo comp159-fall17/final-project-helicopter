@@ -79,11 +79,12 @@ public class PlayerControls : Shooter {
             Destroy(other.gameObject);
         }
 
-        if (other.CompareTag("Bullet"))
-        {
+        if (other.CompareTag("Bullet")) {
             Debug.Log("hit");
             hitPoints -= 1;
             Debug.Log(hitPoints);
+            if (hitPoints == 0)
+                Destroy(this.gameObject);
         }
     }
 

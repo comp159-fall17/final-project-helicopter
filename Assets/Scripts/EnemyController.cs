@@ -77,12 +77,16 @@ public class EnemyController : Shooter {
                       transform.forward * range * FacingDistanceScale, Color.green);
     }
 
+    public float hitPoints = 10; //Enemy HP
+
     void OnTriggerEnter(Collider other) {
+        GameObject Game = GameObject.Find("GameController"); //Gets the GameController object
+        GameController g = Game.GetComponent<GameController>(); //Sets object to g
         if (other.gameObject.tag == "PlayerBullet") { //If enemy is shot with a player bullet
-            GameObject Game = GameObject.Find("GameController"); //Gets the GameController object
-            GameController g = Game.GetComponent<GameController>(); //Sets object to g
             g.enemyCount--; //Subtracts from enemyCount in GameController for counting enemies in a wave
-            Destroy(this.gameObject); //Removes enemy
+            hitPoints -= 1;
+            if (hitPoints == 0)
+                Destroy(this.gameObject);
         }
     }
 }
