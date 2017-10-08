@@ -71,10 +71,21 @@ public class PlayerControls : Shooter {
         return to;
     }
 
+    public float hitPoints = 100;
+
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag.Contains("Pickup")) {
             Debug.Log("Picked up " + other.gameObject.tag); //for now, just testing the collecting of a pickup
             Destroy(other.gameObject);
         }
+
+        if (other.CompareTag("Bullet"))
+        {
+            Debug.Log("hit");
+            hitPoints -= 1;
+            Debug.Log(hitPoints);
+        }
     }
+
+ 
 }
