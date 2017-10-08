@@ -8,6 +8,7 @@ TagManager:
   - Ammo Pickup
   - Health Pickup
   - Shield Pickup
+  - Bullet
   layers:
   - Default
   - TransparentFX
