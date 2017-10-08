@@ -9,6 +9,7 @@ TagManager:
   - Health Pickup
   - Shield Pickup
   - Bullet
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX

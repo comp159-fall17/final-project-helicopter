@@ -4,21 +4,32 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
+    //Pickups
     public GameObject healthPickup;
     public GameObject ammoPickup;
     public GameObject shieldPickup;
-
     public float pickupSpawnDelay = 15.0f; //how long to wait before spawning another pickup
     public float pickupDestroyTime = 5.0f; //how long before the pickup disappears
 
-	// Use this for initialization
-	void Start () {
+    //Wave Spawning
+    public Rigidbody enemyPrefab;
+    public float enemySpawnDelay = 5f;
+    public float spawnDistanceFromPlayer = 15f;
+    public int enemiesPerWave = 5;
+    public int waveDelay = 5;
+    public int enemyCount;
+    private bool startWave = true;
+    private bool stopWave = false;
+    private bool startNewWave = false;
+
+    // Use this for initialization
+    void Start () {
         StartCoroutine(SpawnPickups()); //here now for testing, will move out of Start later
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
+        newWave(); //Checks if new wave needs to be started
 	}
 
     private IEnumerator SpawnPickups() {
@@ -52,6 +63,48 @@ public class GameController : MonoBehaviour {
             Destroy(Instantiate(ammoPickup, location, Quaternion.identity), pickupDestroyTime);
         }else { //shield
             Destroy(Instantiate(shieldPickup, location, Quaternion.identity), pickupDestroyTime);
+        }
+    }
+
+
+    //Waves
+    private void newWave() { //Checks if wave needs to be started
+        if (startWave == true) { //Starts wave if needed
+            StartCoroutine(enemySpawn());
+            startWave = false;
+        }
+        if (stopWave == true) { //Ends wave when max enemies are spawned
+            StopCoroutine(enemySpawn());
+            stopWave = false;
+            startNewWave = true;
+        }
+        if (enemyCount == 0 && startNewWave == true) { //When all enemies are dead and its time to start a new wave
+            Invoke("nextWave", waveDelay); //Starts new wave after a delay
+            startNewWave = false;
+        }
+    }
+
+    private void nextWave() { //Called by Invoke so it has a delay starting the next wave
+        startWave = true;
+        enemiesPerWave++; //One more max enemy every wave
+    }
+
+    // Need to add to this to stop possibility of enemies from spawning on eachother
+    private IEnumerator enemySpawn() {
+        GameObject Player = GameObject.Find("Player"); //Gets the player object so enemies dont spawn on the player
+        PlayerControls p = Player.GetComponent<PlayerControls>(); //Same as above
+        enemyCount = 0; //Resets enemy count each wave
+        while (true) {
+            Vector3 position = new Vector3(Random.Range(-38.0f, 38.0f), 0.5f, Random.Range(-38.0f, 38.0f)); //Gets random position for enemy spawn
+            if (Vector3.Distance(position, p.transform.position) > spawnDistanceFromPlayer) { //Stops enemies from spawning near the player
+                Rigidbody enemy = Instantiate(enemyPrefab, position, transform.rotation) as Rigidbody; //Spawns new enemy
+                enemyCount++; //Counts enemies spawned
+            }
+            if (enemyCount == enemiesPerWave) { //Ends wave when max enemies spawned
+                stopWave = true;
+                break;
+            }
+            yield return new WaitForSeconds(enemySpawnDelay); //Delay between enemy spawns
         }
     }
 
