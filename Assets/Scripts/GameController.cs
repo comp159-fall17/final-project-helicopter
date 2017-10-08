@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour {
     public int enemiesPerWave = 5;
     public int waveDelay = 5;
     public int enemyCount;
+    private int enemySpawnedCount;
     private bool startWave = true;
     private bool stopWave = false;
     private bool startNewWave = false;
@@ -98,9 +99,10 @@ public class GameController : MonoBehaviour {
             Vector3 position = new Vector3(Random.Range(-38.0f, 38.0f), 0.5f, Random.Range(-38.0f, 38.0f)); //Gets random position for enemy spawn
             if (Vector3.Distance(position, p.transform.position) > spawnDistanceFromPlayer) { //Stops enemies from spawning near the player
                 Rigidbody enemy = Instantiate(enemyPrefab, position, transform.rotation) as Rigidbody; //Spawns new enemy
-                enemyCount++; //Counts enemies spawned
+                enemyCount++; //Counts enemies alive (gets subtracted when player kills enemy)
+                enemySpawnedCount++; //Counts enemies spawned
             }
-            if (enemyCount == enemiesPerWave) { //Ends wave when max enemies spawned
+            if (enemySpawnedCount == enemiesPerWave) { //Ends wave when max enemies spawned
                 stopWave = true;
                 break;
             }
