@@ -83,10 +83,11 @@ public class EnemyController : Shooter {
         GameObject Game = GameObject.Find("GameController"); //Gets the GameController object
         GameController g = Game.GetComponent<GameController>(); //Sets object to g
         if (other.gameObject.tag == "PlayerBullet") { //If enemy is shot with a player bullet
-            g.enemyCount--; //Subtracts from enemyCount in GameController for counting enemies in a wave
             hitPoints -= 1;
-            if (hitPoints == 0)
+            if (hitPoints == 0) {
+                g.enemyCount--; //Subtracts from enemyCount in GameController for counting enemies in a wave
                 Destroy(this.gameObject);
+            }
         }
     }
 }

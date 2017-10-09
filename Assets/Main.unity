@@ -1663,7 +1663,7 @@ MonoBehaviour:
     type: 2}
   enemySpawnDelay: 0.5
   spawnDistanceFromPlayer: 15
-  enemiesPerWave: 10
+  enemiesPerWave: 5
   waveDelay: 3
   enemyCount: 0
   newEmemiesPerWave: 1
