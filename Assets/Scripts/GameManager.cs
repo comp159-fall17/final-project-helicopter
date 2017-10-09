@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -52,12 +53,16 @@ public class GameManager : MonoBehaviour {
             System.Func<Vector3, bool> overlaps = delegate (Vector3 position) {
                 float prefabRadius = healthPickup.GetComponent<SphereCollider>()
                                                  .radius;
-                return Physics.OverlapSphere(position, prefabRadius).Length > 0;
+
+                Collider[] hits = Physics.OverlapSphere(position, prefabRadius);
+                return hits.Where(i => i.gameObject.name != "Ground")
+                           .ToArray().Length > 0;
             };
 
             SpawnPickup(pickup, GeneratePosition(overlaps));
 
-            yield return new WaitForSeconds(pickupSpawnInterval);
+            //yield return new WaitForSeconds(pickupSpawnInterval);
+            yield return new WaitForSeconds(0);
         }
     }
 
@@ -77,7 +82,7 @@ public class GameManager : MonoBehaviour {
                                     Random.Range(-38.0f, 38.0f));
             // if far from player and nothing collides with it
         } while (Vector3.Distance(candidate, playerPostion) < minSpawnDistance
-                 && overlapFunc(candidate));
+                 || overlapFunc(candidate));
 
         return candidate;
     }
@@ -146,10 +151,13 @@ public class GameManager : MonoBehaviour {
         enemySpawnedCount = 0;
         wave++;
 
-        System.Func<Vector3, bool> overlaps =
-            (position) =>
-            Physics.OverlapBox(position, new Vector3(.75f, 0f, .75f))
-            .Length > 0;
+        System.Func<Vector3, bool> overlaps = delegate (Vector3 position) {
+            Collider[] hits = Physics.OverlapBox(position,
+                                                 new Vector3(.75f, 0f, .75f));
+            return hits.Where(i => i.gameObject.name != "Ground")
+                       .ToArray().Length > 0;
+        };
+
 
         while (enemySpawnedCount < EnemiesOnWave(wave)) {
             Instantiate(enemyPrefab, GeneratePosition(overlaps), transform.rotation);
