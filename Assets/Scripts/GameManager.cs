@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
     //Wave Spawning
     public Rigidbody enemyPrefab;
     public Text waveTimerText;
+    public Text waveNumberText;
 
     public float enemySpawnDelay = 5f;
     public float minSpawnDistance = 15f;
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour {
         }
 
         // TODO: set correct wave timer value
-        SetWaveTimerText();
+        SetWaveTexts();
 
         // TODO: testing, move out of Start
         StartCoroutine(SpawnPickups());
@@ -109,10 +110,11 @@ public class GameManager : MonoBehaviour {
             StartCoroutine(EnemySpawn());
             lastWaveBegin = Time.time;
         }
-        SetWaveTimerText();
+        SetWaveTexts();
     }
 
-    void SetWaveTimerText() {
+    void SetWaveTexts() {
+        // set timer
         float tilSpawn = waveDelay - (Time.time - lastWaveBegin) + 0.5f;
         tilSpawn = Mathf.Round(tilSpawn);
 
@@ -122,6 +124,9 @@ public class GameManager : MonoBehaviour {
             waveTimerText.text = "New wave in "
                 + Mathf.Round(tilSpawn).ToString() + "...";
         }
+
+        // set wave number
+        waveNumberText.text = wave.ToString();
     }
 
     // if EnemySpawn() is currently running
