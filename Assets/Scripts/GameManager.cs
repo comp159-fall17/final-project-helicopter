@@ -135,6 +135,9 @@ public class GameManager : MonoBehaviour {
     IEnumerator EnemySpawn() {
         enemySpawning = true;
 
+        // wait between waves
+        yield return new WaitForSeconds(waveDelay);
+
         enemyCount = 0;
         enemySpawnedCount = 0;
         wave++;
