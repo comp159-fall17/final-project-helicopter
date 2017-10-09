@@ -27,17 +27,16 @@ public class PlayerControls : Shooter {
     }
 
     Vector3 inputAxes;
-
+    Vector3 spawn;
     Camera follow;
 
     protected override void Start() {
         base.Start();
 
-        
-        follow = Camera.main;
         inputAxes = new Vector3(0, 0, 0);
+        follow = Camera.main;
+        spawn = transform.position;
     }
-
 
     protected override void Update() {
         base.Update();
@@ -60,7 +59,6 @@ public class PlayerControls : Shooter {
     }
 
     void FixedUpdate() {
-        
         Body.velocity = CopyY(inputAxes, Body.velocity);
     }
 
@@ -75,18 +73,17 @@ public class PlayerControls : Shooter {
         return to;
     }
 
-
     void OnTriggerEnter(Collider other) {
-
-      
-
         if (other.gameObject.tag.Contains("Pickup")) {
             Debug.Log("Picked up " + other.gameObject.tag); //for now, just testing the collecting of a pickup
             Destroy(other.gameObject);
         }
-
-
     }
 
- 
+    protected override void Die() {
+        Health.Reset();
+
+        // also, UpdateScore();
+        transform.position = spawn;
+    }
 }

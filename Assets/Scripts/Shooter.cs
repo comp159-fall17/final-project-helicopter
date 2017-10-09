@@ -11,6 +11,8 @@ public abstract class Shooter : MonoBehaviour {
     public float walkSpeed = 10f;
     //public float runSpeed = 30f;
 
+    public Healthbar Health { get { return GetComponent<Healthbar>(); } }
+
     protected Rigidbody Body { get { return GetComponent<Rigidbody>(); } }
 
     /// <summary>
@@ -70,7 +72,6 @@ public abstract class Shooter : MonoBehaviour {
     /// Find bullet spawn point.
     /// </summary>
     /// <returns>Spawn point.</returns>
-    /// <param name="angle">Angle of shooting direction.</param>
     protected Vector3 BulletSpawnPoint {
         get {
             Quaternion outside = Quaternion.AngleAxis(AbsoluteTargetAngle,
@@ -86,6 +87,10 @@ public abstract class Shooter : MonoBehaviour {
     protected virtual void Update() {
         if (ShouldShoot && !shooting) {
             StartCoroutine(ShootBullets());
+        }
+
+        if (Health.Points <= 0) {
+            Die();
         }
     }
 
@@ -107,4 +112,6 @@ public abstract class Shooter : MonoBehaviour {
         }
         shooting = false;
     }
+
+    protected abstract void Die();
 }

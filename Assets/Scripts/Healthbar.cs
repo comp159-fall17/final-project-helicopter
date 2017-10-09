@@ -1,46 +1,41 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour {
+    public float maxPoints = 100;
+    public Image healthbar;
 
-    public float hitPoints = 100;
-    public Image healthBar;
+    public float Points { get { return hp; } }
 
-    private float fillAmount;
+    float hp;
 
-    // Use this for initialization
-    void Start () {
-        
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        handleBar();
+    void Start() {
+        Reset();
     }
 
-    void OnTriggerEnter(Collider other) {
-        
-
-        if (other.CompareTag("Bullet"))
-        {
-            Debug.Log(hitPoints);
-           
-            hitPoints -= 1;
-           
-            if (hitPoints == 0)
-                Destroy(this.gameObject);
-        }
+    void Update() {
+        UpdateHealthbar();
     }
 
-    private void handleBar()
-    {
-        healthBar.fillAmount = Map(hitPoints, 0, 100, 0, 1);
+    public void Hit(BulletController other) {
+        Debug.Log(Points);
+        hp -= Damage(other.Speed);
     }
 
-    private float Map(float value,float inMin,float inMax,float outMin, float outMax)
-    {
-        return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+    public void Reset() {
+        hp = maxPoints;
+    }
+
+    float Damage(float speed) {
+        // TODO: add bullet speed scaling
+        return 1;
+    }
+
+    void UpdateHealthbar() {
+        healthbar.fillAmount = BarWidth();
+    }
+
+    float BarWidth() {
+        return hp / maxPoints;
     }
 }

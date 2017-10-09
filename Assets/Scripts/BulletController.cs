@@ -7,15 +7,17 @@ public class BulletController : MonoBehaviour {
     public float bulletSpeed;
     public float distance;
 
-    Rigidbody body;
+    public float Speed { get { return Body.velocity.magnitude; } }
+
+    Rigidbody Body { get { return GetComponent<Rigidbody>(); } }
+
     Vector3 origin;
 
     void Start() {
         origin = transform.position;
 
         // shoots in the bullet's positive x direction
-        body = gameObject.GetComponent<Rigidbody>();
-        body.AddForce(transform.up * bulletSpeed);
+        Body.AddForce(transform.up * bulletSpeed);
 
         LookAhead();
     }
@@ -33,8 +35,8 @@ public class BulletController : MonoBehaviour {
     /// </summary>
     void LookAhead() {
         RaycastHit hit;
-        if (Physics.Raycast(body.position, body.velocity, out hit,
-                            body.velocity.magnitude * Time.deltaTime)) {
+        if (Physics.Raycast(Body.position, Body.velocity, out hit,
+                            Body.velocity.magnitude * Time.deltaTime)) {
             OnTriggerEnter(hit.collider);
         }
     }
@@ -62,6 +64,7 @@ public class BulletController : MonoBehaviour {
     /// </summary>
     /// <param name="player">Player collider.</param>
     void TriggerPlayer(Collider player) {
+        player.gameObject.GetComponent<Shooter>().Health.Hit(this);
         Destroy(gameObject);
     }
 
@@ -70,6 +73,7 @@ public class BulletController : MonoBehaviour {
     /// </summary>
     /// <param name="enemy">Enemy collider.</param>
     void TriggerEnemy(Collider enemy) {
+        enemy.gameObject.GetComponent<Shooter>().Health.Hit(this);
         Destroy(gameObject);
     }
 }

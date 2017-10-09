@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
-
     //Pickups
     public GameObject healthPickup;
     public GameObject ammoPickup;
@@ -19,10 +18,11 @@ public class GameController : MonoBehaviour {
     public int waveDelay = 5;
     public int enemyCount;
     public int newEmemiesPerWave = 1;
-    private int enemySpawnedCount;
-    private bool startWave = true;
-    private bool stopWave = false;
-    private bool startNewWave = false;
+
+    int enemySpawnedCount;
+    bool startWave = true;
+    bool stopWave;
+    bool startNewWave;
 
     // Use this for initialization
     void Start () {
@@ -31,10 +31,10 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        newWave(); //Checks if new wave needs to be started
+        NewWave(); //Checks if new wave needs to be started
 	}
 
-    private IEnumerator SpawnPickups() {
+    IEnumerator SpawnPickups() {
         while (true) {
             int pickup = Random.Range(0, 3);
             Vector3 spawnPoint = new Vector3(0.0f, 0.51f, 0.0f);
@@ -58,40 +58,49 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    private void SpawnPickup(int type, Vector3 location) {
-        if (type == 0) { //health
-            Destroy(Instantiate(healthPickup, location, Quaternion.identity), pickupDestroyTime);
-        }else if (type == 1) { //ammo
-            Destroy(Instantiate(ammoPickup, location, Quaternion.identity), pickupDestroyTime);
-        }else { //shield
-            Destroy(Instantiate(shieldPickup, location, Quaternion.identity), pickupDestroyTime);
+    void SpawnPickup(int type, Vector3 location) {
+        GameObject pickup;
+        switch (type) {
+        case 0:
+            pickup = healthPickup;
+            break;
+        case 1:
+            pickup = ammoPickup;
+            break;
+        default:
+            pickup = shieldPickup;
+            break;
         }
+
+        Destroy(Instantiate(pickup, location, Quaternion.identity),
+                pickupDestroyTime);
     }
 
-
     //Waves
-    private void newWave() { //Checks if wave needs to be started
-        if (startWave == true) { //Starts wave if needed
-            StartCoroutine(enemySpawn());
+    void NewWave() { //Checks if wave needs to be started
+        if (startWave) { //Starts wave if needed
+            StartCoroutine(EnemySpawn());
             startWave = false;
         }
-        if (stopWave == true) { //Ends wave when max enemies are spawned
-            StopCoroutine(enemySpawn());
+
+        if (stopWave) { //Ends wave when max enemies are spawned
+            StopCoroutine(EnemySpawn());
             stopWave = false;
             startNewWave = true;
         }
-        if (enemyCount == 0 && startNewWave == true) { //When all enemies are dead and its time to start a new wave
+
+        if (enemyCount == 0 && startNewWave) { //When all enemies are dead and its time to start a new wave
             Invoke("nextWave", waveDelay); //Starts new wave after a delay
             startNewWave = false;
         }
     }
 
-    private void nextWave() { //Called by Invoke so it has a delay starting the next wave
+    private void NextWave() { //Called by Invoke so it has a delay starting the next wave
         startWave = true;
         enemiesPerWave++; //One more max enemy every wave
     }
 
-    private IEnumerator enemySpawn() {
+    private IEnumerator EnemySpawn() {
         GameObject Player = GameObject.Find("Player"); //Gets the player object so enemies dont spawn on the player
         PlayerControls p = Player.GetComponent<PlayerControls>(); //Same as above
         enemyCount = 0; //Resets enemy count each wave
