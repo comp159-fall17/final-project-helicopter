@@ -91,7 +91,6 @@ public class GameController : MonoBehaviour {
         enemiesPerWave++; //One more max enemy every wave
     }
 
-    // Need to add to this to stop possibility of enemies from spawning on eachother
     private IEnumerator enemySpawn() {
         GameObject Player = GameObject.Find("Player"); //Gets the player object so enemies dont spawn on the player
         PlayerControls p = Player.GetComponent<PlayerControls>(); //Same as above
