@@ -18,7 +18,6 @@ public class Healthbar : MonoBehaviour {
     }
 
     public void Hit(BulletController other) {
-        Debug.Log(Points);
         hp -= Damage(other.Speed);
     }
 

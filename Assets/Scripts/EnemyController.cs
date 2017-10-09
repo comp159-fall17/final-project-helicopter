@@ -74,10 +74,14 @@ public class EnemyController : Shooter {
 
         // forward facing direction
         Debug.DrawRay(transform.position,
-                      transform.forward * range * FacingDistanceScale, Color.green);
+                      transform.forward * range * FacingDistanceScale,
+                      Color.green);
     }
 
+    public float hitPoints = 10; //Enemy HP
+
     protected override void Die() {
+        GameManager.Instance.EnemyHasDied();
         Destroy(gameObject);
     }
 }

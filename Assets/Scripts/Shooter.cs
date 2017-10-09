@@ -87,14 +87,32 @@ public abstract class Shooter : MonoBehaviour {
     }
 
     protected virtual void Update() {
+        ManageShooting();
+        CheckIfDead();
+    }
+
+    /// <summary>
+    /// Checks if shooting should resume.
+    /// </summary>
+    void ManageShooting() {
         if (ShouldShoot && !shooting) {
             StartCoroutine(ShootBullets());
         }
+    }
 
+    /// <summary>
+    /// Checks if death needs to be called.
+    /// </summary>
+    void CheckIfDead() {
         if (Health.Points <= 0) {
             Die();
         }
     }
+
+    /// <summary>
+    /// What happens when we die?
+    /// </summary>
+    protected abstract void Die();
 
     /// <summary>
     /// True if ShootBullets() is currently running.
@@ -114,6 +132,4 @@ public abstract class Shooter : MonoBehaviour {
         }
         shooting = false;
     }
-
-    protected abstract void Die();
 }

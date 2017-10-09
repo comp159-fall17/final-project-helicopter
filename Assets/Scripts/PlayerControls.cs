@@ -75,7 +75,8 @@ public class PlayerControls : Shooter {
 
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag.Contains("Pickup")) {
-            Debug.Log("Picked up " + other.gameObject.tag); //for now, just testing the collecting of a pickup
+            // TODO: implement pickup effects
+            Debug.Log("Picked up " + other.gameObject.tag);
             Destroy(other.gameObject);
         }
     }
