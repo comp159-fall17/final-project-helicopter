@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour {
 
 		// TODO: set correct wave timer value
 		waveTimer = 5.5f;
-		setWaveTimerText ();
+		SetWaveTimerText ();
 
         // TODO: testing, move out of Start
         StartCoroutine(SpawnPickups());
@@ -45,20 +45,6 @@ public class GameManager : MonoBehaviour {
 	
 	void Update () {
         ManageWaves();
-		decreaseWaveTimer ();
-
-	}
-
-	void decreaseWaveTimer(){
-		waveTimer -= Time.deltaTime;
-		if (waveTimer < -0.5) {//Keeps intervals between time the same
-			waveTimer = 5.5f;
-		}
-		setWaveTimerText ();
-	}
-
-	void setWaveTimerText(){
-		waveTimerText.text = "New wave in " + Mathf.Round (waveTimer).ToString () + "...";
 	}
 
     IEnumerator SpawnPickups() {
@@ -116,12 +102,26 @@ public class GameManager : MonoBehaviour {
                 pickupDestroyTime);
     }
 
+    float lastWaveBegin;
+
     /// <summary>
     /// Checks if wave needs to be started.
     /// </summary>
     void ManageWaves() {
-        if (!enemySpawning) {
+        if (!enemySpawning && enemyCount == 0) {
             StartCoroutine(EnemySpawn());
+            lastWaveBegin = Time.time;
+        }
+        SetWaveTimerText();
+    }
+
+    void SetWaveTimerText() {
+        if (enemyCount > 0) {
+            waveTimerText.text = "Go!";
+        } else {
+            float tilSpawn = waveDelay - Time.time - lastWaveBegin + 0.5f;
+            waveTimerText.text = "New wave in "
+                + Mathf.Round(tilSpawn).ToString() + "...";
         }
     }
 
@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour {
             Physics.OverlapBox(position, new Vector3(.75f, 0f, .75f))
             .Length > 0;
 
-        while (enemySpawnedCount < EnemiesOnWave(wave) && enemySpawning) {
+        while (enemySpawnedCount < EnemiesOnWave(wave)) {
             Instantiate(enemyPrefab, GeneratePosition(overlaps), transform.rotation);
             enemyCount++;
             enemySpawnedCount++;
@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour {
     }
 
     static int EnemiesOnWave(int wave) {
-        return wave + 5;
+        return wave + 4;
     }
 
     public void EnemyHasDied() {
