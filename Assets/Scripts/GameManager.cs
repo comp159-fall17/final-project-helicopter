@@ -61,8 +61,7 @@ public class GameManager : MonoBehaviour {
 
             SpawnPickup(pickup, GeneratePosition(overlaps));
 
-            //yield return new WaitForSeconds(pickupSpawnInterval);
-            yield return new WaitForSeconds(0);
+            yield return new WaitForSeconds(pickupSpawnInterval);
         }
     }
 
