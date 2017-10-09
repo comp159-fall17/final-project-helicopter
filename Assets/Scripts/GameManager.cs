@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour {
         if (enemyCount > 0) {
             waveTimerText.text = "Go!";
         } else {
-            float tilSpawn = waveDelay - Time.time - lastWaveBegin + 0.5f;
+            float tilSpawn = waveDelay - (Time.time - lastWaveBegin) + 0.5f;
             waveTimerText.text = "New wave in "
                 + Mathf.Round(tilSpawn).ToString() + "...";
         }
