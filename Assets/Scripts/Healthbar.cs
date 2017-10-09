@@ -8,16 +8,16 @@ public class Healthbar : MonoBehaviour {
     public float hitPoints = 100;
     public Image healthBar;
 
-    private float health;
+    private float fillAmount;
 
     // Use this for initialization
     void Start () {
-        health = hitPoints;
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
-        
+        handleBar();
     }
 
     void OnTriggerEnter(Collider other) {
@@ -26,11 +26,21 @@ public class Healthbar : MonoBehaviour {
         if (other.CompareTag("Bullet"))
         {
             Debug.Log(hitPoints);
-            Debug.Log(health);
+           
             hitPoints -= 1;
-            healthBar.fillAmount = health / hitPoints;
+           
             if (hitPoints == 0)
                 Destroy(this.gameObject);
         }
+    }
+
+    private void handleBar()
+    {
+        healthBar.fillAmount = Map(hitPoints, 0, 100, 0, 1);
+    }
+
+    private float Map(float value,float inMin,float inMax,float outMin, float outMax)
+    {
+        return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
     }
 }
