@@ -7,45 +7,42 @@ public class GameManager : MonoBehaviour {
     public GameObject healthPickup;
     public GameObject ammoPickup;
     public GameObject shieldPickup;
+
     public float pickupSpawnInterval = 15.0f;
     public float pickupDestroyTime = 5.0f;
 
     //Wave Spawning
     public Rigidbody enemyPrefab;
+    public Text waveTimerText;
+
     public float enemySpawnDelay = 5f;
     public float minSpawnDistance = 15f;
+    public float waveDelay = 5;
     public int wave;
-    public int waveDelay = 5;
-
     public int newEmemiesPerWave = 1;
-
-	//Wave Timer
-	public Text waveTimerText;
-	private float waveTimer;
 
     public static GameManager Instance;
 
     int enemyCount;
     int enemySpawnedCount;
 
-    void Start () {
+    void Start() {
         if (Instance == null) {
             Instance = this;
         } else if (Instance != this) {
             Destroy(gameObject);
         }
 
-		// TODO: set correct wave timer value
-		waveTimer = 5.5f;
-		SetWaveTimerText ();
+        // TODO: set correct wave timer value
+        SetWaveTimerText();
 
         // TODO: testing, move out of Start
         StartCoroutine(SpawnPickups());
     }
-	
-	void Update () {
+
+    void Update() {
         ManageWaves();
-	}
+    }
 
     IEnumerator SpawnPickups() {
         while (true) {
@@ -165,5 +162,4 @@ public class GameManager : MonoBehaviour {
     public void EnemyHasDied() {
         enemyCount--;
     }
-		
 }
