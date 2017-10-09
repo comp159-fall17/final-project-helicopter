@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour {
                                     Random.Range(-38.0f, 38.0f));
             // if far from player and nothing collides with it
         } while (Vector3.Distance(candidate, playerPostion) < minSpawnDistance
-                 && !overlapFunc(candidate));
+                 && overlapFunc(candidate));
 
         return candidate;
     }
