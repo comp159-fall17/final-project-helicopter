@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
     //Pickups
@@ -18,6 +19,10 @@ public class GameManager : MonoBehaviour {
 
     public int newEmemiesPerWave = 1;
 
+	//Wave Timer
+	public Text waveTimerText;
+	private float waveTimer;
+
     public static GameManager Instance;
 
     int enemyCount;
@@ -30,12 +35,30 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
         }
 
+		// TODO: set correct wave timer value
+		waveTimer = 5.5f;
+		setWaveTimerText ();
+
         // TODO: testing, move out of Start
         StartCoroutine(SpawnPickups());
     }
 	
 	void Update () {
         ManageWaves();
+		decreaseWaveTimer ();
+
+	}
+
+	void decreaseWaveTimer(){
+		waveTimer -= Time.deltaTime;
+		if (waveTimer < -0.5) {//Keeps intervals between time the same
+			waveTimer = 5.5f;
+		}
+		setWaveTimerText ();
+	}
+
+	void setWaveTimerText(){
+		waveTimerText.text = "New wave in " + Mathf.Round (waveTimer).ToString () + "...";
 	}
 
     IEnumerator SpawnPickups() {
@@ -139,4 +162,5 @@ public class GameManager : MonoBehaviour {
     public void EnemyHasDied() {
         enemyCount--;
     }
+		
 }
