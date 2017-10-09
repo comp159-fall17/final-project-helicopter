@@ -21,6 +21,10 @@ public class Healthbar : MonoBehaviour {
         hp -= Damage(other.Speed);
     }
 
+    public void Heal(float amount) {
+        hp += amount;
+    }
+
     public void Reset() {
         hp = maxPoints;
     }
