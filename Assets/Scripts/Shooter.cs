@@ -4,6 +4,8 @@ using UnityEngine;
 /// <summary>
 /// Controller for enemy that can shoot.
 /// </summary>
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Healthbar))]
 public abstract class Shooter : MonoBehaviour {
     public GameObject bullet;
 
