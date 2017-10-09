@@ -95,13 +95,14 @@ public class GameController : MonoBehaviour {
         GameObject Player = GameObject.Find("Player"); //Gets the player object so enemies dont spawn on the player
         PlayerControls p = Player.GetComponent<PlayerControls>(); //Same as above
         enemyCount = 0; //Resets enemy count each wave
+        enemySpawnedCount = 0;
         while (true) {
             Vector3 position = new Vector3(Random.Range(-38.0f, 38.0f), 0.5f, Random.Range(-38.0f, 38.0f)); //Gets random position for enemy spawn
             Collider[] emptySpot = Physics.OverlapBox(position, new Vector3(.75f, 0f, .75f)); //Checks for nearby colliders so enemies dont spawn on things
             if ((Vector3.Distance(position, p.transform.position) > spawnDistanceFromPlayer) && (emptySpot.Length == 0)) { //Stops enemies from spawning near the player
                 Rigidbody enemy = Instantiate(enemyPrefab, position, transform.rotation) as Rigidbody; //Spawns new enemy
                 enemyCount++; //Counts enemies alive (gets subtracted when player kills enemy)
-                enemySpawnedCount += newEmemiesPerWave; //Counts enemies spawned
+                enemySpawnedCount++; //Counts enemies spawned
             }
             if (enemySpawnedCount == enemiesPerWave) { //Ends wave when max enemies spawned
                 stopWave = true;
