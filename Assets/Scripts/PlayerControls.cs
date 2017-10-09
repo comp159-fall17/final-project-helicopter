@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.UI; 
+using UnityEngine.UI;
 
 /// <summary>
 /// Controller for players. Should only have as many instantiated as there are players.
@@ -33,14 +33,15 @@ public class PlayerControls : Shooter {
     protected override void Start() {
         base.Start();
 
-        health = hitPoints;
+        
         follow = Camera.main;
         inputAxes = new Vector3(0, 0, 0);
     }
 
+
     protected override void Update() {
         base.Update();
-
+       
         UpdateInputAxes();
         TrackCamera();
     }
@@ -59,6 +60,7 @@ public class PlayerControls : Shooter {
     }
 
     void FixedUpdate() {
+        
         Body.velocity = CopyY(inputAxes, Body.velocity);
     }
 
@@ -73,26 +75,17 @@ public class PlayerControls : Shooter {
         return to;
     }
 
-    public float hitPoints = 100;
-    public Image healthBar;
 
-    private float health;
     void OnTriggerEnter(Collider other) {
 
-        healthBar.fillAmount = health / hitPoints;
+      
 
         if (other.gameObject.tag.Contains("Pickup")) {
             Debug.Log("Picked up " + other.gameObject.tag); //for now, just testing the collecting of a pickup
             Destroy(other.gameObject);
         }
 
-        if (other.CompareTag("Bullet")) {
-            Debug.Log("hit");
-            hitPoints -= 1;
-            Debug.Log(hitPoints);
-            if (hitPoints == 0)
-                Destroy(this.gameObject);
-        }
+
     }
 
  
