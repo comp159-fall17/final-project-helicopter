@@ -11,6 +11,8 @@ TagManager:
   - Bullet
   - PlayerBullet
   - Shield
+  - Screen
+  - Shop
   layers:
   - Default
   - TransparentFX

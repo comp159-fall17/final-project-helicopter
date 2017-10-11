@@ -124,5 +124,7 @@ public class PlayerControls : Shooter {
 
         // also, UpdateScore();
         transform.position = spawn;
+
+        GameManager.Instance.DisplayShop();
     }
 }
