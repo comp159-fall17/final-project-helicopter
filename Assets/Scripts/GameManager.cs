@@ -17,10 +17,17 @@ public class GameManager : MonoBehaviour {
     public float pickupSpawnInterval = 15.0f;
     public float pickupDestroyTime = 5.0f;
 
+    //Canvases
+    public GameObject screenCanvas;
+    public GameObject shopCanvas;
+
+    public Text shopPointsText;
+
     //Wave Spawning
     public Rigidbody enemyPrefab;
     public Text waveTimerText;
     public Text waveNumberText;
+    public Text pointsText;
 
     public float enemySpawnDelay = 5f;
     public float minSpawnDistance = 15f;
@@ -32,6 +39,10 @@ public class GameManager : MonoBehaviour {
 
     int enemyCount;
     int enemySpawnedCount;
+    int enemiesKilled;
+
+    int points = 0;
+    bool closeShop = false;
 
     void Start() {
         if (Instance == null) {
@@ -44,10 +55,27 @@ public class GameManager : MonoBehaviour {
         SetWaveTexts();
 
         StartCoroutine(SpawnPickups());
+
+        DisplayShop();
     }
 
     void Update() {
-        ManageWaves();
+        if (closeShop) {
+            ManageWaves();
+        }
+    }
+
+    public void DisplayShop() {
+        shopCanvas.SetActive(true);
+        screenCanvas.SetActive(false);
+
+        shopPointsText.text = "Points: " + points;
+    }
+
+    public void CloseShop() {
+        closeShop = true;
+        screenCanvas.SetActive(true);
+        shopCanvas.SetActive(false);
     }
 
     bool doPickupSpawning;
@@ -139,8 +167,9 @@ public class GameManager : MonoBehaviour {
                 + Mathf.Round(tilSpawn).ToString() + "...";
         }
 
-        // set wave number
+        // set wave number and points text
         waveNumberText.text = wave.ToString();
+        pointsText.text = "Points: " + points;
     }
 
     // if EnemySpawn() is currently running
@@ -187,5 +216,11 @@ public class GameManager : MonoBehaviour {
 
     public void EnemyHasDied() {
         enemyCount--;
+        enemiesKilled++;
+
+        if (enemiesKilled == EnemiesOnWave(wave)) {
+            points += 10;
+            enemiesKilled = 0;
+        }
     }
 }
