@@ -50,7 +50,10 @@ public class PlayerControls : Shooter {
         //inputAxes.y;
         inputAxes.z = Input.GetAxis("Vertical");
 
+		this.transform.rotation = Quaternion.LookRotation (new Vector3 (inputAxes.x, inputAxes.y, 0.0f));
+
         inputAxes *= Speed;
+		this.transform.rotation = Quaternion.LookRotation (new Vector3 (inputAxes.x, inputAxes.y, 0.0f));
     }
 
     void TrackCamera() {
