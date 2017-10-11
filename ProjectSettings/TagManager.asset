@@ -10,6 +10,7 @@ TagManager:
   - Shield Pickup
   - Bullet
   - PlayerBullet
+  - Shield
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - 
   - 
   - Player
-  - 
+  - Shield
   - 
   - 
   - 

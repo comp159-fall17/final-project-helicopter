@@ -28,7 +28,8 @@ public class EnemyController : Shooter {
             bool visible = WithinRange &&
                 !Physics.Raycast(transform.position, TargetDirection,
                                  TargetDistance,
-                                 ~(1 << LayerMask.NameToLayer("Player")));
+                                 ~((1 << LayerMask.NameToLayer("Player")) |
+                                 (1<< LayerMask.NameToLayer("Shield"))));
 
             if (visible) {
                 transform.LookAt(Target);

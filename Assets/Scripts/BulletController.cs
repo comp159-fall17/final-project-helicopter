@@ -42,10 +42,11 @@ public class BulletController : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast")) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast") ||
+            other.gameObject.layer == LayerMask.NameToLayer("Shield")) {
             return;
         }
-
+        
         switch (other.gameObject.tag) {
         case "Player":
             TriggerPlayer(other);

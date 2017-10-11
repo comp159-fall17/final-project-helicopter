@@ -89,16 +89,17 @@ public class PlayerControls : Shooter {
     }
 
     void CollectHealth() {
-        Health.Heal(GameManager.Instance.baseHealAmount * 
-            GameManager.Instance.healMultiplier);
+        Health.Heal(GameManager.Instance.baseHealAmount * GameManager.Instance.healMultiplier);
     }
 
-    void CollectShield() {
+    public GameObject shield;
 
+    void CollectShield() {
+        Destroy(Instantiate(shield, transform), GameManager.Instance.shieldActiveTime);
     }
 
     void CollectAmmo() {
-
+        Debug.Log("Collected ammo pickup");
     }
 
     protected override void Die() {
