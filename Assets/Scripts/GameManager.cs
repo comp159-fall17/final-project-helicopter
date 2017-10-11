@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour {
         // TODO: set correct wave timer value
         SetWaveTexts();
 
-        // TODO: testing, move out of Start
         StartCoroutine(SpawnPickups());
     }
 
@@ -46,22 +45,28 @@ public class GameManager : MonoBehaviour {
         ManageWaves();
     }
 
+    bool doPickupSpawning;
+
     IEnumerator SpawnPickups() {
         while (true) {
-            int pickup = Random.Range(0, 3);
+            if (doPickupSpawning) {
+                int pickup = Random.Range(0, 3);
 
-            System.Func<Vector3, bool> overlaps = delegate (Vector3 position) {
-                float prefabRadius = healthPickup.GetComponent<SphereCollider>()
-                                                 .radius;
+                System.Func<Vector3, bool> overlaps = delegate (Vector3 position) {
+                    float prefabRadius = healthPickup.GetComponent<SphereCollider>()
+                                                     .radius;
 
-                Collider[] hits = Physics.OverlapSphere(position, prefabRadius);
-                return hits.Where(i => i.gameObject.name != "Ground")
-                           .ToArray().Length > 0;
-            };
+                    Collider[] hits = Physics.OverlapSphere(position, prefabRadius);
+                    return hits.Where(i => i.gameObject.name != "Ground")
+                               .ToArray().Length > 0;
+                };
 
-            SpawnPickup(pickup, GeneratePosition(overlaps));
+                SpawnPickup(pickup, GeneratePosition(overlaps));
 
-            yield return new WaitForSeconds(pickupSpawnInterval);
+                yield return new WaitForSeconds(pickupSpawnInterval);
+            }
+
+            yield return new WaitForSeconds(0.0f);
         }
     }
 
@@ -149,6 +154,8 @@ public class GameManager : MonoBehaviour {
         enemyCount = 0;
         enemySpawnedCount = 0;
         wave++;
+
+        doPickupSpawning = true;
 
         System.Func<Vector3, bool> overlaps = delegate (Vector3 position) {
             Collider[] hits = Physics.OverlapBox(position,
