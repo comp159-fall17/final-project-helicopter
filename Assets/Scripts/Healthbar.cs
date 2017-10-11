@@ -22,7 +22,11 @@ public class Healthbar : MonoBehaviour {
     }
 
     public void Heal(float amount) {
-        hp += amount;
+        if ((hp + amount) <= maxPoints) {
+            hp += (int) amount;
+        } else {
+            hp = maxPoints;
+        }
     }
 
     public void Reset() {

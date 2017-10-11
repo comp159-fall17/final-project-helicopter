@@ -74,11 +74,31 @@ public class PlayerControls : Shooter {
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag.Contains("Pickup")) {
-            // TODO: implement pickup effects
-            Debug.Log("Picked up " + other.gameObject.tag);
+        string otherTag = other.gameObject.tag;
+
+        if (otherTag == "Health Pickup") {
+            CollectHealth();
+            Destroy(other.gameObject);
+        } else if (otherTag == "Shield Pickup") {
+            CollectShield();
+            Destroy(other.gameObject);
+        } else if (otherTag == "Ammo Pickup") {
+            CollectAmmo();
             Destroy(other.gameObject);
         }
+    }
+
+    void CollectHealth() {
+        Health.Heal(GameManager.Instance.baseHealAmount * 
+            GameManager.Instance.healMultiplier);
+    }
+
+    void CollectShield() {
+
+    }
+
+    void CollectAmmo() {
+
     }
 
     protected override void Die() {

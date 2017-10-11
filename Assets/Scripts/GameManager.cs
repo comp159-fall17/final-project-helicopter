@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
     //Pickups
     public GameObject healthPickup;
+    public float baseHealAmount = 10f;
+    public float healMultiplier = 1.0f; //this can be changed via the shop
+
     public GameObject ammoPickup;
     public GameObject shieldPickup;
 
@@ -50,7 +53,7 @@ public class GameManager : MonoBehaviour {
     IEnumerator SpawnPickups() {
         while (true) {
             if (doPickupSpawning) {
-                int pickup = Random.Range(0, 3);
+                int pickup = Random.Range(0, 1);
 
                 System.Func<Vector3, bool> overlaps = delegate (Vector3 position) {
                     float prefabRadius = healthPickup.GetComponent<SphereCollider>()
