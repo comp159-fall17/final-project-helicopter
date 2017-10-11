@@ -73,6 +73,8 @@ public class PlayerControls : Shooter {
         return to;
     }
 
+    public GameObject PlayerFlash;
+
     void OnTriggerEnter(Collider other) {
         string otherTag = other.gameObject.tag;
 
@@ -86,8 +88,20 @@ public class PlayerControls : Shooter {
             CollectAmmo();
             Destroy(other.gameObject);
         }
+          else if (otherTag == "Bullet") {
+            //PlayerFlash.GetComponent<MeshRenderer>().enabled = true;
+            //PlayerFlash.GetComponent<BoxCollider>().enabled = true;
+            Invoke("turnoff", 1);
+        }
     }
+   
 
+    void turnoff()
+    {
+       // PlayerFlash.GetComponent<MeshRenderer>().enabled = false;
+       // PlayerFlash.GetComponent<BoxCollider>().enabled = false;
+    }
+ 
     void CollectHealth() {
         Health.Heal(GameManager.Instance.baseHealAmount * GameManager.Instance.healMultiplier);
     }
