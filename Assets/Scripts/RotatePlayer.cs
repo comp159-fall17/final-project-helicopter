@@ -16,6 +16,8 @@ public class RotatePlayer : MonoBehaviour {
 		float moveVertical = Input.GetAxisRaw ("Vertical");
 
 		Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-		transform.rotation = Quaternion.LookRotation(movement);
+		this.transform.rotation = Quaternion.LookRotation(movement);
+
 	}
+		
 }
