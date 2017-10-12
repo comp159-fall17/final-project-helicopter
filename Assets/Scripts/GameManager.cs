@@ -85,7 +85,9 @@ public class GameManager : MonoBehaviour {
         SetWaveTexts();
         StartCoroutine(SpawnPickups());
 
+        enemiesKilled = 0;
         enemyCount = 0;
+        enemySpawning = false;
     }
 
     public void RestartGame() {
