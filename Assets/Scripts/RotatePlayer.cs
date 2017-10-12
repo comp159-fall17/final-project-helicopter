@@ -12,9 +12,10 @@ public class RotatePlayer : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		float moveHorizontal = Input.GetAxisRaw ("Horizontal");
-		float moveVertical = Input.GetAxisRaw ("Vertical");
+		float moveHorizontal = Input.GetAxis("Horizontal");
+		float moveVertical = Input.GetAxis("Vertical");
 
+		// TODO: Change to mouse position
 		Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 		this.transform.rotation = Quaternion.LookRotation(movement);
 

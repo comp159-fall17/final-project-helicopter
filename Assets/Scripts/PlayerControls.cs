@@ -52,6 +52,8 @@ public class PlayerControls : Shooter {
 
         inputAxes *= Speed;
 
+		// Dont delete this.
+		//transform.rotation = Quaternion.Euler(0.0f, AbsoluteTargetAngle, 0.0f);
     }
 
     void TrackCamera() {

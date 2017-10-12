@@ -55,7 +55,7 @@ public abstract class Shooter : MonoBehaviour {
     /// Angle relative to world forward.
     /// </summary>
     /// <value>The absolute target angle.</value>
-    protected float AbsoluteTargetAngle {
+    public float AbsoluteTargetAngle {
         get {
             float angle = Mathf.Atan2(transform.position.z - Target.z,
                                       transform.position.x - Target.x);
