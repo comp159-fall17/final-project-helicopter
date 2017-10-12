@@ -35,13 +35,15 @@ public class EnemyController : Shooter {
         }
     }
 
+    protected override bool ShouldShootSpecial { get { return false; } }
+
     protected override Vector3 Target {
         get {
             return GameManager.Instance.Player.transform.position;
         }
     }
 
-    protected bool WallInWay {
+    protected override bool WallInWay {
         get {
             return !Physics.Raycast(transform.position, TargetDirection,
                                     TargetDistance,

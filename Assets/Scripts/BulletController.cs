@@ -3,6 +3,7 @@
 /// <summary>
 /// Bullet controller.
 /// </summary>
+[RequireComponent(typeof(Rigidbody))]
 public class BulletController : MonoBehaviour {
     public float bulletSpeed;
     public float distance;
@@ -13,7 +14,7 @@ public class BulletController : MonoBehaviour {
 
     Vector3 origin;
 
-    void Start() {
+    protected virtual void Start() {
         origin = transform.position;
 
         // shoots in the bullet's positive x direction
@@ -22,7 +23,7 @@ public class BulletController : MonoBehaviour {
         LookAhead();
     }
 
-    void FixedUpdate() {
+    protected virtual void FixedUpdate() {
         if (Vector3.Distance(origin, transform.position) > distance) {
             Destroy(gameObject);
         }
@@ -41,7 +42,7 @@ public class BulletController : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter(Collider other) {
+    protected virtual void OnTriggerEnter(Collider other) {
         if (other.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast") ||
             other.gameObject.layer == LayerMask.NameToLayer("Shield")) {
             return;
@@ -64,7 +65,7 @@ public class BulletController : MonoBehaviour {
     /// Player trigger handler.
     /// </summary>
     /// <param name="player">Player collider.</param>
-    void TriggerPlayer(Collider player) {
+    protected virtual void TriggerPlayer(Collider player) {
         player.gameObject.GetComponent<Shooter>().Health.Hit(this);
         Destroy(gameObject);
     }
@@ -73,7 +74,7 @@ public class BulletController : MonoBehaviour {
     /// Enemy trigger handler.
     /// </summary>
     /// <param name="enemy">Enemy collider.</param>
-    void TriggerEnemy(Collider enemy) {
+    protected virtual void TriggerEnemy(Collider enemy) {
         enemy.gameObject.GetComponent<Shooter>().Health.Hit(this);
         Destroy(gameObject);
     }

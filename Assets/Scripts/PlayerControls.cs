@@ -7,11 +7,13 @@ using UnityEngine.UI;
 public class PlayerControls : Shooter {
     protected override bool ShouldShoot {
         get {
-            Vector3 rayDirection = BulletSpawnPoint - transform.position;
-            int notPlayerMask = ~(1 << LayerMask.NameToLayer("Player"));
-            bool wallInWay = !Physics.Raycast(transform.position,
-                                              rayDirection, 2, notPlayerMask);
-            return Input.GetMouseButton(0) && wallInWay;
+            return Input.GetMouseButton(0) && WallInWay;
+        }
+    }
+
+    protected override bool ShouldShootSpecial {
+        get {
+            return Input.GetMouseButton(1) && WallInWay;
         }
     }
 
@@ -23,6 +25,15 @@ public class PlayerControls : Shooter {
             Physics.Raycast(viewRay, out hit);
 
             return CopyY(hit.point, Body.position);
+        }
+    }
+
+    protected override bool WallInWay {
+        get {
+            Vector3 rayDirection = BulletSpawnPoint - transform.position;
+            int notPlayerMask = ~(1 << LayerMask.NameToLayer("Player"));
+            return !Physics.Raycast(transform.position,
+                                    rayDirection, 2, notPlayerMask);
         }
     }
 
@@ -50,10 +61,10 @@ public class PlayerControls : Shooter {
         //inputAxes.y;
         inputAxes.z = Input.GetAxis("Vertical");
 
-		this.transform.rotation = Quaternion.LookRotation (new Vector3 (inputAxes.x, inputAxes.y, 0.0f));
+		transform.rotation = Quaternion.LookRotation (new Vector3 (inputAxes.x, inputAxes.y, 0.0f));
 
         inputAxes *= Speed;
-		this.transform.rotation = Quaternion.LookRotation (new Vector3 (inputAxes.x, inputAxes.y, 0.0f));
+		transform.rotation = Quaternion.LookRotation (new Vector3 (inputAxes.x, inputAxes.y, 0.0f));
     }
 
     void TrackCamera() {
@@ -98,7 +109,6 @@ public class PlayerControls : Shooter {
         }
     }
    
-
     void turnoff()
     {
        // PlayerFlash.GetComponent<MeshRenderer>().enabled = false;

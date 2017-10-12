@@ -228,8 +228,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1757743640792030, guid: b5eeb03d86cfbb642b7ff1f8a0f03fc8, type: 2}
+  specialBullet: {fileID: 1146045754027436, guid: c62ab4434623e4a4680e01923a7e6261,
+    type: 2}
   fireDelay: 0.1
   walkSpeed: 10
+  PlayerFlash: {fileID: 0}
+  shield: {fileID: 1043463481280116, guid: 1c62eda0209d23643bd0b0027ed1830b, type: 2}
 --- !u!114 &114777132310883184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -268,8 +272,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb1e099cfc6aed40a0c8cf21488760b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 100
-  healthBar: {fileID: 114592396581372842}
+  maxPoints: 100
+  healthbar: {fileID: 0}
 --- !u!136 &136816488017638488
 CapsuleCollider:
   m_ObjectHideFlags: 1
