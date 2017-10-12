@@ -4,7 +4,7 @@
 /// Enemy controller for enemy that targets player.
 /// </summary>
 public class EnemyController : Shooter {
-    float range = 10;
+    float range = 15;
     float visionCone = 45;
     float facingDistanceScale = 1.5f;
 
@@ -25,11 +25,7 @@ public class EnemyController : Shooter {
 
     protected override bool ShouldShoot {
         get {
-            bool visible = WithinRange &&
-                !Physics.Raycast(transform.position, TargetDirection,
-                                 TargetDistance,
-                                 ~((1 << LayerMask.NameToLayer("Player")) |
-                                 (1<< LayerMask.NameToLayer("Shield"))));
+            bool visible = WithinRange && WallInWay;
 
             if (visible) {
                 transform.LookAt(Target);
@@ -41,12 +37,20 @@ public class EnemyController : Shooter {
 
     protected override Vector3 Target {
         get {
-            return GameObject.FindGameObjectWithTag("Player")
-                             .transform.position;
+            return GameManager.Instance.Player.transform.position;
         }
     }
 
-    float EffectiveRange {
+    protected bool WallInWay {
+        get {
+            return !Physics.Raycast(transform.position, TargetDirection,
+                                    TargetDistance,
+                                    ~((1 << LayerMask.NameToLayer("Player"))
+                                      | (1 << LayerMask.NameToLayer("Shield"))));
+        }
+    }
+
+    protected float EffectiveRange {
         get {
             float thisRange = Range;
             if (Mathf.Abs(RelativeTargetAngle) < VisionCone) {
@@ -56,7 +60,7 @@ public class EnemyController : Shooter {
         }
     }
 
-    bool WithinRange {
+    protected bool WithinRange {
         get { return TargetDistance < EffectiveRange; }
     }
 

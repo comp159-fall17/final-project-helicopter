@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour {
     public Text shopPointsText;
 
     //Wave Spawning
-    public Rigidbody enemyPrefab;
+    public Rigidbody[] enemyPrefabs;
     public Text waveTimerText;
     public Text waveNumberText;
     public Text pointsText;
@@ -43,6 +43,10 @@ public class GameManager : MonoBehaviour {
 
     int points = 0;
     bool closeShop = false;
+
+    public GameObject Player {
+        get { return GameObject.FindGameObjectWithTag("Player"); }
+    }
 
     void Start() {
         if (Instance == null) {
@@ -198,9 +202,9 @@ public class GameManager : MonoBehaviour {
                        .ToArray().Length > 0;
         };
 
-
         while (enemySpawnedCount < EnemiesOnWave(wave)) {
-            Instantiate(enemyPrefab, GeneratePosition(overlaps), transform.rotation);
+            Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)],
+                        GeneratePosition(overlaps), transform.rotation);
             enemyCount++;
             enemySpawnedCount++;
 
