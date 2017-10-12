@@ -132,9 +132,9 @@ public class PlayerControls : Shooter {
     protected override void Die() {
         Health.Reset();
 
-        // also, UpdateScore();
-        transform.position = spawn;
+        GameManager.Instance.RestartGame();
 
-        GameManager.Instance.DisplayShop();
+        // also, UpdateScore();
+        transform.position = spawn;  
     }
 }

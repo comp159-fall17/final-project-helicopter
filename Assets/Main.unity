@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -207,7 +207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &491551946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1007,6 +1007,20 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
+  m_FalloffTable:
+    m_Table[0]: 0
+    m_Table[1]: 0
+    m_Table[2]: 0
+    m_Table[3]: 0
+    m_Table[4]: 0
+    m_Table[5]: 0
+    m_Table[6]: 0
+    m_Table[7]: 0
+    m_Table[8]: 0
+    m_Table[9]: 0
+    m_Table[10]: 0
+    m_Table[11]: 0
+    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -2049,7 +2063,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1719718404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2648,10 +2662,12 @@ MonoBehaviour:
   baseHealAmount: 10
   healMultiplier: 1
   ammoPickup: {fileID: 1627458933034322, guid: 633cf746dc0e5134e9d62bfafdf5af7e, type: 2}
+  ammoRecovery: 10
+  ammoMultiplier: 1
   shieldPickup: {fileID: 1494888248116230, guid: ae01c27f635de2e47b5d0fad11362992,
     type: 2}
   shieldActiveTime: 5
-  pickupSpawnInterval: 1
+  pickupSpawnInterval: 15
   pickupDestroyTime: 7
   screenCanvas: {fileID: 491551945}
   shopCanvas: {fileID: 1719718403}

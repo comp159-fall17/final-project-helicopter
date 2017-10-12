@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour {
     public float healMultiplier = 1.0f;
 
     public GameObject ammoPickup;
+    public float ammoRecovery = 10f;
+    public float ammoMultiplier = 1.0f;
 
     public GameObject shieldPickup;
     public float shieldActiveTime = 5.0f;
@@ -42,7 +44,7 @@ public class GameManager : MonoBehaviour {
     int enemiesKilled;
 
     int points = 0;
-    bool closeShop = false;
+    bool closeShop;
 
     public GameObject Player {
         get { return GameObject.FindGameObjectWithTag("Player"); }
@@ -58,8 +60,6 @@ public class GameManager : MonoBehaviour {
         // TODO: set correct wave timer value
         SetWaveTexts();
 
-        StartCoroutine(SpawnPickups());
-
         DisplayShop();
     }
 
@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void DisplayShop() {
+        closeShop = false;
         shopCanvas.SetActive(true);
         screenCanvas.SetActive(false);
 
@@ -80,6 +81,24 @@ public class GameManager : MonoBehaviour {
         closeShop = true;
         screenCanvas.SetActive(true);
         shopCanvas.SetActive(false);
+
+        SetWaveTexts();
+        StartCoroutine(SpawnPickups());
+
+        enemyCount = 0;
+    }
+
+    public void RestartGame() {
+        StopAllCoroutines();
+
+        foreach (GameObject obj in FindObjectsOfType<GameObject>() as GameObject[]) {
+            if (obj.tag == "Enemy" || obj.tag.Contains("Pickup")) {
+                Destroy(obj); //remove any lingering objects when restarting the game
+            }
+        }
+
+        wave = 0;
+        DisplayShop();
     }
 
     bool doPickupSpawning;
