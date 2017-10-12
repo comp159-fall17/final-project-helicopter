@@ -8,6 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(Healthbar))]
 public abstract class Shooter : MonoBehaviour {
     public GameObject bullet;
+    public GameObject specialBullet;
 
     public float fireDelay;
     public float walkSpeed = 10f;
@@ -22,6 +23,18 @@ public abstract class Shooter : MonoBehaviour {
     /// </summary>
     /// <value><c>true</c> if should shoot; otherwise, <c>false</c>.</value>
     protected abstract bool ShouldShoot { get; }
+
+    /// <summary>
+    /// Same as <see cref="T:ShouldShoot"/> but for special bullets.
+    /// </summary>
+    /// <value><c>true</c> if should shoot special; otherwise, <c>false</c>.</value>
+    protected abstract bool ShouldShootSpecial { get; }
+
+    /// <summary>
+    /// Gets a value indicating whether this <see cref="T:Shooter"/> wall is in the way.
+    /// </summary>
+    /// <value><c>true</c> if wall inway; otherwise, <c>false</c>.</value>
+    protected abstract bool WallInWay { get; }
 
     /// <summary>
     /// Target to aim at.
@@ -95,7 +108,7 @@ public abstract class Shooter : MonoBehaviour {
     /// Checks if shooting should resume.
     /// </summary>
     void ManageShooting() {
-        if (ShouldShoot && !shooting) {
+        if ((ShouldShoot || ShouldShootSpecial) && !shooting) {
             StartCoroutine(ShootBullets());
         }
     }
@@ -124,9 +137,16 @@ public abstract class Shooter : MonoBehaviour {
     /// </summary>
     protected IEnumerator ShootBullets() {
         shooting = true;
-        while (ShouldShoot) {
-            Instantiate(bullet, BulletSpawnPoint,
-                        Quaternion.Euler(0, AbsoluteTargetAngle, 90));
+        while (true) {
+            if (ShouldShoot) {
+                Instantiate(bullet, BulletSpawnPoint,
+                            Quaternion.Euler(0, AbsoluteTargetAngle, 90));
+            } else if (ShouldShootSpecial) {
+                Instantiate(specialBullet, BulletSpawnPoint,
+                            Quaternion.Euler(0, AbsoluteTargetAngle, 90));
+            } else {
+                break;
+            }
 
             yield return new WaitForSeconds(fireDelay);
         }
