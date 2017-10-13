@@ -116,7 +116,7 @@ public class PlayerControls : Shooter {
     }
  
     void CollectHealth() {
-        Health.Heal(GameManager.Instance.baseHealAmount * GameManager.Instance.healMultiplier);
+        Health.Heal(GameManager.Instance.healAmount);
     }
 
     public GameObject shield;

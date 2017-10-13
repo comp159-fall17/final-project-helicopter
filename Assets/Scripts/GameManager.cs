@@ -6,12 +6,10 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
     //Pickups
     public GameObject healthPickup;
-    public float baseHealAmount = 10f;
-    public float healMultiplier = 1.0f;
+    public float healAmount = 10f;
 
     public GameObject ammoPickup;
     public float ammoRecovery = 10f;
-    public float ammoMultiplier = 1.0f;
 
     public GameObject shieldPickup;
     public float shieldActiveTime = 5.0f;
@@ -19,11 +17,11 @@ public class GameManager : MonoBehaviour {
     public float pickupSpawnInterval = 15.0f;
     public float pickupDestroyTime = 5.0f;
 
+    public int playerBulletDamage = 1;
+
     //Canvases
     public GameObject screenCanvas;
     public GameObject shopCanvas;
-
-    public Text shopPointsText;
 
     //Wave Spawning
     public Rigidbody[] enemyPrefabs;
@@ -43,7 +41,7 @@ public class GameManager : MonoBehaviour {
     int enemySpawnedCount;
     int enemiesKilled;
 
-    int points = 0;
+    public int points = 0;
     bool closeShop;
 
     public GameObject Player {
@@ -74,7 +72,7 @@ public class GameManager : MonoBehaviour {
         shopCanvas.SetActive(true);
         screenCanvas.SetActive(false);
 
-        shopPointsText.text = "Points: " + points;
+        ShopManager.Instance.UpdateShopPoints(points);
     }
 
     public void CloseShop() {

@@ -36,6 +36,10 @@ public class Healthbar : MonoBehaviour {
 
     float Damage(float speed) {
         // TODO: add bullet speed scaling
+
+        if (gameObject.tag == "Enemy")
+            return GameManager.Instance.playerBulletDamage;
+
         return 1;
     }
 
