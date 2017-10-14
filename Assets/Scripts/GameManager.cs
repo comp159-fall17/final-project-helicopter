@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour {
     int enemiesKilled;
 
     public int points = 0;
+    public int highestWave;
     bool closeShop;
 
     public GameObject Player {
@@ -97,8 +98,13 @@ public class GameManager : MonoBehaviour {
             }
         }
 
+        highestWave = wave;
         wave = 0;
         DisplayShop();
+    }
+
+    public void CloseGame() { //will not close game in editor
+        Application.Quit();
     }
 
     bool doPickupSpawning;
