@@ -56,6 +56,13 @@ public class PlayerControls : Shooter {
        
         UpdateInputAxes();
         TrackCamera();
+
+        hasShield = false;
+        foreach (Transform child in transform) {
+            if (child.gameObject.tag == "Shield") {
+                hasShield = true;
+            }
+        }
     }
 
     void UpdateInputAxes() {
@@ -90,6 +97,7 @@ public class PlayerControls : Shooter {
     }
 
     public GameObject PlayerFlash;
+    bool hasShield = false;
 
     void OnTriggerEnter(Collider other) {
         switch (other.gameObject.tag) {
@@ -107,7 +115,9 @@ public class PlayerControls : Shooter {
         case "Bullet":
             //PlayerFlash.GetComponent<MeshRenderer>().enabled = true;
             //PlayerFlash.GetComponent<BoxCollider>().enabled = true;
-            StartCoroutine(Coroutine());
+            if (!hasShield) {
+                StartCoroutine(Coroutine());
+            }
             break;
         }
     }
