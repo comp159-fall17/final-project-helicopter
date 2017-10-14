@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
     public int playerBulletDamage = 1;
 
     //Canvases
-    public GameObject screenCanvas;
+    public GameObject guiCanvas;
     public GameObject shopCanvas;
     public GameObject GameOverCanvas;
 
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour {
     int enemySpawnedCount;
     int enemiesKilled;
 
-    public int points = 0;
+    public int points;
     public int highestWave;
     bool closeShop;
 
@@ -64,34 +64,18 @@ public class GameManager : MonoBehaviour {
         // TODO: set correct wave timer value
         SetWaveTexts();
 
-        DisplayShop();
+        ShopActive = true;
     }
 
-    void Update() {
-        if (closeShop) {
-            ManageWaves();
-        }
-    }
+    public void StartGame() {
+        ShopActive = false;
 
-    public void DisplayShop() {
-        closeShop = false;
-        shopCanvas.SetActive(true);
-        screenCanvas.SetActive(false);
-
-        ShopManager.Instance.UpdateShopPoints(points);
-    }
-
-    public void CloseShop() {
-        closeShop = true;
-        screenCanvas.SetActive(true);
-        shopCanvas.SetActive(false);
-
-        SetWaveTexts();
-        StartCoroutine(SpawnPickups());
-
+        // reset stats
         enemiesKilled = 0;
         enemyCount = 0;
         enemySpawning = false;
+
+        StartCoroutine(ManageWaves());
     }
 
     public void gameOver()
@@ -105,43 +89,62 @@ public class GameManager : MonoBehaviour {
         Instantiate(playerPrefab, new Vector3(0, 1, -10), Quaternion.identity);
         StopAllCoroutines();
 
-        foreach (GameObject obj in FindObjectsOfType<GameObject>() as GameObject[]) {
-            if (obj.tag == "Enemy" || obj.tag.Contains("Pickup")) {
-                Destroy(obj); //remove any lingering objects when restarting the game
+        // remove remaining objects
+        System.Action<string> removeTagged = delegate (string tag) {
+            foreach (GameObject obj in GameObject.FindGameObjectsWithTag(tag)) {
+                Destroy(obj);
             }
-        }
+        };
 
-        highestWave = wave;
+        removeTagged("Enemy");
+        removeTagged("Pickup");
+
+        highestWave = Mathf.Max(highestWave, wave);
         wave = 0;
-        DisplayShop();
+        ShopActive = true;
     }
 
-    public void CloseGame() { //will not close game in editor
+    /// <summary>
+    /// Closes the game. Will not close the game in editor.
+    /// </summary>
+    public void CloseGame() {
         Application.Quit();
     }
 
-    bool doPickupSpawning;
+    float lastWaveBegin;
+
+    /// <summary>
+    /// Checks if wave needs to be started.
+    /// </summary>
+    IEnumerator ManageWaves() {
+        yield return new WaitForSeconds(0.1f);
+
+        while (!ShopActive) {
+            if (!enemySpawning && enemyCount == 0) {
+                StartCoroutine(EnemySpawn());
+                lastWaveBegin = Time.time;
+            }
+            SetWaveTexts();
+
+            yield return null;
+        }
+    }
+
+    public bool ShopActive {
+        get { return shopCanvas.activeInHierarchy; }
+        set {
+            ShopManager.Instance.UpdateShopPoints(points);
+
+            shopCanvas.SetActive(value);
+            guiCanvas.SetActive(!value);
+        }
+    }
 
     IEnumerator SpawnPickups() {
-        while (true) {
-            if (doPickupSpawning) {
-                int pickup = Random.Range(0, 3);
+        while (!ShopActive) {
+            SpawnPickup(Random.Range(0, 3));
 
-                System.Func<Vector3, bool> overlaps = delegate (Vector3 position) {
-                    float prefabRadius = healthPickup.GetComponent<SphereCollider>()
-                                                     .radius;
-
-                    Collider[] hits = Physics.OverlapSphere(position, prefabRadius);
-                    return hits.Where(i => i.gameObject.name != "Ground")
-                               .ToArray().Length > 0;
-                };
-
-                SpawnPickup(pickup, GeneratePosition(overlaps));
-
-                yield return new WaitForSeconds(pickupSpawnInterval);
-            }
-
-            yield return new WaitForSeconds(0.0f);
+            yield return new WaitForSeconds(pickupSpawnInterval);
         }
     }
 
@@ -166,7 +169,16 @@ public class GameManager : MonoBehaviour {
         return candidate;
     }
 
-    void SpawnPickup(int type, Vector3 location) {
+    void SpawnPickup(int type) {
+        System.Func<Vector3, bool> overlaps = delegate (Vector3 position) {
+            float prefabRadius = healthPickup.GetComponent<SphereCollider>()
+                                             .radius;
+
+            Collider[] hits = Physics.OverlapSphere(position, prefabRadius);
+            return hits.Where(i => i.gameObject.name != "Ground")
+                       .ToArray().Length > 0;
+        };
+
         GameObject pickup;
         switch (type) {
         case 0:
@@ -175,26 +187,14 @@ public class GameManager : MonoBehaviour {
         case 1:
             pickup = ammoPickup;
             break;
+        //case 2:
         default:
             pickup = shieldPickup;
             break;
         }
 
-        Destroy(Instantiate(pickup, location, Quaternion.identity),
+        Destroy(Instantiate(pickup, GeneratePosition(overlaps), Quaternion.identity),
                 pickupDestroyTime);
-    }
-
-    float lastWaveBegin;
-
-    /// <summary>
-    /// Checks if wave needs to be started.
-    /// </summary>
-    void ManageWaves() {
-        if (!enemySpawning && enemyCount == 0) {
-            StartCoroutine(EnemySpawn());
-            lastWaveBegin = Time.time;
-        }
-        SetWaveTexts();
     }
 
     void SetWaveTexts() {
@@ -231,7 +231,7 @@ public class GameManager : MonoBehaviour {
         enemySpawnedCount = 0;
         wave++;
 
-        doPickupSpawning = true;
+        StartCoroutine(SpawnPickups());
 
         System.Func<Vector3, bool> overlaps = delegate (Vector3 position) {
             Collider[] hits = Physics.OverlapBox(position,

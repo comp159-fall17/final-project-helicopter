@@ -127,8 +127,6 @@ public class ShopManager : MonoBehaviour {
         case 6:
             UpgradeSpecial();
             break;
-        default:
-            break;
         }
 
         UpdateGamePoints();

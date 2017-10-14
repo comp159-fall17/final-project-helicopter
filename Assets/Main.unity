@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -4399,7 +4399,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2050726806}
-        m_MethodName: CloseShop
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4896,7 +4896,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1719718404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5798,7 +5798,7 @@ MonoBehaviour:
   pickupSpawnInterval: 5
   pickupDestroyTime: 7
   playerBulletDamage: 1
-  screenCanvas: {fileID: 491551945}
+  guiCanvas: {fileID: 491551945}
   shopCanvas: {fileID: 1719718403}
   GameOverCanvas: {fileID: 1287819301}
   gameoverTime: 3

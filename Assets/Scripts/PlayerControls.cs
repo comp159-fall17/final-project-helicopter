@@ -91,28 +91,24 @@ public class PlayerControls : Shooter {
 
     public GameObject PlayerFlash;
 
-    void OnTriggerEnter(Collider other)
-    {
-        string otherTag = other.gameObject.tag;
+    void OnTriggerEnter(Collider other) {
+        switch (other.gameObject.tag) {
+        case "Pickup":
+            if (other.gameObject.name.Contains("Health")) {
+                CollectHealth();
+            } else if (other.gameObject.name.Contains("Shield")) {
+                CollectShield();
+            } else if (other.gameObject.name.Contains("Ammo")) {
+                CollectAmmo();
+            }
 
-        if (otherTag == "Health Pickup")
-        {
-            CollectHealth();
             Destroy(other.gameObject);
-        }
-        else if (otherTag == "Shield Pickup")
-        {
-            CollectShield();
-            Destroy(other.gameObject);
-        }
-        else if (otherTag == "Ammo Pickup")
-        {
-            CollectAmmo();
-            Destroy(other.gameObject);
-        }
-        else if (otherTag == "Bullet")
-        {
+            break;
+        case "Bullet":
+            //PlayerFlash.GetComponent<MeshRenderer>().enabled = true;
+            //PlayerFlash.GetComponent<BoxCollider>().enabled = true;
             StartCoroutine(Coroutine());
+            break;
         }
     }
     
@@ -139,6 +135,7 @@ public class PlayerControls : Shooter {
 
     protected override void Die() {
         GameManager.Instance.gameOver();
+        
         // also, UpdateScore();
         if (PlayerFlash.GetComponent<MeshRenderer>().enabled == true)
             PlayerFlash.GetComponent<MeshRenderer>().enabled = false;

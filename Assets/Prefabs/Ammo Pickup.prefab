@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23026761726131348}
   m_Layer: 2
   m_Name: Ammo Pickup
-  m_TagString: Ammo Pickup
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
