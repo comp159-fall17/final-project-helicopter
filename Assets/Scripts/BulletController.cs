@@ -49,11 +49,11 @@ public class BulletController : MonoBehaviour {
         }
         
         switch (other.gameObject.tag) {
+        case "Enemy":
+            //TriggerEnemy(other);
+            //break;
         case "Player":
             TriggerPlayer(other);
-            break;
-        case "Enemy":
-            TriggerEnemy(other);
             break;
         default:
             Destroy(gameObject);
@@ -66,16 +66,16 @@ public class BulletController : MonoBehaviour {
     /// </summary>
     /// <param name="player">Player collider.</param>
     protected virtual void TriggerPlayer(Collider player) {
-        player.gameObject.GetComponent<Shooter>().Health.Hit(this);
+        player.gameObject.GetComponent<Shooter>().Hit(this);
         Destroy(gameObject);
     }
 
-    /// <summary>
-    /// Enemy trigger handler.
-    /// </summary>
-    /// <param name="enemy">Enemy collider.</param>
-    protected virtual void TriggerEnemy(Collider enemy) {
-        enemy.gameObject.GetComponent<Shooter>().Health.Hit(this);
-        Destroy(gameObject);
-    }
+    ///// <summary>
+    ///// Enemy trigger handler.
+    ///// </summary>
+    ///// <param name="enemy">Enemy collider.</param>
+    //protected virtual void TriggerEnemy(Collider enemy) {
+    //    enemy.gameObject.GetComponent<Shooter>().Hit(this);
+    //    Destroy(gameObject);
+    //}
 }

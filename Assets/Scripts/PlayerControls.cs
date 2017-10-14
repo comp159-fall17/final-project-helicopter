@@ -104,19 +104,11 @@ public class PlayerControls : Shooter {
 
             Destroy(other.gameObject);
             break;
-        case "Bullet":
+        //case "Bullet":
             //PlayerFlash.GetComponent<MeshRenderer>().enabled = true;
             //PlayerFlash.GetComponent<BoxCollider>().enabled = true;
-            StartCoroutine(Coroutine());
-            break;
+            //break;
         }
-    }
-    
-    IEnumerator Coroutine()
-    {
-        PlayerFlash.GetComponent<MeshRenderer>().enabled = true;
-        yield return new WaitForSeconds(1);
-        PlayerFlash.GetComponent<MeshRenderer>().enabled = false;
     }
 
     void CollectHealth() {
@@ -131,6 +123,18 @@ public class PlayerControls : Shooter {
 
     void CollectAmmo() {
         Debug.Log("Collected ammo pickup");
+    }
+
+    public override void Hit(BulletController bullet) {
+        base.Hit(bullet);
+
+        StartCoroutine(DisplayPlayerFlash());
+    }
+
+    IEnumerator DisplayPlayerFlash() {
+        PlayerFlash.GetComponent<MeshRenderer>().enabled = true;
+        yield return new WaitForSeconds(1f);
+        PlayerFlash.GetComponent<MeshRenderer>().enabled = false;
     }
 
     protected override void Die() {
