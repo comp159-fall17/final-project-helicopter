@@ -113,18 +113,14 @@ public class PlayerControls : Shooter {
         else if (otherTag == "Bullet")
         {
             StartCoroutine(Coroutine());
-
         }
     }
-
+    
     IEnumerator Coroutine()
     {
         PlayerFlash.GetComponent<MeshRenderer>().enabled = true;
-
         yield return new WaitForSeconds(1);
         PlayerFlash.GetComponent<MeshRenderer>().enabled = false;
-
-
     }
 
     void CollectHealth() {
@@ -147,5 +143,6 @@ public class PlayerControls : Shooter {
         // also, UpdateScore();
         //transform.position = spawn;
         Destroy(this.gameObject);
+        Debug.Log("helo");
     }
 }
