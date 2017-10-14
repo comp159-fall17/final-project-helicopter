@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour {
-
     public Text shopPointsText;
+    public Text waveText;
     int shopPoints;
 
     public Text healthUpgradeLevel;
@@ -44,9 +44,24 @@ public class ShopManager : MonoBehaviour {
     public Text shieldCostText;
     public Text shieldStatsText;
     public int currentShieldUpgrade = 1;
-    public int maxShieldLevel= 6;
+    public int maxShieldLevel = 6;
     public int shieldIncrease = 1;
     public int shieldCost = 30;
+
+    public Text ammoUpgradeLevel;
+    public Text ammoCostText;
+    public Text ammoStatsText;
+    public int currentAmmoUpgrade = 1;
+    public int maxAmmoLevel = 5;
+    public int ammoIncrease = 5;
+    public int ammoCost = 30;
+
+    public Text specialUpgradeLevel;
+    public Text specialCostText;
+    public Text specialStatsText;
+    public int currentSpecialUpgrade = 1;
+    public int maxSpecialLevel = 5; //temp
+    public int specialCost = 50;
 
     public static ShopManager Instance;
 
@@ -62,14 +77,20 @@ public class ShopManager : MonoBehaviour {
         damageCostText.text = "Cost: " + damageCost;
         healPackCostText.text = "Cost: " + healPackCost;
         shieldCostText.text = "Cost: " + shieldCost;
+        ammoCostText.text = "Cost: " + ammoCost;
+        specialCostText.text = "Cost: " + specialCost;
     }
 
     void Update() {
+        waveText.text = "Highest Wave\nReached: " + GameManager.Instance.highestWave;
+
         healthStatsText.text = "Max Health: " + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().Health.maxPoints;
         speedStatsText.text = "Player Speed: " + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().walkSpeed;
         damageStatsText.text = "Player Damage: " + GameManager.Instance.playerBulletDamage;
         healPackStatsText.text = "Health Pickup: +" + GameManager.Instance.healAmount;
         shieldStatsText.text = "Shield Duration: " + GameManager.Instance.shieldActiveTime + "s";
+        //ammoStatsText.text = "Ammo Pickup: +" + (ammo recovery)
+        specialStatsText.text = "Special Weapon\nLevel: " + currentSpecialUpgrade;
     }
 
     public void UpdateShopPoints(int points) {
@@ -180,11 +201,29 @@ public class ShopManager : MonoBehaviour {
         }
     }
 
-    void IncreaseAmmoPack() { //later
-        return;
+    void IncreaseAmmoPack() {
+        if (shopPoints >= ammoCost && currentAmmoUpgrade < maxAmmoLevel) {
+            currentAmmoUpgrade++;
+            ammoUpgradeLevel.text = "Level: " + currentAmmoUpgrade;
+            //increase ammo recovery from pickup
+            shopPoints -= ammoCost;
+
+            if (currentAmmoUpgrade == maxAmmoLevel) {
+                ammoUpgradeLevel.text = "Level: MAX";
+            }
+        }
     }
 
-    void UpgradeSpecial() { //later
-        return;
+    void UpgradeSpecial() {
+        if (shopPoints >= specialCost && currentSpecialUpgrade < maxSpecialLevel) {
+            currentSpecialUpgrade++;
+            specialUpgradeLevel.text = "Level: " + currentSpecialUpgrade;
+            //increase various values of the special, like damage and blast radius
+            shopPoints -= specialCost;
+
+            if (currentSpecialUpgrade == maxSpecialLevel) {
+                specialUpgradeLevel.text = "Level: MAX";
+            }
+        }
     }
 }
