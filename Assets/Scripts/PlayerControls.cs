@@ -149,8 +149,7 @@ public class PlayerControls : Shooter {
         GameManager.Instance.gameOver();
         
         // also, UpdateScore();
-        if (PlayerFlash.GetComponent<MeshRenderer>().enabled == true)
-            PlayerFlash.GetComponent<MeshRenderer>().enabled = false;
-        Destroy(this.gameObject);
+        PlayerFlash.GetComponent<MeshRenderer>().enabled = false;
+        Destroy(gameObject);
     }
 }
