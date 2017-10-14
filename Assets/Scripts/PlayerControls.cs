@@ -9,13 +9,13 @@ using UnityEngine.UI;
 public class PlayerControls : Shooter {
     protected override bool ShouldShoot {
         get {
-            return Input.GetMouseButton(0) && WallInWay;
+            return !hidden && Input.GetMouseButton(0) && WallInWay;
         }
     }
 
     protected override bool ShouldShootSpecial {
         get {
-            return Input.GetMouseButton(1) && WallInWay;
+            return !hidden && Input.GetMouseButton(1) && WallInWay;
         }
     }
 
@@ -49,6 +49,8 @@ public class PlayerControls : Shooter {
         inputAxes = new Vector3(0, 0, 0);
         follow = Camera.main;
         spawn = transform.position;
+
+        PlayerFlash.SetActive(false);
     }
 
     protected override void Update() {
@@ -56,13 +58,6 @@ public class PlayerControls : Shooter {
        
         UpdateInputAxes();
         TrackCamera();
-
-        hasShield = false;
-        foreach (Transform child in transform) {
-            if (child.gameObject.tag == "Shield") {
-                hasShield = true;
-            }
-        }
     }
 
     void UpdateInputAxes() {
@@ -82,7 +77,9 @@ public class PlayerControls : Shooter {
     }
 
     void FixedUpdate() {
-        Body.velocity = CopyY(inputAxes, Body.velocity);
+        if (!hidden) {
+            Body.velocity = CopyY(inputAxes, Body.velocity);
+        }
     }
 
     /// <summary>
@@ -97,7 +94,6 @@ public class PlayerControls : Shooter {
     }
 
     public GameObject PlayerFlash;
-    bool hasShield = false;
 
     void OnTriggerEnter(Collider other) {
         switch (other.gameObject.tag) {
@@ -140,16 +136,35 @@ public class PlayerControls : Shooter {
     }
 
     IEnumerator DisplayPlayerFlash() {
-        PlayerFlash.GetComponent<MeshRenderer>().enabled = true;
+        PlayerFlash.SetActive(true);
         yield return new WaitForSeconds(1f);
-        PlayerFlash.GetComponent<MeshRenderer>().enabled = false;
+        PlayerFlash.SetActive(false);
+    }
+
+    bool hidden;
+    bool Hidden {
+        get { return hidden; }
+        set {
+            hidden = value;
+
+            PlayerFlash.SetActive(!value);
+
+            foreach (Transform child in transform) {
+                child.gameObject.SetActive(!value);
+            }
+        }
     }
 
     protected override void Die() {
-        GameManager.Instance.gameOver();
-        
-        // also, UpdateScore();
-        PlayerFlash.GetComponent<MeshRenderer>().enabled = false;
-        Destroy(gameObject);
+        StartCoroutine(GameManager.Instance.gameOver(this));
+
+        Hidden = true;
+    }
+
+    public void Reset() {
+        Hidden = false;
+
+        Health.Reset();
+        transform.position = spawn;
     }
 }
