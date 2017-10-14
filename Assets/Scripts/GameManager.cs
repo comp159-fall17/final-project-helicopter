@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour {
     //Canvases
     public GameObject screenCanvas;
     public GameObject shopCanvas;
+    public GameObject GameOverCanvas;
+
+    //GameOver
+    public int gameoverTime;
+    public GameObject playerPrefab;
 
     //Wave Spawning
     public Rigidbody[] enemyPrefabs;
@@ -88,7 +93,15 @@ public class GameManager : MonoBehaviour {
         enemySpawning = false;
     }
 
+    public void gameOver()
+    {
+        GameOverCanvas.SetActive(true);
+        Invoke("RestartGame", gameoverTime);
+    }
+
     public void RestartGame() {
+        GameOverCanvas.SetActive(false);
+        Instantiate(playerPrefab, new Vector3(0, 1, -10), Quaternion.identity);
         StopAllCoroutines();
 
         foreach (GameObject obj in FindObjectsOfType<GameObject>() as GameObject[]) {
