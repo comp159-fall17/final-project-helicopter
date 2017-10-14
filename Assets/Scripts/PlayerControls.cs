@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 /// <summary>
@@ -89,32 +91,42 @@ public class PlayerControls : Shooter {
 
     public GameObject PlayerFlash;
 
-    void OnTriggerEnter(Collider other) {
+    void OnTriggerEnter(Collider other)
+    {
         string otherTag = other.gameObject.tag;
 
-        if (otherTag == "Health Pickup") {
+        if (otherTag == "Health Pickup")
+        {
             CollectHealth();
             Destroy(other.gameObject);
-        } else if (otherTag == "Shield Pickup") {
+        }
+        else if (otherTag == "Shield Pickup")
+        {
             CollectShield();
             Destroy(other.gameObject);
-        } else if (otherTag == "Ammo Pickup") {
+        }
+        else if (otherTag == "Ammo Pickup")
+        {
             CollectAmmo();
             Destroy(other.gameObject);
         }
-          else if (otherTag == "Bullet") {
-            //PlayerFlash.GetComponent<MeshRenderer>().enabled = true;
-            //PlayerFlash.GetComponent<BoxCollider>().enabled = true;
-            Invoke("turnoff", 1);
+        else if (otherTag == "Bullet")
+        {
+            StartCoroutine(Coroutine());
+
         }
     }
-   
-    void turnoff()
+
+    IEnumerator Coroutine()
     {
-       // PlayerFlash.GetComponent<MeshRenderer>().enabled = false;
-       // PlayerFlash.GetComponent<BoxCollider>().enabled = false;
+        PlayerFlash.GetComponent<MeshRenderer>().enabled = true;
+
+        yield return new WaitForSeconds(1);
+        PlayerFlash.GetComponent<MeshRenderer>().enabled = false;
+
+
     }
- 
+
     void CollectHealth() {
         Health.Heal(GameManager.Instance.healAmount);
     }
