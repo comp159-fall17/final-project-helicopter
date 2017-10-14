@@ -138,11 +138,10 @@ public class PlayerControls : Shooter {
     }
 
     protected override void Die() {
-        //Health.Reset();
         GameManager.Instance.gameOver();
         // also, UpdateScore();
-        //transform.position = spawn;
+        if (PlayerFlash.GetComponent<MeshRenderer>().enabled == true)
+            PlayerFlash.GetComponent<MeshRenderer>().enabled = false;
         Destroy(this.gameObject);
-        Debug.Log("helo");
     }
 }
