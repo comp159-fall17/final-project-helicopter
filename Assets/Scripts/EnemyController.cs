@@ -25,13 +25,17 @@ public class EnemyController : Shooter {
 
     protected override bool ShouldShoot {
         get {
-            bool visible = WithinRange && WallInWay;
+            try {
+                bool visible = WithinRange && WallInWay;
 
-            if (visible) {
-                transform.LookAt(Target);
+                if (visible) {
+                    transform.LookAt(Target);
+                }
+
+                return visible;
+            } catch (System.NullReferenceException e) {
+                return false;
             }
-
-            return visible;
         }
     }
 

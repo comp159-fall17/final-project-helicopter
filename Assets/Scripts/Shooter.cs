@@ -156,4 +156,8 @@ public abstract class Shooter : MonoBehaviour {
         }
         shooting = false;
     }
+
+    public virtual void Hit(BulletController bullet) {
+        GetComponent<Shooter>().Health.Hit(bullet);
+    }
 }

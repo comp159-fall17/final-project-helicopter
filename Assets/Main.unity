@@ -3319,6 +3319,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1254734835 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1061644965053774, guid: 349770123ba8a43368d2c0b2503f7c52,
+    type: 2}
+  m_PrefabInternal: {fileID: 1512103820}
 --- !u!1 &1259036203
 GameObject:
   m_ObjectHideFlags: 0
@@ -4580,6 +4585,11 @@ Prefab:
       propertyPath: PlayerFlash
       value: 
       objectReference: {fileID: 2134856254}
+    - target: {fileID: 114280916803156356, guid: 349770123ba8a43368d2c0b2503f7c52,
+        type: 2}
+      propertyPath: Lumberjack
+      value: 
+      objectReference: {fileID: 1254734835}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 349770123ba8a43368d2c0b2503f7c52, type: 2}
   m_IsPrefabParent: 0
@@ -5839,6 +5849,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &2048671016 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1859407965499664, guid: 349770123ba8a43368d2c0b2503f7c52,
+    type: 2}
+  m_PrefabInternal: {fileID: 1512103820}
 --- !u!1 &2050726804
 GameObject:
   m_ObjectHideFlags: 0
@@ -5894,8 +5909,7 @@ MonoBehaviour:
   shopCanvas: {fileID: 1719718403}
   GameOverCanvas: {fileID: 1287819301}
   gameoverTime: 3
-  playerPrefab: {fileID: 1859407965499664, guid: 349770123ba8a43368d2c0b2503f7c52,
-    type: 2}
+  playerPrefab: {fileID: 2048671016}
   enemyPrefabs:
   - {fileID: 54423254071300786, guid: 49784f793b5ef464ca8f441869953e79, type: 2}
   - {fileID: 54423254071300786, guid: a1cdf53d2c49f41d491f04734e44ce86, type: 2}

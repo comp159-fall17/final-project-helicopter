@@ -82,15 +82,17 @@ public class GameManager : MonoBehaviour {
         StartCoroutine(ManageWaves());
     }
 
-    public void gameOver()
-    {
+    public IEnumerator gameOver(PlayerControls player) {
+        // wait for showing to finish
         GameOverCanvas.SetActive(true);
-        Invoke("RestartGame", gameoverTime);
+        yield return new WaitForSeconds(gameoverTime);
+        GameOverCanvas.SetActive(false);
+
+        player.Reset();
+        RestartGame();
     }
 
     public void RestartGame() {
-        GameOverCanvas.SetActive(false);
-        Instantiate(playerPrefab, new Vector3(0, 1, -10), Quaternion.identity);
         StopAllCoroutines();
 
         // remove remaining objects
@@ -121,8 +123,6 @@ public class GameManager : MonoBehaviour {
     /// Checks if wave needs to be started.
     /// </summary>
     IEnumerator ManageWaves() {
-        yield return new WaitForSeconds(0.1f);
-
         while (!ShopActive) {
             if (!enemySpawning && enemyCount == 0) {
                 StartCoroutine(EnemySpawn());
@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public bool ShopActive {
-        get { return shopCanvas.activeInHierarchy; }
+        get { return shopCanvas.activeSelf; }
         set {
             ShopManager.Instance.UpdateShopPoints(points);
 

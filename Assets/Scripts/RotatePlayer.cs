@@ -9,6 +9,8 @@ public class RotatePlayer : MonoBehaviour {
 
 		// TODO: Change to mouse position
 		Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-		transform.rotation = Quaternion.LookRotation(movement);
+        if (!Mathf.Approximately(movement.x, 0)) {
+            transform.rotation = Quaternion.LookRotation(movement);
+        }
 	}
 }

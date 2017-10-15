@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -9,13 +9,13 @@ using UnityEngine.UI;
 public class PlayerControls : Shooter {
     protected override bool ShouldShoot {
         get {
-            return Input.GetMouseButton(0) && WallInWay;
+            return !hidden && Input.GetMouseButton(0) && WallInWay;
         }
     }
 
     protected override bool ShouldShootSpecial {
         get {
-            return Input.GetMouseButton(1) && WallInWay && specialAmmo != 0;
+            return !hidden && Input.GetMouseButton(1) && WallInWay && specialAmmo != 0;
         }
     }
 
@@ -51,6 +51,7 @@ public class PlayerControls : Shooter {
         spawn = transform.position;
 
         ResetAmmo();
+        PlayerFlash.SetActive(false);
     }
 
     protected override void Update() {
@@ -58,13 +59,6 @@ public class PlayerControls : Shooter {
        
         UpdateInputAxes();
         TrackCamera();
-
-        hasShield = false;
-        foreach (Transform child in transform) {
-            if (child.gameObject.tag == "Shield") {
-                hasShield = true;
-            }
-        }
     }
 
     void UpdateInputAxes() {
@@ -84,7 +78,9 @@ public class PlayerControls : Shooter {
     }
 
     void FixedUpdate() {
-        Body.velocity = CopyY(inputAxes, Body.velocity);
+        if (!hidden) {
+            Body.velocity = CopyY(inputAxes, Body.velocity);
+        }
     }
 
     /// <summary>
@@ -99,7 +95,6 @@ public class PlayerControls : Shooter {
     }
 
     public GameObject PlayerFlash;
-    bool hasShield = false;
 
     void OnTriggerEnter(Collider other) {
         switch (other.gameObject.tag) {
@@ -114,21 +109,11 @@ public class PlayerControls : Shooter {
 
             Destroy(other.gameObject);
             break;
-        case "Bullet":
+        //case "Bullet":
             //PlayerFlash.GetComponent<MeshRenderer>().enabled = true;
             //PlayerFlash.GetComponent<BoxCollider>().enabled = true;
-            if (!hasShield) {
-                StartCoroutine(Coroutine());
-            }
-            break;
+            //break;
         }
-    }
-    
-    IEnumerator Coroutine()
-    {
-        PlayerFlash.GetComponent<MeshRenderer>().enabled = true;
-        yield return new WaitForSeconds(1);
-        PlayerFlash.GetComponent<MeshRenderer>().enabled = false;
     }
 
     void CollectHealth() {
@@ -155,12 +140,42 @@ public class PlayerControls : Shooter {
         specialAmmo = maxSpecialAmmo;
     }
 
+    public override void Hit(BulletController bullet) {
+        base.Hit(bullet);
+
+        StartCoroutine(DisplayPlayerFlash());
+    }
+
+    IEnumerator DisplayPlayerFlash() {
+        PlayerFlash.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        PlayerFlash.SetActive(false);
+    }
+
+    bool hidden;
+    bool Hidden {
+        get { return hidden; }
+        set {
+            hidden = value;
+
+            PlayerFlash.SetActive(!value);
+
+            foreach (Transform child in transform) {
+                child.gameObject.SetActive(!value);
+            }
+        }
+    }
+
     protected override void Die() {
-        GameManager.Instance.gameOver();
-        
-        // also, UpdateScore();
-        if (PlayerFlash.GetComponent<MeshRenderer>().enabled == true)
-            PlayerFlash.GetComponent<MeshRenderer>().enabled = false;
-        Destroy(this.gameObject);
+        StartCoroutine(GameManager.Instance.gameOver(this));
+
+        Hidden = true;
+    }
+
+    public void Reset() {
+        Hidden = false;
+
+        Health.Reset();
+        transform.position = spawn;
     }
 }
