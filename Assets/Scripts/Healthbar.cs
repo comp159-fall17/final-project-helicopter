@@ -17,9 +17,8 @@ public class Healthbar : MonoBehaviour {
         UpdateHealthbar();
     }
 
-    public void Hit(BulletController other) {
-
-        hp -= Damage(other.Speed);
+    public void Hit(float speed) {
+        hp -= Damage(speed);
     }
 
     public void Heal(float amount) {
@@ -34,13 +33,16 @@ public class Healthbar : MonoBehaviour {
         hp = maxPoints;
     }
 
+    /// <summary>
+    /// Damage based on speed (scaled by 1/1000 from m/s).
+    /// </summary>
+    /// <returns>Damage amount by HP.</returns>
+    /// <param name="speed">Speed in m/s (default unity).</param>
     float Damage(float speed) {
-        // TODO: add bullet speed scaling
-
         if (gameObject.tag == "Enemy")
             return GameManager.Instance.playerBulletDamage;
 
-        return 1;
+        return speed / 1000;
     }
 
     void UpdateHealthbar() {

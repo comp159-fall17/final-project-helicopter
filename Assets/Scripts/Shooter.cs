@@ -18,7 +18,7 @@ public abstract class Shooter : MonoBehaviour {
 
     public Healthbar Health { get { return GetComponent<Healthbar>(); } }
 
-    protected Rigidbody Body { get { return GetComponent<Rigidbody>(); } }
+    public Rigidbody Body { get { return GetComponent<Rigidbody>(); } }
 
     /// <summary>
     /// Whether this <see cref="T:Shooter"/> should shoot.
@@ -157,7 +157,7 @@ public abstract class Shooter : MonoBehaviour {
         shooting = false;
     }
 
-    public virtual void Hit(BulletController bullet) {
-        GetComponent<Shooter>().Health.Hit(bullet);
+    public virtual void Hit(float speed) {
+        Health.Hit(speed);
     }
 }

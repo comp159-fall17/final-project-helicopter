@@ -140,8 +140,8 @@ public class PlayerControls : Shooter {
         specialAmmo = maxSpecialAmmo;
     }
 
-    public override void Hit(BulletController bullet) {
-        base.Hit(bullet);
+    public override void Hit(float speed) {
+        base.Hit(speed);
 
         StartCoroutine(DisplayPlayerFlash());
     }
