@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Cannonball : BulletController {
     public float countdown = 3f;
+    public float radius = 3f;
+    public int damage = 5;
 
     protected override void Start() {
         base.Start();

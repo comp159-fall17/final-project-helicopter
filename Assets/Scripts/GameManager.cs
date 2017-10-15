@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
     public float healAmount = 10f;
 
     public GameObject ammoPickup;
-    public float ammoRecovery = 10f;
+    public int ammoRecovery = 5;
 
     public GameObject shieldPickup;
     public float shieldActiveTime = 5.0f;
@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour {
     public float waveDelay = 5;
     public int wave;
     public int newEmemiesPerWave = 1;
+
+    public Text ammoText;
 
     public static GameManager Instance;
 
@@ -74,6 +76,8 @@ public class GameManager : MonoBehaviour {
         enemiesKilled = 0;
         enemyCount = 0;
         enemySpawning = false;
+
+        UpdateAmmoText();
 
         StartCoroutine(ManageWaves());
     }
@@ -212,6 +216,10 @@ public class GameManager : MonoBehaviour {
         // set wave number and points text
         waveNumberText.text = wave.ToString();
         pointsText.text = "Points: " + points;
+    }
+
+    public void UpdateAmmoText() {
+        ammoText.text = "Special Ammo: " + Player.GetComponent<PlayerControls>().specialAmmo;
     }
 
     // if EnemySpawn() is currently running

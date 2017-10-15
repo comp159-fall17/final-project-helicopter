@@ -9,6 +9,8 @@ using UnityEngine;
 public abstract class Shooter : MonoBehaviour {
     public GameObject bullet;
     public GameObject specialBullet;
+    public int specialAmmo;
+    public int maxSpecialAmmo;
 
     public float fireDelay;
     public float walkSpeed = 10f;
@@ -144,6 +146,8 @@ public abstract class Shooter : MonoBehaviour {
             } else if (ShouldShootSpecial) {
                 Instantiate(specialBullet, BulletSpawnPoint,
                             Quaternion.Euler(0, AbsoluteTargetAngle, 90));
+                specialAmmo--;
+                GameManager.Instance.UpdateAmmoText();
             } else {
                 break;
             }

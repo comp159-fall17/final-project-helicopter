@@ -1946,6 +1946,8 @@ MonoBehaviour:
   bullet: {fileID: 1757743640792030, guid: b5eeb03d86cfbb642b7ff1f8a0f03fc8, type: 2}
   specialBullet: {fileID: 1146045754027436, guid: c62ab4434623e4a4680e01923a7e6261,
     type: 2}
+  specialAmmo: 0
+  maxSpecialAmmo: 20
   fireDelay: 0.1
   walkSpeed: 15
   PlayerFlash: {fileID: 0}

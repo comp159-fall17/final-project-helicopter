@@ -15,7 +15,7 @@ public class PlayerControls : Shooter {
 
     protected override bool ShouldShootSpecial {
         get {
-            return Input.GetMouseButton(1) && WallInWay;
+            return Input.GetMouseButton(1) && WallInWay && specialAmmo != 0;
         }
     }
 
@@ -49,6 +49,8 @@ public class PlayerControls : Shooter {
         inputAxes = new Vector3(0, 0, 0);
         follow = Camera.main;
         spawn = transform.position;
+
+        ResetAmmo();
     }
 
     protected override void Update() {
@@ -140,7 +142,17 @@ public class PlayerControls : Shooter {
     }
 
     void CollectAmmo() {
-        Debug.Log("Collected ammo pickup");
+        if (specialAmmo + GameManager.Instance.ammoRecovery <= maxSpecialAmmo) {
+            specialAmmo += GameManager.Instance.ammoRecovery;
+        } else {
+            specialAmmo = maxSpecialAmmo;
+        }
+
+        GameManager.Instance.UpdateAmmoText();
+    }
+
+    public void ResetAmmo() {
+        specialAmmo = maxSpecialAmmo;
     }
 
     protected override void Die() {

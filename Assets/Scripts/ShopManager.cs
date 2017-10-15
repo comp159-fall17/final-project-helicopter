@@ -60,7 +60,10 @@ public class ShopManager : MonoBehaviour {
     public Text specialCostText;
     public Text specialStatsText;
     public int currentSpecialUpgrade = 1;
-    public int maxSpecialLevel = 5; //temp
+    public int maxSpecialLevel = 5;
+    public float specialRadiusIncrease = 1.5f;
+    public int specialDamageIncrease = 1;
+    public int specialAmmoIncrease = 10;
     public int specialCost = 50;
 
     public static ShopManager Instance;
@@ -89,7 +92,7 @@ public class ShopManager : MonoBehaviour {
         damageStatsText.text = "Player Damage: " + GameManager.Instance.playerBulletDamage;
         healPackStatsText.text = "Health Pickup: +" + GameManager.Instance.healAmount;
         shieldStatsText.text = "Shield Duration: " + GameManager.Instance.shieldActiveTime + "s";
-        //ammoStatsText.text = "Ammo Pickup: +" + (ammo recovery)
+        ammoStatsText.text = "Ammo Pickup: +" + GameManager.Instance.ammoRecovery;
         specialStatsText.text = "Special Weapon\nLevel: " + currentSpecialUpgrade;
     }
 
@@ -203,7 +206,7 @@ public class ShopManager : MonoBehaviour {
         if (shopPoints >= ammoCost && currentAmmoUpgrade < maxAmmoLevel) {
             currentAmmoUpgrade++;
             ammoUpgradeLevel.text = "Level: " + currentAmmoUpgrade;
-            //increase ammo recovery from pickup
+            GameManager.Instance.ammoRecovery += ammoIncrease;
             shopPoints -= ammoCost;
 
             if (currentAmmoUpgrade == maxAmmoLevel) {
@@ -216,7 +219,10 @@ public class ShopManager : MonoBehaviour {
         if (shopPoints >= specialCost && currentSpecialUpgrade < maxSpecialLevel) {
             currentSpecialUpgrade++;
             specialUpgradeLevel.text = "Level: " + currentSpecialUpgrade;
-            //increase various values of the special, like damage and blast radius
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().specialBullet.GetComponent<Cannonball>().damage += specialDamageIncrease;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().specialBullet.GetComponent<Cannonball>().radius += specialRadiusIncrease;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().maxSpecialAmmo += specialAmmoIncrease;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().ResetAmmo();
             shopPoints -= specialCost;
 
             if (currentSpecialUpgrade == maxSpecialLevel) {
