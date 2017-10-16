@@ -66,8 +66,10 @@ public class BulletController : MonoBehaviour {
     /// </summary>
     /// <param name="player">Player collider.</param>
     protected virtual void TriggerPlayer(Collider player) {
-        player.gameObject.GetComponent<Shooter>().Hit(bulletSpeed);
-        Destroy(gameObject);
+        if (!player.gameObject.GetComponent<PlayerControls>().Hidden) {
+            player.gameObject.GetComponent<Shooter>().Hit(bulletSpeed);
+            Destroy(gameObject);
+        }
     }
 
     ///// <summary>

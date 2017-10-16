@@ -167,7 +167,7 @@ public class PlayerControls : Shooter {
     }
 
     bool hidden;
-    bool Hidden {
+    public bool Hidden {
         get { return hidden; }
         set {
             hidden = value;
@@ -182,6 +182,7 @@ public class PlayerControls : Shooter {
         StartCoroutine(GameManager.Instance.gameOver(this));
 
         Hidden = true;
+        Health.Reset();
     }
 
     public void Reset() {
