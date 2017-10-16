@@ -7,6 +7,9 @@ using UnityEngine.UI;
 /// Controller for players. Should only have as many instantiated as there are players.
 /// </summary>
 public class PlayerControls : Shooter {
+
+	private AudioSource upgradeSound;
+
     protected override bool ShouldShoot {
         get {
             return !hidden && Input.GetMouseButton(0) && WallInWay;
@@ -51,6 +54,7 @@ public class PlayerControls : Shooter {
         spawn = transform.position;
 
         ResetAmmo();
+		upgradeSound = GetComponent<AudioSource> ();
     }
 
     protected override void Update() {
@@ -58,7 +62,12 @@ public class PlayerControls : Shooter {
        
         UpdateInputAxes();
         TrackCamera();
+
     }
+
+	void playUpgradeSound(){
+		AudioSource.PlayClipAtPoint (upgradeSound.clip, Camera.main.transform.position);
+	}
 
     void UpdateInputAxes() {
         inputAxes.x = Input.GetAxis("Horizontal");
@@ -123,6 +132,7 @@ public class PlayerControls : Shooter {
 
     void CollectHealth() {
         Health.Heal(GameManager.Instance.healAmount);
+		playUpgradeSound ();
     }
 
     public GameObject shieldPrefab;
@@ -130,6 +140,7 @@ public class PlayerControls : Shooter {
 
     IEnumerator CollectShield() {
         shielded = true;
+		playUpgradeSound ();
 
         GameObject shield = Instantiate(shieldPrefab, transform) as GameObject;
         yield return new WaitForSeconds(GameManager.Instance.shieldActiveTime);
@@ -146,6 +157,7 @@ public class PlayerControls : Shooter {
         }
 
         GameManager.Instance.UpdateAmmoText();
+		playUpgradeSound ();
     }
 
     public void ResetAmmo() {

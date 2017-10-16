@@ -62,11 +62,11 @@ public class GameManager : MonoBehaviour {
         } else if (Instance != this) {
             Destroy(gameObject);
         }
-
-        // TODO: set correct wave timer value
+			
         SetWaveTexts();
 
         ShopActive = true;
+
     }
 
     public void StartGame() {
