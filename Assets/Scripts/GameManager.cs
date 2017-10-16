@@ -250,7 +250,7 @@ public class GameManager : MonoBehaviour {
 
         while (enemySpawnedCount < EnemiesOnWave(wave)) {
             Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)],
-                        GeneratePosition(overlaps), transform.rotation);
+				GeneratePosition(overlaps), transform.rotation);
             enemyCount++;
             enemySpawnedCount++;
 
