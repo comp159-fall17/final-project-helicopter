@@ -3288,6 +3288,20 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
+  m_FalloffTable:
+    m_Table[0]: 0
+    m_Table[1]: 0
+    m_Table[2]: 0
+    m_Table[3]: 0
+    m_Table[4]: 0
+    m_Table[5]: 0
+    m_Table[6]: 0
+    m_Table[7]: 0
+    m_Table[8]: 0
+    m_Table[9]: 0
+    m_Table[10]: 0
+    m_Table[11]: 0
+    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -3303,7 +3317,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1254734835 stripped
 GameObject:
@@ -4564,7 +4578,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4639677482832662, guid: 349770123ba8a43368d2c0b2503f7c52, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114280916803156356, guid: 349770123ba8a43368d2c0b2503f7c52,
         type: 2}
@@ -5889,7 +5903,7 @@ MonoBehaviour:
   healAmount: 10
   ammoPickup: {fileID: 1627458933034322, guid: 633cf746dc0e5134e9d62bfafdf5af7e, type: 2}
   ammoRecovery: 5
-  shieldPickup: {fileID: 1494888248116230, guid: ae01c27f635de2e47b5d0fad11362992,
+  shieldPickup: {fileID: 1556539886486880, guid: ae01c27f635de2e47b5d0fad11362992,
     type: 2}
   shieldActiveTime: 5
   pickupSpawnInterval: 5

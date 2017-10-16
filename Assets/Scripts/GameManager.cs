@@ -199,7 +199,7 @@ public class GameManager : MonoBehaviour {
             break;
         }
 
-        Destroy(Instantiate(pickup, GeneratePosition(overlaps), Quaternion.identity),
+        Destroy(Instantiate(pickup, GeneratePosition(overlaps), Quaternion.Euler(-90.0f, 180.0f, 0.0f)),
                 pickupDestroyTime);
     }
 
