@@ -76,6 +76,8 @@ public class GameManager : MonoBehaviour {
         enemiesKilled = 0;
         enemyCount = 0;
         enemySpawning = false;
+        Player.GetComponent<PlayerControls>().ResetAmmo();
+        Player.GetComponent<PlayerControls>().Health.Reset();
 
         UpdateAmmoText();
 
