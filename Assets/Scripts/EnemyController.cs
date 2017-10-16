@@ -93,6 +93,7 @@ public class EnemyController : Shooter {
 
     protected override void Die() {
         GameManager.Instance.EnemyHasDied();
+		GameManager.Instance.playDeathSound (true);
         Destroy(gameObject);
     }
 }

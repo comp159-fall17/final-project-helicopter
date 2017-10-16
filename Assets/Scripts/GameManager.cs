@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour {
     public int highestWave;
     bool closeShop;
 
+	private AudioSource deathSound;
+
     public GameObject Player {
         get { return GameObject.FindGameObjectWithTag("Player"); }
     }
@@ -67,7 +69,14 @@ public class GameManager : MonoBehaviour {
 
         ShopActive = true;
 
+		deathSound = GetComponent<AudioSource> ();
     }
+
+	public void playDeathSound(bool canPlay){
+		if (canPlay) {
+			AudioSource.PlayClipAtPoint (deathSound.clip, Camera.main.transform.position);
+		}
+	}
 
     public void StartGame() {
         ShopActive = false;
@@ -80,6 +89,7 @@ public class GameManager : MonoBehaviour {
         Player.GetComponent<PlayerControls>().Health.Reset();
 
         UpdateAmmoText();
+		playDeathSound (false);
 
         StartCoroutine(ManageWaves());
     }

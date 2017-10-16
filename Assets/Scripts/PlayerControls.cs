@@ -55,11 +55,11 @@ public class PlayerControls : Shooter {
 
         ResetAmmo();
 		upgradeSound = GetComponent<AudioSource> ();
+
     }
 
     protected override void Update() {
         base.Update();
-       
         UpdateInputAxes();
         TrackCamera();
 
@@ -191,6 +191,7 @@ public class PlayerControls : Shooter {
     }
 
     protected override void Die() {
+		GameManager.Instance.playDeathSound (true);
         StartCoroutine(GameManager.Instance.gameOver(this));
 
         Hidden = true;
