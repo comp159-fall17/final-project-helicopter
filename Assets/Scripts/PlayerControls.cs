@@ -98,7 +98,7 @@ public class PlayerControls : Shooter {
     }
 
     public GameObject PlayerFlash {
-        get { return GameObject.Find("playerFlash"); }
+        get { return GameObject.FindWithTag("FX"); }
     }
 
     void OnTriggerEnter(Collider other) {
@@ -171,8 +171,6 @@ public class PlayerControls : Shooter {
         get { return hidden; }
         set {
             hidden = value;
-
-            PlayerFlash.SetActive(!value);
 
             foreach (Transform child in transform) {
                 child.gameObject.SetActive(!value);
