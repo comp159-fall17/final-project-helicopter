@@ -15,6 +15,11 @@ public class Cannonball : BulletController {
     }
 
     protected override void OnTriggerEnter(Collider other) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast") ||
+            other.gameObject.layer == LayerMask.NameToLayer("Shield")) {
+            return;
+        }
+
         Explode();
     }
 
