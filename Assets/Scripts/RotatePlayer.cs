@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RotatePlayer : MonoBehaviour {
-	void Update () {
-		float moveHorizontal = Input.GetAxis("Horizontal");
-		float moveVertical = Input.GetAxis("Vertical");
 
-		// TODO: Change to mouse position
-		Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        if (!Mathf.Approximately(movement.x, 0)) {
-            transform.rotation = Quaternion.LookRotation(movement);
-        }
+	private PlayerControls PController;
+	private GameObject PControllerRef;
+
+	void Start(){
+		// These help reference gameObjects in hierarchy, can now use methods from other classes
+		PControllerRef = GameObject.Find ("Player");
+		PController = PControllerRef.GetComponent<PlayerControls> ();
 	}
+
+	void Update () {
+		// Rotates based on mouse location
+		transform.rotation = Quaternion.Euler(0.0f, PController.AbsTargetAngle ()-75f, 0.0f);
+
+	}
+
+
 }

@@ -72,6 +72,10 @@ public class PlayerControls : Shooter {
 		//transform.rotation = Quaternion.Euler(0.0f, AbsoluteTargetAngle, 0.0f);
     }
 
+	public float AbsTargetAngle(){
+		return AbsoluteTargetAngle;
+	}
+
     void TrackCamera() {
         follow.transform.position = CopyY(transform.position,
                                           follow.transform.position);
