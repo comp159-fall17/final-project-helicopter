@@ -266,12 +266,14 @@ public class GameManager : MonoBehaviour {
         return wave + 4;
     }
 
+    public int pointsPerWave;
+
     public void EnemyHasDied() {
         enemyCount--;
         enemiesKilled++;
 
         if (enemiesKilled == EnemiesOnWave(wave)) {
-            points += 10;
+            points += pointsPerWave;
             enemiesKilled = 0;
         }
     }
