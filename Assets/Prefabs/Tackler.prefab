@@ -246,7 +246,7 @@ MonoBehaviour:
   specialBullet: {fileID: 0}
   specialAmmo: 0
   maxSpecialAmmo: 0
-  fireDelay: 0.1
+  fireDelay: 0.5
   walkSpeed: 10
   hitPoints: 10
 --- !u!114 &114888084226133582

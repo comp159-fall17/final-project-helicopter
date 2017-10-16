@@ -152,8 +152,10 @@ public class PlayerControls : Shooter {
 
     IEnumerator DisplayPlayerFlash() {
         PlayerFlash.SetActive(true);
+        PlayerFlash.GetComponent<MeshRenderer>().enabled = true;
         yield return new WaitForSeconds(1f);
         PlayerFlash.SetActive(false);
+        PlayerFlash.GetComponent<MeshRenderer>().enabled = false;
     }
 
     bool hidden;
