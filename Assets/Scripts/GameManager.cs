@@ -186,20 +186,25 @@ public class GameManager : MonoBehaviour {
         };
 
         GameObject pickup;
+        Vector3 pickupRotation = new Vector3(0.0f, 0.0f, 0.0f);
+
         switch (type) {
         case 0:
             pickup = healthPickup;
+            pickupRotation = new Vector3(90.0f, 0.0f, 0.0f);
             break;
         case 1:
             pickup = ammoPickup;
+            pickupRotation = new Vector3(-90.0f, 90.0f, 0.0f);
             break;
         //case 2:
         default:
             pickup = shieldPickup;
+            pickupRotation = new Vector3(-90.0f, 180.0f, 0.0f);
             break;
         }
 
-        Destroy(Instantiate(pickup, GeneratePosition(overlaps), Quaternion.Euler(-90.0f, 180.0f, 0.0f)),
+        Destroy(Instantiate(pickup, GeneratePosition(overlaps), Quaternion.Euler(pickupRotation)),
                 pickupDestroyTime);
     }
 
