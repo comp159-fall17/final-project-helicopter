@@ -180,7 +180,7 @@ public class PlayerControls : Shooter {
 
     public void Reset() {
         Hidden = false;
-
+        ResetAmmo();
         Health.Reset();
         transform.position = spawn;
     }
