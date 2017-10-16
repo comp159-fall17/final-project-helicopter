@@ -1950,8 +1950,8 @@ MonoBehaviour:
   maxSpecialAmmo: 20
   fireDelay: 0.1
   walkSpeed: 15
-  PlayerFlash: {fileID: 0}
-  shield: {fileID: 1043463481280116, guid: 1c62eda0209d23643bd0b0027ed1830b, type: 2}
+  shieldPrefab: {fileID: 1043463481280116, guid: 1c62eda0209d23643bd0b0027ed1830b,
+    type: 2}
 --- !u!114 &114303468732554004
 MonoBehaviour:
   m_ObjectHideFlags: 1

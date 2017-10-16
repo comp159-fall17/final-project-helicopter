@@ -51,7 +51,6 @@ public class PlayerControls : Shooter {
         spawn = transform.position;
 
         ResetAmmo();
-        PlayerFlash.SetActive(false);
     }
 
     protected override void Update() {
@@ -98,7 +97,9 @@ public class PlayerControls : Shooter {
         return to;
     }
 
-    public GameObject PlayerFlash;
+    public GameObject PlayerFlash {
+        get { return GameObject.Find("playerFlash"); }
+    }
 
     void OnTriggerEnter(Collider other) {
         switch (other.gameObject.tag) {
@@ -106,7 +107,7 @@ public class PlayerControls : Shooter {
             if (other.gameObject.name.Contains("Health")) {
                 CollectHealth();
             } else if (other.gameObject.name.Contains("Shield")) {
-                CollectShield();
+                StartCoroutine(CollectShield());
             } else if (other.gameObject.name.Contains("Ammo")) {
                 CollectAmmo();
             }
@@ -124,10 +125,17 @@ public class PlayerControls : Shooter {
         Health.Heal(GameManager.Instance.healAmount);
     }
 
-    public GameObject shield;
+    public GameObject shieldPrefab;
+    bool shielded;
 
-    void CollectShield() {
-        Destroy(Instantiate(shield, transform), GameManager.Instance.shieldActiveTime);
+    IEnumerator CollectShield() {
+        shielded = true;
+
+        GameObject shield = Instantiate(shieldPrefab, transform) as GameObject;
+        yield return new WaitForSeconds(GameManager.Instance.shieldActiveTime);
+        Destroy(shield);
+
+        shielded = false;
     }
 
     void CollectAmmo() {
@@ -145,16 +153,16 @@ public class PlayerControls : Shooter {
     }
 
     public override void Hit(float speed) {
-        base.Hit(speed);
+        // avoid all damage while shielded
+        if (shielded) return;
 
+        base.Hit(speed);
         StartCoroutine(DisplayPlayerFlash());
     }
 
     IEnumerator DisplayPlayerFlash() {
-        PlayerFlash.SetActive(true);
         PlayerFlash.GetComponent<MeshRenderer>().enabled = true;
         yield return new WaitForSeconds(1f);
-        PlayerFlash.SetActive(false);
         PlayerFlash.GetComponent<MeshRenderer>().enabled = false;
     }
 
