@@ -10,6 +10,18 @@ public class PlayerControls : Shooter {
 
 	private AudioSource upgradeSound;
 
+    Vector3 inputAxes;
+    Vector3 spawn;
+    Camera follow;
+
+    public GameObject shieldPrefab;
+    bool shielded;
+    bool hidden;
+
+    public float damageFlashTime;
+    bool damaged; //used for invincibility frames
+    public float invincibleTime;
+
     protected override bool ShouldShoot {
         get {
             return !hidden && Input.GetMouseButton(0) && WallInWay;
@@ -41,10 +53,6 @@ public class PlayerControls : Shooter {
                                     rayDirection, 2, notPlayerMask);
         }
     }
-
-    Vector3 inputAxes;
-    Vector3 spawn;
-    Camera follow;
 
     protected override void Start() {
         base.Start();
@@ -135,9 +143,6 @@ public class PlayerControls : Shooter {
 		playUpgradeSound ();
     }
 
-    public GameObject shieldPrefab;
-    bool shielded;
-
     IEnumerator CollectShield() {
         shielded = true;
 		playUpgradeSound ();
@@ -165,8 +170,8 @@ public class PlayerControls : Shooter {
     }
 
     public override void Hit(float speed) {
-        // avoid all damage while shielded
-        if (shielded) return;
+        // avoid all damage while shielded or during invincibility time
+        if (shielded || damaged) return;
 
         base.Hit(speed);
         StartCoroutine(DisplayPlayerFlash());
@@ -174,11 +179,14 @@ public class PlayerControls : Shooter {
 
     IEnumerator DisplayPlayerFlash() {
         PlayerFlash.GetComponent<MeshRenderer>().enabled = true;
-        yield return new WaitForSeconds(1f);
+        damaged = true;
+        yield return new WaitForSeconds(damageFlashTime);
         PlayerFlash.GetComponent<MeshRenderer>().enabled = false;
+
+        yield return new WaitForSeconds(invincibleTime - damageFlashTime);
+        damaged = false;
     }
 
-    bool hidden;
     public bool Hidden {
         get { return hidden; }
         set {
