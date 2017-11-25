@@ -15,6 +15,8 @@ public class PlayerControls : Shooter {
     Camera follow;
 
     public GameObject shieldPrefab;
+    public Image shieldIndicator;
+    bool hasShield; //player has the shield pickup
     bool shielded;
     bool hidden;
 
@@ -64,6 +66,7 @@ public class PlayerControls : Shooter {
         ResetAmmo();
 		upgradeSound = GetComponent<AudioSource> ();
 
+        shieldIndicator.enabled = false;
     }
 
     protected override void Update() {
@@ -71,6 +74,10 @@ public class PlayerControls : Shooter {
         UpdateInputAxes();
         TrackCamera();
 
+        //use shield with spacebar
+        if (Input.GetKeyDown(KeyCode.Space) && hasShield && !shielded) {
+            StartCoroutine(UseShield());
+        }
     }
 
 	void playUpgradeSound(){
@@ -124,7 +131,10 @@ public class PlayerControls : Shooter {
             if (other.gameObject.name.Contains("Health")) {
                 CollectHealth();
             } else if (other.gameObject.name.Contains("Shield")) {
-                StartCoroutine(CollectShield());
+                if (hasShield)
+                    return;
+
+                CollectShield();
             } else if (other.gameObject.name.Contains("Ammo")) {
                 CollectAmmo();
             }
@@ -143,9 +153,16 @@ public class PlayerControls : Shooter {
 		playUpgradeSound ();
     }
 
-    IEnumerator CollectShield() {
+    void CollectShield() {
+        hasShield = true;
+        shieldIndicator.enabled = true;
+    }
+
+    IEnumerator UseShield() {
+        hasShield = false;
         shielded = true;
-		playUpgradeSound ();
+        shieldIndicator.enabled = false;
+        playUpgradeSound();
 
         GameObject shield = Instantiate(shieldPrefab, transform) as GameObject;
         yield return new WaitForSeconds(GameManager.Instance.shieldActiveTime);

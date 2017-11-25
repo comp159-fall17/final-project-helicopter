@@ -6029,17 +6029,15 @@ MonoBehaviour:
   shieldPickup: {fileID: 1556539886486880, guid: ae01c27f635de2e47b5d0fad11362992,
     type: 2}
   shieldActiveTime: 5
-  pickupSpawnInterval: 5
-  pickupDestroyTime: 7
+  pickupSpawnInterval: 1
+  pickupDestroyTime: Infinity
   playerBulletDamage: 1
   guiCanvas: {fileID: 491551945}
   shopCanvas: {fileID: 1719718403}
   GameOverCanvas: {fileID: 1287819301}
   gameoverTime: 3
   playerPrefab: {fileID: 2048671016}
-  enemyPrefabs:
-  - {fileID: 54423254071300786, guid: 49784f793b5ef464ca8f441869953e79, type: 2}
-  - {fileID: 54423254071300786, guid: a1cdf53d2c49f41d491f04734e44ce86, type: 2}
+  enemyPrefabs: []
   waveTimerText: {fileID: 572835706}
   waveNumberText: {fileID: 1886035583}
   pointsText: {fileID: 1933580405}
