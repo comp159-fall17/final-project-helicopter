@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour {
-    public Text shopPointsText;
-    public Text waveText;
+    public Text shopPointsText1;
+    public Text shopPointsText2;
     int shopPoints;
+
+    public GameObject mainShop;
+    public GameObject specialShop;
 
     public Text healthUpgradeLevel;
     public Text healthCostText;
@@ -56,6 +59,18 @@ public class ShopManager : MonoBehaviour {
     public int ammoIncrease = 5;
     public int ammoCost = 30;
 
+    public bool weapon1Locked;
+    public bool weapon2Locked;
+    public bool weapon3Locked;
+
+    public GameObject weapon1Button;
+    public GameObject weapon1Cover;
+    public GameObject weapon2Button;
+    public GameObject weapon2Cover;
+    public GameObject weapon3Button;
+    public GameObject weapon3Cover;
+
+    /*
     public Text specialUpgradeLevel;
     public Text specialCostText;
     public Text specialStatsText;
@@ -65,6 +80,7 @@ public class ShopManager : MonoBehaviour {
     public int specialDamageIncrease = 1;
     public int specialAmmoIncrease = 10;
     public int specialCost = 50;
+    */
 
     public static ShopManager Instance;
 
@@ -75,34 +91,65 @@ public class ShopManager : MonoBehaviour {
             Destroy(gameObject);
         }
 
+        mainShop.SetActive(true);
+        specialShop.SetActive(false);
+
+        weapon1Locked = true;
+        weapon2Locked = true;
+        weapon3Locked = true;
+
         healthCostText.text = "Cost: " + healthCost;
         speedCostText.text = "Cost: " + speedCost;
         damageCostText.text = "Cost: " + damageCost;
         healPackCostText.text = "Cost: " + healPackCost;
         shieldCostText.text = "Cost: " + shieldCost;
         ammoCostText.text = "Cost: " + ammoCost;
-        specialCostText.text = "Cost: " + specialCost;
+        //specialCostText.text = "Cost: " + specialCost;
     }
 
     void Update() {
-        waveText.text = "Highest Wave\nReached: " + GameManager.Instance.highestWave;
-
         healthStatsText.text = "Max Health: " + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().Health.maxPoints;
         speedStatsText.text = "Player Speed: " + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().walkSpeed;
         damageStatsText.text = "Player Damage: " + GameManager.Instance.playerBulletDamage;
         healPackStatsText.text = "Health Pickup: +" + GameManager.Instance.healAmount;
         shieldStatsText.text = "Shield Duration: " + GameManager.Instance.shieldActiveTime + "s";
         ammoStatsText.text = "Ammo Pickup: +" + GameManager.Instance.ammoRecovery;
-        specialStatsText.text = "Special Weapon\nLevel: " + currentSpecialUpgrade;
+        //specialStatsText.text = "Special Weapon\nLevel: " + currentSpecialUpgrade;
+
+        if (weapon1Locked) {
+            weapon1Button.GetComponent<Button>().enabled = false;
+            weapon1Cover.SetActive(true);
+        } else {
+            weapon1Button.GetComponent<Button>().enabled = true;
+            weapon1Cover.SetActive(false);
+        }
+
+        if (weapon2Locked) {
+            weapon2Button.GetComponent<Button>().enabled = false;
+            weapon2Cover.SetActive(true);
+        } else {
+            weapon2Button.GetComponent<Button>().enabled = true;
+            weapon2Cover.SetActive(false);
+        }
+
+        if (weapon3Locked) {
+            weapon3Button.GetComponent<Button>().enabled = false;
+            weapon3Cover.SetActive(true);
+        } else {
+            weapon3Button.GetComponent<Button>().enabled = true;
+            weapon3Cover.SetActive(false);
+        }
     }
 
     public void UpdateShopPoints(int points) {
         shopPoints = GameManager.Instance.points;
-        shopPointsText.text = "Points: " + shopPoints;
+        shopPointsText1.text = "Points: " + shopPoints;
+        shopPointsText2.text = "Points: " + shopPoints;
     }
 
     void UpdateGamePoints() {
-        shopPointsText.text = "Points: " + shopPoints;
+        shopPointsText1.text = "Points: " + shopPoints;
+        shopPointsText2.text = "Points: " + shopPoints;
         GameManager.Instance.points = shopPoints;
     }
 
@@ -128,7 +175,7 @@ public class ShopManager : MonoBehaviour {
             IncreaseAmmoPack();
             break;
         case 6:
-            UpgradeSpecial();
+            //UpgradeSpecial();
             break;
         }
 
@@ -215,7 +262,7 @@ public class ShopManager : MonoBehaviour {
         }
     }
 
-    void UpgradeSpecial() {
+    /*void UpgradeSpecial() {
         if (shopPoints >= specialCost && currentSpecialUpgrade < maxSpecialLevel) {
             currentSpecialUpgrade++;
             specialUpgradeLevel.text = "Level: " + currentSpecialUpgrade;
@@ -229,5 +276,52 @@ public class ShopManager : MonoBehaviour {
                 specialUpgradeLevel.text = "Level: MAX";
             }
         }
+    }*/
+    
+    public void DisplaySpecialUpgrades(bool display) {
+        mainShop.SetActive(!display);
+        specialShop.SetActive(display);
+    }
+
+    public void UnlockSpecial(int num) {
+        switch (num) {
+        case 1:
+            weapon1Locked = false;
+            break;
+        case 2:
+            weapon2Locked = false;
+            break;
+        case 3:
+            weapon3Locked = false;
+            break;
+        }
+    }
+
+    public void UpgradeSpecial(int num) {
+        switch (num) {
+        case 1:
+            UpgradeSpecial1();
+            break;
+        case 2:
+            UpgradeSpecial2();
+            break;
+        case 3:
+            UpgradeSpecial3();
+            break;
+        }
+
+        UpdateGamePoints();
+    }
+
+    void UpgradeSpecial1() {
+        Debug.Log("modify values for special weapon 1.");
+    }
+
+    void UpgradeSpecial2() {
+        Debug.Log("modify values for special weapon 2.");
+    }
+
+    void UpgradeSpecial3() {
+        Debug.Log("modify values for special weapon 3.");
     }
 }
