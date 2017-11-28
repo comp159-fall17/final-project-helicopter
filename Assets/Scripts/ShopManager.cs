@@ -108,7 +108,7 @@ public class ShopManager : MonoBehaviour {
     }
 
     void Update() {
-        healthStatsText.text = "Max Health: " + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().Health.maxPoints;
+        healthStatsText.text = "Max Health Limit: " + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().Health.maxPointsLimit;
         speedStatsText.text = "Player Speed: " + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().walkSpeed;
         damageStatsText.text = "Player Damage: " + GameManager.Instance.playerBulletDamage;
         healPackStatsText.text = "Health Pickup: +" + GameManager.Instance.healAmount;
@@ -187,7 +187,7 @@ public class ShopManager : MonoBehaviour {
             currentHealthUpgrade++;
             healthUpgradeLevel.text = "Level: " + currentHealthUpgrade;
             Healthbar playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().Health;
-            playerHealth.maxPoints += healthIncrease;
+            playerHealth.maxPointsLimit += healthIncrease;
             playerHealth.Reset();
             shopPoints -= healthCost;
 

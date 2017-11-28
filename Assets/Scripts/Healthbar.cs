@@ -3,7 +3,8 @@ using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour {
     public float maxPoints = 100;
-    public float totalMaxPoints = 150;
+    public float maxPointsLimit = 150;
+    public float maxHealthIncrease = 25;
     public Image healthbar;
 
     public float Points { get { return hp; } }
@@ -29,8 +30,8 @@ public class Healthbar : MonoBehaviour {
             hp = maxPoints;
         } else { //hp == maxPoints
             //increase max health
-            if (maxPoints < totalMaxPoints) {
-                maxPoints += (int)amount;
+            if (maxPoints < maxPointsLimit) {
+                maxPoints += (int)maxHealthIncrease;
                 hp = maxPoints;
             }
         }

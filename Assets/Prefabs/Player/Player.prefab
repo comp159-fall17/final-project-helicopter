@@ -2101,6 +2101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxPoints: 100
   totalMaxPoints: 150
+  maxHealthIncrease: 25
   healthbar: {fileID: 114739000807847438}
 --- !u!114 &114409421930754012
 MonoBehaviour:

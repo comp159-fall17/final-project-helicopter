@@ -507,7 +507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1763239454952772
 GameObject:
   m_ObjectHideFlags: 1
@@ -784,7 +784,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Upgrade the special weapons.
+  m_Text: 'Upgrade the
+
+    special weapons.'
 --- !u!114 &114050426524971504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1570,7 +1572,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 28
+    m_FontSize: 27
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -1581,7 +1583,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Max Health:'
+  m_Text: 'Max Health Limit:'
 --- !u!114 &114448676028791180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2013,7 +2015,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Increase the max health of the player.
+  m_Text: Increase the max possible health of the player.
 --- !u!114 &114716271719110632
 MonoBehaviour:
   m_ObjectHideFlags: 1
