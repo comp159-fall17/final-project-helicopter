@@ -1981,12 +1981,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114280916803156356, guid: 349770123ba8a43368d2c0b2503f7c52,
-        type: 2}
-      propertyPath: specialWeapons.Array.data[2]
-      value: 
-      objectReference: {fileID: 1200282698261456, guid: 2d21c9c818ede5e499ad201b31be954f,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 349770123ba8a43368d2c0b2503f7c52, type: 2}
   m_IsPrefabParent: 0

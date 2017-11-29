@@ -2090,7 +2090,7 @@ MonoBehaviour:
   specialWeapons:
   - {fileID: 1146045754027436, guid: c62ab4434623e4a4680e01923a7e6261, type: 2}
   - {fileID: 1950066926181144, guid: 6a4291b09ed4c0e40936eef5d00d998d, type: 2}
-  - {fileID: 1146045754027436, guid: c62ab4434623e4a4680e01923a7e6261, type: 2}
+  - {fileID: 1200282698261456, guid: 2d21c9c818ede5e499ad201b31be954f, type: 2}
 --- !u!114 &114303468732554004
 MonoBehaviour:
   m_ObjectHideFlags: 1
