@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DoorScript : MonoBehaviour {
 
+    public int moveDistance;
+
     // Use this for initialization
     void Start () {
 
@@ -20,19 +22,19 @@ public class DoorScript : MonoBehaviour {
         {
             if(this.transform.rotation.y == 0)
             {
-                other.transform.Translate(0, 0, 3);
+                other.transform.Translate(0, 0, moveDistance);
             }
             else if (this.transform.rotation.y == 1)
             {
-                other.transform.Translate(0, 0, -3);
+                other.transform.Translate(0, 0, -moveDistance);
             }
             else if (this.transform.rotation.y > 0)
             {
-                other.transform.Translate(3, 0, 0);
+                other.transform.Translate(moveDistance, 0, 0);
             }
             else if (this.transform.rotation.y < 0)
             {
-                other.transform.Translate(-3, 0, 0);
+                other.transform.Translate(-moveDistance, 0, 0);
             }
         }
     }
