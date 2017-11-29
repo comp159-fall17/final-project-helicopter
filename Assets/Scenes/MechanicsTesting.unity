@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1981,6 +1981,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114280916803156356, guid: 349770123ba8a43368d2c0b2503f7c52,
+        type: 2}
+      propertyPath: specialWeapons.Array.data[2]
+      value: 
+      objectReference: {fileID: 1200282698261456, guid: 2d21c9c818ede5e499ad201b31be954f,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 349770123ba8a43368d2c0b2503f7c52, type: 2}
   m_IsPrefabParent: 0
@@ -2717,7 +2723,7 @@ MonoBehaviour:
   shieldPickup: {fileID: 1556539886486880, guid: ae01c27f635de2e47b5d0fad11362992,
     type: 2}
   shieldActiveTime: 5
-  pickupSpawnInterval: 15
+  pickupSpawnInterval: 1
   pickupDestroyTime: Infinity
   guiCanvas: {fileID: 491551945}
   shopCanvas: {fileID: 1719718403}
