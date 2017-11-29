@@ -2727,6 +2727,8 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 54423254071300786, guid: 49784f793b5ef464ca8f441869953e79, type: 2}
   - {fileID: 54423254071300786, guid: a1cdf53d2c49f41d491f04734e44ce86, type: 2}
+  - {fileID: 54970251854368968, guid: 655cd8c9b23f143908ed85d95e3a01a2, type: 2}
+  - {fileID: 54058447990017286, guid: 4b24ef4dde09a40dcb841c05121cc7da, type: 2}
   waveTimerText: {fileID: 572835706}
   waveNumberText: {fileID: 1886035583}
   pointsText: {fileID: 1933580405}

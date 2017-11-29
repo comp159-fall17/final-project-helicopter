@@ -24,7 +24,7 @@ public class Grenade : SpecialWeapon {
         Explode();
     }
 
-    void Explode() {
+    public void Explode() {
         // instantiate explosion animation
         Destroy(Instantiate(ExplosionPrefab, transform.position, Quaternion.identity),
                 ExplosionPrefab.GetComponent<Animation>().clip.length);
