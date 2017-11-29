@@ -20,19 +20,19 @@ public class DoorScript : MonoBehaviour {
         {
             if(this.transform.rotation.y == 0)
             {
-                other.transform.Translate(0, 0, 5);
+                other.transform.Translate(0, 0, 3);
             }
             else if (this.transform.rotation.y == 1)
             {
-                other.transform.Translate(0, 0, -5);
+                other.transform.Translate(0, 0, -3);
             }
             else if (this.transform.rotation.y > 0)
             {
-                other.transform.Translate(5, 0, 0);
+                other.transform.Translate(3, 0, 0);
             }
             else if (this.transform.rotation.y < 0)
             {
-                other.transform.Translate(-5, 0, 0);
+                other.transform.Translate(-3, 0, 0);
             }
         }
     }
