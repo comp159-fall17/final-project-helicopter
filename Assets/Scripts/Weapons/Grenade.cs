@@ -26,8 +26,7 @@ public class Grenade : SpecialWeapon {
 
     public void Explode() {
         // instantiate explosion animation
-        Destroy(Instantiate(ExplosionPrefab, transform.position, Quaternion.identity),
-                ExplosionPrefab.GetComponent<Animation>().clip.length);
+        Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
 
         // find surrounding shooters
         Shooter[] hits = Physics.OverlapSphere(transform.position, radius)
