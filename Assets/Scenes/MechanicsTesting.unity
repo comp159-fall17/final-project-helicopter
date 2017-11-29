@@ -2726,6 +2726,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 2048671016}
   enemyPrefabs:
   - {fileID: 54423254071300786, guid: 49784f793b5ef464ca8f441869953e79, type: 2}
+  - {fileID: 54423254071300786, guid: a1cdf53d2c49f41d491f04734e44ce86, type: 2}
   waveTimerText: {fileID: 572835706}
   waveNumberText: {fileID: 1886035583}
   pointsText: {fileID: 1933580405}
