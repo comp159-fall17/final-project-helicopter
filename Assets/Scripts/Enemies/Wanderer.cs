@@ -30,9 +30,16 @@ public class Wanderer : EnemyController {
     protected virtual IEnumerator Wander() {
 #pragma warning restore RECS0135 // Function does not reach its end or a 'return' statement by any of possible execution paths
         while (true) {
+            // Reset speed just in case was hit, etc
+            Body.velocity *= 0;
+
             Agent.destination = RandomNavSphere(transform.position, 30, -1);
 
             yield return new WaitUntil(() => Agent.remainingDistance < 0.1f);
         }
+    }
+
+    void OnDrawGizmosSelected() {
+        Debug.DrawLine(transform.position, Agent.destination);
     }
 }

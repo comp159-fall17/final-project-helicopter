@@ -8,33 +8,32 @@ public class Tackler : Wanderer {
 
     public float minimumDistanceToTarget = 5f;
 
-    protected override void Update() {
-        base.Update();
-
-        UpdateSpeed();
-    }
-
 #pragma warning disable RECS0135 // Function does not reach its end or a 'return' statement by any of possible execution paths
     protected override IEnumerator Wander() {
 #pragma warning restore RECS0135 // Function does not reach its end or a 'return' statement by any of possible execution paths
         while (true) {
+            // Reset speed just in case was hit, etc
+            Body.velocity *= 0;
+
+            float speed;
+
             if (hasBeenHit) {
                 hasBeenHit = false;
-                Agent.isStopped = true;
+                Agent.speed = 0;
                 yield return new WaitUntil(() => TargetDistance > minimumDistanceToTarget);
-                Agent.isStopped = false;
-            } else if (base.ShouldShoot) {
-                Agent.destination = Target;
-            } else {
-                Agent.destination = RandomNavSphere(transform.position, 60, -1);
             }
 
+            if (base.ShouldShoot) {
+                Agent.destination = Target;
+                speed = runSpeed;
+            } else {
+                Agent.destination = RandomNavSphere(transform.position, 30, -1);
+                speed = walkSpeed;
+            }
+
+            Agent.speed = speed;
             yield return new WaitUntil(() => base.ShouldShoot || Agent.remainingDistance < 0.1f);
         }
-    }
-
-    void UpdateSpeed() {
-        Agent.speed = base.ShouldShoot ? runSpeed : walkSpeed;
     }
 
     bool hasBeenHit;
