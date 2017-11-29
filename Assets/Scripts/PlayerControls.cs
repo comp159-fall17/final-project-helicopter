@@ -39,7 +39,7 @@ public class PlayerControls : Shooter {
 
     protected override bool ShouldShootSpecial {
         get {
-            return !hidden && Input.GetMouseButton(1) && WallInWay && specialAmmo != 0;
+            return !hidden && Input.GetMouseButtonDown(1) && WallInWay && specialAmmo != 0;
         }
     }
 
