@@ -8,9 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(Healthbar))]
 public abstract class Shooter : MonoBehaviour {
     public GameObject bullet;
-    public GameObject specialBullet;
-    public int specialAmmo;
-    public int maxSpecialAmmo;
+    public GameObject specialWeapon;
 
     public float fireDelay;
     public float walkSpeed = 10f;
@@ -132,22 +130,19 @@ public abstract class Shooter : MonoBehaviour {
     /// <summary>
     /// True if ShootBullets() is currently running.
     /// </summary>
-    bool shooting;
+    protected bool shooting;
 
     /// <summary>
     /// Shoots bullet at the target until ShouldShoot becomes false.
     /// </summary>
-    protected IEnumerator ShootBullets() {
+    protected virtual IEnumerator ShootBullets() {
         shooting = true;
         while (true) {
             if (ShouldShoot) {
                 Instantiate(bullet, BulletSpawnPoint,
                             Quaternion.Euler(0, AbsoluteTargetAngle, 90));
             } else if (ShouldShootSpecial) {
-                Instantiate(specialBullet, BulletSpawnPoint,
-                            Quaternion.Euler(0, AbsoluteTargetAngle, 90));
-                specialAmmo--;
-                GameManager.Instance.UpdateAmmoText();
+                ;
             } else {
                 break;
             }
@@ -157,7 +152,7 @@ public abstract class Shooter : MonoBehaviour {
         shooting = false;
     }
 
-    public virtual void Hit(float speed) {
-        Health.Hit(speed);
+    public virtual void Hit(float damage) {
+        Health.Hit(damage);
     }
 }

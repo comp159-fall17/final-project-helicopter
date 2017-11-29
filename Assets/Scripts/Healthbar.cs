@@ -19,8 +19,8 @@ public class Healthbar : MonoBehaviour {
         UpdateHealthbar();
     }
 
-    public void Hit(float speed) {
-        hp -= Damage(speed);
+    public void Hit(float damage) {
+        hp -= damage;
     }
 
     public void Heal(float amount) {
@@ -41,17 +41,17 @@ public class Healthbar : MonoBehaviour {
         hp = maxPoints;
     }
 
-    /// <summary>
+    /*/// <summary>
     /// Damage based on speed (scaled by 1/1000 from m/s).
     /// </summary>
     /// <returns>Damage amount by HP.</returns>
     /// <param name="speed">Speed in m/s (default unity).</param>
-    float Damage(float speed) {
+    float Damage(float damage) {
         if (gameObject.tag == "Enemy")
             return GameManager.Instance.playerBulletDamage;
 
-        return speed / 1000;
-    }
+        return damage;
+    }*/
 
     void UpdateHealthbar() {
         healthbar.fillAmount = BarWidth();

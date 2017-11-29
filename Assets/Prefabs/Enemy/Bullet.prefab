@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 3000
+  damage: 5
   distance: 20
 --- !u!136 &136231949915649578
 CapsuleCollider:

@@ -2077,17 +2077,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1757743640792030, guid: b5eeb03d86cfbb642b7ff1f8a0f03fc8, type: 2}
-  specialBullet: {fileID: 1146045754027436, guid: c62ab4434623e4a4680e01923a7e6261,
-    type: 2}
-  specialAmmo: 0
-  maxSpecialAmmo: 20
+  specialWeapon: {fileID: 0}
   fireDelay: 0.1
   walkSpeed: 15
   shieldPrefab: {fileID: 1043463481280116, guid: 1c62eda0209d23643bd0b0027ed1830b,
     type: 2}
   shieldIndicator: {fileID: 114266776192517890}
+  bulletDamage: 1
   damageFlashTime: 0.25
   invincibleTime: 0.5
+  specialAmmo: 0
+  specialWeapons:
+  - {fileID: 1146045754027436, guid: c62ab4434623e4a4680e01923a7e6261, type: 2}
+  - {fileID: 1146045754027436, guid: c62ab4434623e4a4680e01923a7e6261, type: 2}
+  - {fileID: 1146045754027436, guid: c62ab4434623e4a4680e01923a7e6261, type: 2}
 --- !u!114 &114303468732554004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2100,7 +2103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxPoints: 100
-  totalMaxPoints: 150
+  maxPointsLimit: 150
   maxHealthIncrease: 25
   healthbar: {fileID: 114739000807847438}
 --- !u!114 &114409421930754012

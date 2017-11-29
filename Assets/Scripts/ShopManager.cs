@@ -110,7 +110,7 @@ public class ShopManager : MonoBehaviour {
     void Update() {
         healthStatsText.text = "Max Health Limit: " + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().Health.maxPointsLimit;
         speedStatsText.text = "Player Speed: " + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().walkSpeed;
-        damageStatsText.text = "Player Damage: " + GameManager.Instance.playerBulletDamage;
+        damageStatsText.text = "Player Damage: " + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().bulletDamage;
         healPackStatsText.text = "Health Pickup: +" + GameManager.Instance.healAmount;
         shieldStatsText.text = "Shield Duration: " + GameManager.Instance.shieldActiveTime + "s";
         ammoStatsText.text = "Ammo Pickup: +" + GameManager.Instance.ammoRecovery;
@@ -214,7 +214,7 @@ public class ShopManager : MonoBehaviour {
         if (shopPoints >= damageCost && currentDamageUpgrade < maxDamageLevel) {
             currentDamageUpgrade++;
             damageUpgradeLevel.text = "Level: " + currentDamageUpgrade;
-            GameManager.Instance.playerBulletDamage += damageIncrease;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().bulletDamage += damageIncrease;
             shopPoints -= damageCost;
 
             if (currentDamageUpgrade == maxDamageLevel) {
