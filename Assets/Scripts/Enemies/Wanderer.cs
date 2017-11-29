@@ -16,7 +16,7 @@ public class Wanderer : EnemyController {
         return navHit.position;
     }
 
-    NavMeshAgent Agent;
+    protected NavMeshAgent Agent;
 
     protected override void Start() {
         Agent = GetComponent<NavMeshAgent>();

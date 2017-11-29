@@ -8,8 +8,6 @@ public class Tackler : Wanderer {
 
     public float minimumDistanceToTarget = 5f;
 
-    NavMeshAgent Agent;
-
     protected override void Update() {
         base.Update();
 
@@ -40,7 +38,7 @@ public class Tackler : Wanderer {
     }
 
     bool hasBeenHit;
-    void OnCollisionEnter(Collision collision) {
+    protected virtual void OnCollisionEnter(Collision collision) {
         GameObject player = GameManager.Instance.Player;
 
         if (collision.gameObject.Equals(player)) {
