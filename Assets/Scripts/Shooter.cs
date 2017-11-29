@@ -12,7 +12,7 @@ public abstract class Shooter : MonoBehaviour {
 
     public float fireDelay;
     public float walkSpeed = 10f;
-    //public float runSpeed = 30f;
+    public float runSpeed = 30f;
 
     public Healthbar Health { get { return GetComponent<Healthbar>(); } }
 

@@ -49,10 +49,11 @@ public class EnemyController : Shooter {
 
     protected override bool WallInWay {
         get {
+            int masks = ~((1 << LayerMask.NameToLayer("Player"))
+                          | (1 << LayerMask.NameToLayer("Shield")));
+            
             return !Physics.Raycast(transform.position, TargetDirection,
-                                    TargetDistance,
-                                    ~((1 << LayerMask.NameToLayer("Player"))
-                                      | (1 << LayerMask.NameToLayer("Shield"))));
+                                    TargetDistance, masks);
         }
     }
 
