@@ -33,7 +33,7 @@ public class EnemyController : Shooter {
                 }
 
                 return visible;
-            } catch (System.NullReferenceException e) {
+            } catch (System.NullReferenceException) {
                 return false;
             }
         }
