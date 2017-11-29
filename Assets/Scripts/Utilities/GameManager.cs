@@ -5,17 +5,10 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
     //Pickups
-    public GameObject healthPickup;
     public float healAmount = 10f;
-
-    public GameObject ammoPickup;
     public int ammoRecovery = 5;
-
-    public GameObject shieldPickup;
     public float shieldActiveTime = 5.0f;
-
     public float pickupSpawnInterval = 15.0f;
-    public float pickupDestroyTime = 5.0f;
 
     //Canvases
     public GameObject guiCanvas;
@@ -27,7 +20,6 @@ public class GameManager : MonoBehaviour {
     public GameObject playerPrefab;
 
     //Wave Spawning
-    public Rigidbody[] enemyPrefabs;
     public Text waveTimerText;
     public Text waveNumberText;
     public Text pointsText;
@@ -52,9 +44,7 @@ public class GameManager : MonoBehaviour {
 
 	private AudioSource deathSound;
 
-    public GameObject Player {
-        get { return GameObject.FindGameObjectWithTag("Player"); }
-    }
+    public GameObject Player;
 
     void Start() {
         if (Instance == null) {
@@ -62,10 +52,11 @@ public class GameManager : MonoBehaviour {
         } else if (Instance != this) {
             Destroy(gameObject);
         }
-			
+		
+        Player = GameObject.FindGameObjectWithTag("Player");
         SetWaveTexts();
         ShopActive = true;
-		deathSound = GetComponent<AudioSource>();
+        deathSound = GetComponent<AudioSource>();
     }
 
 	public void playDeathSound(bool canPlay){
@@ -156,7 +147,7 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator SpawnPickups() {
         while (!ShopActive) {
-            SpawnPickup(Random.Range(0, 3));
+            Spawner.Instance.SpawnPickup();
 
             yield return new WaitForSeconds(pickupSpawnInterval);
         }
@@ -181,40 +172,6 @@ public class GameManager : MonoBehaviour {
                  || overlapFunc(candidate));
 
         return candidate;
-    }
-
-    void SpawnPickup(int type) {
-        System.Func<Vector3, bool> overlaps = delegate (Vector3 position) {
-            float prefabRadius = healthPickup.GetComponent<SphereCollider>()
-                                             .radius;
-
-            Collider[] hits = Physics.OverlapSphere(position, prefabRadius);
-            return hits.Where(i => i.gameObject.name != "Ground")
-                       .ToArray().Length > 0;
-        };
-
-        GameObject pickup;
-        Vector3 pickupRotation = new Vector3(0.0f, 0.0f, 0.0f);
-
-        switch (type) {
-        case 0:
-            pickup = healthPickup;
-            pickupRotation = new Vector3(90.0f, 0.0f, 0.0f);
-            break;
-        case 1:
-            pickup = ammoPickup;
-            pickupRotation = new Vector3(-90.0f, 90.0f, 0.0f);
-            break;
-        //case 2:
-        default:
-            pickup = shieldPickup;
-            pickupRotation = new Vector3(-90.0f, 180.0f, 0.0f);
-            break;
-        }
-
-        Destroy(
-            Instantiate(pickup, GeneratePosition(overlaps), Quaternion.Euler(pickupRotation)),
-        pickupDestroyTime);
     }
 
     void SetWaveTexts() {
@@ -248,10 +205,6 @@ public class GameManager : MonoBehaviour {
     IEnumerator EnemySpawn() {
         enemySpawning = true;
 
-        if (enemyPrefabs.Length == 0) {
-            Debug.LogWarning("There are no enemy prefabs. Skipping spawning for this wave.");
-        }
-
         // wait between waves
         yield return new WaitForSeconds(waveDelay);
 
@@ -259,20 +212,9 @@ public class GameManager : MonoBehaviour {
         enemySpawnedCount = 0;
         wave++;
 
-        System.Func<Vector3, bool> overlaps = delegate (Vector3 position) {
-            Collider[] hits = Physics.OverlapBox(position,
-                                                 new Vector3(.75f, 0f, .75f));
-            return hits.Where(i => i.gameObject.name != "Ground")
-                       .ToArray().Length > 0;
-        };
-
         // create enemies
         while (enemySpawnedCount < EnemiesOnWave(wave)) {
-            // supress calls if length is 0
-            if (enemyPrefabs.Length != 0) {
-                Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)],
-                        GeneratePosition(overlaps), transform.rotation);
-            }
+            Spawner.Instance.SpawnEnemy();
 
             enemyCount++;
             enemySpawnedCount++;

@@ -157,7 +157,7 @@ Prefab:
     - target: {fileID: 224552692805467254, guid: c6b12055e8e4e474ebd8bdcfd0d29f20,
         type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 224552692805467254, guid: c6b12055e8e4e474ebd8bdcfd0d29f20,
         type: 2}
@@ -322,7 +322,7 @@ Prefab:
     - target: {fileID: 224454975593969202, guid: ea08381e1d4bff74cb8d952260b94040,
         type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224454975593969202, guid: ea08381e1d4bff74cb8d952260b94040,
         type: 2}
@@ -1185,7 +1185,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &954388909 stripped
 MonoBehaviour:
@@ -2677,6 +2677,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2050726805}
   - component: {fileID: 2050726806}
+  - component: {fileID: 2050726808}
   - component: {fileID: 2050726807}
   m_Layer: 0
   m_Name: Game Manager
@@ -2696,7 +2697,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2050726806
 MonoBehaviour:
@@ -2709,26 +2710,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca0b23ef61cdc41eb8fa4d38cdb0a3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPickup: {fileID: 1564462249880584, guid: f74b3f6224d341f4db2aba8b077c1e33,
-    type: 2}
   healAmount: 10
-  ammoPickup: {fileID: 1667141853907628, guid: 633cf746dc0e5134e9d62bfafdf5af7e, type: 2}
   ammoRecovery: 5
-  shieldPickup: {fileID: 1556539886486880, guid: ae01c27f635de2e47b5d0fad11362992,
-    type: 2}
   shieldActiveTime: 5
   pickupSpawnInterval: 1
-  pickupDestroyTime: Infinity
   guiCanvas: {fileID: 491551945}
   shopCanvas: {fileID: 1719718403}
   GameOverCanvas: {fileID: 1287819301}
   gameoverTime: 3
   playerPrefab: {fileID: 2048671016}
-  enemyPrefabs:
-  - {fileID: 54423254071300786, guid: 49784f793b5ef464ca8f441869953e79, type: 2}
-  - {fileID: 54423254071300786, guid: a1cdf53d2c49f41d491f04734e44ce86, type: 2}
-  - {fileID: 54970251854368968, guid: 655cd8c9b23f143908ed85d95e3a01a2, type: 2}
-  - {fileID: 54058447990017286, guid: 4b24ef4dde09a40dcb841c05121cc7da, type: 2}
   waveTimerText: {fileID: 572835706}
   waveNumberText: {fileID: 1886035583}
   pointsText: {fileID: 1933580405}
@@ -2740,6 +2730,7 @@ MonoBehaviour:
   ammoText: {fileID: 420423250}
   points: 1000
   highestWave: 0
+  Player: {fileID: 0}
   pointsPerWave: 20
 --- !u!82 &2050726807
 AudioSource:
@@ -2821,6 +2812,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &2050726808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2050726804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cdfa2e89dcc74bba8920cc2c1b8a812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSpawnDistance: 15
+  Pickups:
+  - {fileID: 1564462249880584, guid: f74b3f6224d341f4db2aba8b077c1e33, type: 2}
+  - {fileID: 1667141853907628, guid: 633cf746dc0e5134e9d62bfafdf5af7e, type: 2}
+  - {fileID: 1556539886486880, guid: ae01c27f635de2e47b5d0fad11362992, type: 2}
+  pickupDestroyTime: 5
+  Enemies:
+  - {fileID: 1461053590188184, guid: 49784f793b5ef464ca8f441869953e79, type: 2}
+  - {fileID: 1981067816960920, guid: 4b24ef4dde09a40dcb841c05121cc7da, type: 2}
+  - {fileID: 1461053590188184, guid: a1cdf53d2c49f41d491f04734e44ce86, type: 2}
+  - {fileID: 1907644502301192, guid: 655cd8c9b23f143908ed85d95e3a01a2, type: 2}
 --- !u!1 &2134856254
 GameObject:
   m_ObjectHideFlags: 0
