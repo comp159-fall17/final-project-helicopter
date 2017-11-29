@@ -17,8 +17,6 @@ public class GameManager : MonoBehaviour {
     public float pickupSpawnInterval = 15.0f;
     public float pickupDestroyTime = 5.0f;
 
-    public int playerBulletDamage = 1;
-
     //Canvases
     public GameObject guiCanvas;
     public GameObject shopCanvas;
@@ -83,8 +81,8 @@ public class GameManager : MonoBehaviour {
         enemiesKilled = 0;
         enemyCount = 0;
         enemySpawning = false;
-        Player.GetComponent<PlayerControls>().ResetAmmo();
         Player.GetComponent<PlayerControls>().Health.Reset();
+        Player.GetComponent<PlayerControls>().SetDamage();
 
         UpdateAmmoText();
 		playDeathSound (false);

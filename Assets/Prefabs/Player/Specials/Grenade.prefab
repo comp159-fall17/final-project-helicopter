@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 54927402371956180}
   - component: {fileID: 114230906909234112}
   m_Layer: 0
-  m_Name: Cannonball
+  m_Name: Grenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,12 +111,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2503c054b736f46e6b318c2f4876687a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 100
-  distance: 100
+  maxAmmo: 20
   ExplosionPrefab: {fileID: 100000, guid: e0dc4d47bced6d54ab1461804114b5d0, type: 2}
-  countdown: 3
-  radius: 3
-  damage: 5
+  countdown: 0.75
+  radius: 4
+  damage: 20
+  throwForce: 1000
 --- !u!135 &135803947548843988
 SphereCollider:
   m_ObjectHideFlags: 1

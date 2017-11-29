@@ -1,20 +1,21 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-public class Cannonball : BulletController {
+public class Grenade : SpecialWeapon {
     public GameObject ExplosionPrefab;
 
     public float countdown = 3f;
     public float radius = 3f;
     public int damage = 5;
+    public int throwForce = 1000;
 
-    protected override void Start() {
-        base.Start();
+    void Start() {
+        GetComponent<Rigidbody>().AddForce(transform.up * throwForce);
 
         Invoke("Explode", countdown);
     }
 
-    protected override void OnTriggerEnter(Collider other) {
+    void OnTriggerEnter(Collider other) {
         if (other.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast") ||
             other.gameObject.layer == LayerMask.NameToLayer("Shield")) {
             return;
@@ -24,8 +25,6 @@ public class Cannonball : BulletController {
     }
 
     void Explode() {
-        // TODO: implement explosion
-
         // instantiate explosion animation
         Destroy(Instantiate(ExplosionPrefab, transform.position, Quaternion.identity),
                 ExplosionPrefab.GetComponent<Animation>().clip.length);
@@ -39,10 +38,10 @@ public class Cannonball : BulletController {
 
         foreach (Shooter hit in hits) {
             // take health away
-            hit.Hit(damage * 1000);
+            hit.Hit(damage);
 
             // send explosion force
-            hit.Body.AddExplosionForce(damage * 500, transform.position, radius);
+            //hit.Body.AddExplosionForce(damage * 500, transform.position, radius);
         }
 
         Destroy(gameObject);

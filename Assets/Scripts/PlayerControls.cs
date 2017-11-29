@@ -20,9 +20,16 @@ public class PlayerControls : Shooter {
     bool shielded;
     bool hidden;
 
+    public int bulletDamage = 1;
     public float damageFlashTime;
     bool damaged; //used for invincibility frames
     public float invincibleTime;
+
+    int hasWeapon = 0; //player has a special weapon, 0 is none, 1-3 are the specials
+    [HideInInspector] public int specialAmmo = 0;
+    int maxSpecialAmmo;
+
+    public GameObject[] specialWeapons;
 
     protected override bool ShouldShoot {
         get {
@@ -63,7 +70,6 @@ public class PlayerControls : Shooter {
         follow = Camera.main;
         spawn = transform.position;
 
-        ResetAmmo();
 		upgradeSound = GetComponent<AudioSource> ();
 
         shieldIndicator.enabled = false;
@@ -77,6 +83,15 @@ public class PlayerControls : Shooter {
         //use shield with spacebar
         if (Input.GetKeyDown(KeyCode.Space) && hasShield && !shielded) {
             StartCoroutine(UseShield());
+        }
+
+        //testing special weapon collection
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            CollectSpecial(1);
+        } else if (Input.GetKeyDown(KeyCode.Alpha2)) {
+            CollectSpecial(2);
+        }else if (Input.GetKeyDown(KeyCode.Alpha3)) {
+            CollectSpecial(3);
         }
     }
 
@@ -148,6 +163,26 @@ public class PlayerControls : Shooter {
         }
     }
 
+    protected override IEnumerator ShootBullets() {
+        shooting = true;
+        while (true) {
+            if (ShouldShoot) {
+                Instantiate(bullet, BulletSpawnPoint,
+                            Quaternion.Euler(0, AbsoluteTargetAngle, 90));
+            } else if (ShouldShootSpecial) {
+                Instantiate(specialWeapon, BulletSpawnPoint,
+                            Quaternion.Euler(0, AbsoluteTargetAngle, 90));
+                specialAmmo--;
+                GameManager.Instance.UpdateAmmoText();
+            } else {
+                break;
+            }
+
+            yield return new WaitForSeconds(fireDelay);
+        }
+        shooting = false;    
+    }
+
     void CollectHealth() {
         Health.Heal(GameManager.Instance.healAmount);
 		playUpgradeSound ();
@@ -182,15 +217,46 @@ public class PlayerControls : Shooter {
 		playUpgradeSound ();
     }
 
+    void CollectSpecial(int type) { //type is 1 to 3, corresponding to the special weapon
+        if (type == 0) {
+            specialWeapon = null;
+            maxSpecialAmmo = 0;
+            ResetAmmo();
+            return;
+        }
+
+        specialWeapon = specialWeapons[type-1];
+        maxSpecialAmmo = specialWeapon.GetComponent<SpecialWeapon>().maxAmmo;
+        ResetAmmo();
+
+        GameManager.Instance.UpdateAmmoText();
+
+        switch (type) {
+        case 1:
+            ShopManager.Instance.weapon1Locked = false;
+            break;
+        case 2:
+            ShopManager.Instance.weapon2Locked = false;
+            break;
+        case 3:
+            ShopManager.Instance.weapon3Locked = false;
+            break;
+        }
+    }
+
     public void ResetAmmo() {
         specialAmmo = maxSpecialAmmo;
     }
 
-    public override void Hit(float speed) {
+    public void SetDamage() {
+        bullet.GetComponent<BulletController>().damage = bulletDamage;
+    }
+
+    public override void Hit(float damage) {
         // avoid all damage while shielded or during invincibility time
         if (shielded || damaged) return;
 
-        base.Hit(speed);
+        base.Hit(damage);
         StartCoroutine(DisplayPlayerFlash());
     }
 
@@ -225,8 +291,8 @@ public class PlayerControls : Shooter {
 
     public void Reset() {
         Hidden = false;
-        ResetAmmo();
         Health.Reset();
         transform.position = spawn;
+        CollectSpecial(0);
     }
 }

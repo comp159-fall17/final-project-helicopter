@@ -157,7 +157,7 @@ Prefab:
     - target: {fileID: 224552692805467254, guid: c6b12055e8e4e474ebd8bdcfd0d29f20,
         type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 224552692805467254, guid: c6b12055e8e4e474ebd8bdcfd0d29f20,
         type: 2}
@@ -322,7 +322,7 @@ Prefab:
     - target: {fileID: 224454975593969202, guid: ea08381e1d4bff74cb8d952260b94040,
         type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 224454975593969202, guid: ea08381e1d4bff74cb8d952260b94040,
         type: 2}
@@ -766,7 +766,7 @@ RectTransform:
   - {fileID: 1933580404}
   - {fileID: 420423249}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1514,7 +1514,7 @@ Transform:
   - {fileID: 1573208322}
   - {fileID: 550832428}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1287819301
 GameObject:
@@ -2719,13 +2719,13 @@ MonoBehaviour:
   shieldActiveTime: 5
   pickupSpawnInterval: 15
   pickupDestroyTime: Infinity
-  playerBulletDamage: 1
   guiCanvas: {fileID: 491551945}
   shopCanvas: {fileID: 1719718403}
   GameOverCanvas: {fileID: 1287819301}
   gameoverTime: 3
   playerPrefab: {fileID: 2048671016}
-  enemyPrefabs: []
+  enemyPrefabs:
+  - {fileID: 54423254071300786, guid: 49784f793b5ef464ca8f441869953e79, type: 2}
   waveTimerText: {fileID: 572835706}
   waveNumberText: {fileID: 1886035583}
   pointsText: {fileID: 1933580405}
@@ -2735,7 +2735,7 @@ MonoBehaviour:
   wave: 0
   newEmemiesPerWave: 1
   ammoText: {fileID: 420423250}
-  points: 0
+  points: 1000
   highestWave: 0
   pointsPerWave: 20
 --- !u!82 &2050726807

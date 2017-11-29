@@ -6,6 +6,7 @@
 [RequireComponent(typeof(Rigidbody))]
 public class BulletController : MonoBehaviour {
     public float bulletSpeed;
+    public float damage;
     public float distance;
 
     public float Speed { get { return Body.velocity.magnitude; } }
@@ -66,7 +67,7 @@ public class BulletController : MonoBehaviour {
     /// </summary>
     /// <param name="player">Player collider.</param>
     protected virtual void TriggerPlayer(Collider player) {
-        player.gameObject.GetComponent<Shooter>().Hit(bulletSpeed);
+        player.gameObject.GetComponent<Shooter>().Hit(damage);
         Destroy(gameObject);
     }
 
