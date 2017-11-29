@@ -3,16 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpecialWeapon : MonoBehaviour {
-
     public int maxAmmo;
-
-	// Use this for initialization
-	void Start () {
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

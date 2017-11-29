@@ -16,7 +16,6 @@ public class Grenade : SpecialWeapon {
     }
 
     void OnTriggerEnter(Collider other) {
-        Debug.Log("called");
         if (other.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast") ||
             other.gameObject.layer == LayerMask.NameToLayer("Shield")) {
             return;
