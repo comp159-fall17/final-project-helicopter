@@ -66,10 +66,8 @@ public class GameManager : MonoBehaviour {
         }
 			
         SetWaveTexts();
-
         ShopActive = true;
-
-		deathSound = GetComponent<AudioSource> ();
+		deathSound = GetComponent<AudioSource>();
     }
 
 	public void playDeathSound(bool canPlay){
@@ -214,8 +212,9 @@ public class GameManager : MonoBehaviour {
             break;
         }
 
-        Destroy(Instantiate(pickup, GeneratePosition(overlaps), Quaternion.Euler(pickupRotation)),
-                pickupDestroyTime);
+        Destroy(
+            Instantiate(pickup, GeneratePosition(overlaps), Quaternion.Euler(pickupRotation)),
+        pickupDestroyTime);
     }
 
     void SetWaveTexts() {
@@ -245,7 +244,7 @@ public class GameManager : MonoBehaviour {
     /// <summary>
     /// Spawn a few enemies.
     /// </summary>
-    /// <returns>The spawn.</returns>
+    /// <returns>Coroutine.</returns>
     IEnumerator EnemySpawn() {
         enemySpawning = true;
 
@@ -265,9 +264,15 @@ public class GameManager : MonoBehaviour {
                        .ToArray().Length > 0;
         };
 
+        // create enemies
         while (enemySpawnedCount < EnemiesOnWave(wave)) {
+            // supress calls if length is 0
+            if (enemyPrefabs.Length == 0) {
+                break;
+            }
+
             Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)],
-				GeneratePosition(overlaps), transform.rotation);
+                        GeneratePosition(overlaps), transform.rotation);
             enemyCount++;
             enemySpawnedCount++;
 
