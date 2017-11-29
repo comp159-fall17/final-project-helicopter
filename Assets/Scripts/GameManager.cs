@@ -136,6 +136,8 @@ public class GameManager : MonoBehaviour {
         while (!ShopActive) {
             if (!enemySpawning && enemyCount == 0) {
                 StartCoroutine(EnemySpawn());
+                StartCoroutine(SpawnPickups());
+
                 lastWaveBegin = Time.time;
             }
             SetWaveTexts();
@@ -248,14 +250,16 @@ public class GameManager : MonoBehaviour {
     IEnumerator EnemySpawn() {
         enemySpawning = true;
 
+        if (enemyPrefabs.Length == 0) {
+            Debug.LogWarning("There are no enemy prefabs. Skipping spawning for this wave.");
+        }
+
         // wait between waves
         yield return new WaitForSeconds(waveDelay);
 
         enemyCount = 0;
         enemySpawnedCount = 0;
         wave++;
-
-        StartCoroutine(SpawnPickups());
 
         System.Func<Vector3, bool> overlaps = delegate (Vector3 position) {
             Collider[] hits = Physics.OverlapBox(position,
@@ -267,12 +271,11 @@ public class GameManager : MonoBehaviour {
         // create enemies
         while (enemySpawnedCount < EnemiesOnWave(wave)) {
             // supress calls if length is 0
-            if (enemyPrefabs.Length == 0) {
-                break;
+            if (enemyPrefabs.Length != 0) {
+                Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)],
+                        GeneratePosition(overlaps), transform.rotation);
             }
 
-            Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)],
-                        GeneratePosition(overlaps), transform.rotation);
             enemyCount++;
             enemySpawnedCount++;
 
