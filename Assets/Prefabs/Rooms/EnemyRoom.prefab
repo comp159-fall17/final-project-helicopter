@@ -238,6 +238,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4565330164104798}
+  - component: {fileID: 114731523797231852}
   m_Layer: 0
   m_Name: EnemyRoom
   m_TagString: EnemyRoom
@@ -402,7 +403,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1874097684060566}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 100, y: 0, z: 80}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1, z: 1.5}
   m_Children:
   - {fileID: 4713120883824782}
@@ -970,6 +971,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114731523797231852
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1874097684060566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f212983bc5d943e08e65f222e98d199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
 --- !u!135 &135506092927568706
 SphereCollider:
   m_ObjectHideFlags: 1
