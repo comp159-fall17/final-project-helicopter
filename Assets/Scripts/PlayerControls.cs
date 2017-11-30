@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -25,7 +26,6 @@ public class PlayerControls : Shooter {
     bool damaged; //used for invincibility frames
     public float invincibleTime;
 
-    int hasWeapon = 0; //player has a special weapon, 0 is none, 1-3 are the specials
     [HideInInspector] public int specialAmmo = 0;
     int maxSpecialAmmo;
 
@@ -231,17 +231,7 @@ public class PlayerControls : Shooter {
 
         GameManager.Instance.UpdateAmmoText();
 
-        switch (type) {
-        case 1:
-            ShopManager.Instance.weapon1Locked = false;
-            break;
-        case 2:
-            ShopManager.Instance.weapon2Locked = false;
-            break;
-        case 3:
-            ShopManager.Instance.weapon3Locked = false;
-            break;
-        }
+        ShopManager.Instance.UnlockSpecial(type);
     }
 
     public void ResetAmmo() {
