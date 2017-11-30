@@ -14,6 +14,7 @@ public class LevelGen : MonoBehaviour {
     public GameObject door;
     public List<GameObject> nodes;
     public GameObject nodeParent;
+    public float roomRate;
 
     private List<GameObject> rooms = new List<GameObject>();
     private GameObject temp;
@@ -41,7 +42,7 @@ public class LevelGen : MonoBehaviour {
         {
             loopCount++;
             Debug.Log(nodes[3].activeInHierarchy);
-            if (Random.Range(0f, 1f) > 0.5f && nodes[loopCount].activeInHierarchy == true) //50% chance to pass
+            if (Random.Range(0f, 1f) > roomRate && nodes[loopCount].activeInHierarchy == true)
             {
                 room = randomRoom(); //Sets room to be a random room to be instantiated
                 temp = Instantiate(room, nodes[loopCount].transform.position, Quaternion.identity) as GameObject;
