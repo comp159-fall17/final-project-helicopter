@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisableNode : MonoBehaviour {
+public class SpawnDoors : MonoBehaviour {
+
+    public GameObject door;
 
 	// Use this for initialization
 	void Start () {
@@ -14,9 +16,8 @@ public class DisableNode : MonoBehaviour {
 		
 	}
 
-    private void OnTriggerEnter() //Should disable the node if a room spawns on it
+    void OnTriggerEnter()
     {
-        Debug.Log("ok");
-        gameObject.SetActive(false);
+        Instantiate(door, this.transform.position, this.transform.rotation, this.transform);
     }
 }

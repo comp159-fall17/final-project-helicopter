@@ -11,15 +11,22 @@ public class LevelGen : MonoBehaviour {
     public GameObject enemyRoom1;
     public GameObject enemyRoom2;
     public GameObject enemyRoom3;
+    public GameObject door;
     public List<GameObject> nodes;
+    public GameObject nodeParent;
 
-    private int roomCount = 0;
+    private List<GameObject> rooms = new List<GameObject>();
+    private GameObject temp;
     private GameObject room;
     private float randNum;
+    private int roomCount = 0;
+    private int loopCount = 0;
+    private int chestRoomCount = 0;
+    private int shopRoomCount = 0;
 
     // Use this for initialization
     void Start () {
-        newRoom();
+        newFloor();
 	}
 	
 	// Update is called once per frame
@@ -27,60 +34,70 @@ public class LevelGen : MonoBehaviour {
 		
 	}
 
-    private void newRoom()
+    private void newFloor() //Generates the new floor by createing rooms next to the spawn room by chance
     {
         Instantiate(spawnRoom, nodes[0].transform.position, Quaternion.identity);
         while (roomCount < roomsPerFloor)
         {
-            if (Random.Range(0f, 1f) > 0.5f && nodes[1].activeInHierarchy == true) //50% chance to pass
+            loopCount++;
+            Debug.Log(nodes[3].activeInHierarchy);
+            if (Random.Range(0f, 1f) > 0.5f && nodes[loopCount].activeInHierarchy == true) //50% chance to pass
             {
                 room = randomRoom(); //Sets room to be a random room to be instantiated
-                Instantiate(room, nodes[1].transform.position, Quaternion.identity);
+                temp = Instantiate(room, nodes[loopCount].transform.position, Quaternion.identity) as GameObject;
+                rooms.Add(temp);
                 roomCount++;
+                Debug.Log("spawn");
+                nodes[loopCount].SetActive(false);
             }
-            else if (Random.Range(0f, 1f) > 0.5f && nodes[2].activeInHierarchy == true) //50% chance to pass
-            {
-                room = randomRoom();
-                Instantiate(room, nodes[2].transform.position, Quaternion.identity);
-                roomCount++;
-            }
-            else if (Random.Range(0f, 1f) > 0.5f && nodes[3].activeInHierarchy == true) //50% chance to pass
-            {
-                room = randomRoom();
-                Instantiate(room, nodes[3].transform.position, Quaternion.identity);
-                roomCount++;
-            }
-            else if (Random.Range(0f, 1f) > 0.5f && nodes[4].activeInHierarchy == true) //50% chance to pass
-            {
-                room = randomRoom(); 
-                Instantiate(room, nodes[4].transform.position, Quaternion.identity);
-                roomCount++;
-            }
+            if (roomCount == 0 && loopCount == 4)
+                loopCount = 0;
+            if (loopCount == 4) //Every 4 iterations in the while loop
+                moveNodes();
         }
+        //Make boss room spawn as last room
+    }
+
+    private void moveNodes() //Moves nodes to be centered on the next room in the list
+    {
+        for (int i = 0; i <= 4; i++)
+        {
+            nodes[i].SetActive(true); //This loop and seting active above are not working because happens too fast for colliders
+        }
+        loopCount = 0;
+        nodeParent.transform.position = rooms[0].transform.position; //Moves nodes to center on next room
+        rooms.RemoveAt(0); //Removes that room from list
+        Debug.Log("now");
     }
 
     private GameObject randomRoom() //Returns a random room with higher chance of enemy room
     {
         randNum = Random.Range(0f, 1f);
-        if (randNum >= 0 && randNum <= .09) //10% chance
+        if (randNum >= 0 && randNum <= .09 && chestRoomCount == 0) //10% chance and once per floor
         {
+            chestRoomCount++;
             return chestRoom;
         }
-        else if (randNum >= .01 && randNum <= .24) //15% chance
+        else if (randNum >= .01 && randNum <= .24 && shopRoomCount == 0) //15% chance and once per floor
         {
+            shopRoomCount++;
             return shopRoom;
         }
-        else if (randNum >= .25 && randNum <= .49) //25% chance
+        else //75% chance
         {
-            return enemyRoom1;
-        }
-        else if (randNum >= .5 && randNum <= .74) //25% chance
-        {
-            return enemyRoom2;
-        }
-        else //25% chance
-        {
-            return enemyRoom3;
+            randNum = Random.Range(0f, 1f);
+            if (randNum >= 0 && randNum <= .33) //33% chance
+            {
+                return enemyRoom1;
+            }
+            else if (randNum >= .34 && randNum <= .66) //33% chance
+            {
+                return enemyRoom2;
+            }
+            else //33% chance
+            {
+                return enemyRoom3;
+            }
         }
     }
 }
