@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -213,12 +213,12 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 913725541}
+      objectReference: {fileID: 658433056}
     - target: {fileID: 114210654839453964, guid: c6b12055e8e4e474ebd8bdcfd0d29f20,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 913725541}
+      objectReference: {fileID: 658433056}
     - target: {fileID: 114832210695676136, guid: c6b12055e8e4e474ebd8bdcfd0d29f20,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -248,7 +248,7 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 913725541}
+      objectReference: {fileID: 658433056}
     - target: {fileID: 224302505159685128, guid: c6b12055e8e4e474ebd8bdcfd0d29f20,
         type: 2}
       propertyPath: m_LocalPosition.y
@@ -263,10 +263,30 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 913725541}
+      objectReference: {fileID: 658433056}
     - target: {fileID: 1559075938825390, guid: c6b12055e8e4e474ebd8bdcfd0d29f20, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114007555495526854, guid: c6b12055e8e4e474ebd8bdcfd0d29f20,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpgradeSpecial
+      objectReference: {fileID: 0}
+    - target: {fileID: 114210654839453964, guid: c6b12055e8e4e474ebd8bdcfd0d29f20,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpgradeSpecial
+      objectReference: {fileID: 0}
+    - target: {fileID: 114672401021788814, guid: c6b12055e8e4e474ebd8bdcfd0d29f20,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpgradeSpecial
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051588256375886, guid: c6b12055e8e4e474ebd8bdcfd0d29f20,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DisplaySpecialUpgrades
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c6b12055e8e4e474ebd8bdcfd0d29f20, type: 2}
@@ -287,12 +307,12 @@ Prefab:
     - target: {fileID: 224454975593969202, guid: ea08381e1d4bff74cb8d952260b94040,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 347
       objectReference: {fileID: 0}
     - target: {fileID: 224454975593969202, guid: ea08381e1d4bff74cb8d952260b94040,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 164
       objectReference: {fileID: 0}
     - target: {fileID: 224454975593969202, guid: ea08381e1d4bff74cb8d952260b94040,
         type: 2}
@@ -383,27 +403,27 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 913725541}
+      objectReference: {fileID: 658433056}
     - target: {fileID: 114181265087795414, guid: ea08381e1d4bff74cb8d952260b94040,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 913725541}
+      objectReference: {fileID: 658433056}
     - target: {fileID: 114412765204735560, guid: ea08381e1d4bff74cb8d952260b94040,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 913725541}
+      objectReference: {fileID: 658433056}
     - target: {fileID: 114267631002154022, guid: ea08381e1d4bff74cb8d952260b94040,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 913725541}
+      objectReference: {fileID: 658433056}
     - target: {fileID: 114483377945081016, guid: ea08381e1d4bff74cb8d952260b94040,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 913725541}
+      objectReference: {fileID: 658433056}
     - target: {fileID: 114891283219276404, guid: ea08381e1d4bff74cb8d952260b94040,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -413,12 +433,56 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 913725541}
+      objectReference: {fileID: 658433056}
     - target: {fileID: 114403835388690754, guid: ea08381e1d4bff74cb8d952260b94040,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 913725541}
+      objectReference: {fileID: 658433056}
+    - target: {fileID: 1749057185694510, guid: ea08381e1d4bff74cb8d952260b94040, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758347196534044, guid: ea08381e1d4bff74cb8d952260b94040,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PurchaseUpgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 114532202579632706, guid: ea08381e1d4bff74cb8d952260b94040,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PurchaseUpgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 114181265087795414, guid: ea08381e1d4bff74cb8d952260b94040,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PurchaseUpgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 114412765204735560, guid: ea08381e1d4bff74cb8d952260b94040,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PurchaseUpgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 114403835388690754, guid: ea08381e1d4bff74cb8d952260b94040,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PurchaseUpgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 114267631002154022, guid: ea08381e1d4bff74cb8d952260b94040,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PurchaseUpgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 114483377945081016, guid: ea08381e1d4bff74cb8d952260b94040,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DisplaySpecialUpgrades
+      objectReference: {fileID: 0}
+    - target: {fileID: 114483377945081016, guid: ea08381e1d4bff74cb8d952260b94040,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea08381e1d4bff74cb8d952260b94040, type: 2}
   m_IsPrefabParent: 0
@@ -883,6 +947,96 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 84011654}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!1 &658433055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 658433057}
+  - component: {fileID: 658433056}
+  m_Layer: 0
+  m_Name: Shop Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &658433056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 658433055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45c01f956432ca648a503264c5a1117a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopPointsText1: {fileID: 1353150459}
+  shopPointsText2: {fileID: 1530500113}
+  mainShop: {fileID: 1719718403}
+  specialShop: {fileID: 1423308286}
+  Upgrades:
+  - {fileID: 114036073477739908, guid: 68432d88f07900c48b2f62f49a45426f, type: 2}
+  - {fileID: 114880488984091868, guid: 589f7ef56d36344429ed916147e1ff0d, type: 2}
+  - {fileID: 114099558373530838, guid: 598b45a13a1ddfd42992e4de2f67ca36, type: 2}
+  - {fileID: 114001523575234796, guid: 0db8c941acdf425408141de67e2f9b35, type: 2}
+  - {fileID: 114342196365483900, guid: 315acb6c0f390e34c8739cc903d58a22, type: 2}
+  - {fileID: 114631550740777232, guid: 1555b2ff454ac4f45b01cb54a8676c0e, type: 2}
+  levelText:
+  - {fileID: 1259036205}
+  - {fileID: 879241033}
+  - {fileID: 746945949}
+  - {fileID: 186760517}
+  - {fileID: 954388909}
+  - {fileID: 1425082390}
+  costText:
+  - {fileID: 1421169424}
+  - {fileID: 864480523}
+  - {fileID: 717755942}
+  - {fileID: 627068879}
+  - {fileID: 1678754968}
+  - {fileID: 1416824740}
+  statsText:
+  - {fileID: 1742098898}
+  - {fileID: 884370134}
+  - {fileID: 1160941518}
+  - {fileID: 81337785}
+  - {fileID: 963165395}
+  - {fileID: 349045541}
+  weaponLocked: 000000
+  weaponButton:
+  - {fileID: 1017355352}
+  - {fileID: 1963811845}
+  - {fileID: 1184311589}
+  weaponCover:
+  - {fileID: 1886087913}
+  - {fileID: 402814728}
+  - {fileID: 350045157}
+  weapon1Locked: 0
+  weapon2Locked: 0
+  weapon3Locked: 0
+  weapon1Button: {fileID: 1017355352}
+  weapon1Cover: {fileID: 1886087913}
+  weapon2Button: {fileID: 1963811845}
+  weapon2Cover: {fileID: 402814728}
+  weapon3Button: {fileID: 1184311589}
+  weapon3Cover: {fileID: 350045157}
+--- !u!4 &658433057
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 658433055}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &659529923
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,101 +1246,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 84011654}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!1 &913725540
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 913725542}
-  - component: {fileID: 913725541}
-  m_Layer: 0
-  m_Name: Shop Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &913725541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 913725540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a77b1ab58d6762f4093965371ecce2ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shopPointsText1: {fileID: 1353150459}
-  shopPointsText2: {fileID: 1530500113}
-  mainShop: {fileID: 1719718403}
-  specialShop: {fileID: 1423308286}
-  healthUpgradeLevel: {fileID: 1259036205}
-  healthCostText: {fileID: 1421169424}
-  healthStatsText: {fileID: 1742098898}
-  currentHealthUpgrade: 1
-  maxHealthLevel: 6
-  healthIncrease: 50
-  healthCost: 35
-  speedUpgradeLevel: {fileID: 879241033}
-  speedCostText: {fileID: 864480523}
-  speedStatsText: {fileID: 884370134}
-  currentSpeedUpgrade: 1
-  maxSpeedLevel: 6
-  speedIncrease: 2
-  speedCost: 25
-  damageUpgradeLevel: {fileID: 746945949}
-  damageCostText: {fileID: 717755942}
-  damageStatsText: {fileID: 1160941518}
-  currentDamageUpgrade: 1
-  maxDamageLevel: 4
-  damageIncrease: 1
-  damageCost: 45
-  healPackUpgradeLevel: {fileID: 186760517}
-  healPackCostText: {fileID: 627068879}
-  healPackStatsText: {fileID: 81337785}
-  currentHealPackUpgrade: 1
-  maxHealPackLevel: 4
-  healPackIncrease: 30
-  healPackCost: 40
-  shieldUpgradeLevel: {fileID: 954388909}
-  shieldCostText: {fileID: 1678754968}
-  shieldStatsText: {fileID: 963165395}
-  currentShieldUpgrade: 1
-  maxShieldLevel: 6
-  shieldIncrease: 1
-  shieldCost: 30
-  ammoUpgradeLevel: {fileID: 1425082390}
-  ammoCostText: {fileID: 1416824740}
-  ammoStatsText: {fileID: 349045541}
-  currentAmmoUpgrade: 1
-  maxAmmoLevel: 5
-  ammoIncrease: 5
-  ammoCost: 30
-  weapon1Locked: 0
-  weapon2Locked: 0
-  weapon3Locked: 0
-  weapon1Button: {fileID: 1017355352}
-  weapon1Cover: {fileID: 1886087913}
-  weapon2Button: {fileID: 1963811845}
-  weapon2Cover: {fileID: 402814728}
-  weapon3Button: {fileID: 1184311589}
-  weapon3Cover: {fileID: 350045157}
---- !u!4 &913725542
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 913725540}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &954388909 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114210839236147630, guid: ea08381e1d4bff74cb8d952260b94040,

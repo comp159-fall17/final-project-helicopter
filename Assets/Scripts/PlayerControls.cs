@@ -231,17 +231,7 @@ public class PlayerControls : Shooter {
 
         GameManager.Instance.UpdateAmmoText();
 
-        switch (type) {
-        case 1:
-            ShopManager.Instance.weapon1Locked = false;
-            break;
-        case 2:
-            ShopManager.Instance.weapon2Locked = false;
-            break;
-        case 3:
-            ShopManager.Instance.weapon3Locked = false;
-            break;
-        }
+        ShopManager.Instance.UnlockSpecial(type);
     }
 
     public void ResetAmmo() {
