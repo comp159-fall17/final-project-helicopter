@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour {
     public Text waveTimerText;
     public Text waveNumberText;
     public Text pointsText;
+    public Text gameOverPointsText;
 
     public float enemySpawnDelay = 5f;
     public float minSpawnDistance = 15f;
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour {
     int enemiesKilled;
 
     public int points;
+    int startPoints;
     public int highestWave;
     bool closeShop;
 
@@ -69,6 +71,7 @@ public class GameManager : MonoBehaviour {
         ShopActive = false;
 
         // reset stats
+        startPoints = points;
         enemiesKilled = 0;
         enemyCount = 0;
         enemySpawning = false;
@@ -83,7 +86,12 @@ public class GameManager : MonoBehaviour {
 
     public IEnumerator gameOver(PlayerControls player) {
         // wait for showing to finish
+        gameOverPointsText.enabled = false;
         GameOverCanvas.SetActive(true);
+        yield return new WaitForSeconds(1f);
+
+        gameOverPointsText.text = "" + (points - startPoints); //display how many points were earned this run
+        gameOverPointsText.enabled = true;
         yield return new WaitForSeconds(gameoverTime);
         GameOverCanvas.SetActive(false);
 
@@ -106,6 +114,7 @@ public class GameManager : MonoBehaviour {
 
         highestWave = Mathf.Max(highestWave, wave);
         wave = 0;
+        startPoints = points;
         ShopActive = true;
     }
 
