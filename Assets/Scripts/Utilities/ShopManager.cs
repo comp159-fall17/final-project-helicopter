@@ -20,17 +20,27 @@ public class ShopManager : MonoBehaviour {
     public GameObject[] weaponButton;
     public GameObject[] weaponCover;
 
-    /*
-    public Text specialUpgradeLevel;
-    public Text specialCostText;
-    public Text specialStatsText;
-    public int currentSpecialUpgrade = 1;
-    public int maxSpecialLevel = 5;
-    public float specialRadiusIncrease = 1.5f;
-    public int specialDamageIncrease = 1;
-    public int specialAmmoIncrease = 10;
-    public int specialCost = 50;
-    */
+    public SpecialShopUpgrade[] SpecialUpgrades;
+    public Text[] specialLevelText;
+    public Text[] specialCostText;
+    public Text[] specialStatsText;
+
+    [Header("Ammo, radius, damage")]
+    public float[] grenadeValues; //ammo, radius and damage
+
+    [Header("Ammo, fire arc, num bullets, damage")]
+    public float[] shotgunValues; //ammo, fire-arc, num bullets and damage
+
+    [Header("Ammo, growth rate, damage")]
+    public float[] ringValues; //ammo, growth rate, and damage
+    [Space(10)]
+
+    public float grenadeRadiusIncrease = 1.5f;
+    public float shotgunFireArcIncrease = 10f;
+    public int shotgunBulletsIncrease = 4;
+    public float ringGrowthRateIncrease = 0.25f;
+
+    PlayerControls player; //player's script
 
     public static ShopManager Instance;
 
@@ -44,26 +54,50 @@ public class ShopManager : MonoBehaviour {
         mainShop.SetActive(true);
         specialShop.SetActive(false);
 
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>();
+
         for (int i = 0; i < 3; i++) {
             weaponLocked[i] = true;
+            specialCostText[i].text = "Cost: " + SpecialUpgrades[i].cost;
+            SpecialUpgrades[i].currentUpgrade = 1;
+            SpecialUpgrades[i].weaponLevel = 1;
+
+            //player.specialWeapons[i].GetComponent<SpecialWeapon>().maxAmmo = originalSpecialAmmo[i];
         }
+
+        //grenade launcher original values
+        player.specialWeapons[0].GetComponent<Grenade>().maxAmmo = (int)grenadeValues[0];
+        player.specialWeapons[0].GetComponent<Grenade>().radius = grenadeValues[1];
+        player.specialWeapons[0].GetComponent<Grenade>().damage = (int)grenadeValues[2];
+
+        //shotgun original values
+        player.specialWeapons[1].GetComponent<Shotgun>().maxAmmo = (int)shotgunValues[0];
+        player.specialWeapons[1].GetComponent<Shotgun>().fireArc = shotgunValues[1];
+        player.specialWeapons[1].GetComponent<Shotgun>().numBullets = (int)shotgunValues[2];
+        player.specialWeapons[1].GetComponent<Shotgun>().bullet.GetComponent<BulletController>().damage = shotgunValues[3];
+
+        //ring cannon original values
+        player.specialWeapons[2].GetComponent<RingWeapon>().maxAmmo = (int)ringValues[0];
+        player.specialWeapons[2].GetComponent<RingWeapon>().ring.GetComponent<Ring>().growthRate = ringValues[1];
+        player.specialWeapons[2].GetComponent<RingWeapon>().ring.GetComponent<Ring>().damage = ringValues[2];
 
         for (int i = 0; i < 6; i++) {
             costText[i].text = "Cost: " + Upgrades[i].cost;
             Upgrades[i].currentUpgrade = 1;
         }
-
-        //specialCostText.text = "Cost: " + specialCost;
     }
 
     void Update() {
-        statsText[0].text = "Max Health Limit: " + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().Health.maxPointsLimit;
-        statsText[1].text = "Player Speed: " + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().walkSpeed;
-        statsText[2].text = "Player Damage: " + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().bulletDamage;
+        statsText[0].text = "Max Health Limit: " + player.Health.maxPointsLimit;
+        statsText[1].text = "Player Speed: " + player.walkSpeed;
+        statsText[2].text = "Player Damage: " + player.bulletDamage;
         statsText[3].text = "Health Pickup: +" + GameManager.Instance.healAmount;
         statsText[4].text = "Shield Duration: " + GameManager.Instance.shieldActiveTime + "s";
         statsText[5].text = "Ammo Pickup: +" + GameManager.Instance.ammoRecovery;
-        //specialStatsText.text = "Special Weapon\nLevel: " + currentSpecialUpgrade;
+
+        specialStatsText[0].text = "Grenade Launcher\nLevel: " + SpecialUpgrades[0].weaponLevel;
+        specialStatsText[1].text = "Shotgun\nLevel: " + SpecialUpgrades[1].weaponLevel;
+        specialStatsText[2].text = "Ring Weapon\nLevel: " + SpecialUpgrades[2].weaponLevel;
 
         for (int i = 0; i < 3; i++) {
             weaponButton[i].GetComponent<Button>().enabled = !weaponLocked[i];
@@ -90,15 +124,15 @@ public class ShopManager : MonoBehaviour {
 
             switch (type) {
             case 0: //player max health limit
-                Healthbar playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().Health;
+                Healthbar playerHealth = player.Health;
                 playerHealth.maxPointsLimit += Upgrades[type].increase;
                 playerHealth.Reset();
                 break;
             case 1: //player speed
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().walkSpeed += Upgrades[type].increase;
+                player.walkSpeed += Upgrades[type].increase;
                 break;
             case 2: //player damage
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().bulletDamage += Upgrades[type].increase;
+                player.bulletDamage += Upgrades[type].increase;
                 break;
             case 3: //heal pack pickup
                 GameManager.Instance.healAmount += Upgrades[type].increase;
@@ -120,22 +154,6 @@ public class ShopManager : MonoBehaviour {
 
         UpdateGamePoints();
     }
-
-    /*void UpgradeSpecial() {
-        if (shopPoints >= specialCost && currentSpecialUpgrade < maxSpecialLevel) {
-            currentSpecialUpgrade++;
-            specialUpgradeLevel.text = "Level: " + currentSpecialUpgrade;
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().specialBullet.GetComponent<Cannonball>().damage += specialDamageIncrease;
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().specialBullet.GetComponent<Cannonball>().radius += specialRadiusIncrease;
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().maxSpecialAmmo += specialAmmoIncrease;
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>().ResetAmmo();
-            shopPoints -= specialCost;
-
-            if (currentSpecialUpgrade == maxSpecialLevel) {
-                specialUpgradeLevel.text = "Level: MAX";
-            }
-        }
-    }*/
     
     public void DisplaySpecialUpgrades(bool display) {
         mainShop.SetActive(!display);
@@ -146,31 +164,37 @@ public class ShopManager : MonoBehaviour {
         weaponLocked[num-1] = false;
     }
 
-    public void UpgradeSpecial(int num) {
-        switch (num) {
-        case 1:
-            UpgradeSpecial1();
-            break;
-        case 2:
-            UpgradeSpecial2();
-            break;
-        case 3:
-            UpgradeSpecial3();
-            break;
+    public void UpgradeSpecial(int type) {
+        if (shopPoints >= SpecialUpgrades[type].cost && SpecialUpgrades[type].currentUpgrade < SpecialUpgrades[type].maxLevel) {
+            SpecialUpgrades[type].currentUpgrade++;
+            SpecialUpgrades[type].weaponLevel++;
+            specialLevelText[type].text = "Level: " + SpecialUpgrades[type].currentUpgrade;
+
+            player.specialWeapons[type].GetComponent<SpecialWeapon>().maxAmmo += SpecialUpgrades[type].ammoIncrease;
+
+            switch (type) {
+            case 0: //grenade launcher
+                player.specialWeapons[type].GetComponent<Grenade>().damage += SpecialUpgrades[type].increase;
+                player.specialWeapons[type].GetComponent<Grenade>().radius += grenadeRadiusIncrease;
+                break;
+            case 1: //shotgun
+                player.specialWeapons[type].GetComponent<Shotgun>().bullet.GetComponent<BulletController>().damage += SpecialUpgrades[type].increase;
+                player.specialWeapons[type].GetComponent<Shotgun>().numBullets += shotgunBulletsIncrease;
+                player.specialWeapons[type].GetComponent<Shotgun>().fireArc += shotgunFireArcIncrease;
+                break;
+            case 2: //ring cannon
+                player.specialWeapons[type].GetComponent<RingWeapon>().ring.GetComponent<Ring>().damage += SpecialUpgrades[type].increase;
+                player.specialWeapons[type].GetComponent<RingWeapon>().ring.GetComponent<Ring>().growthRate += ringGrowthRateIncrease;
+                break;
+            }
+
+            if (SpecialUpgrades[type].currentUpgrade == SpecialUpgrades[type].maxLevel) {
+                specialLevelText[type].text = "Level: MAX";
+            }
+
+            shopPoints -= SpecialUpgrades[type].cost;
         }
 
         UpdateGamePoints();
-    }
-
-    void UpgradeSpecial1() {
-        Debug.Log("modify values for special weapon 1.");
-    }
-
-    void UpgradeSpecial2() {
-        Debug.Log("modify values for special weapon 2.");
-    }
-
-    void UpgradeSpecial3() {
-        Debug.Log("modify values for special weapon 3.");
     }
 }
