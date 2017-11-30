@@ -32,27 +32,27 @@ public class LevelGen : MonoBehaviour {
         Instantiate(spawnRoom, nodes[0].transform.position, Quaternion.identity);
         while (roomCount < roomsPerFloor)
         {
-            if (Random.Range(0f, 1f) > 0.5f) //Add and node[1] is empty //50% chance to pass
+            if (Random.Range(0f, 1f) > 0.5f && nodes[1].activeInHierarchy == true) //50% chance to pass
             {
                 room = randomRoom(); //Sets room to be a random room to be instantiated
                 Instantiate(room, nodes[1].transform.position, Quaternion.identity);
                 roomCount++;
             }
-            else if (Random.Range(0f, 1f) > 0.5f) //Add and node[2] is empty //50% chance to pass
+            else if (Random.Range(0f, 1f) > 0.5f && nodes[2].activeInHierarchy == true) //50% chance to pass
             {
-                room = randomRoom(); //Sets room to be a random room to be instantiated
+                room = randomRoom();
                 Instantiate(room, nodes[2].transform.position, Quaternion.identity);
                 roomCount++;
             }
-            else if (Random.Range(0f, 1f) > 0.5f) //Add and node[3] is empty //50% chance to pass
+            else if (Random.Range(0f, 1f) > 0.5f && nodes[3].activeInHierarchy == true) //50% chance to pass
             {
-                room = randomRoom(); //Sets room to be a random room to be instantiated
+                room = randomRoom();
                 Instantiate(room, nodes[3].transform.position, Quaternion.identity);
                 roomCount++;
             }
-            else if (Random.Range(0f, 1f) > 0.5f) //Add and node[4] is empty //50% chance to pass
+            else if (Random.Range(0f, 1f) > 0.5f && nodes[4].activeInHierarchy == true) //50% chance to pass
             {
-                room = randomRoom(); //Sets room to be a random room to be instantiated
+                room = randomRoom(); 
                 Instantiate(room, nodes[4].transform.position, Quaternion.identity);
                 roomCount++;
             }
