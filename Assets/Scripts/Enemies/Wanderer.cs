@@ -40,6 +40,8 @@ public class Wanderer : EnemyController {
     }
 
     void OnDrawGizmosSelected() {
-        Debug.DrawLine(transform.position, Agent.destination);
+        if (Agent != null) {
+            Debug.DrawLine(transform.position, Agent.destination);
+        }
     }
 }

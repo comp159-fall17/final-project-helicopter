@@ -8,12 +8,10 @@ public class Ring : MonoBehaviour {
     public float growthRate;
     public float damage = 30.0f;
 
-	// Use this for initialization
-	void Start () {
+    void Start () {
         Destroy(gameObject, lifetime);
 	}
 	
-	// Update is called once per frame
 	void Update () {
         Vector3 scale = transform.localScale;
 
