@@ -16,7 +16,8 @@ public class LevelGen : MonoBehaviour {
     public GameObject nodeParent;
     public float roomRate;
 
-    private List<GameObject> rooms = new List<GameObject>();
+    private GameObject[] rooms;
+    private List<GameObject> tempRooms = new List<GameObject>();
     private GameObject temp;
     private GameObject room;
     private float randNum;
@@ -41,12 +42,11 @@ public class LevelGen : MonoBehaviour {
         while (roomCount < roomsPerFloor)
         {
             loopCount++;
-            Debug.Log(nodes[3].activeInHierarchy);
-            if (Random.Range(0f, 1f) > roomRate && nodes[loopCount].activeInHierarchy == true)
+            if (Random.Range(0f, 1f) > roomRate && checkPos(loopCount) == true)
             {
                 room = randomRoom(); //Sets room to be a random room to be instantiated
                 temp = Instantiate(room, nodes[loopCount].transform.position, Quaternion.identity) as GameObject;
-                rooms.Add(temp);
+                tempRooms.Add(temp);
                 roomCount++;
                 Debug.Log("spawn");
                 nodes[loopCount].SetActive(false);
@@ -59,6 +59,31 @@ public class LevelGen : MonoBehaviour {
         //Make boss room spawn as last room
     }
 
+    private bool checkPos(int i)
+    {
+        rooms = GameObject.FindGameObjectsWithTag("Room");
+        foreach (GameObject room in rooms)
+        {
+            if (i == 1 && room.transform.position == nodes[1].transform.position)
+            {
+                return false;
+            }
+            else if (i == 2 && room.transform.position == nodes[2].transform.position)
+            {
+                return false;
+            }
+            else if (i == 3 && room.transform.position == nodes[3].transform.position)
+            {
+                return false;
+            }
+            else if (i == 4 && room.transform.position == nodes[4].transform.position)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private void moveNodes() //Moves nodes to be centered on the next room in the list
     {
         for (int i = 0; i <= 4; i++)
@@ -66,8 +91,8 @@ public class LevelGen : MonoBehaviour {
             nodes[i].SetActive(true); //This loop and seting active above are not working because happens too fast for colliders
         }
         loopCount = 0;
-        nodeParent.transform.position = rooms[0].transform.position; //Moves nodes to center on next room
-        rooms.RemoveAt(0); //Removes that room from list
+        nodeParent.transform.position = tempRooms[0].transform.position; //Moves nodes to center on next room
+        tempRooms.RemoveAt(0); //Removes that room from list
         Debug.Log("now");
     }
 

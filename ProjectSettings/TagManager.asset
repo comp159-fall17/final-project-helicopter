@@ -12,7 +12,7 @@ TagManager:
   - Shop
   - Pickup
   - FX
-  - EnemyRoom
+  - Room
   layers:
   - Default
   - TransparentFX
