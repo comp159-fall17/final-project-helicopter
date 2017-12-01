@@ -27,7 +27,7 @@ public class Tackler : Wanderer {
                 Agent.destination = Target;
                 speed = runSpeed;
             } else {
-                Agent.destination = RandomNavSphere(transform.position, 30, -1);
+                Agent.destination = SearchNextDestination();
                 speed = walkSpeed;
             }
 

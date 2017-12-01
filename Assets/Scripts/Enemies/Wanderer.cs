@@ -9,12 +9,14 @@ public class Wanderer : EnemyController {
     /// Adapted from https://forum.unity.com/threads/solved-random-wander-ai-using-navmesh.327950/
     /// </summary>
     public static Vector3 RandomNavSphere(Vector3 origin, float distance, int layermask) {
-        Vector3 randomDirection = Random.insideUnitSphere * distance + origin;
+        Vector3 randomDirection = Random.onUnitSphere * distance + origin;
 
         NavMeshHit navHit;
         NavMesh.SamplePosition(randomDirection, out navHit, distance, layermask);
         return navHit.position;
     }
+
+    public float wanderSearchRadius = 5f;
 
     protected NavMeshAgent Agent;
 
@@ -33,10 +35,14 @@ public class Wanderer : EnemyController {
             // Reset speed just in case was hit, etc
             Body.velocity *= 0;
 
-            Agent.destination = RandomNavSphere(transform.position, 30, -1);
+            Agent.destination = SearchNextDestination();
 
             yield return new WaitUntil(() => Agent.remainingDistance < 0.1f);
         }
+    }
+
+    protected Vector3 SearchNextDestination() {
+        return RandomNavSphere(transform.position, wanderSearchRadius, -1);
     }
 
     void OnDrawGizmosSelected() {
