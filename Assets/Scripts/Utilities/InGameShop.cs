@@ -29,10 +29,6 @@ public class InGameShop : MonoBehaviour {
 
     //decide which items to have in the shop
     void NewItems() {
-        for (int i = 0; i < possibleShopItems.Length; i++) {
-            possibleShopItems[i].transform.position = new Vector3(0f, possibleShopItems[i].transform.position.y);
-        }
-
         int numItems = possibleShopItems.Length;
         int item1, item2, item3;
 
@@ -74,7 +70,9 @@ public class InGameShop : MonoBehaviour {
         GameObject button3 = Instantiate(shopItems[2], InGameShopCanvas.transform, false);
         button3.GetComponent<Button>().onClick.AddListener(() => BuyItem(item3, button3));
 
-
+        for (int i = 0; i < possibleShopItems.Length; i++) {
+            possibleShopItems[i].transform.position = new Vector3(0f, possibleShopItems[i].transform.position.y);
+        }
     }
 
     int RandomNum(int highest) {
