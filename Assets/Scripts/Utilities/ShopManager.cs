@@ -66,20 +66,26 @@ public class ShopManager : MonoBehaviour {
         }
 
         //grenade launcher original values
-        player.specialWeapons[0].GetComponent<Grenade>().maxAmmo = (int)grenadeValues[0];
-        player.specialWeapons[0].GetComponent<Grenade>().radius = grenadeValues[1];
-        player.specialWeapons[0].GetComponent<Grenade>().damage = (int)grenadeValues[2];
+        Grenade grenade = player.specialWeapons[0].GetComponent<Grenade>();
+
+        grenade.maxAmmo = (int)grenadeValues[0];
+        grenade.radius = grenadeValues[1];
+        grenade.damage = (int)grenadeValues[2];
 
         //shotgun original values
-        player.specialWeapons[1].GetComponent<Shotgun>().maxAmmo = (int)shotgunValues[0];
-        player.specialWeapons[1].GetComponent<Shotgun>().fireArc = shotgunValues[1];
-        player.specialWeapons[1].GetComponent<Shotgun>().numBullets = (int)shotgunValues[2];
-        player.specialWeapons[1].GetComponent<Shotgun>().bullet.GetComponent<BulletController>().damage = shotgunValues[3];
+        Shotgun shotgun = player.specialWeapons[1].GetComponent<Shotgun>();
+
+        shotgun.maxAmmo = (int)shotgunValues[0];
+        shotgun.fireArc = shotgunValues[1];
+        shotgun.numBullets = (int)shotgunValues[2];
+        shotgun.bullet.GetComponent<BulletController>().damage = shotgunValues[3];
 
         //ring cannon original values
-        player.specialWeapons[2].GetComponent<RingWeapon>().maxAmmo = (int)ringValues[0];
-        player.specialWeapons[2].GetComponent<RingWeapon>().ring.GetComponent<Ring>().growthRate = ringValues[1];
-        player.specialWeapons[2].GetComponent<RingWeapon>().ring.GetComponent<Ring>().damage = ringValues[2];
+        RingWeapon ringWeapon = player.specialWeapons[2].GetComponent<RingWeapon>();
+
+        ringWeapon.maxAmmo = (int)ringValues[0];
+        ringWeapon.ring.GetComponent<Ring>().growthRate = ringValues[1];
+        ringWeapon.ring.GetComponent<Ring>().damage = ringValues[2];
 
         for (int i = 0; i < 6; i++) {
             costText[i].text = "Cost: " + Upgrades[i].cost;
@@ -174,17 +180,22 @@ public class ShopManager : MonoBehaviour {
 
             switch (type) {
             case 0: //grenade launcher
-                player.specialWeapons[type].GetComponent<Grenade>().damage += SpecialUpgrades[type].increase;
-                player.specialWeapons[type].GetComponent<Grenade>().radius += grenadeRadiusIncrease;
+                Grenade grenade = player.specialWeapons[0].GetComponent<Grenade>();
+
+                grenade.damage += SpecialUpgrades[type].increase;
+                grenade.radius += grenadeRadiusIncrease;
                 break;
             case 1: //shotgun
-                player.specialWeapons[type].GetComponent<Shotgun>().bullet.GetComponent<BulletController>().damage += SpecialUpgrades[type].increase;
-                player.specialWeapons[type].GetComponent<Shotgun>().numBullets += shotgunBulletsIncrease;
-                player.specialWeapons[type].GetComponent<Shotgun>().fireArc += shotgunFireArcIncrease;
+                Shotgun shotgun = player.specialWeapons[1].GetComponent<Shotgun>();
+
+                shotgun.bullet.GetComponent<BulletController>().damage += SpecialUpgrades[type].increase;
+                shotgun.numBullets += shotgunBulletsIncrease;
+                shotgun.fireArc += shotgunFireArcIncrease;
                 break;
             case 2: //ring cannon
-                player.specialWeapons[type].GetComponent<RingWeapon>().ring.GetComponent<Ring>().damage += SpecialUpgrades[type].increase;
-                player.specialWeapons[type].GetComponent<RingWeapon>().ring.GetComponent<Ring>().growthRate += ringGrowthRateIncrease;
+                Ring ring = player.specialWeapons[2].GetComponent<RingWeapon>().ring.GetComponent<Ring>();
+                ring.damage += SpecialUpgrades[type].increase;
+                ring.growthRate += ringGrowthRateIncrease;
                 break;
             }
 
