@@ -20,19 +20,23 @@ public class RoomSourceTag : MonoBehaviour {
         };
     }
 
-    public bool Active;
+    public bool ActiveOnStart;
     public MeshFilter[] SourceObjects;
 
+    public bool IsActive { get; private set; }
+
     void Start() {
-        if (Active) {
+        IsActive = ActiveOnStart;
+
+        if (ActiveOnStart) {
             NavMeshGen.Subscribe(this);
         }
     }
 
     public void Toggle(bool status) {
-        Active = status;
+        IsActive = status;
 
-        if (Active) {
+        if (IsActive) {
             NavMeshGen.Subscribe(this);
         } else {
             NavMeshGen.Unsubscribe(this);

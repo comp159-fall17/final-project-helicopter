@@ -1150,7 +1150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f212983bc5d943e08e65f222e98d199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Active: 1
+  ActiveOnStart: 1
   SourceObjects:
   - {fileID: 33320316148580140}
 --- !u!114 &114602891909014412
@@ -1164,7 +1164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f212983bc5d943e08e65f222e98d199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Active: 1
+  ActiveOnStart: 0
   SourceObjects: []
 --- !u!114 &114637240702249684
 MonoBehaviour:
