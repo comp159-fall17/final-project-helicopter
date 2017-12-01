@@ -31,16 +31,20 @@ public class Wanderer : EnemyController {
 #pragma warning disable RECS0135 // Function does not reach its end or a 'return' statement by any of possible execution paths
     protected virtual IEnumerator Wander() {
 #pragma warning restore RECS0135 // Function does not reach its end or a 'return' statement by any of possible execution paths
-        while (true) {
-            yield return new WaitUntil(() => Agent.isActiveAndEnabled);
+        yield return new WaitUntil(() => Agent.isActiveAndEnabled);
 
+        while (true) {
             // Reset speed just in case was hit, etc
             Body.velocity *= 0;
 
             Agent.destination = SearchNextDestination();
 
-            yield return new WaitUntil(() => Agent.remainingDistance < 0.1f);
+            yield return new WaitUntil(() => Agent.isActiveAndEnabled && ShouldContinue);
         }
+    }
+
+    protected virtual bool ShouldContinue {
+        get { return Agent.remainingDistance < 0.1f; }
     }
 
     protected Vector3 SearchNextDestination() {

@@ -13,9 +13,9 @@ public class Tackler : Wanderer {
 #pragma warning disable RECS0135 // Function does not reach its end or a 'return' statement by any of possible execution paths
     protected override IEnumerator Wander() {
 #pragma warning restore RECS0135 // Function does not reach its end or a 'return' statement by any of possible execution paths
-        while (true) {
-            yield return new WaitUntil(() => Agent.isActiveAndEnabled);
+        yield return new WaitUntil(() => Agent.isActiveAndEnabled);
 
+        while (true) {
             // Reset speed just in case was hit, etc
             Body.velocity *= 0;
 
@@ -28,8 +28,12 @@ public class Tackler : Wanderer {
             Agent.destination = base.ShouldShoot ? Target : SearchNextDestination();
             Agent.speed = Speed;
 
-            yield return new WaitUntil(() => base.ShouldShoot || Agent.remainingDistance < 0.1f);
+            yield return new WaitUntil(() => Agent.isActiveAndEnabled && ShouldContinue);
         }
+    }
+
+    protected override bool ShouldContinue {
+        get { return base.ShouldContinue || base.ShouldShoot; }
     }
 
     bool hasBeenHit;
