@@ -21,6 +21,7 @@ public class LevelGen : MonoBehaviour {
     private GameObject temp;
     private GameObject room;
     private float randNum;
+    private int totalRoomCount = 0;
     private int roomCount = 0;
     private int loopCount = 0;
     private int chestRoomCount = 0;
@@ -37,7 +38,7 @@ public class LevelGen : MonoBehaviour {
     private void newFloor() //Generates the new floor by createing rooms next to the spawn room by chance
     {
         Instantiate(spawnRoom, nodes[0].transform.position, Quaternion.identity);
-        while (roomCount < roomsPerFloor)
+        while (totalRoomCount < roomsPerFloor)
         {
             loopCount++;
             if (Random.Range(0f, 1f) > roomRate && checkPos(loopCount) == true)
@@ -46,13 +47,17 @@ public class LevelGen : MonoBehaviour {
                 temp = Instantiate(room, nodes[loopCount].transform.position, Quaternion.identity) as GameObject;
                 tempRooms.Add(temp);
                 roomCount++;
+                totalRoomCount++;
                 Debug.Log("spawn");
                 nodes[loopCount].SetActive(false);
             }
             if (roomCount == 0 && loopCount == 4)
                 loopCount = 0;
-            if (loopCount == 4) //Every 4 iterations in the while loop
+            if (loopCount == 4) { //Every 4 iterations in the while loop
+                loopCount = 0;
+                roomCount = 0;
                 moveNodes();
+            }
         }
         //Make boss room spawn as last room
     }
@@ -88,7 +93,6 @@ public class LevelGen : MonoBehaviour {
         {
             nodes[i].SetActive(true); //This loop and seting active above are not working because happens too fast for colliders
         }
-        loopCount = 0;
         nodeParent.transform.position = tempRooms[0].transform.position; //Moves nodes to center on next room
         tempRooms.RemoveAt(0); //Removes that room from list
         Debug.Log("now");

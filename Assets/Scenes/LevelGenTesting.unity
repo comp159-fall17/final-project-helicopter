@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -139,9 +139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d048bbe1b13284cabaafc5d81c44aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomsPerFloor: 15
+  roomsPerFloor: 10
   spawnRoom: {fileID: 1567452731244640, guid: 295a5e96bfbb2be458477f67646afa1b, type: 2}
-  chestRoom: {fileID: 1741947986991990, guid: bd4db284721691e4fbb805144f5a327e, type: 2}
+  chestRoom: {fileID: 1317552636464942, guid: 972449c2ec86a7e49b4e803f638c8b3b, type: 2}
   shopRoom: {fileID: 1656662748939780, guid: e9ac94e6adc7743418a0e8da33d49f0b, type: 2}
   enemyRoom1: {fileID: 1392715074779206, guid: 49a095f35982c93438529e7f7d77dc4b, type: 2}
   enemyRoom2: {fileID: 1524052020467562, guid: af39c6f031f67464ab4c93c3637db395, type: 2}
@@ -154,7 +154,7 @@ MonoBehaviour:
   - {fileID: 1253455959}
   - {fileID: 1940406242}
   nodeParent: {fileID: 2133179137}
-  roomRate: 0.05
+  roomRate: 0.5
 --- !u!4 &136707279
 Transform:
   m_ObjectHideFlags: 0
@@ -242,7 +242,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 215375499}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 25, z: 0}
+  m_LocalPosition: {x: 0, y: 150, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -261,7 +261,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4639677482832662, guid: 349770123ba8a43368d2c0b2503f7c52, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.5
+      value: 2.75
       objectReference: {fileID: 0}
     - target: {fileID: 4639677482832662, guid: 349770123ba8a43368d2c0b2503f7c52, type: 2}
       propertyPath: m_LocalPosition.z
@@ -294,6 +294,31 @@ Prefab:
     - target: {fileID: 54456450584226228, guid: 349770123ba8a43368d2c0b2503f7c52,
         type: 2}
       propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54456450584226228, guid: 349770123ba8a43368d2c0b2503f7c52,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 54456450584226228, guid: 349770123ba8a43368d2c0b2503f7c52,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136298404529842554, guid: 349770123ba8a43368d2c0b2503f7c52,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 54456450584226228, guid: 349770123ba8a43368d2c0b2503f7c52,
+        type: 2}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 54456450584226228, guid: 349770123ba8a43368d2c0b2503f7c52,
+        type: 2}
+      propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
