@@ -185,6 +185,7 @@ public class PlayerControls : Shooter {
 
     void CollectHealth() {
         Health.Heal(GameManager.Instance.healAmount);
+        GameManager.Instance.UpdateHealthText();
 		playUpgradeSound ();
     }
 
@@ -247,6 +248,7 @@ public class PlayerControls : Shooter {
         if (shielded || damaged) return;
 
         base.Hit(damage);
+        GameManager.Instance.UpdateHealthText();
         StartCoroutine(DisplayPlayerFlash());
     }
 
@@ -277,12 +279,14 @@ public class PlayerControls : Shooter {
 
         Hidden = true;
         Health.Reset();
+        GameManager.Instance.UpdateHealthText();
     }
 
     public void Reset() {
         Hidden = false;
         Health.Reset();
         transform.position = spawn;
+        GameManager.Instance.UpdateHealthText();
         CollectSpecial(0);
     }
 }
