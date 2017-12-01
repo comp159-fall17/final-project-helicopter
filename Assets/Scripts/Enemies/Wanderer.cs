@@ -28,10 +28,12 @@ public class Wanderer : EnemyController {
         StartCoroutine(Wander());
     }
 
-    #pragma warning disable RECS0135 // Function does not reach its end or a 'return' statement by any of possible execution paths
+#pragma warning disable RECS0135 // Function does not reach its end or a 'return' statement by any of possible execution paths
     protected virtual IEnumerator Wander() {
 #pragma warning restore RECS0135 // Function does not reach its end or a 'return' statement by any of possible execution paths
         while (true) {
+            yield return new WaitUntil(() => Agent.isActiveAndEnabled);
+
             // Reset speed just in case was hit, etc
             Body.velocity *= 0;
 

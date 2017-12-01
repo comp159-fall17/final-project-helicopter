@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[DefaultExecutionOrder(-103)]
 public class NavMeshGen : MonoBehaviour {
     static readonly List<RoomSourceTag> Rooms = new List<RoomSourceTag>();
 
