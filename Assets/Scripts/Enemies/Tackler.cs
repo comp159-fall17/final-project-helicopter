@@ -17,8 +17,6 @@ public class Tackler : Wanderer {
             // Reset speed just in case was hit, etc
             Body.velocity *= 0;
 
-            float speed;
-
             if (hasBeenHit) {
                 hasBeenHit = false;
                 Agent.speed = 0;
@@ -27,13 +25,12 @@ public class Tackler : Wanderer {
 
             if (base.ShouldShoot) {
                 Agent.destination = Target;
-                speed = runSpeed;
+                Agent.speed = runSpeed;
             } else {
                 Agent.destination = SearchNextDestination();
-                speed = walkSpeed;
+                Agent.speed = walkSpeed;
             }
 
-            Agent.speed = speed;
             yield return new WaitUntil(() => base.ShouldShoot || Agent.remainingDistance < 0.1f);
         }
     }
