@@ -44,10 +44,4 @@ public class Wanderer : EnemyController {
     protected Vector3 SearchNextDestination() {
         return RandomNavSphere(transform.position, wanderSearchRadius, -1);
     }
-
-    void OnDrawGizmosSelected() {
-        if (Agent != null) {
-            Debug.DrawLine(transform.position, Agent.destination);
-        }
-    }
 }
