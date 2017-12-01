@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-[DefaultExecutionOrder(-183)]
 public class RoomSourceTag : MonoBehaviour {
     /// <summary>
     /// Creates the source from a mesh filter.

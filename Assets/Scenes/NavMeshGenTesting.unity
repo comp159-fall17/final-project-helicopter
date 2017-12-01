@@ -377,6 +377,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9008ac4387d40f19334bebadb185ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NavMeshPosition: {x: 0, y: 0, z: 0}
+  NavMeshSize: {x: 60, y: 5, z: 60}
 --- !u!4 &1350000944
 Transform:
   m_ObjectHideFlags: 0

@@ -26,12 +26,10 @@ public class LevelGen : MonoBehaviour {
     private int chestRoomCount = 0;
     private int shopRoomCount = 0;
 
-    // Use this for initialization
     void Start () {
         newFloor();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}

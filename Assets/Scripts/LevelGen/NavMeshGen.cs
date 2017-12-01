@@ -33,6 +33,9 @@ public class NavMeshGen : MonoBehaviour {
         Rooms.Clear();
     }
 
+    public Vector3 NavMeshPosition;
+    public Vector3 NavMeshSize;
+
     NavMeshData data;
     NavMeshDataInstance dataInstance;
 
@@ -58,7 +61,7 @@ public class NavMeshGen : MonoBehaviour {
     public void GenerateNavMesh() {
         List<NavMeshBuildSource> sources = new List<NavMeshBuildSource>();
         NavMeshBuildSettings buildSettings = NavMesh.GetSettingsByID(0);
-        Bounds localBounds = new Bounds(transform.position, new Vector3(60, 5, 60));
+        Bounds localBounds = new Bounds(NavMeshPosition, NavMeshSize);
 
         foreach (RoomSourceTag room in Rooms) {
             room.Collect(ref sources);
