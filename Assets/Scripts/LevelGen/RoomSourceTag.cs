@@ -21,6 +21,7 @@ public class RoomSourceTag : MonoBehaviour {
     }
 
     public bool Active;
+    public MeshFilter[] SourceObjects;
 
     void Start() {
         if (Active) {
@@ -29,7 +30,7 @@ public class RoomSourceTag : MonoBehaviour {
     }
 
     public void Collect(ref List<NavMeshBuildSource> sources) {
-        foreach (MeshFilter filter in GetComponentsInChildren<MeshFilter>()) {
+        foreach (MeshFilter filter in SourceObjects) {
             sources.Add(CreateSourceFromMeshFilter(filter));
         }
     }

@@ -88,6 +88,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4740541146151816}
+  - component: {fileID: 114504466375742192}
   m_Layer: 0
   m_Name: EnemyRoom
   m_TagString: Room
@@ -446,7 +447,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1392715074779206}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 145.8, y: 0, z: 133.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1, z: 1.5}
   m_Children:
   - {fileID: 4061648970056056}
@@ -1131,6 +1132,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 1322685360144276, guid: 81c262a4eada6e54796b2242e86d475b, type: 2}
+--- !u!114 &114504466375742192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1392715074779206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f212983bc5d943e08e65f222e98d199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  SourceObjects:
+  - {fileID: 33320316148580140}
 --- !u!114 &114602891909014412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1143,6 +1158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Active: 1
+  SourceObjects: []
 --- !u!114 &114637240702249684
 MonoBehaviour:
   m_ObjectHideFlags: 1
