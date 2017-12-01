@@ -4,6 +4,8 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Tackler : Wanderer {
+    protected override float Speed { get { return base.ShouldShoot ? runSpeed : walkSpeed; } }
+
     protected override bool ShouldShoot { get { return false; } }
 
     public float minimumDistanceToTarget = 5f;
@@ -23,13 +25,8 @@ public class Tackler : Wanderer {
                 yield return new WaitUntil(() => TargetDistance > minimumDistanceToTarget);
             }
 
-            if (base.ShouldShoot) {
-                Agent.destination = Target;
-                Agent.speed = runSpeed;
-            } else {
-                Agent.destination = SearchNextDestination();
-                Agent.speed = walkSpeed;
-            }
+            Agent.destination = base.ShouldShoot ? Target : SearchNextDestination();
+            Agent.speed = Speed;
 
             yield return new WaitUntil(() => base.ShouldShoot || Agent.remainingDistance < 0.1f);
         }
