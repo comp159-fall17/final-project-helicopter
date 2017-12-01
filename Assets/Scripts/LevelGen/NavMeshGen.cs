@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-[DefaultExecutionOrder(-103)]
+[DefaultExecutionOrder(-180)]
 public class NavMeshGen : MonoBehaviour {
     static readonly List<RoomSourceTag> Rooms = new List<RoomSourceTag>();
 
@@ -11,7 +11,9 @@ public class NavMeshGen : MonoBehaviour {
     /// </summary>
     /// <param name="room">The room to subscribe.</param>
     public static void Subscribe(RoomSourceTag room) {
-        Rooms.Add(room);
+        if (!Rooms.Exists(i => i.Equals(room))) {
+            Rooms.Add(room);
+        }
     }
 
     /// <summary>

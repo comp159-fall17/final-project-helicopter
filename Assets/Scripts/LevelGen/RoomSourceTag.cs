@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-[DefaultExecutionOrder(-103)]
+[DefaultExecutionOrder(-183)]
 public class RoomSourceTag : MonoBehaviour {
     /// <summary>
     /// Creates the source from a mesh filter.
@@ -26,6 +26,16 @@ public class RoomSourceTag : MonoBehaviour {
     void Start() {
         if (Active) {
             NavMeshGen.Subscribe(this);
+        }
+    }
+
+    public void Toggle(bool status) {
+        Active = status;
+
+        if (Active) {
+            NavMeshGen.Subscribe(this);
+        } else {
+            NavMeshGen.Unsubscribe(this);
         }
     }
 
