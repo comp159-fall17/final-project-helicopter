@@ -20,9 +20,10 @@ public class GameManager : MonoBehaviour {
     public GameObject playerPrefab;
 
     //Wave Spawning
-    public Text waveTimerText;
-    public Text waveNumberText;
-    public Text pointsText;
+    //public Text waveTimerText;
+    //public Text waveNumberText;  
+    public Text moneyText;
+    public Text gameOverPointsText;
 
     public float enemySpawnDelay = 5f;
     public float minSpawnDistance = 15f;
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour {
     public int wave;
     public int newEmemiesPerWave = 1;
 
+    public Text healthText;
     public Text ammoText;
 
     public static GameManager Instance;
@@ -38,7 +40,9 @@ public class GameManager : MonoBehaviour {
     int enemySpawnedCount;
     int enemiesKilled;
 
-    public int points;
+    public int money; //per run, in-game shop money
+    public int points; //outside of game shop currency
+    int startPoints;
     public int highestWave;
     bool closeShop;
 
@@ -69,12 +73,15 @@ public class GameManager : MonoBehaviour {
         ShopActive = false;
 
         // reset stats
+        startPoints = points;
         enemiesKilled = 0;
         enemyCount = 0;
+        money = 0;
         enemySpawning = false;
         Player.GetComponent<PlayerControls>().Health.Reset();
         Player.GetComponent<PlayerControls>().SetDamage();
 
+        UpdateHealthText();
         UpdateAmmoText();
 		playDeathSound (false);
 
@@ -83,7 +90,12 @@ public class GameManager : MonoBehaviour {
 
     public IEnumerator gameOver(PlayerControls player) {
         // wait for showing to finish
+        gameOverPointsText.enabled = false;
         GameOverCanvas.SetActive(true);
+        yield return new WaitForSeconds(1f);
+
+        gameOverPointsText.text = "" + (points - startPoints); //display how many points were earned this run
+        gameOverPointsText.enabled = true;
         yield return new WaitForSeconds(gameoverTime);
         GameOverCanvas.SetActive(false);
 
@@ -106,6 +118,7 @@ public class GameManager : MonoBehaviour {
 
         highestWave = Mathf.Max(highestWave, wave);
         wave = 0;
+        startPoints = points;
         ShopActive = true;
     }
 
@@ -138,7 +151,7 @@ public class GameManager : MonoBehaviour {
     public bool ShopActive {
         get { return shopCanvas.activeSelf; }
         set {
-            ShopManager.Instance.UpdateShopPoints(points);
+            ShopManager.Instance.UpdateShopPoints();
 
             shopCanvas.SetActive(value);
             guiCanvas.SetActive(!value);
@@ -179,16 +192,20 @@ public class GameManager : MonoBehaviour {
         float tilSpawn = waveDelay - (Time.time - lastWaveBegin) + 0.5f;
         tilSpawn = Mathf.Round(tilSpawn);
 
-        if (tilSpawn <= 0) {
+        /*if (tilSpawn <= 0) {
             waveTimerText.text = "Go!";
         } else {
             waveTimerText.text = "New wave in "
                 + Mathf.Round(tilSpawn).ToString() + "...";
-        }
+        }*/
 
         // set wave number and points text
-        waveNumberText.text = wave.ToString();
-        pointsText.text = "Points: " + points;
+        //waveNumberText.text = wave.ToString();
+        moneyText.text = "money: " + money;
+    }
+
+    public void UpdateHealthText() {
+        healthText.text = "Health: " + Player.GetComponent<PlayerControls>().Health.Points;
     }
 
     public void UpdateAmmoText() {
@@ -234,6 +251,10 @@ public class GameManager : MonoBehaviour {
     public void EnemyHasDied() {
         enemyCount--;
         enemiesKilled++;
+
+        //testing
+        money += 5;
+        InGameShop.Instance.UpdateShopMoney();
 
         if (enemiesKilled == EnemiesOnWave(wave)) {
             points += pointsPerWave;

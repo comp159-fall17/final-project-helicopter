@@ -105,7 +105,7 @@ public class ShopManager : MonoBehaviour {
         }
     }
 
-    public void UpdateShopPoints(int points) {
+    public void UpdateShopPoints() { //called from GameManager
         shopPoints = GameManager.Instance.points;
         shopPointsText1.text = "Points: " + shopPoints;
         shopPointsText2.text = "Points: " + shopPoints;
