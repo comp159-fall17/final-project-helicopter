@@ -4,6 +4,8 @@ using UnityEngine.AI;
 
 [DefaultExecutionOrder(-180)]
 public class NavMeshGen : MonoBehaviour {
+    public static NavMeshGen Instance;
+
     static readonly List<RoomSourceTag> Rooms = new List<RoomSourceTag>();
 
     /// <summary>
@@ -32,24 +34,28 @@ public class NavMeshGen : MonoBehaviour {
     }
 
     NavMeshData data;
-    NavMeshDataInstance instance;
+    NavMeshDataInstance dataInstance;
 
-    void Update() {
-        GenerateNavMesh();
+    void Start() {
+        if (Instance == null) {
+            Instance = this;
+        } else if (Instance != this) {
+            Destroy(gameObject);
+        }
     }
 
     void OnEnable() {
         data = new NavMeshData();
-        instance = NavMesh.AddNavMeshData(data);
+        dataInstance = NavMesh.AddNavMeshData(data);
 
         GenerateNavMesh();
     }
 
     void OnDisable() {
-        instance.Remove();
+        dataInstance.Remove();
     }
 
-    void GenerateNavMesh() {
+    public void GenerateNavMesh() {
         List<NavMeshBuildSource> sources = new List<NavMeshBuildSource>();
         NavMeshBuildSettings buildSettings = NavMesh.GetSettingsByID(0);
         Bounds localBounds = new Bounds(transform.position, new Vector3(60, 5, 60));
