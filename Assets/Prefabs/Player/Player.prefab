@@ -744,7 +744,7 @@ GameObject:
   - component: {fileID: 4639677482832662}
   - component: {fileID: 33419279827019868}
   - component: {fileID: 54456450584226228}
-  - component: {fileID: 136298404529842554}
+  - component: {fileID: 65062307898782294}
   - component: {fileID: 23319722162451254}
   - component: {fileID: 114280916803156356}
   - component: {fileID: 114303468732554004}
@@ -1408,8 +1408,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1859407965499664}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224082282617124906}
@@ -1850,11 +1850,23 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 1
+--- !u!65 &65062307898782294
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1859407965499664}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.62, y: 1.19, z: 0.7}
+  m_Center: {x: -0.09, y: 0.04, z: 0}
 --- !u!82 &82906936303570950
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2080,6 +2092,7 @@ MonoBehaviour:
   specialWeapon: {fileID: 0}
   fireDelay: 0.1
   walkSpeed: 15
+  runSpeed: 30
   shieldPrefab: {fileID: 1043463481280116, guid: 1c62eda0209d23643bd0b0027ed1830b,
     type: 2}
   shieldIndicator: {fileID: 114266776192517890}
@@ -2170,19 +2183,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!136 &136298404529842554
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1859407965499664}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137071482573112154
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
