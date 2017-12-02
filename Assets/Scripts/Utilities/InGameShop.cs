@@ -12,8 +12,6 @@ public class InGameShop : MonoBehaviour {
     //possible items are 4+ pickups, 2+ normal weapon modifiers
     public GameObject[] possibleShopItems;
     public int[] itemCosts;
-    
-    GameObject[] shopItems = new GameObject[3]; //always have 3
 
     public static InGameShop Instance;
 
@@ -50,24 +48,18 @@ public class InGameShop : MonoBehaviour {
             }
         }
 
-        shopItems[0] = possibleShopItems[item1];
-        shopItems[1] = possibleShopItems[item2];
-        shopItems[2] = possibleShopItems[item3];
-
-        shopItems[0].transform.position = new Vector3(-350f, shopItems[0].transform.position.y);
-        shopItems[2].transform.position = new Vector3(350f, shopItems[2].transform.position.y);
-
-        shopItems[0].GetComponentsInChildren<Text>()[1].text = "Cost: " + itemCosts[item1];
-        shopItems[1].GetComponentsInChildren<Text>()[1].text = "Cost: " + itemCosts[item2];
-        shopItems[2].GetComponentsInChildren<Text>()[1].text = "Cost: " + itemCosts[item3];
-
-        GameObject button1 = Instantiate(shopItems[0], InGameShopCanvas.transform, false);
+        GameObject button1 = Instantiate(possibleShopItems[item1], InGameShopCanvas.transform, false);
+        button1.transform.position = new Vector3(-350f, button1.transform.position.y);
+        button1.GetComponentsInChildren<Text>()[1].text = "Cost: " + itemCosts[item1];
         button1.GetComponent<Button>().onClick.AddListener(() => BuyItem(item1, button1));
 
-        GameObject button2 = Instantiate(shopItems[1], InGameShopCanvas.transform, false);
+        GameObject button2 = Instantiate(possibleShopItems[item2], InGameShopCanvas.transform, false);
+        button2.GetComponentsInChildren<Text>()[1].text = "Cost: " + itemCosts[item2];
         button2.GetComponent<Button>().onClick.AddListener(() => BuyItem(item2, button2));
 
-        GameObject button3 = Instantiate(shopItems[2], InGameShopCanvas.transform, false);
+        GameObject button3 = Instantiate(possibleShopItems[item3], InGameShopCanvas.transform, false);
+        button3.transform.position = new Vector3(350f, button3.transform.position.y);
+        button3.GetComponentsInChildren<Text>()[1].text = "Cost: " + itemCosts[item3];
         button3.GetComponent<Button>().onClick.AddListener(() => BuyItem(item3, button3));
 
         for (int i = 0; i < possibleShopItems.Length; i++) {
