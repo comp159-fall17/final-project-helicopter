@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomsPerFloor: 10
   spawnRoom: {fileID: 1567452731244640, guid: 295a5e96bfbb2be458477f67646afa1b, type: 2}
-  chestRoom: {fileID: 1317552636464942, guid: 972449c2ec86a7e49b4e803f638c8b3b, type: 2}
+  chestRoom: {fileID: 1223150218728878, guid: 972449c2ec86a7e49b4e803f638c8b3b, type: 2}
   shopRoom: {fileID: 1656662748939780, guid: e9ac94e6adc7743418a0e8da33d49f0b, type: 2}
   enemyRoom1: {fileID: 1392715074779206, guid: 49a095f35982c93438529e7f7d77dc4b, type: 2}
   enemyRoom2: {fileID: 1524052020467562, guid: af39c6f031f67464ab4c93c3637db395, type: 2}
@@ -285,7 +285,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4639677482832662, guid: 349770123ba8a43368d2c0b2503f7c52, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 349770123ba8a43368d2c0b2503f7c52, type: 2}
@@ -545,7 +545,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1169995343
 GameObject:

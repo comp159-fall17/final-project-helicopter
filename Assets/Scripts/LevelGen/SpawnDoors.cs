@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class SpawnDoors : MonoBehaviour {
 
-    public GameObject door;
+    private GameObject door;
+    private bool spawn = true;
 
 	// Use this for initialization
 	void Start () {
-		
+        
 	}
 	
 	// Update is called once per frame
@@ -18,6 +19,11 @@ public class SpawnDoors : MonoBehaviour {
 
     void OnTriggerEnter()
     {
-        Instantiate(door, this.transform.position, this.transform.rotation, this.transform);
+        door = GameObject.Find("LevelSpawner").GetComponent<LevelGen>().door;
+        if (spawn)
+        {
+            Instantiate(door, this.transform.position, this.transform.rotation, this.transform);
+            spawn = false;
+        }
     }
 }

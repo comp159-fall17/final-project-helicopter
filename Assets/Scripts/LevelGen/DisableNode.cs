@@ -16,7 +16,6 @@ public class DisableNode : MonoBehaviour {
 
     private void OnTriggerEnter() //Should disable the node if a room spawns on it
     {
-        Debug.Log("ok");
         gameObject.SetActive(false);
     }
 }

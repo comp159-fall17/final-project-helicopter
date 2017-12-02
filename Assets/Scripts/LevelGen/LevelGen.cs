@@ -48,7 +48,6 @@ public class LevelGen : MonoBehaviour {
                 tempRooms.Add(temp);
                 roomCount++;
                 totalRoomCount++;
-                Debug.Log("spawn");
                 nodes[loopCount].SetActive(false);
             }
             if (roomCount == 0 && loopCount == 4)
@@ -95,7 +94,6 @@ public class LevelGen : MonoBehaviour {
         }
         nodeParent.transform.position = tempRooms[0].transform.position; //Moves nodes to center on next room
         tempRooms.RemoveAt(0); //Removes that room from list
-        Debug.Log("now");
     }
 
     private GameObject randomRoom() //Returns a random room with higher chance of enemy room
