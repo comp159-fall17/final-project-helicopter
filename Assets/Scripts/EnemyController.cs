@@ -93,7 +93,7 @@ public class EnemyController : Shooter {
     public float hitPoints = 10; //Enemy HP
 
     protected override void Die() {
-        GameManager.Instance.EnemyHasDied();
+        GameManager.Instance.EnemyHasDied(transform);
 		GameManager.Instance.playDeathSound (true);
         Destroy(gameObject);
     }

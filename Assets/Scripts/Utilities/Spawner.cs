@@ -1,10 +1,13 @@
 ﻿using System.Linq;
+using System.Collections;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour {
     public static Spawner Instance;
 
     public float minSpawnDistance;
+
+    public float[] spawnProbabilities;
 
     // Pickups
     public GameObject[] Pickups;
@@ -92,7 +95,12 @@ public class Spawner : MonoBehaviour {
     /// </summary>
     /// <param name="location">Transform (location) to spawn the pickup at.</param>
     public void SpawnPickupAtLocation(Transform location) {
-        SpawnPickup(Random.Range(0, Pickups.Length), location);
+        int pickupType = Random.Range(0, Pickups.Length);
+        float val = Random.value;
+        
+        if (val <= spawnProbabilities[pickupType]) {
+            SpawnPickup(pickupType, location);
+        }
     }
 
     /// <summary>

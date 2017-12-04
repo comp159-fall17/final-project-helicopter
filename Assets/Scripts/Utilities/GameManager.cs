@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator SpawnPickups() {
-        while (!ShopActive) {
+        while (!ShopActive && false) {
             Spawner.Instance.SpawnPickup();
 
             yield return new WaitForSeconds(pickupSpawnInterval);
@@ -253,7 +253,9 @@ public class GameManager : MonoBehaviour {
         InGameShop.Instance.UpdateShopMoney();
     }
 
-    public void EnemyHasDied() {
+    public void EnemyHasDied(Transform enemyPos) {
+        Spawner.Instance.SpawnPickupAtLocation(enemyPos);
+
         enemyCount--;
         enemiesKilled++;
 

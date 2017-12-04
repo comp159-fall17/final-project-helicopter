@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33499144841602456}
   - component: {fileID: 23036125453542300}
   - component: {fileID: 135925761279899634}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Money Pickup
   m_TagString: Pickup
   m_Icon: {fileID: 0}
