@@ -152,6 +152,8 @@ public class PlayerControls : Shooter {
                 CollectShield();
             } else if (other.gameObject.name.Contains("Ammo")) {
                 CollectAmmo();
+            } else if (other.gameObject.name.Contains("Money")) {
+                CollectMoney();
             }
 
             Destroy(other.gameObject);
@@ -216,6 +218,10 @@ public class PlayerControls : Shooter {
 
         GameManager.Instance.UpdateAmmoText();
 		playUpgradeSound ();
+    }
+
+    void CollectMoney() {
+        GameManager.Instance.CollectMoney(GameManager.Instance.moneyGain);
     }
 
     void CollectSpecial(int type) { //type is 1 to 3, corresponding to the special weapon

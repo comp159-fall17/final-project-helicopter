@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
     public float healAmount = 10f;
     public int ammoRecovery = 5;
     public float shieldActiveTime = 5.0f;
+    public int moneyGain = 5;
     public float pickupSpawnInterval = 15.0f;
 
     //Canvases
@@ -247,13 +248,14 @@ public class GameManager : MonoBehaviour {
 
     public int pointsPerWave;
 
+    public void CollectMoney(int amount) {
+        money += amount;
+        InGameShop.Instance.UpdateShopMoney();
+    }
+
     public void EnemyHasDied() {
         enemyCount--;
         enemiesKilled++;
-
-        //testing
-        money += 5;
-        InGameShop.Instance.UpdateShopMoney();
 
         if (enemiesKilled == EnemiesOnWave(wave)) {
             points += pointsPerWave;

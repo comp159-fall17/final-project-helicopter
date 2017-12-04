@@ -44,7 +44,7 @@ public class Spawner : MonoBehaviour {
     }
 
     GameObject Spawn(GameObject[] array, string arrayName, int type,
-               System.Func<Vector3, Collider[]> overlaps) {
+               System.Func<Vector3, Collider[]> overlaps, Transform inputPos = null) {
         if (array.Length == 0) {
             Debug.LogWarning("There are no " + arrayName + " prefabs listed.");
             return null;
@@ -56,20 +56,28 @@ public class Spawner : MonoBehaviour {
         }
 
         GameObject item = array[type];
-        return Instantiate(item, GeneratePosition(overlaps), item.transform.rotation) as GameObject;
+
+        Vector3 pos;
+        if (inputPos == null) {
+            pos = GeneratePosition(overlaps);
+        } else {
+            pos = inputPos.position;
+        }
+
+        return Instantiate(item, pos, item.transform.rotation) as GameObject;
     }
 
     /// <summary>
     /// Spawns a pickup based on type.
     /// </summary>
     /// <param name="type">Index location of pickup in list.</param>
-    public void SpawnPickup(int type) {
+    public void SpawnPickup(int type, Transform inputPos = null) {
         System.Func<Vector3, Collider[]> overlaps = delegate (Vector3 position) {
             float prefabRadius = Pickups[0].GetComponent<SphereCollider>().radius;
             return Physics.OverlapSphere(position, prefabRadius);
         };
 
-        Destroy(Spawn(Pickups, "Pickups", type, overlaps), pickupDestroyTime);
+        Destroy(Spawn(Pickups, "Pickups", type, overlaps, inputPos), pickupDestroyTime);
     }
 
     /// <summary>
@@ -77,6 +85,14 @@ public class Spawner : MonoBehaviour {
     /// </summary>
     public void SpawnPickup() {
         SpawnPickup(Random.Range(0, Pickups.Length));
+    }
+
+    /// <summary>
+    /// Spawns a random pickup
+    /// </summary>
+    /// <param name="location">Transform (location) to spawn the pickup at.</param>
+    public void SpawnPickupAtLocation(Transform location) {
+        SpawnPickup(Random.Range(0, Pickups.Length), location);
     }
 
     /// <summary>
