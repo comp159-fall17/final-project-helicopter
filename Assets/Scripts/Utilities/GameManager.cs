@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour {
     public int highestWave;
     bool closeShop;
 
+    public float playerLuck;
+
 	private AudioSource deathSound;
 
     public GameObject Player;
@@ -77,6 +79,7 @@ public class GameManager : MonoBehaviour {
         enemiesKilled = 0;
         enemyCount = 0;
         money = 0;
+        playerLuck = 0f;
         enemySpawning = false;
         Player.GetComponent<PlayerControls>().Health.Reset();
         Player.GetComponent<PlayerControls>().SetDamage();

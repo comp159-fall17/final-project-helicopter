@@ -185,6 +185,20 @@ public class PlayerControls : Shooter {
         shooting = false;    
     }
 
+    public void CollectPickup(int type) { //used in InGameShop
+        switch (type) {
+        case 0:
+            CollectHealth();
+            break;
+        case 1:
+            CollectShield();
+            break;
+        case 2:
+            CollectAmmo();
+            break;
+        }
+    }
+
     void CollectHealth() {
         Health.Heal(GameManager.Instance.healAmount);
         GameManager.Instance.UpdateHealthText();
@@ -224,7 +238,7 @@ public class PlayerControls : Shooter {
         GameManager.Instance.CollectMoney(GameManager.Instance.moneyGain);
     }
 
-    void CollectSpecial(int type) { //type is 1 to 3, corresponding to the special weapon
+    public void CollectSpecial(int type) { //type is 1 to 3, corresponding to the special weapon
         if (type == 0) {
             specialWeapon = null;
             maxSpecialAmmo = 0;

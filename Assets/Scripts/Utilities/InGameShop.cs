@@ -9,9 +9,13 @@ public class InGameShop : MonoBehaviour {
 
     public GameObject InGameShopCanvas;
 
-    //possible items are 4+ pickups, 2+ normal weapon modifiers
+    //possible items are 4+ pickups, 2+ normal weapon modifiers and the 3 special weapons
     public GameObject[] possibleShopItems;
     public int[] itemCosts;
+
+    public float playerLuckIncrease;
+
+    PlayerControls player; //player's script
 
     public static InGameShop Instance;
 
@@ -21,6 +25,8 @@ public class InGameShop : MonoBehaviour {
         } else if (Instance != this) {
             Destroy(gameObject);
         }
+
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>();
 
         NewItems();
     }
@@ -71,9 +77,32 @@ public class InGameShop : MonoBehaviour {
         return Random.Range(0, highest);
     }
 
-    void BuyItem(int item, GameObject button) { //6 items for testing
+    void BuyItem(int item, GameObject button) {
         if (shopMoney >= itemCosts[item]) {
-            Debug.Log("Bought item " + (item+1)); //TODO
+            switch (item) {
+            case 0: //health pickup
+            case 1: //shield pickup
+            case 2: //ammo pickup
+                player.CollectPickup(item);
+                break;
+            case 3: //increase player luck
+                GameManager.Instance.playerLuck += playerLuckIncrease;
+                break;
+            case 4: //grenade launcher
+            case 5: //shotgun
+            case 6: //ring cannon
+                player.CollectSpecial(item - 3);
+                break;
+            case 7:
+                Debug.Log("Bought shot modifier 1"); //TODO
+                break;
+            case 8:
+                Debug.Log("Bought shot modifier 2"); //TODO
+                break;
+            case 9:
+                Debug.Log("Bought shot modifier 3"); //TODO
+                break;
+            }
 
             shopMoney -= itemCosts[item];
 

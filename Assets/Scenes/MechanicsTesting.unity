@@ -947,7 +947,7 @@ GameObject:
   - component: {fileID: 761491001}
   - component: {fileID: 761491005}
   m_Layer: 0
-  m_Name: TestShopKeep
+  m_Name: ShopKeep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1034,13 +1034,18 @@ MonoBehaviour:
   shopMoneyText: {fileID: 1933580405}
   InGameShopCanvas: {fileID: 898293717}
   possibleShopItems:
-  - {fileID: 1919391940406708, guid: 5ac622ffb5c8e1a42988ac225171f523, type: 2}
   - {fileID: 1919391940406708, guid: 57b9e0ea977fdf643adc4d66e31a444f, type: 2}
   - {fileID: 1919391940406708, guid: c8a0765a62304cf4f8d357890fc0e7e6, type: 2}
+  - {fileID: 1919391940406708, guid: 5ac622ffb5c8e1a42988ac225171f523, type: 2}
   - {fileID: 1919391940406708, guid: e068f77c9e3aa934188ee4efba0df0c4, type: 2}
   - {fileID: 1919391940406708, guid: 9f10376e2581ad047a5a825ae06daa1b, type: 2}
   - {fileID: 1919391940406708, guid: ddc34a592cb289843b1443d88b9410c8, type: 2}
-  itemCosts: 19000000190000001e0000001e0000002800000028000000
+  - {fileID: 1919391940406708, guid: d145e096b2d17e24aaa522dd913c4f5e, type: 2}
+  - {fileID: 1919391940406708, guid: a84b3c9b405ec9e45a8d90db0c4f773d, type: 2}
+  - {fileID: 1919391940406708, guid: 57e775aeb468184408f5b1e069e125c9, type: 2}
+  - {fileID: 1919391940406708, guid: 745d3b76e81727e4f9a3010b257d9dc1, type: 2}
+  itemCosts: 1900000019000000190000001e000000320000003200000032000000280000002800000028000000
+  playerLuckIncrease: 0.05
 --- !u!1 &788216304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1671,12 +1676,12 @@ Prefab:
     - target: {fileID: 224170562808937352, guid: 56579d3512815574792a0d86068ee9e5,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 347
       objectReference: {fileID: 0}
     - target: {fileID: 224170562808937352, guid: 56579d3512815574792a0d86068ee9e5,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 164
       objectReference: {fileID: 0}
     - target: {fileID: 224170562808937352, guid: 56579d3512815574792a0d86068ee9e5,
         type: 2}
@@ -1757,6 +1762,20 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224800197178548868, guid: 56579d3512815574792a0d86068ee9e5,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1576167149851510, guid: 56579d3512815574792a0d86068ee9e5, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224800197178548868, guid: 56579d3512815574792a0d86068ee9e5,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 144
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56579d3512815574792a0d86068ee9e5, type: 2}
@@ -2809,6 +2828,7 @@ MonoBehaviour:
   money: 0
   points: 1000
   highestWave: 0
+  playerLuck: 0
   Player: {fileID: 0}
   pointsPerWave: 20
 --- !u!82 &2050726807
@@ -2904,8 +2924,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpawnDistance: 15
   spawnProbabilities:
+  - 0.5
   - 0.55
-  - 0.6
   - 0.5
   - 0.6
   Pickups:

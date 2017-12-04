@@ -64,7 +64,7 @@ public class Spawner : MonoBehaviour {
         if (inputPos == null) {
             pos = GeneratePosition(overlaps);
         } else {
-            pos = inputPos.position;
+            pos = new Vector3(inputPos.position.x, 0.5f, inputPos.position.z);
         }
 
         return Instantiate(item, pos, item.transform.rotation) as GameObject;
@@ -96,8 +96,8 @@ public class Spawner : MonoBehaviour {
     /// <param name="location">Transform (location) to spawn the pickup at.</param>
     public void SpawnPickupAtLocation(Transform location) {
         int pickupType = Random.Range(0, Pickups.Length);
-        float val = Random.value;
-        
+        float val = Random.value + GameManager.Instance.playerLuck;
+
         if (val <= spawnProbabilities[pickupType]) {
             SpawnPickup(pickupType, location);
         }
