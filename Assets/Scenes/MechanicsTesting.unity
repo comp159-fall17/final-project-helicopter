@@ -2625,6 +2625,7 @@ MonoBehaviour:
   moneyGain: 10
   pickupSpawnInterval: 1
   GameOverCanvas: {fileID: 1287819301}
+  screenCanvas: {fileID: 491551945}
   gameoverTime: 4
   gameOverPointsText: {fileID: 1884725812}
   healthText: {fileID: 889868931}
@@ -2725,6 +2726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minSpawnDistance: 15
+  maxSpawnDistance: 0
   spawnProbabilities:
   - 0.5
   - 0.55

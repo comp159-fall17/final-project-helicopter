@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
 
     //Canvases
     public GameObject GameOverCanvas;
+    public GameObject screenCanvas;
 
     //GameOver
     public int gameoverTime;
@@ -72,6 +73,7 @@ public class GameManager : MonoBehaviour {
         // wait for showing to finish
         gameOverPointsText.enabled = false;
         GameOverCanvas.SetActive(true);
+        screenCanvas.SetActive(false);
         yield return new WaitForSeconds(1f);
 
         // display how many points were earned this run
@@ -79,6 +81,7 @@ public class GameManager : MonoBehaviour {
         gameOverPointsText.enabled = true;
         yield return new WaitForSeconds(gameoverTime);
         GameOverCanvas.SetActive(false);
+        screenCanvas.SetActive(true);
 
         player.Reset();
         RestartGame();
@@ -98,6 +101,8 @@ public class GameManager : MonoBehaviour {
         removeTagged("Pickup");
 
         startPoints = points;
+
+        ShopManager.Instance.Restart();
     }
 
     /// <summary>
