@@ -1970,7 +1970,6 @@ GameObject:
   - component: {fileID: 4771353573215956}
   - component: {fileID: 33875779976487680}
   - component: {fileID: 23815959942126794}
-  - component: {fileID: 64004039466964228}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -2917,7 +2916,6 @@ GameObject:
   - component: {fileID: 4038065207795384}
   - component: {fileID: 33693582824354450}
   - component: {fileID: 23426598253753290}
-  - component: {fileID: 64626351025458864}
   m_Layer: 0
   m_Name: Floor (1)
   m_TagString: Untagged
@@ -9572,34 +9570,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!64 &64004039466964228
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1612689965514700}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &64626351025458864
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1939181358456902}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!64 &64775913841110104
 MeshCollider:
   m_ObjectHideFlags: 1

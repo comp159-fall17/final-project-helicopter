@@ -856,9 +856,6 @@ MonoBehaviour:
   pickupSpawnInterval: 15
   GameOverCanvas: {fileID: 452848666}
   gameoverTime: 0
-  playerPrefab: {fileID: 1859407965499664, guid: 349770123ba8a43368d2c0b2503f7c52,
-    type: 2}
-  moneyText: {fileID: 1885711572}
   gameOverPointsText: {fileID: 662622100}
   healthText: {fileID: 1056677094}
   ammoText: {fileID: 1117010518}
@@ -1260,9 +1257,3 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56579d3512815574792a0d86068ee9e5, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1885711572 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114343921002586316, guid: f3e38909748a86440b02218ec678152c,
-    type: 2}
-  m_PrefabInternal: {fileID: 1454672173}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}

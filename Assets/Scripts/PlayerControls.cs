@@ -46,10 +46,13 @@ public class PlayerControls : Shooter {
         get {
             // Raycast to corresponding point on screen.
             Ray viewRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            Physics.Raycast(viewRay, out hit);
 
-            return CopyY(hit.point, Body.position);
+            // get distance to player plane
+            Plane flat = new Plane(Vector3.up, Vector3.zero);
+            float rayDistance;
+            flat.Raycast(viewRay, out rayDistance);
+
+            return CopyY(viewRay.GetPoint(rayDistance), Body.position);
         }
     }
 
