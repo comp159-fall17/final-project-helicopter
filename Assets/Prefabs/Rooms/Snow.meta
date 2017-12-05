@@ -1,13 +1,7 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Prefabs/Rooms/Snow.meta
 guid: 48f9627dc6b2eaf40ad11d3604e9c20c
 folderAsset: yes
 timeCreated: 1512400213
-=======
-guid: a2452a05dcdb347a2b07d9bdf5998540
-folderAsset: yes
-timeCreated: 1512435760
->>>>>>> 83ca19f86066f128554d303779cd731e9b8ad485:Assets/Prefabs/Rooms/Snow.meta
 licenseType: Free
 DefaultImporter:
   externalObjects: {}
