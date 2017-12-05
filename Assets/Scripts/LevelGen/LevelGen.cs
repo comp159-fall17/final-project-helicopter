@@ -5,16 +5,18 @@ using UnityEngine;
 public class LevelGen : MonoBehaviour {
 
     public int roomsPerFloor;
-    public GameObject spawnRoom;
-    public GameObject chestRoom;
-    public GameObject shopRoom;
-    public GameObject enemyRoom1;
-    public GameObject enemyRoom2;
-    public GameObject enemyRoom3;
+    public List<GameObject> spawnRoom;
+    public List<GameObject> chestRoom;
+    public List<GameObject> shopRoom;
+    public List<GameObject> enemyRoom1;
+    public List<GameObject> enemyRoom2;
+    public List<GameObject> enemyRoom3;
     public GameObject door;
+    public List<GameObject> bossRoom;
     public List<GameObject> nodes;
     public GameObject nodeParent;
     public float roomRate;
+    public int listLen;
 
     private GameObject[] rooms;
     private List<GameObject> tempRooms = new List<GameObject>();
@@ -26,25 +28,46 @@ public class LevelGen : MonoBehaviour {
     private int loopCount = 0;
     private int chestRoomCount = 0;
     private int shopRoomCount = 0;
+    private int roomType = 0;
 
     void Start () {
         newFloor();
+        //Invoke("removeFloor", 3);
+        //Invoke("newFloor", 6);
 	}
 	
-	void Update () {
-		
+	void Update () { 
+
 	}
+
+    private void resetFloor()
+    {
+        nodeParent.transform.position = new Vector3(0, 0, 0);
+        tempRooms = new List<GameObject>();
+        totalRoomCount = 0;
+        roomCount = 0;
+        loopCount = 0;
+        chestRoomCount = 0;
+        shopRoomCount = 0;
+    }
 
     private void newFloor() //Generates the new floor by createing rooms next to the spawn room by chance
     {
-        Instantiate(spawnRoom, nodes[0].transform.position, Quaternion.identity);
+        resetFloor();
+        roomType = Random.Range(0, listLen);
+        Instantiate(spawnRoom[roomType], nodes[0].transform.position, Quaternion.identity);
         while (totalRoomCount < roomsPerFloor)
         {
             loopCount++;
             if (Random.Range(0f, 1f) > roomRate && checkPos(loopCount) == true)
             {
-                room = randomRoom(); //Sets room to be a random room to be instantiated
-                temp = Instantiate(room, nodes[loopCount].transform.position, Quaternion.identity) as GameObject;
+                if (roomsPerFloor - totalRoomCount == 1)
+                    temp = Instantiate(bossRoom[roomType], nodes[loopCount].transform.position, Quaternion.identity) as GameObject;
+                else
+                {
+                    room = randomRoom(roomType); //Sets room to be a random room to be instantiated
+                    temp = Instantiate(room, nodes[loopCount].transform.position, Quaternion.identity) as GameObject;
+                }
                 tempRooms.Add(temp);
                 roomCount++;
                 totalRoomCount++;
@@ -96,34 +119,45 @@ public class LevelGen : MonoBehaviour {
         tempRooms.RemoveAt(0); //Removes that room from list
     }
 
-    private GameObject randomRoom() //Returns a random room with higher chance of enemy room
+    private GameObject randomRoom(int roomType) //Returns a random room with higher chance of enemy room
     {
         randNum = Random.Range(0f, 1f);
         if (randNum >= 0 && randNum <= .09 && chestRoomCount == 0) //10% chance and once per floor
         {
             chestRoomCount++;
-            return chestRoom;
+            return chestRoom[roomType];
         }
         else if (randNum >= .01 && randNum <= .24 && shopRoomCount == 0) //15% chance and once per floor
         {
             shopRoomCount++;
-            return shopRoom;
+            return shopRoom[roomType];
         }
         else //75% chance
         {
             randNum = Random.Range(0f, 1f);
             if (randNum >= 0 && randNum <= .33) //33% chance
             {
-                return enemyRoom1;
+                return enemyRoom1[roomType];
             }
             else if (randNum >= .34 && randNum <= .66) //33% chance
             {
-                return enemyRoom2;
+                return enemyRoom2[roomType];
             }
             else //33% chance
             {
-                return enemyRoom3;
+                return enemyRoom3[roomType];
             }
+        }
+    }
+
+    private GameObject[] allRooms;
+
+    private void removeFloor()
+    {
+        allRooms = GameObject.FindGameObjectsWithTag("Room");
+        foreach (var item in allRooms)
+        {
+            Destroy(item);
         }
     }
 }
