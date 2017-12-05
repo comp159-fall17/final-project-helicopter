@@ -19,7 +19,8 @@ public class SpawnDoors : MonoBehaviour {
 
     void OnTriggerEnter()
     {
-        door = GameObject.Find("LevelSpawner").GetComponent<LevelGen>().door;
+        LevelGen lvlspawn = GameObject.Find("LevelSpawner").GetComponent<LevelGen>();
+        door = lvlspawn.door;
         if (spawn)
         {
             Instantiate(door, this.transform.position, this.transform.rotation, this.transform);
