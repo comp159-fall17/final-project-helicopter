@@ -12,6 +12,7 @@ public class LevelGen : MonoBehaviour {
     public List<GameObject> enemyRoom2;
     public List<GameObject> enemyRoom3;
     public GameObject door;
+    public List<GameObject> bossRoom;
     public List<GameObject> nodes;
     public GameObject nodeParent;
     public float roomRate;
@@ -46,8 +47,13 @@ public class LevelGen : MonoBehaviour {
             loopCount++;
             if (Random.Range(0f, 1f) > roomRate && checkPos(loopCount) == true)
             {
-                room = randomRoom(roomType); //Sets room to be a random room to be instantiated
-                temp = Instantiate(room, nodes[loopCount].transform.position, Quaternion.identity) as GameObject;
+                if (roomsPerFloor - totalRoomCount == 1)
+                    temp = Instantiate(bossRoom[roomType], nodes[loopCount].transform.position, Quaternion.identity) as GameObject;
+                else
+                {
+                    room = randomRoom(roomType); //Sets room to be a random room to be instantiated
+                    temp = Instantiate(room, nodes[loopCount].transform.position, Quaternion.identity) as GameObject;
+                }
                 tempRooms.Add(temp);
                 roomCount++;
                 totalRoomCount++;

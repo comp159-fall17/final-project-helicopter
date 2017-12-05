@@ -159,6 +159,9 @@ MonoBehaviour:
   - {fileID: 1818506147979310, guid: 4ce19987fc3e5ed43bdd5f4c8ffbd383, type: 2}
   - {fileID: 1610209525219550, guid: 5d3728a1953f98943a76e3a5a81fea4c, type: 2}
   door: {fileID: 1768491214232880, guid: 5c990a9bd2110c94fb06e4ed7b6f76b6, type: 2}
+  bossRoom:
+  - {fileID: 1537572507280178, guid: 2505aa27b572de642ba3c7e96daad927, type: 2}
+  - {fileID: 1537572507280178, guid: 2505aa27b572de642ba3c7e96daad927, type: 2}
   nodes:
   - {fileID: 632231926}
   - {fileID: 552588273}
