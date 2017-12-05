@@ -262,7 +262,7 @@ Prefab:
         type: 2}
       propertyPath: biomes.Array.data[2].Shop
       value: 
-      objectReference: {fileID: 1960394009676158, guid: 56df11f1fbc57214ab64f3e069301d47,
+      objectReference: {fileID: 1865906050501624, guid: d3783d71977a10740b4311eaf983f7a2,
         type: 2}
     - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
         type: 2}
@@ -305,6 +305,53 @@ Prefab:
       propertyPath: biomes.Array.data[1].Enemy.Array.data[1]
       value: 
       objectReference: {fileID: 1733611333652460, guid: 8b7a2c61f4e03b844b2fead2805522d4,
+        type: 2}
+    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
+        type: 2}
+      propertyPath: biomes.Array.data[0].Name
+      value: fall
+      objectReference: {fileID: 0}
+    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
+        type: 2}
+      propertyPath: biomes.Array.data[0].Chest
+      value: 
+      objectReference: {fileID: 1663561236707392, guid: 9166d654cc474d145b298d0b08c3d7c2,
+        type: 2}
+    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
+        type: 2}
+      propertyPath: biomes.Array.data[0].Shop
+      value: 
+      objectReference: {fileID: 1074825497090786, guid: 4c0f77567a5d8ad4eb5bbe65b25f42c9,
+        type: 2}
+    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
+        type: 2}
+      propertyPath: biomes.Array.data[0].Spawn
+      value: 
+      objectReference: {fileID: 1048818662978800, guid: 77bce5369b8fbf94d853b48bb102981f,
+        type: 2}
+    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
+        type: 2}
+      propertyPath: biomes.Array.data[0].Enemy.Array.data[0]
+      value: 
+      objectReference: {fileID: 1995834978937598, guid: 3bbfac60f22c96041ab02a0e2bc6ac03,
+        type: 2}
+    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
+        type: 2}
+      propertyPath: biomes.Array.data[0].Enemy.Array.data[1]
+      value: 
+      objectReference: {fileID: 1882208835404746, guid: 47b769e4706b9744a82919408f0c84d1,
+        type: 2}
+    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
+        type: 2}
+      propertyPath: biomes.Array.data[0].Enemy.Array.data[2]
+      value: 
+      objectReference: {fileID: 1940532329137360, guid: c0e1798f12ef4fe4e80b6fd98db82ed4,
+        type: 2}
+    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
+        type: 2}
+      propertyPath: biomes.Array.data[0].Door
+      value: 
+      objectReference: {fileID: 1768491214232880, guid: 5c990a9bd2110c94fb06e4ed7b6f76b6,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 335fb4bfb5e104172a0a772b4d94c106, type: 2}
