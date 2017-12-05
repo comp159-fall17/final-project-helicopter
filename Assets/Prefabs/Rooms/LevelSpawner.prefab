@@ -58,16 +58,16 @@ MonoBehaviour:
   centralNode: {x: 0, y: 0, z: 0}
   roomSize: 41
   biomes:
-  - Name: default
-    Spawn: {fileID: 1567452731244640, guid: 295a5e96bfbb2be458477f67646afa1b, type: 2}
-    Chest: {fileID: 1741947986991990, guid: bd4db284721691e4fbb805144f5a327e, type: 2}
-    Shop: {fileID: 1656662748939780, guid: e9ac94e6adc7743418a0e8da33d49f0b, type: 2}
+  - Name: fall
+    Spawn: {fileID: 1048818662978800, guid: 77bce5369b8fbf94d853b48bb102981f, type: 2}
+    Chest: {fileID: 1663561236707392, guid: 9166d654cc474d145b298d0b08c3d7c2, type: 2}
+    Shop: {fileID: 1074825497090786, guid: 4c0f77567a5d8ad4eb5bbe65b25f42c9, type: 2}
     Boss: {fileID: 1537572507280178, guid: 2505aa27b572de642ba3c7e96daad927, type: 2}
-    Door: {fileID: 1322685360144276, guid: 81c262a4eada6e54796b2242e86d475b, type: 2}
+    Door: {fileID: 1768491214232880, guid: 5c990a9bd2110c94fb06e4ed7b6f76b6, type: 2}
     Enemy:
-    - {fileID: 1392715074779206, guid: 49a095f35982c93438529e7f7d77dc4b, type: 2}
-    - {fileID: 1524052020467562, guid: af39c6f031f67464ab4c93c3637db395, type: 2}
-    - {fileID: 1610209525219550, guid: 5d3728a1953f98943a76e3a5a81fea4c, type: 2}
+    - {fileID: 1882208835404746, guid: 47b769e4706b9744a82919408f0c84d1, type: 2}
+    - {fileID: 1940532329137360, guid: c0e1798f12ef4fe4e80b6fd98db82ed4, type: 2}
+    - {fileID: 1995834978937598, guid: 3bbfac60f22c96041ab02a0e2bc6ac03, type: 2}
   - Name: forest
     Spawn: {fileID: 1953641716646272, guid: f55537d08e9e8c848a0fa16689724a21, type: 2}
     Chest: {fileID: 1223150218728878, guid: 972449c2ec86a7e49b4e803f638c8b3b, type: 2}
@@ -78,3 +78,13 @@ MonoBehaviour:
     - {fileID: 1733611333652460, guid: 8b7a2c61f4e03b844b2fead2805522d4, type: 2}
     - {fileID: 1818506147979310, guid: 4ce19987fc3e5ed43bdd5f4c8ffbd383, type: 2}
     - {fileID: 1469663306965288, guid: 08a1b8650a96a7845a62782db805fdd0, type: 2}
+  - Name: snow
+    Spawn: {fileID: 1953641716646272, guid: f55537d08e9e8c848a0fa16689724a21, type: 2}
+    Chest: {fileID: 1811192728431550, guid: 85a1fd7664ee8f84e8b4a9245adf967d, type: 2}
+    Shop: {fileID: 1865906050501624, guid: d3783d71977a10740b4311eaf983f7a2, type: 2}
+    Boss: {fileID: 1537572507280178, guid: 2505aa27b572de642ba3c7e96daad927, type: 2}
+    Door: {fileID: 1768491214232880, guid: 5c990a9bd2110c94fb06e4ed7b6f76b6, type: 2}
+    Enemy:
+    - {fileID: 1033462802745134, guid: 5f2afcfd36543d84d946742c0aae0a78, type: 2}
+    - {fileID: 1306383078698102, guid: c34524c38ab390042927fdde3fd780c4, type: 2}
+    - {fileID: 1232011594044972, guid: 38bf7cd6ede3a844bb631cbd817e98e5, type: 2}
