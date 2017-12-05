@@ -10,6 +10,7 @@ public class ShopManager : MonoBehaviour {
 
     public GameObject mainShop;
     public GameObject specialShop;
+    public GameObject playerCanvas;
 
     public ShopUpgrade[] Upgrades;
     public Text[] levelText;
@@ -53,6 +54,9 @@ public class ShopManager : MonoBehaviour {
 
         mainShop.SetActive(true);
         specialShop.SetActive(false);
+        playerCanvas.SetActive(false);
+
+        UpdateShopPoints();
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>();
 
@@ -207,5 +211,13 @@ public class ShopManager : MonoBehaviour {
         }
 
         UpdateGamePoints();
+    }
+
+    public void StartGame() {
+        mainShop.SetActive(false);
+        specialShop.SetActive(false);
+        playerCanvas.SetActive(true);
+
+        GameManager.Instance.StartGame();
     }
 }
