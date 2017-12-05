@@ -19,10 +19,8 @@ public class GameManager : MonoBehaviour {
 
     //GameOver
     public int gameoverTime;
-    public GameObject playerPrefab;
 
     //Wave Spawning
-    public Text moneyText;
     public Text gameOverPointsText;
 
     public Text healthText;
@@ -30,11 +28,11 @@ public class GameManager : MonoBehaviour {
 
     public int money; // per run, in-game shop money
     public int points; // outside of game shop currency
-    int startPoints;
 
     public float playerLuck;
 
     private AudioSource deathSound;
+    private int startPoints;
 
     public GameObject Player { get; private set; }
 
@@ -110,7 +108,6 @@ public class GameManager : MonoBehaviour {
     IEnumerator SpawnPickups() {
         while (true) {
             Spawner.Instance.SpawnPickup();
-
             yield return new WaitForSeconds(pickupSpawnInterval);
         }
     }
