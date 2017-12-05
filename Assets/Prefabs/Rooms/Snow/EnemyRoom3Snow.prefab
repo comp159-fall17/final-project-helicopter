@@ -87,6 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4198963455595850}
   - component: {fileID: 65627633012433262}
+  - component: {fileID: 208302039590084134}
   m_Layer: 0
   m_Name: Snow4 (2)
   m_TagString: Untagged
@@ -1647,6 +1648,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4133222325109994}
   - component: {fileID: 65651690383299700}
+  - component: {fileID: 208956217882352002}
   m_Layer: 0
   m_Name: Snow4 (3)
   m_TagString: Untagged
@@ -1694,6 +1696,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4866596451488768}
   - component: {fileID: 65882602267439478}
+  - component: {fileID: 208328667534916072}
   m_Layer: 0
   m_Name: Snow4 (1)
   m_TagString: Untagged
@@ -2036,6 +2039,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4546682673987498}
   - component: {fileID: 136725738913591458}
+  - component: {fileID: 208031033042955942}
   m_Layer: 0
   m_Name: SnowTree2
   m_TagString: Untagged
@@ -2317,6 +2321,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4195297663889554}
   - component: {fileID: 65387350536724184}
+  - component: {fileID: 208263894596802164}
   m_Layer: 0
   m_Name: Snow4
   m_TagString: Untagged
@@ -10466,6 +10471,21 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!208 &208031033042955942
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1627532087987770}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 1, y: 1.5, z: 1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 24.2, y: 2, z: -4.1}
+  m_TimeToStationary: 0.5
 --- !u!208 &208077916994774794
 NavMeshObstacle:
   m_ObjectHideFlags: 1
@@ -10510,6 +10530,51 @@ NavMeshObstacle:
   m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!208 &208263894596802164
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712448808900618}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.75, y: 1.5, z: 2}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 74.7, y: 0, z: -10.89}
+  m_TimeToStationary: 0.5
+--- !u!208 &208302039590084134
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1014959655605136}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.75, y: 1.5, z: 2}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 74.7, y: 0, z: -10.89}
+  m_TimeToStationary: 0.5
+--- !u!208 &208328667534916072
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1550246058748068}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.75, y: 1.5, z: 2}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 74.7, y: 0, z: -10.89}
   m_TimeToStationary: 0.5
 --- !u!208 &208347398629050322
 NavMeshObstacle:
@@ -10630,4 +10695,19 @@ NavMeshObstacle:
   m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!208 &208956217882352002
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1538817981290984}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.75, y: 1.5, z: 2}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 74.7, y: 0, z: -10.89}
   m_TimeToStationary: 0.5
