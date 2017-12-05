@@ -14,6 +14,6 @@ public class RotatePlayer : MonoBehaviour {
 
     void Update() {
         float rotation = PController != null ? PController.AbsoluteTargetAngle : 0;
-        transform.rotation = Quaternion.Euler(new Vector3(0, rotation, 0));
+        transform.rotation = Quaternion.Euler(new Vector3(0, rotation + 90, 0));
     }
 }

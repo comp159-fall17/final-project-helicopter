@@ -1,12 +1,11 @@
 ﻿using System.Linq;
-using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Spawner : MonoBehaviour {
     public static Spawner Instance;
 
-    public float minSpawnDistance;
-
+    public float minSpawnDistance, maxSpawnDistance;
     public float[] spawnProbabilities;
 
     // Pickups
@@ -26,22 +25,50 @@ public class Spawner : MonoBehaviour {
     }
 
     /// <summary>
-    /// Generates valid position.
+    /// Generates valid position using plain radius.
     /// </summary>
     /// <returns>The position.</returns>
+    /// <param name="center"></param>
+    /// <param name="radius"></param>
     /// <param name="overlaps">Overlap validation function.</param>
-    Vector3 GeneratePosition(System.Func<Vector3, Collider[]> overlaps) {
+    Vector3 GeneratePosition(Vector3 center, float radius,
+                             System.Func<Vector3, Collider[]> overlaps) {
         Vector3 candidate;
 
-        Vector3 playerPostion = GameObject.FindGameObjectWithTag("Player")
-                                          .transform.position;
-
+        bool valid;
         do {
-            candidate = new Vector3(Random.Range(-38.0f, 38.0f), 0.5f,
-                                    Random.Range(-38.0f, 38.0f));
+            Vector3 offset = Random.insideUnitCircle * radius;
+            candidate = new Vector3(offset.x, 0.5f, offset.y) + center;
+
             // if far from player and nothing collides with it
-        } while (Vector3.Distance(candidate, playerPostion) < minSpawnDistance
-                 || overlaps(candidate).Any(i => i.gameObject.name != "Ground"));
+            valid = Vector3.Distance(candidate, center) < minSpawnDistance;
+            valid &= overlaps(candidate).Any(i => i.gameObject.name != "Ground");
+        } while (!valid);
+
+        return candidate;
+    }
+
+    /// <summary>
+    /// Generates the position using the NavMesh.
+    /// </summary>
+    /// <returns>The position nav mesh.</returns>
+    /// <param name="center">Center.</param>
+    /// <param name="radius">Radius.</param>
+    /// <param name="overlaps">Overlaps.</param>
+    Vector3 GeneratePositionNavMesh(Vector3 center, float radius,
+                                    System.Func<Vector3, Collider[]> overlaps) {
+        Vector3 candidate;
+
+        bool valid;
+        do {
+            candidate = Wanderer.RandomNavSphere(center, radius, -1);
+            // if in the same room as the center.
+            valid = NavMesh.CalculatePath(center, candidate, NavMesh.AllAreas, new NavMeshPath());
+
+            // if far from player and nothing collides with it
+            valid &= Vector3.Distance(candidate, center) < minSpawnDistance;
+            valid &= overlaps(candidate).Any(i => i.gameObject.name != "Ground");
+        } while (!valid);
 
         return candidate;
     }
@@ -62,7 +89,8 @@ public class Spawner : MonoBehaviour {
 
         Vector3 pos;
         if (inputPos == null) {
-            pos = GeneratePosition(overlaps);
+            pos = GeneratePosition(GameManager.Instance.Player.transform.position, maxSpawnDistance,
+                                   overlaps);
         } else {
             pos = new Vector3(inputPos.position.x, 0.5f, inputPos.position.z);
         }

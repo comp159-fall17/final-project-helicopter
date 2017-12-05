@@ -833,7 +833,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cdfa2e89dcc74bba8920cc2c1b8a812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpawnDistance: 0
+  minSpawnDistance: 5
+  maxSpawnDistance: 41
   spawnProbabilities: []
   Pickups: []
   pickupDestroyTime: 5
