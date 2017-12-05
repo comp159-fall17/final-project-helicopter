@@ -8,7 +8,6 @@ using UnityEngine.UI;
 /// Controller for players. Should only have as many instantiated as there are players.
 /// </summary>
 public class PlayerControls : Shooter {
-
 	private AudioSource upgradeSound;
 
     Vector3 inputAxes;
@@ -109,10 +108,6 @@ public class PlayerControls : Shooter {
 		// Dont delete this.
 		//transform.rotation = Quaternion.Euler(0.0f, AbsoluteTargetAngle, 0.0f);
     }
-
-	public float AbsTargetAngle(){
-		return AbsoluteTargetAngle;
-	}
 
     void TrackCamera() {
         follow.transform.position = CopyY(transform.position,
@@ -294,8 +289,8 @@ public class PlayerControls : Shooter {
     }
 
     protected override void Die() {
-		GameManager.Instance.playDeathSound (true);
-        StartCoroutine(GameManager.Instance.gameOver(this));
+		GameManager.Instance.PlayDeathSound (true);
+        StartCoroutine(GameManager.Instance.GameOver(this));
 
         Hidden = true;
         Health.Reset();
