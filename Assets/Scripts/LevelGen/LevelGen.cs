@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelGen : MonoBehaviour {
+    public static LevelGen Instance;
+
     public int roomsPerFloor;
     [Space(10)]
     [Header("Room rates")]
@@ -25,6 +27,12 @@ public class LevelGen : MonoBehaviour {
     private Biome CurrentBiome { get { return biomes[roomType]; } }
 
     void Start() {
+        if (Instance == null) {
+            Instance = this;
+        } else if (Instance != this) {
+            Destroy(gameObject);
+        }
+
         nodes = new Vector3[5];
         GenerateNodes(centralNode);
 
