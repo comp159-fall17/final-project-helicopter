@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23082438859627354}
   m_Layer: 0
   m_Name: TempBossRoom
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

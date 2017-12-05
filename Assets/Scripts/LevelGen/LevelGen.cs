@@ -32,14 +32,28 @@ public class LevelGen : MonoBehaviour {
 
     void Start () {
         newFloor();
+        //Invoke("removeFloor", 3);
+        //Invoke("newFloor", 6);
 	}
 	
-	void Update () {
-		
+	void Update () { 
+
 	}
+
+    private void resetFloor()
+    {
+        nodeParent.transform.position = new Vector3(0, 0, 0);
+        tempRooms = new List<GameObject>();
+        totalRoomCount = 0;
+        roomCount = 0;
+        loopCount = 0;
+        chestRoomCount = 0;
+        shopRoomCount = 0;
+    }
 
     private void newFloor() //Generates the new floor by createing rooms next to the spawn room by chance
     {
+        resetFloor();
         roomType = Random.Range(0, listLen);
         Instantiate(spawnRoom[roomType], nodes[0].transform.position, Quaternion.identity);
         while (totalRoomCount < roomsPerFloor)
@@ -133,6 +147,17 @@ public class LevelGen : MonoBehaviour {
             {
                 return enemyRoom3[roomType];
             }
+        }
+    }
+
+    private GameObject[] allRooms;
+
+    private void removeFloor()
+    {
+        allRooms = GameObject.FindGameObjectsWithTag("Room");
+        foreach (var item in allRooms)
+        {
+            Destroy(item);
         }
     }
 }
