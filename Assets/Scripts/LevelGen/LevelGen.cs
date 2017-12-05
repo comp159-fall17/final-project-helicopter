@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelGen : MonoBehaviour {
     public static LevelGen Instance;
 
+    public GameObject player;
     public int roomsPerFloor;
     [Space(10)]
     [Header("Room rates")]
@@ -44,7 +45,7 @@ public class LevelGen : MonoBehaviour {
     /// <summary>
     /// Generates new floor.
     /// </summary>
-    private void NewFloor() {
+    public void NewFloor() {
         ResetFloor();
 
         // create new biome
@@ -80,6 +81,7 @@ public class LevelGen : MonoBehaviour {
         spawnedRooms.Clear();
         spawnedChest = false;
         spawnedShop = false;
+        player.transform.position = new Vector3(0, 1.7f, 0);
     }
 
     /// <summary>
@@ -145,7 +147,7 @@ public class LevelGen : MonoBehaviour {
         return CurrentBiome.RandomEnemy();
     }
 
-    private void RemoveFloor() {
+    public void RemoveFloor() {
         NavMeshGen.Reset();
         foreach (var item in GameObject.FindGameObjectsWithTag("Room")) {
             Destroy(item);
