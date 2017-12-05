@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour {
 
     public Text healthText;
     public Text ammoText;
+    public Text moneyText;
 
     public int money; // per run, in-game shop money
     public int points; // outside of game shop currency
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour {
 
         UpdateHealthText();
         UpdateAmmoText();
+        UpdateMoneyText();
         PlayDeathSound(false);
     }
 
@@ -120,9 +122,14 @@ public class GameManager : MonoBehaviour {
         ammoText.text = "Special Ammo: " + Player.GetComponent<PlayerControls>().specialAmmo;
     }
 
+    public void UpdateMoneyText() {
+        moneyText.text = "Money: " + money;
+    }
+
     public void CollectMoney(int amount) {
         money += amount;
         InGameShop.Instance.UpdateShopMoney();
+        UpdateMoneyText();
     }
 
     public void EnemyHasDied(Transform enemyPos) {
