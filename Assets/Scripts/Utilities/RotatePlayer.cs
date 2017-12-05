@@ -3,21 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RotatePlayer : MonoBehaviour {
+    PlayerControls PController;
 
-	private PlayerControls PController;
-	private GameObject PControllerRef;
+    void Start() {
+        GameObject player = GameManager.Instance.Player;
+        if (player != null) {
+            PController = player.GetComponent<PlayerControls>();
+        }
+    }
 
-	void Start(){
-		// These help reference gameObjects in hierarchy, can now use methods from other classes
-		PControllerRef = GameObject.Find ("Player");
-		PController = PControllerRef.GetComponent<PlayerControls> ();
-	}
-
-	void Update () {
-		// Rotates based on mouse location
-		transform.rotation = Quaternion.Euler(0.0f, PController.AbsTargetAngle ()-75f, 0.0f);
-
-	}
-
-
+    void Update() {
+        float rotation = PController != null ? PController.AbsoluteTargetAngle : 0;
+        transform.rotation = Quaternion.Euler(new Vector3(0, rotation, 0));
+    }
 }

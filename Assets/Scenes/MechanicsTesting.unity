@@ -2857,7 +2857,7 @@ MonoBehaviour:
   - 0.5
   - 0.6
   Pickups:
-  - {fileID: 1564462249880584, guid: f74b3f6224d341f4db2aba8b077c1e33, type: 2}
+  - {fileID: 1574741219827104, guid: f74b3f6224d341f4db2aba8b077c1e33, type: 2}
   - {fileID: 1667141853907628, guid: 633cf746dc0e5134e9d62bfafdf5af7e, type: 2}
   - {fileID: 1556539886486880, guid: ae01c27f635de2e47b5d0fad11362992, type: 2}
   - {fileID: 1853456261644928, guid: d7d147562b0fb8048854a1fab2db7585, type: 2}

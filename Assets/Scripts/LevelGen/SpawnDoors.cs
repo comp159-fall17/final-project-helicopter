@@ -1,29 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SpawnDoors : MonoBehaviour {
-
     private GameObject door;
     private bool spawn = true;
 
-	// Use this for initialization
-	void Start () {
-        
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    void OnTriggerEnter()
-    {
-        LevelGen lvlspawn = GameObject.Find("LevelSpawner").GetComponent<LevelGen>();
-        door = lvlspawn.door;
-        if (spawn)
-        {
-            Instantiate(door, this.transform.position, this.transform.rotation, this.transform);
+    void OnTriggerEnter() {
+        door = LevelGen.Instance.Door;
+        if (spawn) {
+            Instantiate(door, transform.position, transform.rotation, transform);
             spawn = false;
         }
     }

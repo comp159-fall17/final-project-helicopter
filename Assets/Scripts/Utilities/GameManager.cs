@@ -2,7 +2,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+[DefaultExecutionOrder(-188)]
+[RequireComponent(typeof(AudioSource))]
 public class GameManager : MonoBehaviour {
+    public static GameManager Instance;
+
     //Pickups
     public float healAmount = 10f;
     public int ammoRecovery = 5;
@@ -11,46 +15,26 @@ public class GameManager : MonoBehaviour {
     public float pickupSpawnInterval = 15.0f;
 
     //Canvases
-    public GameObject guiCanvas;
-    public GameObject shopCanvas;
     public GameObject GameOverCanvas;
 
     //GameOver
     public int gameoverTime;
-    public GameObject playerPrefab;
 
     //Wave Spawning
-    //public Text waveTimerText;
-    //public Text waveNumberText;  
-    public Text moneyText;
     public Text gameOverPointsText;
-
-    public float enemySpawnDelay = 5f;
-    public float minSpawnDistance = 15f;
-    public float waveDelay = 5;
-    public int wave;
-    public int newEmemiesPerWave = 1;
 
     public Text healthText;
     public Text ammoText;
 
-    public static GameManager Instance;
-
-    int enemyCount;
-    int enemySpawnedCount;
-    int enemiesKilled;
-
-    public int money; //per run, in-game shop money
-    public int points; //outside of game shop currency
-    int startPoints;
-    public int highestWave;
-    bool closeShop;
+    public int money; // per run, in-game shop money
+    public int points; // outside of game shop currency
 
     public float playerLuck;
 
-	private AudioSource deathSound;
+    private AudioSource deathSound;
+    private int startPoints;
 
-    public GameObject Player;
+    public GameObject Player { get; private set; }
 
     void Start() {
         if (Instance == null) {
@@ -58,46 +42,38 @@ public class GameManager : MonoBehaviour {
         } else if (Instance != this) {
             Destroy(gameObject);
         }
-		
+
         Player = GameObject.FindGameObjectWithTag("Player");
-        SetWaveTexts();
-        ShopActive = true;
         deathSound = GetComponent<AudioSource>();
     }
 
-	public void playDeathSound(bool canPlay){
-		if (canPlay) {
-			AudioSource.PlayClipAtPoint (deathSound.clip, Camera.main.transform.position);
-		}
-	}
+    public void PlayDeathSound(bool canPlay) {
+        if (canPlay) {
+            AudioSource.PlayClipAtPoint(deathSound.clip, Camera.main.transform.position);
+        }
+    }
 
     public void StartGame() {
-        ShopActive = false;
-
         // reset stats
         startPoints = points;
-        enemiesKilled = 0;
-        enemyCount = 0;
         money = 0;
         playerLuck = 0f;
-        enemySpawning = false;
         Player.GetComponent<PlayerControls>().Health.Reset();
         Player.GetComponent<PlayerControls>().SetDamage();
 
         UpdateHealthText();
         UpdateAmmoText();
-		playDeathSound (false);
-
-        StartCoroutine(ManageWaves());
+        PlayDeathSound(false);
     }
 
-    public IEnumerator gameOver(PlayerControls player) {
+    public IEnumerator GameOver(PlayerControls player) {
         // wait for showing to finish
         gameOverPointsText.enabled = false;
         GameOverCanvas.SetActive(true);
         yield return new WaitForSeconds(1f);
 
-        gameOverPointsText.text = "" + (points - startPoints); //display how many points were earned this run
+        // display how many points were earned this run
+        gameOverPointsText.text = "" + (points - startPoints); 
         gameOverPointsText.enabled = true;
         yield return new WaitForSeconds(gameoverTime);
         GameOverCanvas.SetActive(false);
@@ -119,10 +95,7 @@ public class GameManager : MonoBehaviour {
         removeTagged("Enemy");
         removeTagged("Pickup");
 
-        highestWave = Mathf.Max(highestWave, wave);
-        wave = 0;
         startPoints = points;
-        ShopActive = true;
     }
 
     /// <summary>
@@ -132,79 +105,11 @@ public class GameManager : MonoBehaviour {
         Application.Quit();
     }
 
-    float lastWaveBegin;
-
-    /// <summary>
-    /// Checks if wave needs to be started.
-    /// </summary>
-    IEnumerator ManageWaves() {
-        while (!ShopActive) {
-            if (!enemySpawning && enemyCount == 0) {
-                StartCoroutine(EnemySpawn());
-                StartCoroutine(SpawnPickups());
-
-                lastWaveBegin = Time.time;
-            }
-            SetWaveTexts();
-
-            yield return null;
-        }
-    }
-
-    public bool ShopActive {
-        get { return shopCanvas.activeSelf; }
-        set {
-            ShopManager.Instance.UpdateShopPoints();
-
-            shopCanvas.SetActive(value);
-            guiCanvas.SetActive(!value);
-        }
-    }
-
     IEnumerator SpawnPickups() {
-        while (!ShopActive && false) {
+        while (true) {
             Spawner.Instance.SpawnPickup();
-
             yield return new WaitForSeconds(pickupSpawnInterval);
         }
-    }
-
-    /// <summary>
-    /// Generates valid position.
-    /// </summary>
-    /// <returns>The position.</returns>
-    /// <param name="overlapFunc">Overlap validation function.</param>
-    Vector3 GeneratePosition(System.Func<Vector3, bool> overlapFunc) {
-        Vector3 candidate;
-
-        Vector3 playerPostion = GameObject.FindGameObjectWithTag("Player")
-                                          .transform.position;
-
-        do {
-            candidate = new Vector3(Random.Range(-38.0f, 38.0f), 0.5f,
-                                    Random.Range(-38.0f, 38.0f));
-            // if far from player and nothing collides with it
-        } while (Vector3.Distance(candidate, playerPostion) < minSpawnDistance
-                 || overlapFunc(candidate));
-
-        return candidate;
-    }
-
-    void SetWaveTexts() {
-        // set timer
-        float tilSpawn = waveDelay - (Time.time - lastWaveBegin) + 0.5f;
-        tilSpawn = Mathf.Round(tilSpawn);
-
-        /*if (tilSpawn <= 0) {
-            waveTimerText.text = "Go!";
-        } else {
-            waveTimerText.text = "New wave in "
-                + Mathf.Round(tilSpawn).ToString() + "...";
-        }*/
-
-        // set wave number and points text
-        //waveNumberText.text = wave.ToString();
-        moneyText.text = "money: " + money;
     }
 
     public void UpdateHealthText() {
@@ -215,42 +120,6 @@ public class GameManager : MonoBehaviour {
         ammoText.text = "Special Ammo: " + Player.GetComponent<PlayerControls>().specialAmmo;
     }
 
-    // if EnemySpawn() is currently running
-    bool enemySpawning;
-
-    /// <summary>
-    /// Spawn a few enemies.
-    /// </summary>
-    /// <returns>Coroutine.</returns>
-    IEnumerator EnemySpawn() {
-        enemySpawning = true;
-
-        // wait between waves
-        yield return new WaitForSeconds(waveDelay);
-
-        enemyCount = 0;
-        enemySpawnedCount = 0;
-        wave++;
-
-        // create enemies
-        while (enemySpawnedCount < EnemiesOnWave(wave)) {
-            Spawner.Instance.SpawnEnemy();
-
-            enemyCount++;
-            enemySpawnedCount++;
-
-            yield return new WaitForSeconds(enemySpawnDelay);
-        }
-
-        enemySpawning = false;
-    }
-
-    static int EnemiesOnWave(int wave) {
-        return wave + 4;
-    }
-
-    public int pointsPerWave;
-
     public void CollectMoney(int amount) {
         money += amount;
         InGameShop.Instance.UpdateShopMoney();
@@ -258,13 +127,5 @@ public class GameManager : MonoBehaviour {
 
     public void EnemyHasDied(Transform enemyPos) {
         Spawner.Instance.SpawnPickupAtLocation(enemyPos);
-
-        enemyCount--;
-        enemiesKilled++;
-
-        if (enemiesKilled == EnemiesOnWave(wave)) {
-            points += pointsPerWave;
-            enemiesKilled = 0;
-        }
     }
 }
