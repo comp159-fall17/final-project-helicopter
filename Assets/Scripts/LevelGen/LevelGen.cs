@@ -1,163 +1,163 @@
-﻿using System.Collections;
+﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelGen : MonoBehaviour {
-
     public int roomsPerFloor;
-    public List<GameObject> spawnRoom;
-    public List<GameObject> chestRoom;
-    public List<GameObject> shopRoom;
-    public List<GameObject> enemyRoom1;
-    public List<GameObject> enemyRoom2;
-    public List<GameObject> enemyRoom3;
-    public GameObject door;
-    public List<GameObject> bossRoom;
-    public List<GameObject> nodes;
-    public GameObject nodeParent;
-    public float roomRate;
-    public int listLen;
+    [Space(10)]
+    [Header("Room rates")]
+    public float overallRoomRate;
+    public float chestRate;
+    public float shopRate;
+    [Space(10)]
+    public Vector3 centralNode;
+    public float roomSize;
+    [Space(10)]
+    public Biome[] biomes;
 
-    private GameObject[] rooms;
-    private List<GameObject> tempRooms = new List<GameObject>();
-    private GameObject temp;
-    private GameObject room;
-    private float randNum;
-    private int totalRoomCount = 0;
-    private int roomCount = 0;
-    private int loopCount = 0;
-    private int chestRoomCount = 0;
-    private int shopRoomCount = 0;
+    public GameObject Door { get { return CurrentBiome.Door; } }
+
     private int roomType = 0;
 
-    void Start () {
-        newFloor();
-        //Invoke("removeFloor", 3);
-        //Invoke("newFloor", 6);
-	}
-	
-	void Update () { 
+    private List<GameObject> spawnedRooms = new List<GameObject>();
+    private Vector3[] nodes;
 
-	}
+    private Biome CurrentBiome { get { return biomes[roomType]; } }
 
-    private void resetFloor()
-    {
-        nodeParent.transform.position = new Vector3(0, 0, 0);
-        tempRooms = new List<GameObject>();
-        totalRoomCount = 0;
-        roomCount = 0;
-        loopCount = 0;
-        chestRoomCount = 0;
-        shopRoomCount = 0;
+    void Start() {
+        nodes = new Vector3[5];
+        GenerateNodes(centralNode);
+
+        NewFloor();
+        //Invoke("RemoveFloor", 3);
+        //Invoke("NewFloor", 6);
     }
 
-    private void newFloor() //Generates the new floor by createing rooms next to the spawn room by chance
-    {
-        resetFloor();
-        roomType = Random.Range(0, listLen);
-        Instantiate(spawnRoom[roomType], nodes[0].transform.position, Quaternion.identity);
-        while (totalRoomCount < roomsPerFloor)
-        {
-            loopCount++;
-            if (Random.Range(0f, 1f) > roomRate && checkPos(loopCount) == true)
-            {
-                if (roomsPerFloor - totalRoomCount == 1)
-                    temp = Instantiate(bossRoom[roomType], nodes[loopCount].transform.position, Quaternion.identity) as GameObject;
-                else
-                {
-                    room = randomRoom(roomType); //Sets room to be a random room to be instantiated
-                    temp = Instantiate(room, nodes[loopCount].transform.position, Quaternion.identity) as GameObject;
+    /// <summary>
+    /// Generates new floor.
+    /// </summary>
+    private void NewFloor() {
+        ResetFloor();
+
+        // create new biome
+        roomType = Random.Range(0, biomes.Length);
+
+        // spawn room is guaranteed
+        spawnedRooms.Add(Instantiate(CurrentBiome.Spawn, nodes[0], Quaternion.identity));
+
+        // keep spawning until enough rooms have been spawned
+        while (true) {
+            // give a pass-through to all nodes
+            for (int i = 0; i < 4; i++) {
+                if (Random.value < overallRoomRate && CheckNodeEmpty(i)) {
+                    AddRoom(nodes[i]);
                 }
-                tempRooms.Add(temp);
-                roomCount++;
-                totalRoomCount++;
-                nodes[loopCount].SetActive(false);
+
+                // short-circuit if enough rooms have been reached
+                if (spawnedRooms.Count() == roomsPerFloor) {
+                    return;
+                }
             }
-            if (roomCount == 0 && loopCount == 4)
-                loopCount = 0;
-            if (loopCount == 4) { //Every 4 iterations in the while loop
-                loopCount = 0;
-                roomCount = 0;
-                moveNodes();
-            }
+
+            // Moves nodes to last room generated.
+            GenerateNodes(spawnedRooms.Last().transform.position);
         }
-        //Make boss room spawn as last room
     }
 
-    private bool checkPos(int i)
-    {
-        rooms = GameObject.FindGameObjectsWithTag("Room");
-        foreach (GameObject room in rooms)
-        {
-            if (i == 1 && room.transform.position == nodes[1].transform.position)
-            {
-                return false;
-            }
-            else if (i == 2 && room.transform.position == nodes[2].transform.position)
-            {
-                return false;
-            }
-            else if (i == 3 && room.transform.position == nodes[3].transform.position)
-            {
-                return false;
-            }
-            else if (i == 4 && room.transform.position == nodes[4].transform.position)
-            {
+    /// <summary>
+    /// Reset all floor data.
+    /// </summary>
+    private void ResetFloor() {
+        GenerateNodes(centralNode);
+        spawnedRooms.Clear();
+        spawnedChest = false;
+        spawnedShop = false;
+    }
+
+    /// <summary>
+    /// Add a room to a given position.
+    /// </summary>
+    /// <param name="position">Position to place room at.</param>
+    private void AddRoom(Vector3 position) {
+        // spawn boss on last iteration
+        GameObject nextRoom =
+            spawnedRooms.Count() + 1 == roomsPerFloor ? CurrentBiome.Boss : RandomRoom();
+        spawnedRooms.Add(Instantiate(nextRoom, position, Quaternion.identity) as GameObject);
+    }
+
+    /// <summary>
+    /// Check if node is occupied.
+    /// </summary>
+    /// <returns>If node was occupied</returns>
+    /// <param name="i">The node to check.</param>
+    private bool CheckNodeEmpty(int i) {
+        GameObject[] rooms = GameObject.FindGameObjectsWithTag("Room");
+        foreach (GameObject room in rooms) {
+            if (room.transform.position == nodes[i]) {
                 return false;
             }
         }
         return true;
     }
 
-    private void moveNodes() //Moves nodes to be centered on the next room in the list
-    {
-        for (int i = 0; i <= 4; i++)
-        {
-            nodes[i].SetActive(true); //This loop and seting active above are not working because happens too fast for colliders
+    /// <summary>
+    /// Generates nodes.
+    /// </summary>
+    /// <param name="center">Center position.</param>
+    private void GenerateNodes(Vector3 center) {
+        // generate other nodes
+        for (int i = 0; i < 5; i++) {
+            nodes[i] = center;
         }
-        nodeParent.transform.position = tempRooms[0].transform.position; //Moves nodes to center on next room
-        tempRooms.RemoveAt(0); //Removes that room from list
+
+        // space nodes out
+        nodes[1].x += roomSize;
+        nodes[2].x -= roomSize;
+        nodes[3].z += roomSize;
+        nodes[4].z -= roomSize;
     }
 
-    private GameObject randomRoom(int roomType) //Returns a random room with higher chance of enemy room
-    {
-        randNum = Random.Range(0f, 1f);
-        if (randNum >= 0 && randNum <= .09 && chestRoomCount == 0) //10% chance and once per floor
-        {
-            chestRoomCount++;
-            return chestRoom[roomType];
+    private bool spawnedChest = false;
+    private bool spawnedShop = false;
+
+    private GameObject RandomRoom() {
+        // 10% chance and once per floor
+        if (!spawnedChest && Random.value <= chestRate) {
+            spawnedChest = true;
+            return CurrentBiome.Chest;
         }
-        else if (randNum >= .01 && randNum <= .24 && shopRoomCount == 0) //15% chance and once per floor
-        {
-            shopRoomCount++;
-            return shopRoom[roomType];
+
+        // 15% chance and once per floor
+        if (!spawnedShop && Random.value <= shopRate) {
+            spawnedShop = true;
+            return CurrentBiome.Shop;
         }
-        else //75% chance
-        {
-            randNum = Random.Range(0f, 1f);
-            if (randNum >= 0 && randNum <= .33) //33% chance
-            {
-                return enemyRoom1[roomType];
-            }
-            else if (randNum >= .34 && randNum <= .66) //33% chance
-            {
-                return enemyRoom2[roomType];
-            }
-            else //33% chance
-            {
-                return enemyRoom3[roomType];
-            }
-        }
+
+        // 75%
+        return CurrentBiome.RandomEnemy();
     }
 
-    private GameObject[] allRooms;
-
-    private void removeFloor()
-    {
-        allRooms = GameObject.FindGameObjectsWithTag("Room");
-        foreach (var item in allRooms)
-        {
+    private void RemoveFloor() {
+        NavMeshGen.Reset();
+        foreach (var item in GameObject.FindGameObjectsWithTag("Room")) {
             Destroy(item);
         }
+    }
+}
+
+[System.Serializable]
+public struct Biome {
+    public string Name;
+    [Space(10)]
+    public GameObject Spawn;
+    public GameObject Chest;
+    public GameObject Shop;
+    public GameObject Boss;
+    public GameObject Door;
+    [Space(10)]
+    public GameObject[] Enemy;
+
+    public GameObject RandomEnemy() {
+        return Enemy[Random.Range(0, Enemy.Length)];
     }
 }

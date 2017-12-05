@@ -47,6 +47,10 @@ public class NavMeshGen : MonoBehaviour {
         }
     }
 
+    private void Update() {
+        GenerateNavMesh();
+    }
+
     void OnEnable() {
         data = new NavMeshData();
         dataInstance = NavMesh.AddNavMeshData(data);
@@ -59,6 +63,10 @@ public class NavMeshGen : MonoBehaviour {
     }
 
     public void GenerateNavMesh() {
+        if (Rooms.Count == 0) {
+            return;
+        }
+
         List<NavMeshBuildSource> sources = new List<NavMeshBuildSource>();
         NavMeshBuildSettings buildSettings = NavMesh.GetSettingsByID(0);
         Bounds localBounds = new Bounds(NavMeshPosition, NavMeshSize);

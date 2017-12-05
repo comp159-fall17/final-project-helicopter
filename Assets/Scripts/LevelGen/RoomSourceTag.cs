@@ -30,8 +30,6 @@ public class RoomSourceTag : MonoBehaviour {
         if (ActiveOnStart) {
             NavMeshGen.Subscribe(this);
         }
-
-        NavMeshGen.Instance.GenerateNavMesh();
     }
 
     public void Toggle(bool status) {

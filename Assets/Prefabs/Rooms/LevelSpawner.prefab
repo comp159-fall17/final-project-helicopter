@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1140630157296040}
+  m_IsPrefabParent: 1
+--- !u!1 &1140630157296040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4227445601989182}
+  - component: {fileID: 114587285236578816}
+  m_Layer: 0
+  m_Name: LevelSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4227445601989182
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1140630157296040}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114587285236578816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1140630157296040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10d048bbe1b13284cabaafc5d81c44aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomsPerFloor: 10
+  overallRoomRate: 0.5
+  chestRate: 0.1
+  shopRate: 0.15
+  centralNode: {x: 0, y: 0, z: 0}
+  roomSize: 41
+  biomes:
+  - Name: default
+    Spawn: {fileID: 1567452731244640, guid: 295a5e96bfbb2be458477f67646afa1b, type: 2}
+    Chest: {fileID: 1741947986991990, guid: bd4db284721691e4fbb805144f5a327e, type: 2}
+    Shop: {fileID: 1656662748939780, guid: e9ac94e6adc7743418a0e8da33d49f0b, type: 2}
+    Boss: {fileID: 1537572507280178, guid: 2505aa27b572de642ba3c7e96daad927, type: 2}
+    Door: {fileID: 1322685360144276, guid: 81c262a4eada6e54796b2242e86d475b, type: 2}
+    Enemy:
+    - {fileID: 1392715074779206, guid: 49a095f35982c93438529e7f7d77dc4b, type: 2}
+    - {fileID: 1524052020467562, guid: af39c6f031f67464ab4c93c3637db395, type: 2}
+    - {fileID: 1610209525219550, guid: 5d3728a1953f98943a76e3a5a81fea4c, type: 2}
+  - Name: forest
+    Spawn: {fileID: 1953641716646272, guid: f55537d08e9e8c848a0fa16689724a21, type: 2}
+    Chest: {fileID: 1223150218728878, guid: 972449c2ec86a7e49b4e803f638c8b3b, type: 2}
+    Shop: {fileID: 1960394009676158, guid: 56df11f1fbc57214ab64f3e069301d47, type: 2}
+    Boss: {fileID: 1537572507280178, guid: 2505aa27b572de642ba3c7e96daad927, type: 2}
+    Door: {fileID: 1768491214232880, guid: 5c990a9bd2110c94fb06e4ed7b6f76b6, type: 2}
+    Enemy:
+    - {fileID: 1733611333652460, guid: 8b7a2c61f4e03b844b2fead2805522d4, type: 2}
+    - {fileID: 1818506147979310, guid: 4ce19987fc3e5ed43bdd5f4c8ffbd383, type: 2}
+    - {fileID: 1469663306965288, guid: 08a1b8650a96a7845a62782db805fdd0, type: 2}
