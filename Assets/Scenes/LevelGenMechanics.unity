@@ -488,7 +488,7 @@ Prefab:
         type: 2}
       propertyPath: biomes.Array.data[2].Boss
       value: 
-      objectReference: {fileID: 1712945265647100, guid: 2505aa27b572de642ba3c7e96daad927,
+      objectReference: {fileID: 1060444952333290, guid: 83afd3589fce9ea44b6a90b7e78632f5,
         type: 2}
     - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
         type: 2}
@@ -577,13 +577,13 @@ Prefab:
         type: 2}
       propertyPath: biomes.Array.data[0].Boss
       value: 
-      objectReference: {fileID: 1712945265647100, guid: 2505aa27b572de642ba3c7e96daad927,
+      objectReference: {fileID: 1599026706425516, guid: 23a625dd12253224fb823905ea70e247,
         type: 2}
     - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
         type: 2}
       propertyPath: biomes.Array.data[1].Boss
       value: 
-      objectReference: {fileID: 1712945265647100, guid: 2505aa27b572de642ba3c7e96daad927,
+      objectReference: {fileID: 1294362737254286, guid: 415596adf6b8f4f4bbb1b1c87488d730,
         type: 2}
     - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
         type: 2}
