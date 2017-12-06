@@ -52,21 +52,15 @@ public class ShopManager : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        mainShop.SetActive(true);
-        specialShop.SetActive(false);
-        playerCanvas.SetActive(false);
-
-        UpdateShopPoints();
-
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>();
+
+        Restart();
 
         for (int i = 0; i < 3; i++) {
             weaponLocked[i] = true;
             specialCostText[i].text = "Cost: " + SpecialUpgrades[i].cost;
             SpecialUpgrades[i].currentUpgrade = 1;
             SpecialUpgrades[i].weaponLevel = 1;
-
-            //player.specialWeapons[i].GetComponent<SpecialWeapon>().maxAmmo = originalSpecialAmmo[i];
         }
 
         //grenade launcher original values
@@ -113,6 +107,16 @@ public class ShopManager : MonoBehaviour {
             weaponButton[i].GetComponent<Button>().enabled = !weaponLocked[i];
             weaponCover[i].SetActive(weaponLocked[i]);
         }
+    }
+
+    public void Restart() {
+        player.Hidden = true;
+
+        mainShop.SetActive(true);
+        specialShop.SetActive(false);
+        playerCanvas.SetActive(false);
+
+        UpdateShopPoints();
     }
 
     public void UpdateShopPoints() { //called from GameManager
@@ -217,6 +221,8 @@ public class ShopManager : MonoBehaviour {
         mainShop.SetActive(false);
         specialShop.SetActive(false);
         playerCanvas.SetActive(true);
+
+        player.Hidden = false;
 
         GameManager.Instance.StartGame();
     }

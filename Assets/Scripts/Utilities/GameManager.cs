@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
 
     //Canvases
     public GameObject GameOverCanvas;
+    public GameObject screenCanvas;
 
     //GameOver
     public int gameoverTime;
@@ -48,10 +49,14 @@ public class GameManager : MonoBehaviour {
         deathSound = GetComponent<AudioSource>();
     }
 
-    public void PlayDeathSound(bool canPlay) {
-        if (canPlay) {
-            AudioSource.PlayClipAtPoint(deathSound.clip, Camera.main.transform.position);
+    private void Update() {
+        if (GameObject.FindWithTag("Enemy") == null) {
+            DoorScript.CanCross = true;
         }
+    }
+
+    public void PlayDeathSound() {
+        AudioSource.PlayClipAtPoint(deathSound.clip, Camera.main.transform.position);
     }
 
     public void StartGame() {
@@ -65,13 +70,13 @@ public class GameManager : MonoBehaviour {
         UpdateHealthText();
         UpdateAmmoText();
         UpdateMoneyText();
-        PlayDeathSound(false);
     }
 
     public IEnumerator GameOver(PlayerControls player) {
         // wait for showing to finish
         gameOverPointsText.enabled = false;
         GameOverCanvas.SetActive(true);
+        screenCanvas.SetActive(false);
         yield return new WaitForSeconds(1f);
 
         // display how many points were earned this run
@@ -79,6 +84,7 @@ public class GameManager : MonoBehaviour {
         gameOverPointsText.enabled = true;
         yield return new WaitForSeconds(gameoverTime);
         GameOverCanvas.SetActive(false);
+        screenCanvas.SetActive(true);
 
         player.Reset();
         RestartGame();
@@ -98,6 +104,8 @@ public class GameManager : MonoBehaviour {
         removeTagged("Pickup");
 
         startPoints = points;
+
+        ShopManager.Instance.Restart();
     }
 
     /// <summary>
@@ -119,7 +127,8 @@ public class GameManager : MonoBehaviour {
     }
 
     public void UpdateAmmoText() {
-        ammoText.text = "Special Ammo: " + Player.GetComponent<PlayerControls>().specialAmmo;
+        ammoText.text = "Special Ammo: " + Player.GetComponent<PlayerControls>()
+            .specialAmmo[Player.GetComponent<PlayerControls>().specialType];
     }
 
     public void UpdateMoneyText() {

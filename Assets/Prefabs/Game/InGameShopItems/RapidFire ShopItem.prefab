@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 114456002509803574}
   - component: {fileID: 114039563021594152}
   m_Layer: 5
-  m_Name: PlayerShot ShopItem 2
+  m_Name: RapidFire ShopItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Shot Modifier 2
+  m_Text: Rapid Fire
 --- !u!114 &114456002509803574
 MonoBehaviour:
   m_ObjectHideFlags: 1

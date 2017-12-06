@@ -34,7 +34,7 @@ public class Grenade : SpecialWeapon {
                                 .Where(j => j.layer == LayerMask.NameToLayer("Player"))
                                 .Select(k => k.GetComponent<Shooter>())
                                 .ToArray();
-
+        
         foreach (Shooter hit in hits) {
             // take health away
             hit.Hit(damage);

@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 4597884075599568}
   - component: {fileID: 65656329668761704}
   m_Layer: 0
-  m_Name: ShopRange
+  m_Name: ShopKeepCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

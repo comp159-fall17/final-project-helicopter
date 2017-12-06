@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /// Controller for players. Should only have as many instantiated as there are players.
 /// </summary>
 public class PlayerControls : Shooter {
-	private AudioSource upgradeSound;
+    private AudioSource upgradeSound;
 
     Vector3 inputAxes;
     Vector3 spawn;
@@ -25,10 +25,13 @@ public class PlayerControls : Shooter {
     bool damaged; //used for invincibility frames
     public float invincibleTime;
 
-    [HideInInspector] public int specialAmmo = 0;
+    [HideInInspector] public int[] specialAmmo;
+
+    [HideInInspector] public int specialType; //0 = grenade, 1 = shotgun, 2 = ring, 3 = none
     int maxSpecialAmmo;
 
     public GameObject[] specialWeapons;
+    public GameObject[] bulletModifiers;
 
     protected override bool ShouldShoot {
         get {
@@ -38,7 +41,7 @@ public class PlayerControls : Shooter {
 
     protected override bool ShouldShootSpecial {
         get {
-            return !hidden && Input.GetMouseButtonDown(1) && WallInWay && specialAmmo != 0;
+            return !hidden && Input.GetMouseButtonDown(1) && WallInWay && specialAmmo[specialType] != 0;
         }
     }
 
@@ -72,9 +75,17 @@ public class PlayerControls : Shooter {
         follow = Camera.main;
         spawn = transform.position;
 
-		upgradeSound = GetComponent<AudioSource> ();
+        upgradeSound = GetComponent<AudioSource>();
 
         shieldIndicator.enabled = false;
+        specialType = 3;
+
+        specialAmmo = new int[4];
+        for (int i = 0; i < 3; i++) {
+            specialAmmo[i] = specialWeapons[i].GetComponent<SpecialWeapon>().maxAmmo;
+        }
+
+        specialAmmo[3] = 0;
     }
 
     protected override void Update() {
@@ -92,14 +103,25 @@ public class PlayerControls : Shooter {
             CollectSpecial(1);
         } else if (Input.GetKeyDown(KeyCode.Alpha2)) {
             CollectSpecial(2);
-        }else if (Input.GetKeyDown(KeyCode.Alpha3)) {
+        } else if (Input.GetKeyDown(KeyCode.Alpha3)) {
             CollectSpecial(3);
+        }
+
+        //testing shot modifier collection
+        if (Input.GetKeyDown(KeyCode.Alpha4)) {
+            CollectModifier(0);
+        } else if (Input.GetKeyDown(KeyCode.Alpha5)) {
+            CollectModifier(1);
+        } else if (Input.GetKeyDown(KeyCode.Alpha6)) {
+            CollectModifier(2);
+        } else if (Input.GetKeyDown(KeyCode.Alpha7)) {
+            CollectModifier(3);
         }
     }
 
-	void playUpgradeSound(){
-		AudioSource.PlayClipAtPoint (upgradeSound.clip, Camera.main.transform.position);
-	}
+    void playUpgradeSound() {
+        AudioSource.PlayClipAtPoint(upgradeSound.clip, Camera.main.transform.position);
+    }
 
     void UpdateInputAxes() {
         inputAxes.x = Input.GetAxis("Horizontal");
@@ -108,8 +130,8 @@ public class PlayerControls : Shooter {
 
         inputAxes *= Speed;
 
-		// Dont delete this.
-		//transform.rotation = Quaternion.Euler(0.0f, AbsoluteTargetAngle, 0.0f);
+        // Dont delete this.
+        //transform.rotation = Quaternion.Euler(0.0f, AbsoluteTargetAngle, 0.0f);
     }
 
     void TrackCamera() {
@@ -140,26 +162,26 @@ public class PlayerControls : Shooter {
 
     void OnTriggerEnter(Collider other) {
         switch (other.gameObject.tag) {
-        case "Pickup":
-            if (other.gameObject.name.Contains("Health")) {
-                CollectHealth();
-            } else if (other.gameObject.name.Contains("Shield")) {
-                if (hasShield)
-                    return;
+            case "Pickup":
+                if (other.gameObject.name.Contains("Health")) {
+                    CollectHealth();
+                } else if (other.gameObject.name.Contains("Shield")) {
+                    if (hasShield)
+                        return;
 
-                CollectShield();
-            } else if (other.gameObject.name.Contains("Ammo")) {
-                CollectAmmo();
-            } else if (other.gameObject.name.Contains("Money")) {
-                CollectMoney();
-            }
+                    CollectShield();
+                } else if (other.gameObject.name.Contains("Ammo")) {
+                    CollectAmmo();
+                } else if (other.gameObject.name.Contains("Money")) {
+                    CollectMoney();
+                }
 
-            Destroy(other.gameObject);
-            break;
-        //case "Bullet":
-            //PlayerFlash.GetComponent<MeshRenderer>().enabled = true;
-            //PlayerFlash.GetComponent<BoxCollider>().enabled = true;
-            //break;
+                Destroy(other.gameObject);
+                break;
+                //case "Bullet":
+                //PlayerFlash.GetComponent<MeshRenderer>().enabled = true;
+                //PlayerFlash.GetComponent<BoxCollider>().enabled = true;
+                //break;
         }
     }
 
@@ -172,7 +194,8 @@ public class PlayerControls : Shooter {
             } else if (ShouldShootSpecial) {
                 Instantiate(specialWeapon, BulletSpawnPoint,
                             Quaternion.Euler(0, AbsoluteTargetAngle, 90));
-                specialAmmo--;
+
+                specialAmmo[specialType]--;
                 GameManager.Instance.UpdateAmmoText();
             } else {
                 break;
@@ -180,27 +203,27 @@ public class PlayerControls : Shooter {
 
             yield return new WaitForSeconds(fireDelay);
         }
-        shooting = false;    
+        shooting = false;
     }
 
     public void CollectPickup(int type) { //used in InGameShop
         switch (type) {
-        case 0:
-            CollectHealth();
-            break;
-        case 1:
-            CollectShield();
-            break;
-        case 2:
-            CollectAmmo();
-            break;
+            case 0:
+                CollectHealth();
+                break;
+            case 1:
+                CollectShield();
+                break;
+            case 2:
+                CollectAmmo();
+                break;
         }
     }
 
     void CollectHealth() {
         Health.Heal(GameManager.Instance.healAmount);
         GameManager.Instance.UpdateHealthText();
-		playUpgradeSound ();
+        playUpgradeSound();
     }
 
     void CollectShield() {
@@ -222,14 +245,14 @@ public class PlayerControls : Shooter {
     }
 
     void CollectAmmo() {
-        if (specialAmmo + GameManager.Instance.ammoRecovery <= maxSpecialAmmo) {
-            specialAmmo += GameManager.Instance.ammoRecovery;
+        if (specialAmmo[specialType] + GameManager.Instance.ammoRecovery <= maxSpecialAmmo) {
+            specialAmmo[specialType] += GameManager.Instance.ammoRecovery;
         } else {
-            specialAmmo = maxSpecialAmmo;
+            specialAmmo[specialType] = maxSpecialAmmo;
         }
 
         GameManager.Instance.UpdateAmmoText();
-		playUpgradeSound ();
+        playUpgradeSound();
     }
 
     void CollectMoney() {
@@ -239,26 +262,47 @@ public class PlayerControls : Shooter {
     public void CollectSpecial(int type) { //type is 1 to 3, corresponding to the special weapon
         if (type == 0) {
             specialWeapon = null;
+            specialType = 3;
             maxSpecialAmmo = 0;
-            ResetAmmo();
             return;
         }
 
-        specialWeapon = specialWeapons[type-1];
+        specialWeapon = specialWeapons[type - 1];
+        specialType = type - 1;
         maxSpecialAmmo = specialWeapon.GetComponent<SpecialWeapon>().maxAmmo;
-        ResetAmmo();
 
         GameManager.Instance.UpdateAmmoText();
 
         ShopManager.Instance.UnlockSpecial(type);
     }
 
-    public void ResetAmmo() {
-        specialAmmo = maxSpecialAmmo;
+    public void CollectModifier(int type) {
+        bullet = bulletModifiers[type];
+
+        if (type == 4) {
+            fireDelay = 0.05f;
+        } else {
+            fireDelay = 0.1f;
+        }
     }
 
-    public void SetDamage() {
-        bullet.GetComponent<BulletController>().damage = bulletDamage;
+    public void ResetAmmo(int type) { //reset the ammo of the given weapon
+        specialAmmo[type] = specialWeapons[type].GetComponent<SpecialWeapon>().maxAmmo;
+        GameManager.Instance.UpdateAmmoText();
+    }
+
+    public void SetDamage() { //called from GameManager after the main shop is closed
+        bulletModifiers[0].GetComponent<BulletController>().damage = bulletDamage; //normal bullet
+
+        foreach (BulletController bc in bulletModifiers[1].GetComponentsInChildren<BulletController>()) {
+            bc.damage = bulletDamage; //double shot
+        }
+
+        foreach (BulletController bc in bulletModifiers[2].GetComponentsInChildren<BulletController>()) {
+            bc.damage = bulletDamage; //triple shot
+        }
+
+        bulletModifiers[3].GetComponent<BulletController>().damage = bulletDamage / 2.0f; //rapid fire
     }
 
     public override void Hit(float damage) {
@@ -292,7 +336,7 @@ public class PlayerControls : Shooter {
     }
 
     protected override void Die() {
-		GameManager.Instance.PlayDeathSound (true);
+        GameManager.Instance.PlayDeathSound();
         StartCoroutine(GameManager.Instance.GameOver(this));
 
         Hidden = true;

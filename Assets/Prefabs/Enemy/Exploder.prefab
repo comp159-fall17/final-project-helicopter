@@ -206,6 +206,7 @@ MonoBehaviour:
   walkSpeed: 1
   runSpeed: 1
   hitPoints: 10
+  wanderSearchRadius: 10
   minimumDistanceToTarget: 5
 --- !u!114 &114143730563057026
 MonoBehaviour:
