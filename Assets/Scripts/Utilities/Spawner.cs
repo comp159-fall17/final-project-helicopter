@@ -79,6 +79,7 @@ public class Spawner : MonoBehaviour {
         }
 
         GameObject item = array[type];
+        inputPos.y = item.transform.position.y;
 
         return Instantiate(item, inputPos, item.transform.rotation) as GameObject;
     }
@@ -133,10 +134,18 @@ public class Spawner : MonoBehaviour {
         Spawn(Enemies, "Enemies", type, center, overlaps);
     }
 
+    public void SpawnEnemyAtLocation(int type, Vector3 pos) {
+        Spawn(Enemies, "Enemies", type, pos);
+    }
+
     /// <summary>
     /// Spawns a random enemy.
     /// </summary>
     public void SpawnEnemy(Vector3 center) {
         SpawnEnemy(Random.Range(0, Enemies.Length), center);
+    }
+
+    public void SpawnEnemyAtLocation(Vector3 pos) {
+        SpawnEnemyAtLocation(Random.Range(0, Enemies.Length), pos);
     }
 }

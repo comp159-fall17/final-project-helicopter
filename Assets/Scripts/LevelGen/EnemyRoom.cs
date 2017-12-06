@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -26,6 +27,7 @@ public class EnemyRoom : MonoBehaviour {
     [Space(10)]
     [Header("Enemy spawning")]
     public int EnemiesPerWave;
+    public GameObject SpawnPoints;
 
     public bool IsActive { get; private set; }
 
@@ -73,9 +75,24 @@ public class EnemyRoom : MonoBehaviour {
 
         yield return new WaitForSeconds(0.1f);
 
+        List<Vector3> spawnPoints = GetSpawnPoints();
+
         for (int i = 0; i < EnemiesPerWave; i++) {
-            Spawner.Instance.SpawnEnemy(transform.position);
+            // Uncomment if we figure this out
+            //Spawner.Instance.SpawnEnemy(transform.position);
+
+            Vector3 randomPoint = spawnPoints[Random.Range(0, spawnPoints.Count())];
+            Spawner.Instance.SpawnEnemyAtLocation(randomPoint);
+            spawnPoints.Remove(randomPoint);
         }
         DoorScript.CanCross = false;
+    }
+
+    List<Vector3> GetSpawnPoints() {
+        List<Vector3> list = new List<Vector3>();
+        for (int i = 0; i < SpawnPoints.transform.childCount; i++) {
+            list.Add(SpawnPoints.transform.GetChild(i).transform.position);
+        }
+        return list;
     }
 }

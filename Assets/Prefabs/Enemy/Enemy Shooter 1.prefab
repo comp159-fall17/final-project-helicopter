@@ -91,7 +91,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1461053590188184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalPosition: {x: 0, y: 2, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224563421087303596}
@@ -178,6 +178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxPoints: 10
+  maxPointsLimit: 150
+  maxHealthIncrease: 25
   healthbar: {fileID: 114369703884332478}
 --- !u!114 &114369703884332478
 MonoBehaviour:
@@ -245,11 +247,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1719452425394648, guid: 019e76ea5c94ff74281f789932874a68, type: 2}
-  specialBullet: {fileID: 0}
-  specialAmmo: 0
-  maxSpecialAmmo: 0
+  specialWeapon: {fileID: 0}
   fireDelay: 0.1
   walkSpeed: 10
+  runSpeed: 30
   hitPoints: 10
 --- !u!114 &114888084226133582
 MonoBehaviour:
