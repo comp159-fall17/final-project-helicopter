@@ -18,6 +18,7 @@ public class LevelGen : MonoBehaviour {
     public Biome[] biomes;
 
     public GameObject Door { get { return CurrentBiome.Door; } }
+    public int CurrentFloor { get; private set; }
 
     private int roomType = 0;
 
@@ -35,6 +36,7 @@ public class LevelGen : MonoBehaviour {
 
         nodes = new Vector3[5];
         GenerateNodes(centralNode);
+        CurrentFloor = 0;
 
         NewFloor();
         //Invoke("RemoveFloor", 3);
@@ -157,6 +159,7 @@ public class LevelGen : MonoBehaviour {
         foreach (var item in GameObject.FindGameObjectsWithTag("Room")) {
             Destroy(item);
         }
+        CurrentFloor++;
     }
 }
 

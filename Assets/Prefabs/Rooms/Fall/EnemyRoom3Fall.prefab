@@ -10220,7 +10220,7 @@ MonoBehaviour:
   SourceObjects:
   - {fileID: 33086226426280886}
   - {fileID: 33808320459370382}
-  EnemiesPerWave: 3
+  EnemiesPerWave: 2
   SpawnPoints: {fileID: 1210102738321746}
 --- !u!114 &114586947983094050
 MonoBehaviour:

@@ -77,7 +77,7 @@ public class EnemyRoom : MonoBehaviour {
 
         List<Vector3> spawnPoints = GetSpawnPoints();
 
-        for (int i = 0; i < EnemiesPerWave; i++) {
+        for (int i = 0; i < EnemiesPerWave + LevelGen.Instance.CurrentFloor; i++) {
             // Uncomment if we figure this out
             //Spawner.Instance.SpawnEnemy(transform.position);
 
