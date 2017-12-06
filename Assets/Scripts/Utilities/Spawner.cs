@@ -36,24 +36,28 @@ public class Spawner : MonoBehaviour {
                              System.Func<Vector3, Collider[]> overlaps) {
         Vector3 candidate;
 
-        bool valid;
+        int limit = 0;
         do {
+            limit++;
             Vector3 offset = Random.insideUnitCircle * radius;
-            offset.y = 2f;
-            candidate = offset + center;
-
-            //NavMeshHit hit;
-            //NavMesh.SamplePosition(candidate, out hit, maxSpawnDistance, -1);
-            //valid = hit.position == candidate;
+            candidate = new Vector3(offset.x, 2, offset.y) + center;
 
             // if far from player and nothing collides with it, and on ground.
             Collider[] overlapHits = overlaps(candidate);
 
-            valid = Vector3.Distance(candidate, center) > minSpawnDistance;
-            valid &= !overlapHits.Any(i => i.gameObject.tag != "Floor");
-        } while (!valid);
+            if (Vector3.Distance(candidate, center) < minSpawnDistance
+                || overlapHits.Any(i => i.gameObject.tag != "Floor")) {
+                continue;
+            }
 
-        print(center);
+            // find closest NavMesh position, otherwise try a new spot
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(candidate, out hit, radius, -1)) {
+                return hit.position;
+            }
+        } while (limit < 30);
+
+        Debug.LogWarning("failed: " + candidate);
         return candidate;
     }
 

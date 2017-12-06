@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -63,6 +64,15 @@ public class EnemyRoom : MonoBehaviour {
     }
 
     public void Spawn() {
+        StartCoroutine(Spawning());
+    }
+
+    private IEnumerator Spawning() {
+        NavMeshGen.Instance.NavMeshPosition = transform.position;
+        NavMeshGen.Instance.NavMeshSize = new Vector3(41, 5, 41);
+
+        yield return new WaitForSeconds(0.1f);
+
         for (int i = 0; i < EnemiesPerWave; i++) {
             Spawner.Instance.SpawnEnemy(transform.position);
         }

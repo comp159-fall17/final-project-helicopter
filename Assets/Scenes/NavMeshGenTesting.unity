@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minSpawnDistance: 5
-  maxSpawnDistance: 18
+  maxSpawnDistance: 15
   spawnProbabilities:
   - 0.1
   - 0.1
@@ -619,6 +619,7 @@ MonoBehaviour:
   moneyGain: 5
   pickupSpawnInterval: 15
   GameOverCanvas: {fileID: 846329341}
+  screenCanvas: {fileID: 0}
   gameoverTime: 0
   gameOverPointsText: {fileID: 274753499}
   healthText: {fileID: 1505311506}

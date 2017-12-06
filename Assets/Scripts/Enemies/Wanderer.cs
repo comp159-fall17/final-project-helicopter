@@ -10,7 +10,10 @@ public class Wanderer : EnemyController {
     /// </summary>
     public static Vector3 RandomNavSphere(Vector3 origin, float distance, int layermask) {
         for (int i = 0; i < 30; i++) {
-            Vector3 randomDirection = Random.insideUnitSphere * distance + origin;
+            Vector2 randomCircle = Random.insideUnitCircle;
+            Vector3 randomDirection = new Vector3(randomCircle.x, 0, randomCircle.y) * distance
+                + origin;
+            
             NavMeshHit navHit;
             if (NavMesh.SamplePosition(randomDirection, out navHit, distance, layermask)) {
                 return navHit.position;
@@ -27,6 +30,10 @@ public class Wanderer : EnemyController {
     protected override void Start() {
         Agent = GetComponent<NavMeshAgent>();
         Agent.speed = Speed;
+
+        // toggle because won't lock the first time??????????
+        Agent.enabled = false;
+        Agent.enabled = true;
 
         // default wandering
         StartCoroutine(Wander());
