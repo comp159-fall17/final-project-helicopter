@@ -124,7 +124,8 @@ public class GameManager : MonoBehaviour {
     }
 
     public void UpdateAmmoText() {
-        ammoText.text = "Special Ammo: " + Player.GetComponent<PlayerControls>().specialAmmo;
+        ammoText.text = "Special Ammo: " + Player.GetComponent<PlayerControls>()
+            .specialAmmo[Player.GetComponent<PlayerControls>().specialType];
     }
 
     public void UpdateMoneyText() {

@@ -77,8 +77,11 @@ public class InGameShop : MonoBehaviour {
         return Random.Range(0, highest);
     }
 
-    void BuyItem(int item, GameObject button) {
-        if (shopMoney >= itemCosts[item]) {
+    void BuyItem(int item, GameObject button, bool free = false) {
+        bool swap = false;
+        int oldSpecial = -1;
+
+        if (shopMoney >= itemCosts[item] || free) {
             switch (item) {
             case 0: //health pickup
             case 1: //shield pickup
@@ -91,7 +94,17 @@ public class InGameShop : MonoBehaviour {
             case 4: //grenade launcher
             case 5: //shotgun
             case 6: //ring cannon
+                if (player.specialType != 3) { //swap specials
+                    swap = true;
+                    oldSpecial = player.specialType;
+                }
+
                 player.CollectSpecial(item - 3);
+
+                if (swap && !free) {
+                    player.ResetAmmo(item - 4);
+                }
+
                 break;
             case 7:
                 Debug.Log("Bought shot modifier 1"); //TODO
@@ -104,9 +117,15 @@ public class InGameShop : MonoBehaviour {
                 break;
             }
 
-            shopMoney -= itemCosts[item];
+            if (!free) {
+                shopMoney -= itemCosts[item];
+            }
 
-            RemoveButton(button);
+            if (!swap) {
+                RemoveButton(button);
+            } else {
+                SwapButton(button, oldSpecial);
+            }
         }
 
         UpdateGameMoney();
@@ -114,6 +133,15 @@ public class InGameShop : MonoBehaviour {
 
     void RemoveButton(GameObject button) { //this item has been bought
         Destroy(button);
+    }
+
+    void SwapButton(GameObject button, int specialType) { //only for special weapons
+        GameObject newButton = Instantiate(possibleShopItems[specialType+4], shopCanvas.transform, false);
+        newButton.transform.position = button.transform.position;
+        newButton.GetComponentsInChildren<Text>()[1].text = "Cost: 0";
+        newButton.GetComponent<Button>().onClick.AddListener(() => BuyItem(specialType+4, newButton, true));
+
+        RemoveButton(button); //old button
     }
 
     public void UpdateShopMoney() { //called from GameManager

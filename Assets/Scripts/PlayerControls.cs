@@ -25,7 +25,13 @@ public class PlayerControls : Shooter {
     bool damaged; //used for invincibility frames
     public float invincibleTime;
 
-    [HideInInspector] public int specialAmmo = 0;
+    /*[HideInInspector] public int special1Ammo = 0;
+    [HideInInspector] public int special2Ammo = 0;
+    [HideInInspector] public int special3Ammo = 0;*/
+
+    [HideInInspector] public int[] specialAmmo;
+
+    [HideInInspector] public int specialType = 0; //0 = grenade, 1 = shotgun, 2 = ring, 3 = none
     int maxSpecialAmmo;
 
     public GameObject[] specialWeapons;
@@ -38,7 +44,7 @@ public class PlayerControls : Shooter {
 
     protected override bool ShouldShootSpecial {
         get {
-            return !hidden && Input.GetMouseButtonDown(1) && WallInWay && specialAmmo != 0;
+            return !hidden && Input.GetMouseButtonDown(1) && WallInWay && specialAmmo[specialType] != 0;
         }
     }
 
@@ -75,6 +81,14 @@ public class PlayerControls : Shooter {
 		upgradeSound = GetComponent<AudioSource> ();
 
         shieldIndicator.enabled = false;
+        specialType = 3;
+
+        specialAmmo = new int[4];
+        for (int i = 0; i < 3; i++) {
+            specialAmmo[i] = specialWeapons[i].GetComponent<SpecialWeapon>().maxAmmo;
+        }
+
+        specialAmmo[3] = 0;
     }
 
     protected override void Update() {
@@ -172,7 +186,8 @@ public class PlayerControls : Shooter {
             } else if (ShouldShootSpecial) {
                 Instantiate(specialWeapon, BulletSpawnPoint,
                             Quaternion.Euler(0, AbsoluteTargetAngle, 90));
-                specialAmmo--;
+
+                specialAmmo[specialType]--;
                 GameManager.Instance.UpdateAmmoText();
             } else {
                 break;
@@ -222,10 +237,10 @@ public class PlayerControls : Shooter {
     }
 
     void CollectAmmo() {
-        if (specialAmmo + GameManager.Instance.ammoRecovery <= maxSpecialAmmo) {
-            specialAmmo += GameManager.Instance.ammoRecovery;
+        if (specialAmmo[specialType] + GameManager.Instance.ammoRecovery <= maxSpecialAmmo) {
+            specialAmmo[specialType] += GameManager.Instance.ammoRecovery;
         } else {
-            specialAmmo = maxSpecialAmmo;
+            specialAmmo[specialType] = maxSpecialAmmo;
         }
 
         GameManager.Instance.UpdateAmmoText();
@@ -239,22 +254,23 @@ public class PlayerControls : Shooter {
     public void CollectSpecial(int type) { //type is 1 to 3, corresponding to the special weapon
         if (type == 0) {
             specialWeapon = null;
+            specialType = 3;
             maxSpecialAmmo = 0;
-            ResetAmmo();
             return;
         }
 
         specialWeapon = specialWeapons[type-1];
+        specialType = type - 1;
         maxSpecialAmmo = specialWeapon.GetComponent<SpecialWeapon>().maxAmmo;
-        ResetAmmo();
 
         GameManager.Instance.UpdateAmmoText();
 
         ShopManager.Instance.UnlockSpecial(type);
     }
 
-    public void ResetAmmo() {
-        specialAmmo = maxSpecialAmmo;
+    public void ResetAmmo(int type) { //reset the ammo of the given weapon
+        specialAmmo[type] = specialWeapons[type].GetComponent<SpecialWeapon>().maxAmmo;
+        GameManager.Instance.UpdateAmmoText();
     }
 
     public void SetDamage() {
