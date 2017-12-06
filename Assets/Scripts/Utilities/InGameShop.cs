@@ -106,14 +106,10 @@ public class InGameShop : MonoBehaviour {
                 }
 
                 break;
-            case 7:
-                Debug.Log("Bought shot modifier 1"); //TODO
-                break;
-            case 8:
-                Debug.Log("Bought shot modifier 2"); //TODO
-                break;
-            case 9:
-                Debug.Log("Bought shot modifier 3"); //TODO
+            case 7: //double shot
+            case 8: //triple shot
+            case 9: //rapid fire
+                player.CollectModifier(item - 6);
                 break;
             }
 
