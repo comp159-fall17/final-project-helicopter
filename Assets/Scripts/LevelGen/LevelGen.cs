@@ -81,7 +81,7 @@ public class LevelGen : MonoBehaviour {
         spawnedRooms.Clear();
         spawnedChest = false;
         spawnedShop = false;
-        GameManager.Instance.Player.transform.position = new Vector3(0, 1.7f, 0);
+        GameManager.Instance.Player.transform.position = new Vector3(0, 1f, 0);
     }
 
     /// <summary>
