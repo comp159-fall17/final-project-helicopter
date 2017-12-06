@@ -25,16 +25,13 @@ public class PlayerControls : Shooter {
     bool damaged; //used for invincibility frames
     public float invincibleTime;
 
-    /*[HideInInspector] public int special1Ammo = 0;
-    [HideInInspector] public int special2Ammo = 0;
-    [HideInInspector] public int special3Ammo = 0;*/
-
     [HideInInspector] public int[] specialAmmo;
 
-    [HideInInspector] public int specialType = 0; //0 = grenade, 1 = shotgun, 2 = ring, 3 = none
+    [HideInInspector] public int specialType; //0 = grenade, 1 = shotgun, 2 = ring, 3 = none
     int maxSpecialAmmo;
 
     public GameObject[] specialWeapons;
+    public GameObject[] bulletModifiers;
 
     protected override bool ShouldShoot {
         get {
@@ -108,6 +105,17 @@ public class PlayerControls : Shooter {
             CollectSpecial(2);
         } else if (Input.GetKeyDown(KeyCode.Alpha3)) {
             CollectSpecial(3);
+        }
+
+        //testing shot modifier collection
+        if (Input.GetKeyDown(KeyCode.Alpha4)) {
+            CollectModifier(0);
+        } else if (Input.GetKeyDown(KeyCode.Alpha5)) {
+            CollectModifier(1);
+        } else if (Input.GetKeyDown(KeyCode.Alpha6)) {
+            CollectModifier(2);
+        } else if (Input.GetKeyDown(KeyCode.Alpha7)) {
+            CollectModifier(3);
         }
     }
 
@@ -268,13 +276,33 @@ public class PlayerControls : Shooter {
         ShopManager.Instance.UnlockSpecial(type);
     }
 
+    public void CollectModifier(int type) {
+        bullet = bulletModifiers[type];
+
+        if (type == 4) {
+            fireDelay = 0.05f;
+        } else {
+            fireDelay = 0.1f;
+        }
+    }
+
     public void ResetAmmo(int type) { //reset the ammo of the given weapon
         specialAmmo[type] = specialWeapons[type].GetComponent<SpecialWeapon>().maxAmmo;
         GameManager.Instance.UpdateAmmoText();
     }
 
-    public void SetDamage() {
-        bullet.GetComponent<BulletController>().damage = bulletDamage;
+    public void SetDamage() { //called from GameManager after the main shop is closed
+        bulletModifiers[0].GetComponent<BulletController>().damage = bulletDamage; //normal bullet
+
+        foreach (BulletController bc in bulletModifiers[1].GetComponentsInChildren<BulletController>()) {
+            bc.damage = bulletDamage; //double shot
+        }
+
+        foreach (BulletController bc in bulletModifiers[2].GetComponentsInChildren<BulletController>()) {
+            bc.damage = bulletDamage; //triple shot
+        }
+
+        bulletModifiers[3].GetComponent<BulletController>().damage = bulletDamage / 2.0f; //rapid fire
     }
 
     public override void Hit(float damage) {
