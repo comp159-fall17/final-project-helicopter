@@ -24,6 +24,7 @@ public class LevelGen : MonoBehaviour {
 
     private List<GameObject> spawnedRooms = new List<GameObject>();
     private Vector3[] nodes;
+    private Vector3 originalNode;
 
     private Biome CurrentBiome { get { return biomes[roomType]; } }
 
@@ -34,6 +35,7 @@ public class LevelGen : MonoBehaviour {
             Destroy(gameObject);
         }
 
+        originalNode = centralNode;
         nodes = new Vector3[5];
         GenerateNodes(centralNode);
         CurrentFloor = 0;
@@ -49,6 +51,7 @@ public class LevelGen : MonoBehaviour {
     public void NewFloor() {
         ResetFloor();
         SetNavMeshSize();
+        centralNode = originalNode;
 
         // create new biome
         roomType = Random.Range(0, biomes.Length);
