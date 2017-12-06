@@ -279,8 +279,8 @@ public class PlayerControls : Shooter {
     public void CollectModifier(int type) {
         bullet = bulletModifiers[type];
 
-        if (type == 4) {
-            fireDelay = 0.05f;
+        if (type == 3) {
+            fireDelay = 0.025f;
         } else {
             fireDelay = 0.1f;
         }
