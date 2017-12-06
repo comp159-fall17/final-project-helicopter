@@ -91,7 +91,8 @@ public abstract class Shooter : MonoBehaviour {
         get {
             Quaternion outside = Quaternion.AngleAxis(AbsoluteTargetAngle,
                                                       Vector3.up);
-            return Body.position - (outside * Vector3.right).normalized;
+            //return Body.position - (outside * Vector3.right).normalized;
+            return (Body.position + new Vector3(0f, 1.5f, 0f)) - (outside * Vector3.right).normalized;
         }
     }
 
