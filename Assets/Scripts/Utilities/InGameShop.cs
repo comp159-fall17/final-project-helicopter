@@ -121,7 +121,7 @@ public class InGameShop : MonoBehaviour {
                 shopMoney -= itemCosts[item];
             }
 
-            if (!swap) {
+            if (!swap || oldSpecial == item - 4) {
                 RemoveButton(button);
             } else {
                 SwapButton(button, oldSpecial);
