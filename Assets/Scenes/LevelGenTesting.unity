@@ -262,7 +262,7 @@ Prefab:
         type: 2}
       propertyPath: biomes.Array.data[2].Shop
       value: 
-      objectReference: {fileID: 1865906050501624, guid: d3783d71977a10740b4311eaf983f7a2,
+      objectReference: {fileID: 1416020413667522, guid: d3783d71977a10740b4311eaf983f7a2,
         type: 2}
     - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
         type: 2}
@@ -321,7 +321,7 @@ Prefab:
         type: 2}
       propertyPath: biomes.Array.data[0].Shop
       value: 
-      objectReference: {fileID: 1074825497090786, guid: 4c0f77567a5d8ad4eb5bbe65b25f42c9,
+      objectReference: {fileID: 1710471831296608, guid: 4c0f77567a5d8ad4eb5bbe65b25f42c9,
         type: 2}
     - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
         type: 2}
@@ -370,6 +370,12 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 1036567160}
+    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
+        type: 2}
+      propertyPath: biomes.Array.data[1].Shop
+      value: 
+      objectReference: {fileID: 1536069424163006, guid: 56df11f1fbc57214ab64f3e069301d47,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 335fb4bfb5e104172a0a772b4d94c106, type: 2}
   m_IsPrefabParent: 0
@@ -641,6 +647,7 @@ MonoBehaviour:
   moneyGain: 5
   pickupSpawnInterval: 15
   GameOverCanvas: {fileID: 0}
+  screenCanvas: {fileID: 0}
   gameoverTime: 0
   gameOverPointsText: {fileID: 0}
   healthText: {fileID: 0}
