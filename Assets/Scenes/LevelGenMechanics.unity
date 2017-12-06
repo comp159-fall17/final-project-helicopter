@@ -1288,20 +1288,50 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4083336479581450, guid: 57272a5d8d438b34c9dd4185430bb40c, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.09374654
+      value: -0.093746535
       objectReference: {fileID: 0}
     - target: {fileID: 4083336479581450, guid: 57272a5d8d438b34c9dd4185430bb40c, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.6978552
+      value: 0.6978551
       objectReference: {fileID: 0}
     - target: {fileID: 4083336479581450, guid: 57272a5d8d438b34c9dd4185430bb40c, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.70746905
+      value: 0.707469
       objectReference: {fileID: 0}
     - target: {fileID: 4083336479581450, guid: 57272a5d8d438b34c9dd4185430bb40c, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.060806707
+      value: 0.0608067
       objectReference: {fileID: 0}
+    - target: {fileID: 114389107911228722, guid: 57272a5d8d438b34c9dd4185430bb40c,
+        type: 2}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 1471319273677640, guid: b2ec5efd432c3d54fb7a0c4b1cc7c80c,
+        type: 2}
+    - target: {fileID: 114389107911228722, guid: 57272a5d8d438b34c9dd4185430bb40c,
+        type: 2}
+      propertyPath: bulletModifiers.Array.data[0]
+      value: 
+      objectReference: {fileID: 1471319273677640, guid: b2ec5efd432c3d54fb7a0c4b1cc7c80c,
+        type: 2}
+    - target: {fileID: 114389107911228722, guid: 57272a5d8d438b34c9dd4185430bb40c,
+        type: 2}
+      propertyPath: bulletModifiers.Array.data[3]
+      value: 
+      objectReference: {fileID: 1156222511993762, guid: 356d69475d809c74697fc0964c78d0e9,
+        type: 2}
+    - target: {fileID: 114389107911228722, guid: 57272a5d8d438b34c9dd4185430bb40c,
+        type: 2}
+      propertyPath: bulletModifiers.Array.data[2]
+      value: 
+      objectReference: {fileID: 1547273584167642, guid: dd4d113fa73b26d43a3ea094eec2da30,
+        type: 2}
+    - target: {fileID: 114389107911228722, guid: 57272a5d8d438b34c9dd4185430bb40c,
+        type: 2}
+      propertyPath: specialWeapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1950066926181144, guid: 6a4291b09ed4c0e40936eef5d00d998d,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57272a5d8d438b34c9dd4185430bb40c, type: 2}
   m_IsPrefabParent: 0
@@ -1347,7 +1377,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4040265449576728, guid: 4bdb645690ebd468199f96bc6bc6d176, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bdb645690ebd468199f96bc6bc6d176, type: 2}

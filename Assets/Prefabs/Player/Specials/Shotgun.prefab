@@ -52,7 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAmmo: 15
-  currentAmmo: 0
   bullet: {fileID: 1757743640792030, guid: 67dfec9a6df67f249b303069fe9227bd, type: 2}
   numBullets: 10
   fireArc: 25
