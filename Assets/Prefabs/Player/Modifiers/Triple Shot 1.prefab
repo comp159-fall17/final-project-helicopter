@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4500476556827980}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4299335235699602}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4095269693934706}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4831390439760670}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 4343801669731338}
   - component: {fileID: 33894414829318048}
   - component: {fileID: 23444348943464458}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: shot_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4596568699554158}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4493800348983198}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 54291759916552530}
   - component: {fileID: 114122322683833914}
   - component: {fileID: 23869458444621210}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlayerBullet 1 (1)
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4246923345595210}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 54615168601736346}
   - component: {fileID: 114036865007417370}
   - component: {fileID: 23069795391876552}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlayerBullet 1
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4634186787212816}
   - component: {fileID: 137424074531155950}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: shoot_001_fx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4563434981217984}
   - component: {fileID: 137714140541763594}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: shoot_001_fx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 4352105943875004}
   - component: {fileID: 33696390771237680}
   - component: {fileID: 23375588089367642}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: shot_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4446040573229678}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 4662539784982804}
   - component: {fileID: 33539197717674996}
   - component: {fileID: 23637193981112998}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: shot_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4520980822104332}
   - component: {fileID: 137601912964868126}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: shoot_001_fx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4493070568074250}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 54790254380071672}
   - component: {fileID: 114580926799698934}
   - component: {fileID: 23741532013850876}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlayerBullet 1 (2)
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
@@ -329,7 +329,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4672881388631716}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4855661070340424}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,7 +359,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4006399545630560}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4271386306818838}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4193860813863504}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 4585701123294940}
   - component: {fileID: 33127956641426456}
   - component: {fileID: 23278537465209474}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: shot_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4198611815578140}
   - component: {fileID: 137662294921089654}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: shoot_001_fx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4802739657728236}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4480423898058564}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,9 +115,9 @@ GameObject:
   - component: {fileID: 95731552197638666}
   - component: {fileID: 136765551610561326}
   - component: {fileID: 54288532833770074}
-  - component: {fileID: 114371664267015908}
   - component: {fileID: 23920194174761518}
-  m_Layer: 0
+  - component: {fileID: 114371664267015908}
+  m_Layer: 2
   m_Name: ShotgunBullet 1
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 3000
   damage: 5
-  distance: 40
+  distance: 30
 --- !u!136 &136765551610561326
 CapsuleCollider:
   m_ObjectHideFlags: 1

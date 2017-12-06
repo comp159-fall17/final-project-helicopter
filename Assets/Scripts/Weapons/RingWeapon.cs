@@ -6,6 +6,8 @@ public class RingWeapon : SpecialWeapon {
 
     void Start() {
         Expand();
+
+        Destroy(gameObject);
     }
 
     void Expand() {

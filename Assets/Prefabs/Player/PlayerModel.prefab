@@ -2796,7 +2796,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1418674777095678}
-  m_LocalRotation: {x: -0.093746535, y: 0.6978551, z: 0.707469, w: 0.0608067}
+  m_LocalRotation: {x: -0.093746535, y: 0.6978551, z: 0.707469, w: 0.060806695}
   m_LocalPosition: {x: -0.05543403, y: 0.0017306843, z: 0.098653734}
   m_LocalScale: {x: 1.0000004, y: 1.0000006, z: 1.0000005}
   m_Children:
@@ -5280,7 +5280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b19fe3405e97a4089b0d0a00da1470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1757743640792030, guid: b5eeb03d86cfbb642b7ff1f8a0f03fc8, type: 2}
+  bullet: {fileID: 1471319273677640, guid: b2ec5efd432c3d54fb7a0c4b1cc7c80c, type: 2}
   specialWeapon: {fileID: 0}
   fireDelay: 0.1
   walkSpeed: 15
@@ -5298,10 +5298,10 @@ MonoBehaviour:
   - {fileID: 1950066926181144, guid: 6a4291b09ed4c0e40936eef5d00d998d, type: 2}
   - {fileID: 1200282698261456, guid: 2d21c9c818ede5e499ad201b31be954f, type: 2}
   bulletModifiers:
-  - {fileID: 1757743640792030, guid: b5eeb03d86cfbb642b7ff1f8a0f03fc8, type: 2}
+  - {fileID: 1471319273677640, guid: b2ec5efd432c3d54fb7a0c4b1cc7c80c, type: 2}
   - {fileID: 1431903817589926, guid: c09b1ff5517a92c4d990349fc76a7aa9, type: 2}
-  - {fileID: 1448211276552170, guid: c16dfa9d09753354b858e279e3899354, type: 2}
-  - {fileID: 1757743640792030, guid: d81e75fcc2e181544b541f203078aa5e, type: 2}
+  - {fileID: 1547273584167642, guid: dd4d113fa73b26d43a3ea094eec2da30, type: 2}
+  - {fileID: 1156222511993762, guid: 356d69475d809c74697fc0964c78d0e9, type: 2}
 --- !u!114 &114411435988794088
 MonoBehaviour:
   m_ObjectHideFlags: 1

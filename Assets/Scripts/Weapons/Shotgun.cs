@@ -9,6 +9,8 @@ public class Shotgun : SpecialWeapon {
 
     void Start() {
         Shoot();
+
+        Destroy(gameObject);
     }
 
     void Shoot() {

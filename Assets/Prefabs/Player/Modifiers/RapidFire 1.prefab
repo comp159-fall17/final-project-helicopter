@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 54062671176890394}
   - component: {fileID: 114508701032254436}
   - component: {fileID: 23555268156623738}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RapidFire 1
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4746200060408410}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 4384346107695084}
   - component: {fileID: 33847463735814756}
   - component: {fileID: 23020279309781516}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: shot_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4601241228417666}
   - component: {fileID: 137398669224388818}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: shoot_001_fx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4701470030881602}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4326857422996802}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4334478769470688}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dummy003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
