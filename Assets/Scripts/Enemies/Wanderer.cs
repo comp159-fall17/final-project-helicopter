@@ -9,11 +9,15 @@ public class Wanderer : EnemyController {
     /// Adapted from https://forum.unity.com/threads/solved-random-wander-ai-using-navmesh.327950/
     /// </summary>
     public static Vector3 RandomNavSphere(Vector3 origin, float distance, int layermask) {
-        Vector3 randomDirection = Random.onUnitSphere * distance + origin;
+        for (int i = 0; i < 30; i++) {
+            Vector3 randomDirection = Random.insideUnitSphere * distance + origin;
+            NavMeshHit navHit;
+            if (NavMesh.SamplePosition(randomDirection, out navHit, distance, layermask)) {
+                return navHit.position;
+            }
+        }
 
-        NavMeshHit navHit;
-        NavMesh.SamplePosition(randomDirection, out navHit, distance, layermask);
-        return navHit.position;
+        return origin;
     }
 
     public float wanderSearchRadius = 5f;

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /// Controller for players. Should only have as many instantiated as there are players.
 /// </summary>
 public class PlayerControls : Shooter {
-	private AudioSource upgradeSound;
+    private AudioSource upgradeSound;
 
     Vector3 inputAxes;
     Vector3 spawn;
@@ -72,7 +72,7 @@ public class PlayerControls : Shooter {
         follow = Camera.main;
         spawn = transform.position;
 
-		upgradeSound = GetComponent<AudioSource> ();
+        upgradeSound = GetComponent<AudioSource>();
 
         shieldIndicator.enabled = false;
     }
@@ -92,14 +92,14 @@ public class PlayerControls : Shooter {
             CollectSpecial(1);
         } else if (Input.GetKeyDown(KeyCode.Alpha2)) {
             CollectSpecial(2);
-        }else if (Input.GetKeyDown(KeyCode.Alpha3)) {
+        } else if (Input.GetKeyDown(KeyCode.Alpha3)) {
             CollectSpecial(3);
         }
     }
 
-	void playUpgradeSound(){
-		AudioSource.PlayClipAtPoint (upgradeSound.clip, Camera.main.transform.position);
-	}
+    void playUpgradeSound() {
+        AudioSource.PlayClipAtPoint(upgradeSound.clip, Camera.main.transform.position);
+    }
 
     void UpdateInputAxes() {
         inputAxes.x = Input.GetAxis("Horizontal");
@@ -108,8 +108,8 @@ public class PlayerControls : Shooter {
 
         inputAxes *= Speed;
 
-		// Dont delete this.
-		//transform.rotation = Quaternion.Euler(0.0f, AbsoluteTargetAngle, 0.0f);
+        // Dont delete this.
+        //transform.rotation = Quaternion.Euler(0.0f, AbsoluteTargetAngle, 0.0f);
     }
 
     void TrackCamera() {
@@ -140,26 +140,26 @@ public class PlayerControls : Shooter {
 
     void OnTriggerEnter(Collider other) {
         switch (other.gameObject.tag) {
-        case "Pickup":
-            if (other.gameObject.name.Contains("Health")) {
-                CollectHealth();
-            } else if (other.gameObject.name.Contains("Shield")) {
-                if (hasShield)
-                    return;
+            case "Pickup":
+                if (other.gameObject.name.Contains("Health")) {
+                    CollectHealth();
+                } else if (other.gameObject.name.Contains("Shield")) {
+                    if (hasShield)
+                        return;
 
-                CollectShield();
-            } else if (other.gameObject.name.Contains("Ammo")) {
-                CollectAmmo();
-            } else if (other.gameObject.name.Contains("Money")) {
-                CollectMoney();
-            }
+                    CollectShield();
+                } else if (other.gameObject.name.Contains("Ammo")) {
+                    CollectAmmo();
+                } else if (other.gameObject.name.Contains("Money")) {
+                    CollectMoney();
+                }
 
-            Destroy(other.gameObject);
-            break;
-        //case "Bullet":
-            //PlayerFlash.GetComponent<MeshRenderer>().enabled = true;
-            //PlayerFlash.GetComponent<BoxCollider>().enabled = true;
-            //break;
+                Destroy(other.gameObject);
+                break;
+                //case "Bullet":
+                //PlayerFlash.GetComponent<MeshRenderer>().enabled = true;
+                //PlayerFlash.GetComponent<BoxCollider>().enabled = true;
+                //break;
         }
     }
 
@@ -180,27 +180,27 @@ public class PlayerControls : Shooter {
 
             yield return new WaitForSeconds(fireDelay);
         }
-        shooting = false;    
+        shooting = false;
     }
 
     public void CollectPickup(int type) { //used in InGameShop
         switch (type) {
-        case 0:
-            CollectHealth();
-            break;
-        case 1:
-            CollectShield();
-            break;
-        case 2:
-            CollectAmmo();
-            break;
+            case 0:
+                CollectHealth();
+                break;
+            case 1:
+                CollectShield();
+                break;
+            case 2:
+                CollectAmmo();
+                break;
         }
     }
 
     void CollectHealth() {
         Health.Heal(GameManager.Instance.healAmount);
         GameManager.Instance.UpdateHealthText();
-		playUpgradeSound ();
+        playUpgradeSound();
     }
 
     void CollectShield() {
@@ -229,7 +229,7 @@ public class PlayerControls : Shooter {
         }
 
         GameManager.Instance.UpdateAmmoText();
-		playUpgradeSound ();
+        playUpgradeSound();
     }
 
     void CollectMoney() {
@@ -244,7 +244,7 @@ public class PlayerControls : Shooter {
             return;
         }
 
-        specialWeapon = specialWeapons[type-1];
+        specialWeapon = specialWeapons[type - 1];
         maxSpecialAmmo = specialWeapon.GetComponent<SpecialWeapon>().maxAmmo;
         ResetAmmo();
 
@@ -292,7 +292,7 @@ public class PlayerControls : Shooter {
     }
 
     protected override void Die() {
-		GameManager.Instance.PlayDeathSound (true);
+        GameManager.Instance.PlayDeathSound();
         StartCoroutine(GameManager.Instance.GameOver(this));
 
         Hidden = true;

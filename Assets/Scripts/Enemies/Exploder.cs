@@ -19,6 +19,7 @@ public class Exploder : Tackler {
     protected override void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.Equals(GameManager.Instance.Player)) {
             Explosion.Explode();
+            Destroy(gameObject); // sometimes it doesn't go through
         }
     }
 }

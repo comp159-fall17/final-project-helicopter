@@ -48,10 +48,14 @@ public class GameManager : MonoBehaviour {
         deathSound = GetComponent<AudioSource>();
     }
 
-    public void PlayDeathSound(bool canPlay) {
-        if (canPlay) {
-            AudioSource.PlayClipAtPoint(deathSound.clip, Camera.main.transform.position);
+    private void Update() {
+        if (GameObject.FindWithTag("Enemy") == null) {
+            DoorScript.CanCross = true;
         }
+    }
+
+    public void PlayDeathSound() {
+        AudioSource.PlayClipAtPoint(deathSound.clip, Camera.main.transform.position);
     }
 
     public void StartGame() {
@@ -65,7 +69,6 @@ public class GameManager : MonoBehaviour {
         UpdateHealthText();
         UpdateAmmoText();
         UpdateMoneyText();
-        PlayDeathSound(false);
     }
 
     public IEnumerator GameOver(PlayerControls player) {

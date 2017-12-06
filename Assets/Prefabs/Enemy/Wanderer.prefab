@@ -205,6 +205,7 @@ MonoBehaviour:
   walkSpeed: 10
   runSpeed: 30
   hitPoints: 10
+  wanderSearchRadius: 10
 --- !u!114 &114131741125541422
 MonoBehaviour:
   m_ObjectHideFlags: 1

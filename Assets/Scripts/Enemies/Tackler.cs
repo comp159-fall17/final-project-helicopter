@@ -22,7 +22,7 @@ public class Tackler : Wanderer {
             if (hasBeenHit) {
                 hasBeenHit = false;
                 Agent.speed = 0;
-                yield return new WaitUntil(() => TargetDistance > minimumDistanceToTarget);
+                yield return new WaitForSeconds(2f);
             }
 
             Agent.destination = base.ShouldShoot ? Target : SearchNextDestination();

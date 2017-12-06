@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class RoomSourceTag : MonoBehaviour {
+public class EnemyRoom : MonoBehaviour {
     /// <summary>
     /// Creates the source from a mesh filter.
     /// 
@@ -19,8 +19,12 @@ public class RoomSourceTag : MonoBehaviour {
         };
     }
 
+    [Header("NavMesh Building")]
     public bool ActiveOnStart;
     public MeshFilter[] SourceObjects;
+    [Space(10)]
+    [Header("Enemy spawning")]
+    public int EnemiesPerWave;
 
     public bool IsActive { get; private set; }
 
@@ -32,6 +36,10 @@ public class RoomSourceTag : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Switches participation in the navmesh drawing process. 
+    /// </summary>
+    /// <param name="status">Should participate in NavMesh building process.</param>
     public void Toggle(bool status) {
         IsActive = status;
 
@@ -44,9 +52,20 @@ public class RoomSourceTag : MonoBehaviour {
         NavMeshGen.Instance.GenerateNavMesh();
     }
 
+    /// <summary>
+    /// Collects all source meshes.
+    /// </summary>
+    /// <param name="sources">Sources list (for performance).</param>
     public void Collect(ref List<NavMeshBuildSource> sources) {
         foreach (MeshFilter filter in SourceObjects) {
             sources.Add(CreateSourceFromMeshFilter(filter));
         }
+    }
+
+    public void Spawn() {
+        for (int i = 0; i < EnemiesPerWave; i++) {
+            Spawner.Instance.SpawnEnemy(transform.position);
+        }
+        DoorScript.CanCross = false;
     }
 }

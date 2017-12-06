@@ -51,7 +51,7 @@ public class EnemyController : Shooter {
         get {
             int masks = ~((1 << LayerMask.NameToLayer("Player"))
                           | (1 << LayerMask.NameToLayer("Shield")));
-            
+
             return !Physics.Raycast(transform.position, TargetDirection,
                                     TargetDistance, masks);
         }
@@ -94,7 +94,7 @@ public class EnemyController : Shooter {
 
     protected override void Die() {
         GameManager.Instance.EnemyHasDied(transform);
-		GameManager.Instance.PlayDeathSound (true);
+        GameManager.Instance.PlayDeathSound();
         Destroy(gameObject);
     }
 }

@@ -6,13 +6,13 @@ using UnityEngine.AI;
 public class NavMeshGen : MonoBehaviour {
     public static NavMeshGen Instance;
 
-    static readonly List<RoomSourceTag> Rooms = new List<RoomSourceTag>();
+    static readonly List<EnemyRoom> Rooms = new List<EnemyRoom>();
 
     /// <summary>
     /// Subscribe a certain room, e.g. <code>NavMeshGen.Subscribe(this)</code>
     /// </summary>
     /// <param name="room">The room to subscribe.</param>
-    public static void Subscribe(RoomSourceTag room) {
+    public static void Subscribe(EnemyRoom room) {
         if (!Rooms.Exists(i => i.Equals(room))) {
             Rooms.Add(room);
         }
@@ -22,7 +22,7 @@ public class NavMeshGen : MonoBehaviour {
     /// Unsubscribe a certain room, e.g. <code>NavMeshGen.Unsubscribe(this)</code>
     /// </summary>
     /// <param name="room">The room to subscribe.</param>
-    public static void Unsubscribe(RoomSourceTag room) {
+    public static void Unsubscribe(EnemyRoom room) {
         Rooms.Remove(room);
     }
 
@@ -71,7 +71,7 @@ public class NavMeshGen : MonoBehaviour {
         NavMeshBuildSettings buildSettings = NavMesh.GetSettingsByID(0);
         Bounds localBounds = new Bounds(NavMeshPosition, NavMeshSize);
 
-        foreach (RoomSourceTag room in Rooms) {
+        foreach (EnemyRoom room in Rooms) {
             room.Collect(ref sources);
         }
 
