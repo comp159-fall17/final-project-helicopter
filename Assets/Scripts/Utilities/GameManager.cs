@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour {
 
     public void CollectMoney(int amount) {
         money += amount;
-        InGameShop.Instance.UpdateShopMoney();
+        //InGameShop.Instance.UpdateShopMoney();
         UpdateMoneyText();
     }
 

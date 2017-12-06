@@ -336,6 +336,10 @@ public class PlayerControls : Shooter {
     }
 
     protected override void Die() {
+        if (Hidden) {
+            return;
+        }
+
         GameManager.Instance.PlayDeathSound();
         StartCoroutine(GameManager.Instance.GameOver(this));
 

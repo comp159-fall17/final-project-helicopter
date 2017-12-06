@@ -20,7 +20,7 @@ public class InGameShop : MonoBehaviour {
 
     public static InGameShop Instance;
 
-	void Start () {
+    void Start () {
         if (Instance == null) {
             Instance = this;
         } else if (Instance != this) {
@@ -28,6 +28,7 @@ public class InGameShop : MonoBehaviour {
         }
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>();
+        UpdateShopMoney();
 
         NewItems();
     }
@@ -156,6 +157,7 @@ public class InGameShop : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) { //enable shop when player is in range
         if (other.gameObject.CompareTag("Player")) {
+            UpdateShopMoney();
             DisplayShop(true);
         }
     }
