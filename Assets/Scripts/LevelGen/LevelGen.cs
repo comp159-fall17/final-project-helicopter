@@ -45,6 +45,15 @@ public class LevelGen : MonoBehaviour {
         //Invoke("NewFloor", 6);
     }
 
+    public void ReloadFloor(bool won) {
+        if (won) {
+            CurrentFloor++;
+        }
+
+        RemoveFloor();
+        NewFloor();
+    }
+
     /// <summary>
     /// Generates new floor.
     /// </summary>
@@ -162,7 +171,6 @@ public class LevelGen : MonoBehaviour {
         foreach (var item in GameObject.FindGameObjectsWithTag("Room")) {
             Destroy(item);
         }
-        CurrentFloor++;
     }
 }
 

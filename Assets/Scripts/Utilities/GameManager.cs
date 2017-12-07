@@ -87,6 +87,7 @@ public class GameManager : MonoBehaviour {
         screenCanvas.SetActive(true);
 
         player.Reset();
+        LevelGen.Instance.ReloadFloor(false);
         RestartGame();
     }
 
