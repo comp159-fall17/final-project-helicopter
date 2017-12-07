@@ -31,8 +31,8 @@ public class Grenade : SpecialWeapon {
         // find surrounding shooters
         Shooter[] hits = Physics.OverlapSphere(transform.position, radius)
                                 .Select(i => i.gameObject)
-                                .Where(j => j.layer == LayerMask.NameToLayer("Player"))
-                                .Select(k => k.GetComponent<Shooter>())
+                                .Select(j => j.GetComponent<Shooter>())
+                                .Where(k => k != null) 
                                 .ToArray();
         
         foreach (Shooter hit in hits) {
