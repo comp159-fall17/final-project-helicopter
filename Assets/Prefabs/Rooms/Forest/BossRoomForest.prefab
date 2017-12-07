@@ -1087,7 +1087,7 @@ GameObject:
   - component: {fileID: 114754863400251180}
   - component: {fileID: 54228624640877596}
   - component: {fileID: 114815807400449948}
-  - component: {fileID: 114512505078020734}
+  - component: {fileID: 114548263471363976}
   m_Layer: 0
   m_Name: Head
   m_TagString: Enemy
@@ -5355,23 +5355,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1719452425394648, guid: eba06a46fd9004a4c9a12c0e5889d2bd,
     type: 2}
   bulletCoolDown: 0.5
---- !u!114 &114512505078020734
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1788412405296624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 776ac6dd8b818404880ee12af91e0bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 1719452425394648, guid: eba06a46fd9004a4c9a12c0e5889d2bd, type: 2}
-  specialWeapon: {fileID: 0}
-  fireDelay: Infinity
-  walkSpeed: 10
-  runSpeed: 30
-  hitPoints: 10
 --- !u!114 &114539853862959310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5386,6 +5369,23 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1719452425394648, guid: eba06a46fd9004a4c9a12c0e5889d2bd,
     type: 2}
   bulletCoolDown: 0.5
+--- !u!114 &114548263471363976
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1788412405296624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38aecbad64db45bb81356e5fe5bbb37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
+  specialWeapon: {fileID: 0}
+  fireDelay: 0
+  walkSpeed: 10
+  runSpeed: 30
+  UnlockKey: {fileID: 1271940252557262}
 --- !u!114 &114581254058809618
 MonoBehaviour:
   m_ObjectHideFlags: 1
