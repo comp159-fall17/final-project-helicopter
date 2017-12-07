@@ -13,6 +13,13 @@ TagManager:
   - Pickup
   - FX
   - Room
+  - Floor
+  - BossRoom
+  - BossRoomNode
+  - BossTeir1
+  - BossTeir2
+  - BossTeir3
+  - BossTeir4
   layers:
   - Default
   - TransparentFX
