@@ -5,23 +5,36 @@ using UnityEngine;
 public class BossRoomPortal : MonoBehaviour {
     public Vector3 offset;
 
+    private int floor;
+
+    void start()
+    {
+        floor = LevelGen.Instance.CurrentFloor;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            if (LevelGen.Instance.CurrentFloor == 0){
+            if (floor == 0){
                 GameObject.FindGameObjectWithTag("BossTeir1").SetActive(true);
             }
-            else if (LevelGen.Instance.CurrentFloor == 1)
+            else if (floor == 1)
             {
+                GameObject.FindGameObjectWithTag("BossTeir1").SetActive(true);
                 GameObject.FindGameObjectWithTag("BossTeir2").SetActive(true);
             }
-            else if (LevelGen.Instance.CurrentFloor == 2)
+            else if (floor == 2)
             {
+                GameObject.FindGameObjectWithTag("BossTeir1").SetActive(true);
+                GameObject.FindGameObjectWithTag("BossTeir2").SetActive(true);
                 GameObject.FindGameObjectWithTag("BossTeir3").SetActive(true);
             }
-            else if (LevelGen.Instance.CurrentFloor == 3)
+            else if (floor == 3)
             {
+                GameObject.FindGameObjectWithTag("BossTeir1").SetActive(true);
+                GameObject.FindGameObjectWithTag("BossTeir2").SetActive(true);
+                GameObject.FindGameObjectWithTag("BossTeir3").SetActive(true);
                 GameObject.FindGameObjectWithTag("BossTeir4").SetActive(true);
             }
 
