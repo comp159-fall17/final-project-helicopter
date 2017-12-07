@@ -8,6 +8,7 @@ public class Tackler : Wanderer {
 
     protected override bool ShouldShoot { get { return false; } }
 
+    public AudioClip tackleSound;
     public float minimumDistanceToTarget = 5f;
 
 #pragma warning disable RECS0135 // Function does not reach its end or a 'return' statement by any of possible execution paths
@@ -22,6 +23,7 @@ public class Tackler : Wanderer {
             if (hasBeenHit) {
                 hasBeenHit = false;
                 Agent.speed = 0;
+                AudioSource.PlayClipAtPoint(tackleSound, transform.position);
                 yield return new WaitForSeconds(2f);
             }
 
