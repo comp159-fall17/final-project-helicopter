@@ -48,6 +48,9 @@ public class LevelGen : MonoBehaviour {
     public void ReloadFloor(bool won) {
         if (won) {
             CurrentFloor++;
+            CurrentFloor %= 5;
+        } else {
+            CurrentFloor = 0;
         }
 
         RemoveFloor();
