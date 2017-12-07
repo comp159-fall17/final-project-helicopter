@@ -5,6 +5,8 @@ using UnityEngine;
 public class LevelGen : MonoBehaviour {
     public static LevelGen Instance;
 
+    public static Vector3 ReallyFarAway { get { return new Vector3(500, 0, 500); } }
+
     public int roomsPerFloor;
     [Space(10)]
     [Header("Room rates")]
@@ -24,7 +26,6 @@ public class LevelGen : MonoBehaviour {
 
     private List<GameObject> spawnedRooms = new List<GameObject>();
     private Vector3[] nodes;
-    private Vector3 originalNode;
 
     private Biome CurrentBiome { get { return biomes[roomType]; } }
 
@@ -35,9 +36,7 @@ public class LevelGen : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        originalNode = centralNode;
         nodes = new Vector3[5];
-        GenerateNodes(centralNode);
         CurrentFloor = 0;
 
         NewFloor();
@@ -61,16 +60,12 @@ public class LevelGen : MonoBehaviour {
     public void NewFloor() {
         ResetFloor();
         SetNavMeshSize();
-        centralNode = originalNode;
 
         // create new biome
         roomType = Random.Range(0, biomes.Length);
 
         // spawn room is guaranteed
         spawnedRooms.Add(Instantiate(CurrentBiome.Spawn, nodes[0], Quaternion.identity));
-
-        // Spawns the boss room at 500, 510 so the player isnt spawned in the middle of the room
-        spawnedRooms.Add(Instantiate(CurrentBiome.Boss, new Vector3(500, 0, 510), Quaternion.identity)); 
 
         // keep spawning until enough rooms have been spawned
         while (true) {
@@ -82,6 +77,9 @@ public class LevelGen : MonoBehaviour {
 
                 // short-circuit if enough rooms have been reached
                 if (spawnedRooms.Count() == roomsPerFloor) {
+                    // Spawns a boss room off to the side
+                    spawnedRooms.Add(Instantiate(CurrentBiome.Boss, ReallyFarAway,
+                                                 Quaternion.identity));
                     return;
                 }
             }
@@ -119,13 +117,8 @@ public class LevelGen : MonoBehaviour {
     /// <returns>If node was occupied</returns>
     /// <param name="i">The node to check.</param>
     private bool CheckNodeEmpty(int i) {
-        GameObject[] rooms = GameObject.FindGameObjectsWithTag("Room");
-        foreach (GameObject room in rooms) {
-            if (room.transform.position == nodes[i]) {
-                return false;
-            }
-        }
-        return true;
+        return !GameObject.FindGameObjectsWithTag("Room")
+                          .Any(room => room.transform.position == nodes[i]);
     }
 
     /// <summary>
@@ -172,9 +165,10 @@ public class LevelGen : MonoBehaviour {
 
     public void RemoveFloor() {
         NavMeshGen.Reset();
-        foreach (var item in GameObject.FindGameObjectsWithTag("Room")) {
-            Destroy(item);
+        foreach (var room in spawnedRooms) {
+            Destroy(room);
         }
+        spawnedRooms.Clear();
     }
 }
 

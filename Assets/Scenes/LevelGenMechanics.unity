@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.36677358, g: 0.6417017, b: 0.8760933, a: 1}
+  m_IndirectSpecularColor: {r: 0.366821, g: 0.6416299, b: 0.87611616, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ Prefab:
     - target: {fileID: 224869237884888064, guid: c6b12055e8e4e474ebd8bdcfd0d29f20,
         type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 224869237884888064, guid: c6b12055e8e4e474ebd8bdcfd0d29f20,
         type: 2}
@@ -500,16 +500,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[2].Enemy.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4227445601989182, guid: 335fb4bfb5e104172a0a772b4d94c106, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -540,220 +530,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4227445601989182, guid: 335fb4bfb5e104172a0a772b4d94c106, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[2].Name
-      value: snow
-      objectReference: {fileID: 0}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[2].Spawn
-      value: 
-      objectReference: {fileID: 1680612566001018, guid: 6653109f1a752bd4d9c634c89b9a1dfc,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[2].Chest
-      value: 
-      objectReference: {fileID: 1811192728431550, guid: 85a1fd7664ee8f84e8b4a9245adf967d,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[2].Shop
-      value: 
-      objectReference: {fileID: 1416020413667522, guid: d3783d71977a10740b4311eaf983f7a2,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[2].Boss
-      value: 
-      objectReference: {fileID: 1577700525179384, guid: 076eff75ca086e4408f04f5bd13a2e45,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[2].Door
-      value: 
-      objectReference: {fileID: 1768491214232880, guid: 5c990a9bd2110c94fb06e4ed7b6f76b6,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[2].Enemy.Array.data[0]
-      value: 
-      objectReference: {fileID: 1850167449164098, guid: 38bf7cd6ede3a844bb631cbd817e98e5,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[2].Enemy.Array.data[1]
-      value: 
-      objectReference: {fileID: 1661968088514744, guid: 5f2afcfd36543d84d946742c0aae0a78,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[2].Enemy.Array.data[2]
-      value: 
-      objectReference: {fileID: 1721007045619928, guid: c34524c38ab390042927fdde3fd780c4,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[1].Enemy.Array.data[0]
-      value: 
-      objectReference: {fileID: 1621225960674814, guid: 4ce19987fc3e5ed43bdd5f4c8ffbd383,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[1].Enemy.Array.data[1]
-      value: 
-      objectReference: {fileID: 1080870887859098, guid: 8b7a2c61f4e03b844b2fead2805522d4,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[0].Name
-      value: fall
-      objectReference: {fileID: 0}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[0].Chest
-      value: 
-      objectReference: {fileID: 1663561236707392, guid: 9166d654cc474d145b298d0b08c3d7c2,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[0].Shop
-      value: 
-      objectReference: {fileID: 1710471831296608, guid: 4c0f77567a5d8ad4eb5bbe65b25f42c9,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[0].Spawn
-      value: 
-      objectReference: {fileID: 1048818662978800, guid: 77bce5369b8fbf94d853b48bb102981f,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[0].Enemy.Array.data[0]
-      value: 
-      objectReference: {fileID: 1719897346987724, guid: 3bbfac60f22c96041ab02a0e2bc6ac03,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[0].Enemy.Array.data[1]
-      value: 
-      objectReference: {fileID: 1302016213712496, guid: 47b769e4706b9744a82919408f0c84d1,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[0].Enemy.Array.data[2]
-      value: 
-      objectReference: {fileID: 1707414871150138, guid: c0e1798f12ef4fe4e80b6fd98db82ed4,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[0].Door
-      value: 
-      objectReference: {fileID: 1768491214232880, guid: 5c990a9bd2110c94fb06e4ed7b6f76b6,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[0].Boss
-      value: 
-      objectReference: {fileID: 1577700525179384, guid: 076eff75ca086e4408f04f5bd13a2e45,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[1].Boss
-      value: 
-      objectReference: {fileID: 1577700525179384, guid: 076eff75ca086e4408f04f5bd13a2e45,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1036567160}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[1].Shop
-      value: 
-      objectReference: {fileID: 1536069424163006, guid: 56df11f1fbc57214ab64f3e069301d47,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[1].Enemy.Array.data[2]
-      value: 
-      objectReference: {fileID: 1269638167207722, guid: 08a1b8650a96a7845a62782db805fdd0,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: roomsPerFloor
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[0].Portal
-      value: 
-      objectReference: {fileID: 1599026706425516, guid: 23a625dd12253224fb823905ea70e247,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[1].Portal
-      value: 
-      objectReference: {fileID: 1294362737254286, guid: 415596adf6b8f4f4bbb1b1c87488d730,
-        type: 2}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: biomes.Array.data[2].Portal
-      value: 
-      objectReference: {fileID: 1060444952333290, guid: 83afd3589fce9ea44b6a90b7e78632f5,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 335fb4bfb5e104172a0a772b4d94c106, type: 2}
-  m_IsPrefabParent: 0
---- !u!1001 &375113096
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4639677482832662, guid: 349770123ba8a43368d2c0b2503f7c52, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639677482832662, guid: 349770123ba8a43368d2c0b2503f7c52, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639677482832662, guid: 349770123ba8a43368d2c0b2503f7c52, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639677482832662, guid: 349770123ba8a43368d2c0b2503f7c52, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639677482832662, guid: 349770123ba8a43368d2c0b2503f7c52, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639677482832662, guid: 349770123ba8a43368d2c0b2503f7c52, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639677482832662, guid: 349770123ba8a43368d2c0b2503f7c52, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639677482832662, guid: 349770123ba8a43368d2c0b2503f7c52, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1859407965499664, guid: 349770123ba8a43368d2c0b2503f7c52, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 349770123ba8a43368d2c0b2503f7c52, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &421848689
 GameObject:
@@ -815,7 +595,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &651268179
 GameObject:
@@ -927,7 +707,7 @@ Prefab:
     - target: {fileID: 224454975593969202, guid: ea08381e1d4bff74cb8d952260b94040,
         type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 224454975593969202, guid: ea08381e1d4bff74cb8d952260b94040,
         type: 2}
@@ -1355,7 +1135,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &868764070
 Prefab:
@@ -1415,11 +1195,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57272a5d8d438b34c9dd4185430bb40c, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1036567160 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1859407965499664, guid: 349770123ba8a43368d2c0b2503f7c52,
-    type: 2}
-  m_PrefabInternal: {fileID: 375113096}
 --- !u!1001 &1167676036
 Prefab:
   m_ObjectHideFlags: 0
@@ -1457,7 +1232,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4040265449576728, guid: 4bdb645690ebd468199f96bc6bc6d176, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bdb645690ebd468199f96bc6bc6d176, type: 2}
@@ -1507,7 +1282,7 @@ Prefab:
     - target: {fileID: 224410076565025466, guid: f3e38909748a86440b02218ec678152c,
         type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224410076565025466, guid: f3e38909748a86440b02218ec678152c,
         type: 2}
@@ -1629,7 +1404,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1636843967
 Prefab:
@@ -1676,7 +1451,7 @@ Prefab:
     - target: {fileID: 224184318142369810, guid: 4ad82eb2bdc118442bad2ae64577a447,
         type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 224184318142369810, guid: 4ad82eb2bdc118442bad2ae64577a447,
         type: 2}
@@ -1858,5 +1633,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -10,7 +10,6 @@ public class BossRoomPortal : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            other.transform.position = new Vector3(500, 1, 500); //Teleport player to 500, 500
             if (LevelGen.Instance.CurrentFloor == 0){
                 GameObject.FindGameObjectWithTag("BossTeir1").SetActive(true);
             }
@@ -26,6 +25,12 @@ public class BossRoomPortal : MonoBehaviour {
             {
                 GameObject.FindGameObjectWithTag("BossTeir4").SetActive(true);
             }
+            // teleport to Far Away where the boss room is
+            Vector3 somewhere = LevelGen.ReallyFarAway;
+            somewhere.y = 1;
+            somewhere.x -= 10;
+
+            other.transform.position = somewhere;
         }
     }
 }
