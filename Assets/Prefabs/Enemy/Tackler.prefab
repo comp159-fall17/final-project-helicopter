@@ -254,6 +254,7 @@ MonoBehaviour:
   runSpeed: 10
   hitPoints: 10
   wanderSearchRadius: 10
+  tackleSound: {fileID: 8300000, guid: 2dc35d77cfe164a2eab57d08500740e2, type: 3}
   minimumDistanceToTarget: 5
 --- !u!114 &114888084226133582
 MonoBehaviour:

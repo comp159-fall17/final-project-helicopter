@@ -419,7 +419,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 215375499}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 628327dd5be099149a2eee706465b809, type: 3}
@@ -1175,22 +1175,6 @@ Prefab:
     - target: {fileID: 4746304355820474, guid: 57272a5d8d438b34c9dd4185430bb40c, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4083336479581450, guid: 57272a5d8d438b34c9dd4185430bb40c, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0.093746535
-      objectReference: {fileID: 0}
-    - target: {fileID: 4083336479581450, guid: 57272a5d8d438b34c9dd4185430bb40c, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0.6978551
-      objectReference: {fileID: 0}
-    - target: {fileID: 4083336479581450, guid: 57272a5d8d438b34c9dd4185430bb40c, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.707469
-      objectReference: {fileID: 0}
-    - target: {fileID: 4083336479581450, guid: 57272a5d8d438b34c9dd4185430bb40c, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.060806695
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57272a5d8d438b34c9dd4185430bb40c, type: 2}
