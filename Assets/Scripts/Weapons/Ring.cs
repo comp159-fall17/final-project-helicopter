@@ -22,8 +22,9 @@ public class Ring : MonoBehaviour {
 	}
 
     void OnTriggerEnter(Collider other) {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player") && other.gameObject.CompareTag("Enemy")) {
-            other.gameObject.GetComponent<Shooter>().Hit(damage);
+        Shooter hit = other.gameObject.GetComponent<Shooter>();
+        if (hit != null) {
+            hit.Hit(damage);
         }
     }
 }
