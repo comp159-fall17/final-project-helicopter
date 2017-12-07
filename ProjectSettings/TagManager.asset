@@ -17,6 +17,10 @@ TagManager:
   - BossRoom
   - BossRoomNode
   - Boss
+  - BossTeir1
+  - BossTeir4
+  - BossTeir3
+  - BossTeir2
   layers:
   - Default
   - TransparentFX

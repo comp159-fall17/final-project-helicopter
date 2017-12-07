@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ChestItem : MonoBehaviour {
     public GameObject chestCanvas;
-    GameObject chestScreen;
+    GameObject chestScreen = null;
 
     //possible items are the 3 special weapons
     public GameObject[] possibleChestItems;
@@ -82,6 +82,18 @@ public class ChestItem : MonoBehaviour {
     void OnTriggerExit(Collider other) { //disable shop when player leaves
         if (other.gameObject.CompareTag("Player")) {
             DisplayUI(false);
+        }
+    }
+
+    void OnDestroy() { //destroy all instantiated objects
+        if (chestScreen != null) {
+            foreach (Transform obj in chestScreen.transform.GetComponentsInChildren<Transform>()) {
+                if (obj.gameObject.name.Contains("ShopItem")) {
+                    Destroy(obj.gameObject);
+                }
+            }
+
+            Destroy(chestScreen);
         }
     }
 }

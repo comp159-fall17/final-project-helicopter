@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[DefaultExecutionOrder(-180)]
 public class ShopManager : MonoBehaviour {
     public Text shopPointsText1;
     public Text shopPointsText2;

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[DefaultExecutionOrder(-179)]
 public class InGameShop : MonoBehaviour {
     Text shopMoneyText;
     int shopMoney;
 
     public GameObject InGameShopCanvas;
-    GameObject shopCanvas;
+    GameObject shopCanvas = null;
 
     //possible items are 4+ pickups, 2+ normal weapon modifiers and the 3 special weapons
     public GameObject[] possibleShopItems;
@@ -165,6 +166,18 @@ public class InGameShop : MonoBehaviour {
     void OnTriggerExit(Collider other) { //disable shop when player leaves
         if (other.gameObject.CompareTag("Player")) {
             DisplayShop(false);
+        }
+    }
+
+    void OnDestroy() { //destroy all instantiated objects
+        if (shopCanvas != null) {
+            foreach (Transform obj in shopCanvas.transform.GetComponentsInChildren<Transform>()) {
+                if (obj.gameObject.name.Contains("ShopItem")) {
+                    Destroy(obj.gameObject);
+                }
+            }
+
+            Destroy(shopCanvas);
         }
     }
 }

@@ -31,7 +31,7 @@ public class PlayerControls : Shooter {
     int maxSpecialAmmo;
 
     public GameObject[] specialWeapons;
-    public GameObject[] bulletModifiers;
+    public GameObject[] bulletModifiers; //0 = normal bullet, 1 = double, 2 = triple, 3 = rapid
 
     protected override bool ShouldShoot {
         get {
@@ -171,6 +171,10 @@ public class PlayerControls : Shooter {
 
                     CollectShield();
                 } else if (other.gameObject.name.Contains("Ammo")) {
+                    if (specialType == 3) { //no special
+                        return;
+                    }
+
                     CollectAmmo();
                 } else if (other.gameObject.name.Contains("Money")) {
                     CollectMoney();
@@ -306,8 +310,8 @@ public class PlayerControls : Shooter {
     }
 
     public override void Hit(float damage) {
-        // avoid all damage while shielded or during invincibility time
-        if (shielded || damaged) return;
+        // avoid all damage while shielded, during invincibility time, or if hidden
+        if (shielded || damaged || Hidden) return;
 
         base.Hit(damage);
         GameManager.Instance.UpdateHealthText();
@@ -352,7 +356,9 @@ public class PlayerControls : Shooter {
         Hidden = false;
         Health.Reset();
         transform.position = spawn;
+        hasShield = false;
         GameManager.Instance.UpdateHealthText();
+        CollectModifier(0);
         CollectSpecial(0);
     }
 }
