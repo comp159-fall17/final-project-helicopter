@@ -16,10 +16,7 @@ TagManager:
   - Floor
   - BossRoom
   - BossRoomNode
-  - BossTeir1
-  - BossTeir2
-  - BossTeir3
-  - BossTeir4
+  - Boss
   layers:
   - Default
   - TransparentFX

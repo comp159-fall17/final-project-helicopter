@@ -16,26 +16,27 @@ public class BossRoomPortal : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
+            // Enables teirs of boss depending on floor
             if (floor == 0){
-                GameObject.FindGameObjectWithTag("BossTeir1").SetActive(true);
+                GameObject.FindGameObjectWithTag("Boss").transform.Find("Teir1").gameObject.SetActive(true);
             }
             else if (floor == 1)
             {
-                GameObject.FindGameObjectWithTag("BossTeir1").SetActive(true);
-                GameObject.FindGameObjectWithTag("BossTeir2").SetActive(true);
+                GameObject.FindGameObjectWithTag("Boss").transform.Find("Teir1").gameObject.SetActive(true);
+                GameObject.FindGameObjectWithTag("Boss").transform.Find("Teir2").gameObject.SetActive(true);
             }
             else if (floor == 2)
             {
-                GameObject.FindGameObjectWithTag("BossTeir1").SetActive(true);
-                GameObject.FindGameObjectWithTag("BossTeir2").SetActive(true);
-                GameObject.FindGameObjectWithTag("BossTeir3").SetActive(true);
+                GameObject.FindGameObjectWithTag("Boss").transform.Find("Teir1").gameObject.SetActive(true);
+                GameObject.FindGameObjectWithTag("Boss").transform.Find("Teir2").gameObject.SetActive(true);
+                GameObject.FindGameObjectWithTag("Boss").transform.Find("Teir3").gameObject.SetActive(true);
             }
             else if (floor == 3)
             {
-                GameObject.FindGameObjectWithTag("BossTeir1").SetActive(true);
-                GameObject.FindGameObjectWithTag("BossTeir2").SetActive(true);
-                GameObject.FindGameObjectWithTag("BossTeir3").SetActive(true);
-                GameObject.FindGameObjectWithTag("BossTeir4").SetActive(true);
+                GameObject.FindGameObjectWithTag("Boss").transform.Find("Teir1").gameObject.SetActive(true);
+                GameObject.FindGameObjectWithTag("Boss").transform.Find("Teir2").gameObject.SetActive(true);
+                GameObject.FindGameObjectWithTag("Boss").transform.Find("Teir3").gameObject.SetActive(true);
+                GameObject.FindGameObjectWithTag("Boss").transform.Find("Teir4").gameObject.SetActive(true);
             }
 
             // teleport to Far Away where the boss room is
