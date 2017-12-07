@@ -27,11 +27,13 @@ public class GameManager : MonoBehaviour {
     public Text healthText;
     public Text ammoText;
     public Text moneyText;
+    public Text floorText;
 
     public int money; // per run, in-game shop money
     public int points; // outside of game shop currency
 
     public int pointsIncrease; //points gained on clearing an enemy room
+    public int moneyOnEnemyKill; //money gained when killing an enemy
 
     public float playerLuck;
 
@@ -84,6 +86,7 @@ public class GameManager : MonoBehaviour {
         UpdateHealthText();
         UpdateAmmoText();
         UpdateMoneyText();
+        UpdateFloorText();
     }
 
     public IEnumerator GameOver(PlayerControls player) {
@@ -150,6 +153,10 @@ public class GameManager : MonoBehaviour {
         moneyText.text = "Money: " + money;
     }
 
+    public void UpdateFloorText() {
+        floorText.text = "Floor: " + (LevelGen.Instance.CurrentFloor + 1);
+    }
+    
     public void CollectMoney(int amount) {
         money += amount;
         //InGameShop.Instance.UpdateShopMoney();
@@ -157,6 +164,8 @@ public class GameManager : MonoBehaviour {
     }
 
     public void EnemyHasDied(Transform enemyPos) {
+        money += moneyOnEnemyKill;
+        UpdateMoneyText();
         Spawner.Instance.SpawnPickupAtLocation(enemyPos);
     }
 }

@@ -23,7 +23,7 @@ public class Ring : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
         Shooter hit = other.gameObject.GetComponent<Shooter>();
-        if (hit != null) {
+        if (hit != null && hit.gameObject.tag != "Player") {
             hit.Hit(damage);
         }
     }

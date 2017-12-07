@@ -366,5 +366,9 @@ public class PlayerControls : Shooter {
         GameManager.Instance.UpdateHealthText();
         CollectModifier(0);
         CollectSpecial(0);
+
+        for (int i = 0; i < 3; i++) {
+            specialAmmo[i] = specialWeapons[i].GetComponent<SpecialWeapon>().maxAmmo;
+        }
     }
 }

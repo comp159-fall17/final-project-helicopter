@@ -52,6 +52,8 @@ public class LevelGen : MonoBehaviour {
         }
 
         GameManager.Instance.RemoveTagged("Pickup");
+        GameManager.Instance.UpdateFloorText();
+
         RemoveFloor();
         NewFloor();
     }

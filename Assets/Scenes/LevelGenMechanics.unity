@@ -1130,9 +1130,11 @@ MonoBehaviour:
   healthText: {fileID: 1169049587}
   ammoText: {fileID: 1169049585}
   moneyText: {fileID: 1169049586}
+  floorText: {fileID: 1169049589}
   money: 0
   points: 0
   pointsIncrease: 5
+  moneyOnEnemyKill: 5
   playerLuck: 0
   enemyRoom: 0
 --- !u!4 &708106805
@@ -1337,16 +1339,12 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1583053570735792, guid: f3e38909748a86440b02218ec678152c, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f3e38909748a86440b02218ec678152c, type: 2}
   m_IsPrefabParent: 0
 --- !u!114 &1169049585 stripped
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114555951166755502, guid: f3e38909748a86440b02218ec678152c,
+  m_PrefabParentObject: {fileID: 114666477402788322, guid: f3e38909748a86440b02218ec678152c,
     type: 2}
   m_PrefabInternal: {fileID: 1169049584}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -1367,6 +1365,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1583053570735792, guid: f3e38909748a86440b02218ec678152c,
     type: 2}
   m_PrefabInternal: {fileID: 1169049584}
+--- !u!114 &1169049589 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114555951166755502, guid: f3e38909748a86440b02218ec678152c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1169049584}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1192453017
 GameObject:
   m_ObjectHideFlags: 0
