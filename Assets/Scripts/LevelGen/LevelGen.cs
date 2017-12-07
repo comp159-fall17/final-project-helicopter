@@ -44,12 +44,14 @@ public class LevelGen : MonoBehaviour {
 
     public void ReloadFloor(bool won) {
         if (won) {
+            GameManager.Instance.points += GameManager.Instance.pointsIncrease*2;
             CurrentFloor++;
             CurrentFloor %= 5;
         } else {
             CurrentFloor = 0;
         }
 
+        GameManager.Instance.RemoveTagged("Pickup");
         RemoveFloor();
         NewFloor();
     }

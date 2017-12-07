@@ -31,10 +31,14 @@ public class GameManager : MonoBehaviour {
     public int money; // per run, in-game shop money
     public int points; // outside of game shop currency
 
+    public int pointsIncrease; //points gained on clearing an enemy room
+
     public float playerLuck;
 
     private AudioSource deathSound;
     private int startPoints;
+
+    [HideInInspector] public bool enemyRoom = false;
 
     public GameObject Player { get; private set; }
 
@@ -51,8 +55,18 @@ public class GameManager : MonoBehaviour {
 
     private void Update() {
         if (GameObject.FindWithTag("Enemy") == null) {
-            DoorScript.CanCross = true;
+            if (enemyRoom) {
+                ClearRoom();
+            } else {
+                DoorScript.CanCross = true;
+            }
         }
+    }
+
+    void ClearRoom() { //add points on clearing a room
+        enemyRoom = false;
+        points += pointsIncrease;
+        DoorScript.CanCross = true;
     }
 
     public void PlayDeathSound() {
@@ -94,19 +108,19 @@ public class GameManager : MonoBehaviour {
     public void RestartGame() {
         StopAllCoroutines();
 
-        // remove remaining objects
-        System.Action<string> removeTagged = delegate (string tag) {
-            foreach (GameObject obj in GameObject.FindGameObjectsWithTag(tag)) {
-                Destroy(obj);
-            }
-        };
-
-        removeTagged("Enemy");
-        removeTagged("Pickup");
+        RemoveTagged("Enemy");
+        RemoveTagged("Pickup");
 
         startPoints = points;
 
         ShopManager.Instance.Restart();
+    }
+
+    //remove remaining objects
+    public void RemoveTagged(string tag) {
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag(tag)) {
+            Destroy(obj);
+        }
     }
 
     /// <summary>

@@ -336,6 +336,12 @@ public class PlayerControls : Shooter {
             foreach (Transform child in transform) {
                 child.gameObject.SetActive(!value);
             }
+
+            if (value) {
+                gameObject.layer = LayerMask.NameToLayer("Default");
+            } else {
+                gameObject.layer = LayerMask.NameToLayer("Player");
+            }
         }
     }
 

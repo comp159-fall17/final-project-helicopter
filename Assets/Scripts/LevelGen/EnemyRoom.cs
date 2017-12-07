@@ -86,6 +86,7 @@ public class EnemyRoom : MonoBehaviour {
             spawnPoints.Remove(randomPoint);
         }
         DoorScript.CanCross = false;
+        GameManager.Instance.enemyRoom = true;
     }
 
     List<Vector3> GetSpawnPoints() {
