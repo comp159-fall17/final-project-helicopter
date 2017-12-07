@@ -102,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4938596908423550}
   m_Layer: 0
-  m_Name: TempBossRoomSnow
+  m_Name: BossPortalRoomSnow
   m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -535,7 +535,7 @@ GameObject:
   - component: {fileID: 33405713767585604}
   - component: {fileID: 65184122387680722}
   - component: {fileID: 23255230619309908}
-  - component: {fileID: 114478198396574418}
+  - component: {fileID: 114782734428074284}
   m_Layer: 0
   m_Name: NewFloorDoor
   m_TagString: Untagged
@@ -4518,7 +4518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3364826575b8a248b29de022757d0fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114478198396574418
+--- !u!114 &114782734428074284
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -4526,7 +4526,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1364142795903670}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c76644b1fce24234d805689646e3277a, type: 3}
+  m_Script: {fileID: 11500000, guid: 577fe8a33287d3e46b5470c2442a6a64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114935710158254422

@@ -2425,7 +2425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4036410795187168}
   m_Layer: 0
-  m_Name: TempBossRoomFall
+  m_Name: BossPortalRoomFall
   m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2909,7 +2909,7 @@ GameObject:
   - component: {fileID: 33508931385844626}
   - component: {fileID: 65734339979604260}
   - component: {fileID: 23606340024547398}
-  - component: {fileID: 114076102506331362}
+  - component: {fileID: 114219316635626760}
   m_Layer: 0
   m_Name: NewFloorDoor
   m_TagString: Untagged
@@ -13389,7 +13389,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114076102506331362
+--- !u!114 &114219316635626760
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -13397,7 +13397,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1696326703032984}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c76644b1fce24234d805689646e3277a, type: 3}
+  m_Script: {fileID: 11500000, guid: 577fe8a33287d3e46b5470c2442a6a64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114249638595400312

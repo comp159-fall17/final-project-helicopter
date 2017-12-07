@@ -41,8 +41,6 @@ public class LevelGen : MonoBehaviour {
         CurrentFloor = 0;
 
         NewFloor();
-        //Invoke("RemoveFloor", 3);
-        //Invoke("NewFloor", 6);
     }
 
     public void ReloadFloor(bool won) {
@@ -70,6 +68,9 @@ public class LevelGen : MonoBehaviour {
 
         // spawn room is guaranteed
         spawnedRooms.Add(Instantiate(CurrentBiome.Spawn, nodes[0], Quaternion.identity));
+
+        // Spawns the boss room at 500, 510 so the player isnt spawned in the middle of the room
+        spawnedRooms.Add(Instantiate(CurrentBiome.Boss, new Vector3(500, 0, 510), Quaternion.identity)); 
 
         // keep spawning until enough rooms have been spawned
         while (true) {
@@ -106,9 +107,9 @@ public class LevelGen : MonoBehaviour {
     /// </summary>
     /// <param name="position">Position to place room at.</param>
     private void AddRoom(Vector3 position) {
-        // spawn boss on last iteration
+        // spawn portal on last iteration
         GameObject nextRoom =
-            spawnedRooms.Count() + 1 == roomsPerFloor ? CurrentBiome.Boss : RandomRoom();
+            spawnedRooms.Count() + 1 == roomsPerFloor ? CurrentBiome.Portal : RandomRoom();
         spawnedRooms.Add(Instantiate(nextRoom, position, Quaternion.identity) as GameObject);
     }
 
@@ -184,6 +185,7 @@ public struct Biome {
     public GameObject Spawn;
     public GameObject Chest;
     public GameObject Shop;
+    public GameObject Portal;
     public GameObject Boss;
     public GameObject Door;
     [Space(10)]
