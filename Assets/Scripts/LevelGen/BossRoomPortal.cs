@@ -9,13 +9,14 @@ public class BossRoomPortal : MonoBehaviour {
 
     void start()
     {
-        floor = LevelGen.Instance.CurrentFloor;
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
+            floor = LevelGen.Instance.CurrentFloor;
             // Enables teirs of boss depending on floor
             if (floor == 0){
                 GameObject.FindGameObjectWithTag("Boss").transform.Find("Teir1").gameObject.SetActive(true);
