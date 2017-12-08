@@ -1127,7 +1127,7 @@ MonoBehaviour:
   moneyText: {fileID: 1169049586}
   floorText: {fileID: 1169049589}
   money: 0
-  points: 1000
+  points: 0
   pointsIncrease: 5
   moneyOnEnemyKill: 5
   playerLuck: 0
