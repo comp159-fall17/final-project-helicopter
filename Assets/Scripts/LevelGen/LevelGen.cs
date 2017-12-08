@@ -18,6 +18,7 @@ public class LevelGen : MonoBehaviour {
     public Vector3 centralNode;
     public float roomSize;
     [Space(10)]
+    public GameObject finalBoss;
     public Biome[] biomes;
 
     public GameObject Door { get { return CurrentBiome.Door; } }
@@ -93,7 +94,8 @@ public class LevelGen : MonoBehaviour {
                 }
 
                 // short-circuit if enough rooms have been reached
-                if (spawnedRooms.Count() == roomsPerFloor) {
+                if (spawnedRooms.Count() == roomsPerFloor && CurrentFloor != 5)
+                {
                     // Spawns a boss room off to the side
                     spawnedRooms.Add(Instantiate(CurrentBiome.Boss, ReallyFarAway,
                                                  Quaternion.identity));
@@ -101,7 +103,15 @@ public class LevelGen : MonoBehaviour {
 
                     return;
                 }
-            }
+                else if (spawnedRooms.Count() == roomsPerFloor && CurrentFloor == 5)
+                {
+                    spawnedRooms.Add(Instantiate(finalBoss, ReallyFarAway,
+                                                Quaternion.identity));
+                    Spawner.Instance.Enemies = CurrentBiome.Enemies;
+
+                    return;
+                }
+                }
 
             // Moves nodes to last room generated.
             GenerateNodes(spawnedRooms.Last().transform.position);

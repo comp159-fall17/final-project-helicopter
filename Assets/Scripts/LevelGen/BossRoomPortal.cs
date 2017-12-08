@@ -39,6 +39,10 @@ public class BossRoomPortal : MonoBehaviour {
                 GameObject.FindGameObjectWithTag("Boss").transform.Find("Teir3").gameObject.SetActive(true);
                 GameObject.FindGameObjectWithTag("Boss").transform.Find("Teir4").gameObject.SetActive(true);
             }
+            else
+            {
+                GameObject.FindGameObjectWithTag("Boss").transform.Find("Boss").gameObject.SetActive(true);
+            }
 
             // teleport to Far Away where the boss room is
             Vector3 somewhere = LevelGen.ReallyFarAway;
