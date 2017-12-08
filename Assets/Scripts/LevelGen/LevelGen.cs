@@ -95,7 +95,7 @@ public class LevelGen : MonoBehaviour {
 
                 // short-circuit if enough rooms have been reached
                 if (spawnedRooms.Count() == roomsPerFloor) {
-                    GameObject bossRoom = CurrentFloor == 4 ? CurrentBiome.Boss : finalBoss;
+                    GameObject bossRoom = CurrentFloor < 4 ? CurrentBiome.Boss : finalBoss;
 
                     // Spawns a boss room off to the side
                     spawnedRooms.Add(Instantiate(bossRoom, ReallyFarAway,
