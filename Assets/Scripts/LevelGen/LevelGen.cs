@@ -48,7 +48,7 @@ public class LevelGen : MonoBehaviour {
 
     public void ReloadFloor(bool won) {
         if (won) {
-            GameManager.Instance.points += GameManager.Instance.pointsIncrease*2;
+            GameManager.Instance.points += GameManager.Instance.pointsIncrease * 2;
             CurrentFloor++;
             CurrentFloor %= 5;
         } else {
@@ -94,24 +94,17 @@ public class LevelGen : MonoBehaviour {
                 }
 
                 // short-circuit if enough rooms have been reached
-                if (spawnedRooms.Count() == roomsPerFloor && CurrentFloor != 5)
-                {
+                if (spawnedRooms.Count() == roomsPerFloor) {
+                    GameObject bossRoom = CurrentFloor == 4 ? CurrentBiome.Boss : finalBoss;
+
                     // Spawns a boss room off to the side
-                    spawnedRooms.Add(Instantiate(CurrentBiome.Boss, ReallyFarAway,
+                    spawnedRooms.Add(Instantiate(bossRoom, ReallyFarAway,
                                                  Quaternion.identity));
                     Spawner.Instance.Enemies = CurrentBiome.Enemies;
 
                     return;
                 }
-                else if (spawnedRooms.Count() == roomsPerFloor && CurrentFloor == 5)
-                {
-                    spawnedRooms.Add(Instantiate(finalBoss, ReallyFarAway,
-                                                Quaternion.identity));
-                    Spawner.Instance.Enemies = CurrentBiome.Enemies;
-
-                    return;
-                }
-                }
+            }
 
             // Moves nodes to last room generated.
             GenerateNodes(spawnedRooms.Last().transform.position);

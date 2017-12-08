@@ -57,6 +57,7 @@ MonoBehaviour:
   shopRate: 0.15
   centralNode: {x: 0, y: 0, z: 0}
   roomSize: 41
+  finalBoss: {fileID: 1287157715842384, guid: b562496bc54d81145a04b56cf2068b51, type: 2}
   biomes:
   - Name: fall
     Spawn: {fileID: 1048818662978800, guid: 77bce5369b8fbf94d853b48bb102981f, type: 2}
