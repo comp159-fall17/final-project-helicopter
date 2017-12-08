@@ -470,7 +470,7 @@ Prefab:
         type: 2}
       propertyPath: biomes.Array.data[2].Boss
       value: 
-      objectReference: {fileID: 1858451038576476, guid: 65a9746c502c2a64a9bd59177a81f545,
+      objectReference: {fileID: 1320320421929824, guid: 65a9746c502c2a64a9bd59177a81f545,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 335fb4bfb5e104172a0a772b4d94c106, type: 2}
