@@ -93,7 +93,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1981067816960920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.832957, y: 1.4902618, z: -1.74}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224566244511587154}
@@ -114,7 +114,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 71e7c4ea82c1abd498e0af983fa01306, type: 2}
+  - {fileID: 2100000, guid: d6a1f0e1963add14bb2658c510969934, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -140,7 +140,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1981067816960920}
-  m_Mesh: {fileID: 4300000, guid: 16d680e182214dc499e37615d29c06b0, type: 3}
+  m_Mesh: {fileID: 4300000, guid: e607f74860c67814e93c914b710142d5, type: 3}
 --- !u!54 &54058447990017286
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -207,6 +207,7 @@ MonoBehaviour:
   runSpeed: 1
   hitPoints: 10
   wanderSearchRadius: 10
+  tackleSound: {fileID: 0}
   minimumDistanceToTarget: 5
 --- !u!114 &114143730563057026
 MonoBehaviour:
