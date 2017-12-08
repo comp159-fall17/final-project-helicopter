@@ -1,32 +1,27 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+
+using System;
 
 using UnityEngine;
 using UnityEditor;
 
-namespace DigitalRuby.PyroParticles
-{
+namespace DigitalRuby.PyroParticles {
     [CustomEditor(typeof(DemoScript))]
-    public class LightningBoltEditor : Editor
-    {
+    public class LightningBoltEditor : Editor {
         private Texture2D logo;
 
-        public override void OnInspectorGUI()
-        {
-            if (logo == null)
-            {
+        public override void OnInspectorGUI() {
+            if (logo == null) {
                 string[] guids = AssetDatabase.FindAssets("PyroParticlesLogo");
-                foreach (string guid in guids)
-                {
+                foreach (string guid in guids) {
                     string path = AssetDatabase.GUIDToAssetPath(guid);
                     logo = AssetDatabase.LoadMainAssetAtPath(path) as Texture2D;
-                    if (logo != null)
-                    {
+                    if (logo != null) {
                         break;
                     }
                 }
             }
-            if (logo != null)
-            {
+            if (logo != null) {
                 const float maxLogoWidth = 430.0f;
                 EditorGUILayout.Separator();
                 float w = EditorGUIUtility.currentViewWidth;
@@ -37,8 +32,7 @@ namespace DigitalRuby.PyroParticles
                 r.x = ((EditorGUIUtility.currentViewWidth - r.width) * 0.5f) - 4.0f;
                 r.y = r2.y;
                 GUI.DrawTexture(r, logo, ScaleMode.StretchToFill);
-                if (GUI.Button(r, "", new GUIStyle()))
-                {
+                if (GUI.Button(r, "", new GUIStyle())) {
                     Application.OpenURL("http://u3d.as/f1c");
                 }
                 EditorGUILayout.Separator();
@@ -48,3 +42,5 @@ namespace DigitalRuby.PyroParticles
         }
     }
 }
+
+#endif
