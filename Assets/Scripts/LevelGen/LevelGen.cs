@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-170)]
 public class LevelGen : MonoBehaviour {
@@ -52,7 +53,9 @@ public class LevelGen : MonoBehaviour {
         if (won) {
             GameManager.Instance.points += GameManager.Instance.pointsIncrease * 2;
             CurrentFloor++;
-            CurrentFloor %= 5;
+            if (CurrentFloor == 5) {
+                SceneManager.LoadScene(2);
+            }
         } else {
             CurrentFloor = 0;
         }
