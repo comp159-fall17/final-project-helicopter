@@ -378,7 +378,7 @@ MonoBehaviour:
   ExplosionPrefab: {fileID: 100000, guid: e0dc4d47bced6d54ab1461804114b5d0, type: 2}
   countdown: 0.75
   radius: 4
-  damage: 15
+  damage: 10
   throwForce: 500
 --- !u!135 &135719158376476446
 SphereCollider:
