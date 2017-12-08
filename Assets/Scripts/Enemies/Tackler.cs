@@ -74,23 +74,23 @@ public class Tackler : Wanderer {
     }
 
     IEnumerator DeathProcess() {
-        //make it so player can move and shoot through the model
+        // make it so player can move and shoot through the model
         gameObject.layer = LayerMask.NameToLayer("IgnoreRaycast");
         gameObject.GetComponent<CapsuleCollider>().isTrigger = true;
 
+        // stop everything
         Body.velocity *= 0;
         Agent.speed = 0;
-
+        StopCoroutine(WanderCoroutine);
         GameManager.Instance.Player.GetComponent<Rigidbody>().isKinematic &= !attacking;
 
-        StopCoroutine(WanderCoroutine);
-
+        // AV club stuff
         Anim.Play("dead");
+        GameManager.Instance.PlayDeathSound();
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
 
         GameManager.Instance.EnemyHasDied(transform);
-        GameManager.Instance.PlayDeathSound();
         Destroy(gameObject);
     }
 }
