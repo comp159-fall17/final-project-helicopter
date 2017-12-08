@@ -88,34 +88,57 @@ public class PlayerControls : Shooter {
         specialAmmo[3] = 0;
     }
 
+    public bool GodModeSpecialWeapons;
     protected override void Update() {
         base.Update();
         UpdateInputAxes();
         TrackCamera();
 
+        SecretCode();
+
+        if (GodModeSpecialWeapons) {
+            //testing special weapon collection
+            if (Input.GetKeyDown(KeyCode.Alpha1)) {
+                CollectSpecial(1);
+            } else if (Input.GetKeyDown(KeyCode.Alpha2)) {
+                CollectSpecial(2);
+            } else if (Input.GetKeyDown(KeyCode.Alpha3)) {
+                CollectSpecial(3);
+            }
+
+            //testing shot modifier collection
+            if (Input.GetKeyDown(KeyCode.Alpha4)) {
+                CollectModifier(0);
+            } else if (Input.GetKeyDown(KeyCode.Alpha5)) {
+                CollectModifier(1);
+            } else if (Input.GetKeyDown(KeyCode.Alpha6)) {
+                CollectModifier(2);
+            } else if (Input.GetKeyDown(KeyCode.Alpha7)) {
+                CollectModifier(3);
+            }
+        }
+    }
+
+    private static KeyCode[] secretInputs = { KeyCode.UpArrow, KeyCode.UpArrow, KeyCode.LeftArrow, KeyCode.LeftArrow, KeyCode.DownArrow, KeyCode.DownArrow, KeyCode.RightArrow, KeyCode.RightArrow,
+        KeyCode.J, KeyCode.A, KeyCode.K, KeyCode.E,
+        KeyCode.S, KeyCode.H, KeyCode.A, KeyCode.N, KeyCode.E,
+        KeyCode.V, KeyCode.I, KeyCode.C, KeyCode.T, KeyCode.O, KeyCode.R,
+        KeyCode.J, KeyCode.U, KeyCode.S, KeyCode.T, KeyCode.I, KeyCode.N };
+    int secretProgress;
+    void SecretCode() {
+        if (Input.GetKeyDown(secretInputs[secretProgress])) {
+            secretProgress++;
+        } else if (Input.anyKeyDown) {
+            secretProgress = 0;
+        }
+
+        if (secretProgress == secretInputs.Length) {
+            GodModeSpecialWeapons = true;
+            secretProgress = 0;
+        }
         //use shield with spacebar
         if (Input.GetKeyDown(KeyCode.Space) && hasShield && !shielded) {
             StartCoroutine(UseShield());
-        }
-
-        //testing special weapon collection
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            CollectSpecial(1);
-        } else if (Input.GetKeyDown(KeyCode.Alpha2)) {
-            CollectSpecial(2);
-        } else if (Input.GetKeyDown(KeyCode.Alpha3)) {
-            CollectSpecial(3);
-        }
-
-        //testing shot modifier collection
-        if (Input.GetKeyDown(KeyCode.Alpha4)) {
-            CollectModifier(0);
-        } else if (Input.GetKeyDown(KeyCode.Alpha5)) {
-            CollectModifier(1);
-        } else if (Input.GetKeyDown(KeyCode.Alpha6)) {
-            CollectModifier(2);
-        } else if (Input.GetKeyDown(KeyCode.Alpha7)) {
-            CollectModifier(3);
         }
     }
 
