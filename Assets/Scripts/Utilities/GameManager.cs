@@ -71,10 +71,6 @@ public class GameManager : MonoBehaviour {
                 DoorScript.CanCross = true;
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.J)) {
-            LevelGen.Instance.ReloadFloor(false);
-        }
     }
 
     /// <summary>
