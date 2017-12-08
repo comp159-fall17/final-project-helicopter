@@ -42,6 +42,7 @@ public class BossRoomPortal : MonoBehaviour {
             else
             {
                 GameObject.FindGameObjectWithTag("Boss").transform.Find("Boss").gameObject.SetActive(true);
+                GameObject.Find("Music").GetComponent<AudioSource>().clip = GameObject.Find("Music").GetComponent<Music>().bossMusic;
             }
 
             // teleport to Far Away where the boss room is
