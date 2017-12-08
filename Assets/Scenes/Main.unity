@@ -1161,10 +1161,10 @@ MonoBehaviour:
   minSpawnDistance: 15
   maxSpawnDistance: 0
   spawnProbabilities:
-  - 0.5
-  - 0.55
-  - 0.5
-  - 0.6
+  - 0.3
+  - 0.25
+  - 0.25
+  - 0.3
   Pickups:
   - {fileID: 1574741219827104, guid: f74b3f6224d341f4db2aba8b077c1e33, type: 2}
   - {fileID: 1667141853907628, guid: 633cf746dc0e5134e9d62bfafdf5af7e, type: 2}
@@ -1203,7 +1203,7 @@ MonoBehaviour:
   money: 0
   points: 0
   pointsIncrease: 5
-  moneyOnEnemyKill: 5
+  moneyOnEnemyKill: 2
   playerLuck: 0
   RoomClearSound: {fileID: 8300000, guid: 4138cf564a12d4b4bbb1bcb77adff982, type: 3}
   enemyRoom: 0
@@ -1884,16 +1884,16 @@ MonoBehaviour:
   grenadeValues:
   - 20
   - 4
-  - 15
+  - 10
   shotgunValues:
   - 15
   - 25
   - 10
-  - 5
+  - 1
   ringValues:
   - 5
   - 0.3
-  - 15
+  - 5
   grenadeRadiusIncrease: 1.5
   shotgunFireArcIncrease: 5
   shotgunBulletsIncrease: 5

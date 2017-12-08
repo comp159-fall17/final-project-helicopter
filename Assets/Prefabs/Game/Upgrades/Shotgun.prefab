@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentUpgrade: 1
   maxLevel: 3
-  increase: 2
+  increase: 1
   cost: 50
   ammoIncrease: 5
   weaponLevel: 1
