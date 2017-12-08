@@ -52,6 +52,7 @@ public class BulletController : MonoBehaviour {
         Shooter hit = other.GetComponent<Shooter>();
         if (hit == null) {
             Destroy(gameObject);
+            return;
         }
 
         if (hit.tag == "Player") {

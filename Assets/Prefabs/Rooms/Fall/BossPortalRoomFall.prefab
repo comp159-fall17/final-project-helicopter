@@ -1838,7 +1838,7 @@ GameObject:
   - component: {fileID: 114462377105552554}
   m_Layer: 8
   m_Name: PortalFire
-  m_TagString: Untagged
+  m_TagString: FireLayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2136,7 +2136,7 @@ GameObject:
   - component: {fileID: 114209133890557132}
   m_Layer: 8
   m_Name: PortalFire (1)
-  m_TagString: Untagged
+  m_TagString: FireLayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13951,7 +13951,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -20964,7 +20964,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 0
+  randomSeed: 1387465556
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -24149,7 +24149,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 0
+  randomSeed: 392884813
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -27364,7 +27364,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 0
+  randomSeed: 1168028667
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -30723,7 +30723,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 0
+  randomSeed: 337035531
   InitialModule:
     serializedVersion: 3
     enabled: 1

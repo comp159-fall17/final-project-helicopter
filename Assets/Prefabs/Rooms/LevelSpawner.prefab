@@ -96,7 +96,7 @@ MonoBehaviour:
     Chest: {fileID: 1811192728431550, guid: 85a1fd7664ee8f84e8b4a9245adf967d, type: 2}
     Shop: {fileID: 1416020413667522, guid: d3783d71977a10740b4311eaf983f7a2, type: 2}
     Portal: {fileID: 1060444952333290, guid: 83afd3589fce9ea44b6a90b7e78632f5, type: 2}
-    Boss: {fileID: 1429239527000260, guid: 65a9746c502c2a64a9bd59177a81f545, type: 2}
+    Boss: {fileID: 1569648795216202, guid: 65a9746c502c2a64a9bd59177a81f545, type: 2}
     Door: {fileID: 1768491214232880, guid: 5c990a9bd2110c94fb06e4ed7b6f76b6, type: 2}
     EnemyRooms:
     - {fileID: 1661968088514744, guid: 5f2afcfd36543d84d946742c0aae0a78, type: 2}

@@ -22,6 +22,7 @@ TagManager:
   - BossTeir3
   - BossTeir2
   - UIBuy
+  - FireLayer
   layers:
   - Default
   - TransparentFX
