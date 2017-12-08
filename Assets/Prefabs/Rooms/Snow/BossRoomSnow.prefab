@@ -971,7 +971,7 @@ GameObject:
   - component: {fileID: 114517557883595430}
   m_Layer: 0
   m_Name: BossRoomSnow
-  m_TagString: Room
+  m_TagString: BossRoom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
