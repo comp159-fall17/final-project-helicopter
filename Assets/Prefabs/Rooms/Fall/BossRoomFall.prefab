@@ -14730,7 +14730,7 @@ MonoBehaviour:
   fireDelay: 0
   walkSpeed: 10
   runSpeed: 30
-  UnlockKey: {fileID: 0}
+  UnlockKey: {fileID: 1080234705220218}
 --- !u!114 &114051486033140446
 MonoBehaviour:
   m_ObjectHideFlags: 1
