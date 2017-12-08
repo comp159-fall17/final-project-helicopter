@@ -7,21 +7,24 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
     public static GameManager Instance;
 
-    //Pickups
+    [Header("Pickups")]
     public float healAmount = 10f;
     public int ammoRecovery = 5;
     public float shieldActiveTime = 5.0f;
     public int moneyGain = 5;
     public float pickupSpawnInterval = 15.0f;
 
-    //Canvases
+    [Space(10)]
+    [Header("Canvases")]
     public GameObject GameOverCanvas;
     public GameObject screenCanvas;
 
-    //GameOver
+    [Space(10)]
+    [Header("Game Over")]
     public int gameoverTime;
 
-    //Wave Spawning
+    [Space(10)]
+    [Header("Wave Spawning")]
     public Text gameOverPointsText;
 
     public Text healthText;
@@ -29,6 +32,8 @@ public class GameManager : MonoBehaviour {
     public Text moneyText;
     public Text floorText;
 
+    [Space(10)]
+    [Header("Stats")]
     public int money; // per run, in-game shop money
     public int points; // outside of game shop currency
 
@@ -36,6 +41,9 @@ public class GameManager : MonoBehaviour {
     public int moneyOnEnemyKill; //money gained when killing an enemy
 
     public float playerLuck;
+
+    [Space(10)]
+    public AudioClip RoomClearSound;
 
     private AudioSource deathSound;
     private int startPoints;
@@ -65,7 +73,11 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void ClearRoom() { //add points on clearing a room
+    /// <summary>
+    /// Adds points on clearing a room
+    /// </summary>
+    void ClearRoom() {
+        deathSound.PlayOneShot(RoomClearSound);
         enemyRoom = false;
         points += pointsIncrease;
         DoorScript.CanCross = true;
