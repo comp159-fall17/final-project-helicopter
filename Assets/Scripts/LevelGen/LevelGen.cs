@@ -34,7 +34,7 @@ public class LevelGen : MonoBehaviour {
     private List<GameObject> spawnedRooms = new List<GameObject>();
     private Vector3[] nodes;
 
-    private Biome CurrentBiome { get { return biomes[roomType]; } }
+    public Biome CurrentBiome { get { return biomes[roomType]; } }
 
     void Start() {
         if (Instance == null) {
