@@ -13,6 +13,8 @@ public class ShopManager : MonoBehaviour {
     public GameObject specialShop;
     public GameObject playerCanvas;
 
+    public AudioSource upgradeItemSound;
+
     public ShopUpgrade[] Upgrades;
     public Text[] levelText;
     public Text[] costText;
@@ -164,6 +166,7 @@ public class ShopManager : MonoBehaviour {
                 levelText[type].text = "Level: MAX";
             }
 
+            upgradeItemSound.PlayOneShot(upgradeItemSound.clip);
             shopPoints -= Upgrades[type].cost;
         }
 
@@ -212,6 +215,7 @@ public class ShopManager : MonoBehaviour {
                 specialLevelText[type].text = "Level: MAX";
             }
 
+            upgradeItemSound.PlayOneShot(upgradeItemSound.clip);
             shopPoints -= SpecialUpgrades[type].cost;
         }
 

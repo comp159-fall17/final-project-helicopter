@@ -19,6 +19,8 @@ public class InGameShop : MonoBehaviour {
 
     PlayerControls player; //player's script
 
+    AudioSource buyItemSound;
+
     public static InGameShop Instance;
 
     void Start () {
@@ -36,6 +38,8 @@ public class InGameShop : MonoBehaviour {
 
     //decide which items to have in the shop
     void NewItems() {
+        buyItemSound = GameObject.FindGameObjectWithTag("UIBuy").GetComponent<AudioSource>();
+
         shopCanvas = Instantiate(InGameShopCanvas);
 
         int numItems = possibleShopItems.Length;
@@ -120,6 +124,7 @@ public class InGameShop : MonoBehaviour {
             }
 
             if (!swap || oldSpecial == item - 4) {
+                buyItemSound.PlayOneShot(buyItemSound.clip);
                 RemoveButton(button);
             } else {
                 SwapButton(button, oldSpecial);

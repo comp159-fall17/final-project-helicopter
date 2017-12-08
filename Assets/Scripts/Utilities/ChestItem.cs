@@ -12,6 +12,8 @@ public class ChestItem : MonoBehaviour {
 
     PlayerControls player; //player's script
 
+    AudioSource getItemSound;
+
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>();
 
@@ -19,6 +21,8 @@ public class ChestItem : MonoBehaviour {
     }
 
     void SpawnItem() {
+        getItemSound = GameObject.FindGameObjectWithTag("UIBuy").GetComponent<AudioSource>();
+
         chestScreen = Instantiate(chestCanvas);
 
         int item = Random.Range(0, possibleChestItems.Length);
@@ -49,6 +53,8 @@ public class ChestItem : MonoBehaviour {
 
             break;
         }
+
+        getItemSound.PlayOneShot(getItemSound.clip);
 
         if (!swap || oldSpecial == item) {
             RemoveButton(button);
