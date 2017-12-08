@@ -95,7 +95,7 @@ public class ShopManager : MonoBehaviour {
     }
 
     void Update() {
-        statsText[0].text = "Max Health Limit: " + player.Health.maxPointsLimit;
+        statsText[0].text = "Max Health Limit: " + player.Health.maxPoints;
         statsText[1].text = "Player Speed: " + player.walkSpeed;
         statsText[2].text = "Player Damage: " + player.bulletDamage;
         statsText[3].text = "Health Pickup: +" + GameManager.Instance.healAmount;
@@ -141,8 +141,9 @@ public class ShopManager : MonoBehaviour {
 
             switch (type) {
             case 0: //player max health limit
-                Healthbar playerHealth = player.Health;
-                playerHealth.maxPointsLimit += Upgrades[type].increase;
+                Healthbar playerHealth = player.Health;                
+                playerHealth.maxPoints += Upgrades[type].increase;
+                playerHealth.maxPointsLimit = playerHealth.maxPoints + 50;
                 playerHealth.Reset();
                 break;
             case 1: //player speed
