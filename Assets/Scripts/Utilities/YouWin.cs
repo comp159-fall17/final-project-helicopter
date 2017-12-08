@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartGame : MonoBehaviour {
-    //switch to game scenes
-    public void BeginGame() {
-        SceneManager.LoadScene(1);
+public class YouWin : MonoBehaviour {
+    public void Return()
+    {
+        SceneManager.LoadScene("TitleScreen");
     }
 
     public void Quit()
