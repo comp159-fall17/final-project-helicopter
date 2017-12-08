@@ -13,7 +13,6 @@ public class BossKilledSnow : EnemyRoom {
     }
 
     public override void Spawn() {
-        base.Spawn();
         StartCoroutine(WaitToDestroy());
     }
 	

@@ -108,7 +108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1060714677032284
 GameObject:
   m_ObjectHideFlags: 1
@@ -324,7 +324,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4665175314928582}
-  - component: {fileID: 114055572718637756}
   m_Layer: 0
   m_Name: BossSnow
   m_TagString: Boss
@@ -571,7 +570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1235305203655152
 GameObject:
   m_ObjectHideFlags: 1
@@ -1054,7 +1053,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1526566796338638
 GameObject:
   m_ObjectHideFlags: 1
@@ -1338,7 +1337,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1646818228827892
 GameObject:
   m_ObjectHideFlags: 1
@@ -4998,22 +4997,6 @@ MonoBehaviour:
   maxPointsLimit: 150
   maxHealthIncrease: 25
   healthbar: {fileID: 114544596092639864}
---- !u!114 &114055572718637756
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1120443782642964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f632dc0b882ac0944a8f6ef0a3dbcfb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActiveOnStart: 0
-  SourceObjects: []
-  EnemiesPerWave: 0
-  SpawnPoints: {fileID: 0}
-  UnlockKey: {fileID: 1093248511497434}
 --- !u!114 &114129344365004994
 MonoBehaviour:
   m_ObjectHideFlags: 1

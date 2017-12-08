@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-170)]
 public class LevelGen : MonoBehaviour {
@@ -20,6 +21,8 @@ public class LevelGen : MonoBehaviour {
     [Space(10)]
     public GameObject finalBoss;
     public Biome[] biomes;
+
+    public GameObject DefaultFloor;
 
     public GameObject Door { get { return CurrentBiome.Door; } }
     public int CurrentFloor { get; private set; }
@@ -50,7 +53,9 @@ public class LevelGen : MonoBehaviour {
         if (won) {
             GameManager.Instance.points += GameManager.Instance.pointsIncrease * 2;
             CurrentFloor++;
-            CurrentFloor %= 5;
+            if (CurrentFloor == 5) {
+                SceneManager.LoadScene(2);
+            }
         } else {
             CurrentFloor = 0;
         }
@@ -110,11 +115,8 @@ public class LevelGen : MonoBehaviour {
             GenerateNodes(spawnedRooms.Last().transform.position);
         }
 
-        // generate floor to go to next one
-        Vector3 nextRoomPos = centralNode;
-        nextRoomPos.z += roomSize;
-        spawnedRooms.Add(Instantiate(CurrentBiome.Portal, nextRoomPos, Quaternion.identity));
-        spawnedRooms.Add(Instantiate(CurrentBiome.Boss, ReallyFarAway, Quaternion.identity));
+        // spawn a default floor
+        spawnedRooms.Add(Instantiate(DefaultFloor, Vector3.zero, Quaternion.identity));
         Debug.LogError("Could not generate floor. Please try again.");
     }
 

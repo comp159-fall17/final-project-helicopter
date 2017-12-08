@@ -21,7 +21,9 @@ public class Grenade : SpecialWeapon {
             return;
         }
 
-        Explode();
+        if (other.GetComponent<Shooter>() != null) {
+            Explode();
+        }
     }
 
     public void Explode() {
