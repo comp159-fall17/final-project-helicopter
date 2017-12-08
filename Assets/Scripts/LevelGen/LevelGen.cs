@@ -34,7 +34,7 @@ public class LevelGen : MonoBehaviour {
     private List<GameObject> spawnedRooms = new List<GameObject>();
     private Vector3[] nodes;
 
-    public Biome CurrentBiome { get { return biomes[roomType]; } }
+    private Biome CurrentBiome { get { return biomes[roomType]; } }
 
     void Start() {
         if (Instance == null) {
@@ -77,6 +77,26 @@ public class LevelGen : MonoBehaviour {
         }
     }
 
+    private GameObject music;
+    void startMusic()
+    {
+        Debug.Log(CurrentBiome.Name);
+        music = GameObject.Find("Music");
+        if (CurrentBiome.Name == "fall")
+        {
+            music.GetComponent<AudioSource>().clip = music.GetComponent<Music>().fallMusic;
+        }
+        else if (CurrentBiome.Name == "forest")
+        {
+            music.GetComponent<AudioSource>().clip = music.GetComponent<Music>().forestMusic;
+        }
+        else
+        {
+            music.GetComponent<AudioSource>().clip = music.GetComponent<Music>().snowMusic;
+        }
+        music.GetComponent<AudioSource>().Play();
+    }
+
     /// <summary>
     /// Generates new floor.
     /// </summary>
@@ -86,6 +106,7 @@ public class LevelGen : MonoBehaviour {
 
         // create new biome
         roomType = Random.Range(0, biomes.Length);
+        startMusic();
 
         // spawn room is guaranteed
         spawnedRooms.Add(Instantiate(CurrentBiome.Spawn, nodes[0], Quaternion.identity));
@@ -114,7 +135,6 @@ public class LevelGen : MonoBehaviour {
             // Moves nodes to last room generated.
             GenerateNodes(spawnedRooms.Last().transform.position);
         }
-
         // spawn a default floor
         spawnedRooms.Add(Instantiate(DefaultFloor, Vector3.zero, Quaternion.identity));
         Debug.LogError("Could not generate floor. Please try again.");
