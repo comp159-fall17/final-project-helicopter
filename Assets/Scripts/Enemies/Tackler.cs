@@ -88,7 +88,7 @@ public class Tackler : Wanderer {
         Anim.Play("dead");
         GameManager.Instance.PlayDeathSound();
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
 
         GameManager.Instance.EnemyHasDied(transform);
         Destroy(gameObject);
