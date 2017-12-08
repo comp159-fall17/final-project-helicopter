@@ -48,17 +48,16 @@ public class BulletController : MonoBehaviour {
             other.gameObject.layer == LayerMask.NameToLayer("Shield")) {
             return;
         }
-        
-        switch (other.gameObject.tag) {
-        case "Enemy":
-            TriggerEnemy(other);
-            break;
-        case "Player":
-            TriggerPlayer(other);
-            break;
-        default:
-            Destroy(gameObject);
-            break;
+
+        Shooter hit = other.GetComponent<Shooter>();
+        if (hit == null) {
+            return;
+        }
+
+        if (hit.tag == "Player") {
+            TriggerPlayer(hit);
+        } else {
+            TriggerEnemy(hit);
         }
     }
 
@@ -66,8 +65,8 @@ public class BulletController : MonoBehaviour {
     /// Player trigger handler.
     /// </summary>
     /// <param name="player">Player collider.</param>
-    protected virtual void TriggerPlayer(Collider player) {
-        player.gameObject.GetComponent<Shooter>().Hit(damage);
+    protected virtual void TriggerPlayer(Shooter player) {
+        player.Hit(damage);
         Destroy(gameObject);
     }
 
@@ -75,12 +74,12 @@ public class BulletController : MonoBehaviour {
     /// Enemy trigger handler.
     /// </summary>
     /// <param name="enemy">Enemy collider.</param>
-    protected virtual void TriggerEnemy(Collider enemy) {
+    protected virtual void TriggerEnemy(Shooter enemy) {
         if (gameObject.CompareTag("Bullet")) { //don't allow enemy bullets to damage each other
             return;
         }
 
-        enemy.gameObject.GetComponent<Shooter>().Hit(damage);
+        enemy.Hit(damage);
         Destroy(gameObject);
     }
 }

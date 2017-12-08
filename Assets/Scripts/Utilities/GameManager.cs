@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour {
     [Space(10)]
     public AudioClip RoomClearSound;
 
-    private AudioSource deathSound;
+    public AudioSource playerSound { get; private set; }
     private int startPoints;
 
     [HideInInspector] public bool enemyRoom = false;
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour {
         }
 
         Player = GameObject.FindGameObjectWithTag("Player");
-        deathSound = GetComponent<AudioSource>();
+        playerSound = GetComponent<AudioSource>();
     }
 
     private void Update() {
@@ -77,14 +77,14 @@ public class GameManager : MonoBehaviour {
     /// Adds points on clearing a room
     /// </summary>
     void ClearRoom() {
-        deathSound.PlayOneShot(RoomClearSound);
+        playerSound.PlayOneShot(RoomClearSound);
         enemyRoom = false;
         points += pointsIncrease;
         DoorScript.CanCross = true;
     }
 
     public void PlayDeathSound() {
-        deathSound.Play();
+        playerSound.Play();
     }
 
     public void StartGame() {

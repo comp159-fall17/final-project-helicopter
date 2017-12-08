@@ -26,6 +26,8 @@ public class Wanderer : EnemyController {
     public float wanderSearchRadius = 5f;
 
     protected NavMeshAgent Agent;
+    protected Animator Anim;
+    protected Coroutine WanderCoroutine;
 
     protected override void Start() {
         Agent = GetComponent<NavMeshAgent>();
@@ -36,7 +38,9 @@ public class Wanderer : EnemyController {
         Agent.enabled = true;
 
         // default wandering
-        StartCoroutine(Wander());
+        WanderCoroutine = StartCoroutine(Wander());
+
+        Anim = GetComponent<Animator>();
     }
 
 #pragma warning disable RECS0135 // Function does not reach its end or a 'return' statement by any of possible execution paths
@@ -47,6 +51,7 @@ public class Wanderer : EnemyController {
         while (true) {
             // Reset speed just in case was hit, etc
             Body.velocity *= 0;
+            yield return new WaitForSeconds(3f);
 
             Agent.destination = SearchNextDestination();
 
