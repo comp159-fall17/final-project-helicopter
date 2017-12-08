@@ -968,7 +968,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4002244517294832}
-  - component: {fileID: 114517557883595430}
+  - component: {fileID: 114660771806572466}
   m_Layer: 0
   m_Name: BossRoomSnow
   m_TagString: BossRoom
@@ -5009,6 +5009,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f632dc0b882ac0944a8f6ef0a3dbcfb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ActiveOnStart: 0
+  SourceObjects: []
+  EnemiesPerWave: 0
+  SpawnPoints: {fileID: 0}
   UnlockKey: {fileID: 1093248511497434}
 --- !u!114 &114129344365004994
 MonoBehaviour:
@@ -5209,22 +5213,6 @@ MonoBehaviour:
   radius: 3
   damage: 50
   throwForce: 0
---- !u!114 &114517557883595430
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1429239527000260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 576b150b9cc4647b19d6f136fc2093d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActiveOnStart: 1
-  SourceObjects:
-  - {fileID: 33313572217446534}
-  EnemiesPerWave: 3
-  SpawnPoints: {fileID: 0}
 --- !u!114 &114522607255787612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5354,6 +5342,23 @@ MonoBehaviour:
   runSpeed: 30
   hitPoints: 50
   wanderSearchRadius: 10
+--- !u!114 &114660771806572466
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1429239527000260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f632dc0b882ac0944a8f6ef0a3dbcfb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActiveOnStart: 1
+  SourceObjects:
+  - {fileID: 33313572217446534}
+  EnemiesPerWave: 0
+  SpawnPoints: {fileID: 0}
+  UnlockKey: {fileID: 1093248511497434}
 --- !u!114 &114695422070257718
 MonoBehaviour:
   m_ObjectHideFlags: 1

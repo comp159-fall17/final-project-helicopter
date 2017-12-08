@@ -31,7 +31,7 @@ public class EnemyRoom : MonoBehaviour {
 
     public bool IsActive { get; private set; }
 
-    void Start() {
+    protected virtual void Start() {
         IsActive = ActiveOnStart;
 
         if (ActiveOnStart) {
@@ -65,7 +65,7 @@ public class EnemyRoom : MonoBehaviour {
         }
     }
 
-    public void Spawn() {
+    public virtual void Spawn() {
         StartCoroutine(Spawning());
     }
 
