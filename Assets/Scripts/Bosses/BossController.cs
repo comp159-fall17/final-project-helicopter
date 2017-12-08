@@ -17,6 +17,6 @@ public class BossController : Shooter {
     protected override void Die() {
         UnlockKey.SetActive(true);
         GameManager.Instance.PlayDeathSound();
-        Destroy(gameObject);
+        Destroy(GameObject.FindGameObjectWithTag("Boss"));
     }
 }
