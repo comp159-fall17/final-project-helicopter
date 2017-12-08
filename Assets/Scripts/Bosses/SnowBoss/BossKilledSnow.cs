@@ -19,6 +19,7 @@ public class BossKilledSnow : EnemyRoom {
 	
 	// Update is called once per frame
     IEnumerator WaitToDestroy () {
+        yield return null;
         yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Enemy").Length == 0);
 
         UnlockKey.SetActive(true);
