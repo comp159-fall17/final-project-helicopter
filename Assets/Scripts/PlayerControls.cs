@@ -133,6 +133,7 @@ public class PlayerControls : Shooter {
         }
 
         if (secretProgress == secretInputs.Length) {
+            upgradeSound.Play();
             GodModeSpecialWeapons = true;
             secretProgress = 0;
         }
@@ -143,7 +144,7 @@ public class PlayerControls : Shooter {
     }
 
     void playUpgradeSound() {
-        AudioSource.PlayClipAtPoint(upgradeSound.clip, Camera.main.transform.position);
+        upgradeSound.Play();
     }
 
     void UpdateInputAxes() {
