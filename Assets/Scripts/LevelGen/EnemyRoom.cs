@@ -73,7 +73,7 @@ public class EnemyRoom : MonoBehaviour {
         NavMeshGen.Instance.NavMeshPosition = transform.position;
         NavMeshGen.Instance.NavMeshSize = new Vector3(41, 5, 41);
 
-        yield return new WaitForSeconds(0.1f);
+        yield return null;
 
         List<Vector3> spawnPoints = GetSpawnPoints();
 
