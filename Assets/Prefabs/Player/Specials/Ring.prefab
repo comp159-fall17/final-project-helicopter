@@ -206,8 +206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 1.5
-  growthRate: 0.4
-  damage: 23
+  growthRate: 0.3
+  damage: 15
 --- !u!136 &136101087269374636
 CapsuleCollider:
   m_ObjectHideFlags: 1
