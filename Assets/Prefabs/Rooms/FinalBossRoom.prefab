@@ -575,6 +575,7 @@ GameObject:
   - component: {fileID: 33315251880238968}
   - component: {fileID: 65906506891917420}
   - component: {fileID: 23168581946319366}
+  - component: {fileID: 114259073317825360}
   m_Layer: 0
   m_Name: EndGame
   m_TagString: Untagged
@@ -5359,6 +5360,17 @@ MonoBehaviour:
   wanderSearchRadius: 10
   tackleSound: {fileID: 0}
   minimumDistanceToTarget: 5
+--- !u!114 &114259073317825360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1356547435254952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f996960b60e2634ebb1a0d87076bbee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114292377229201976
 MonoBehaviour:
   m_ObjectHideFlags: 1
