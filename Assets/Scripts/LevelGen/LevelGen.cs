@@ -22,6 +22,8 @@ public class LevelGen : MonoBehaviour {
     public GameObject Door { get { return CurrentBiome.Door; } }
     public int CurrentFloor { get; private set; }
 
+    public GameObject shopKeep;
+
     private int roomType = 0;
 
     private List<GameObject> spawnedRooms = new List<GameObject>();
@@ -56,6 +58,16 @@ public class LevelGen : MonoBehaviour {
 
         RemoveFloor();
         NewFloor();
+    }
+
+    void Update() {
+        foreach (GameObject obj in spawnedRooms) { //add in-game shop back in case it was for some reason removed
+            if (obj.name.Contains("Shop")) {
+                if (obj.GetComponentsInChildren<InGameShop>().Length < 1) {
+                    Instantiate(shopKeep, obj.transform, false);
+                }
+            }
+        }
     }
 
     /// <summary>
