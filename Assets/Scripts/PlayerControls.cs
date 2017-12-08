@@ -121,9 +121,9 @@ public class PlayerControls : Shooter {
 
     private static KeyCode[] secretInputs = { KeyCode.UpArrow, KeyCode.UpArrow, KeyCode.LeftArrow, KeyCode.LeftArrow, KeyCode.DownArrow, KeyCode.DownArrow, KeyCode.RightArrow, KeyCode.RightArrow,
         KeyCode.J, KeyCode.A, KeyCode.K, KeyCode.E,
+        KeyCode.J, KeyCode.U, KeyCode.S, KeyCode.T, KeyCode.I, KeyCode.N,
         KeyCode.S, KeyCode.H, KeyCode.A, KeyCode.N, KeyCode.E,
-        KeyCode.V, KeyCode.I, KeyCode.C, KeyCode.T, KeyCode.O, KeyCode.R,
-        KeyCode.J, KeyCode.U, KeyCode.S, KeyCode.T, KeyCode.I, KeyCode.N };
+        KeyCode.V, KeyCode.I, KeyCode.C, KeyCode.T, KeyCode.O, KeyCode.R };
     int secretProgress;
     void SecretCode() {
         if (Input.GetKeyDown(secretInputs[secretProgress])) {
