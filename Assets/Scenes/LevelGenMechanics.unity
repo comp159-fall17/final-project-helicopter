@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.366821, g: 0.6416299, b: 0.87611616, a: 1}
+  m_IndirectSpecularColor: {r: 0.36677358, g: 0.6417017, b: 0.8760933, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1181,10 +1181,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1050752405782102, guid: 57272a5d8d438b34c9dd4185430bb40c, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57272a5d8d438b34c9dd4185430bb40c, type: 2}
   m_IsPrefabParent: 0
@@ -1248,12 +1244,12 @@ Prefab:
     - target: {fileID: 224410076565025466, guid: f3e38909748a86440b02218ec678152c,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 347
       objectReference: {fileID: 0}
     - target: {fileID: 224410076565025466, guid: f3e38909748a86440b02218ec678152c,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 151
       objectReference: {fileID: 0}
     - target: {fileID: 224410076565025466, guid: f3e38909748a86440b02218ec678152c,
         type: 2}
@@ -1333,6 +1329,50 @@ Prefab:
     - target: {fileID: 224410076565025466, guid: f3e38909748a86440b02218ec678152c,
         type: 2}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224536907980350046, guid: f3e38909748a86440b02218ec678152c,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 257
+      objectReference: {fileID: 0}
+    - target: {fileID: 224536907980350046, guid: f3e38909748a86440b02218ec678152c,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -129
+      objectReference: {fileID: 0}
+    - target: {fileID: 224121159840679808, guid: f3e38909748a86440b02218ec678152c,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 127
+      objectReference: {fileID: 0}
+    - target: {fileID: 224121159840679808, guid: f3e38909748a86440b02218ec678152c,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 136
+      objectReference: {fileID: 0}
+    - target: {fileID: 224414504066287544, guid: f3e38909748a86440b02218ec678152c,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -267
+      objectReference: {fileID: 0}
+    - target: {fileID: 224414504066287544, guid: f3e38909748a86440b02218ec678152c,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -129
+      objectReference: {fileID: 0}
+    - target: {fileID: 224516807384481354, guid: f3e38909748a86440b02218ec678152c,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -267
+      objectReference: {fileID: 0}
+    - target: {fileID: 224516807384481354, guid: f3e38909748a86440b02218ec678152c,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 136
+      objectReference: {fileID: 0}
+    - target: {fileID: 1583053570735792, guid: f3e38909748a86440b02218ec678152c, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1619,12 +1659,12 @@ MonoBehaviour:
   - 5
   ringValues:
   - 5
-  - 0.5
+  - 0.3
   - 15
   grenadeRadiusIncrease: 1.5
   shotgunFireArcIncrease: 5
   shotgunBulletsIncrease: 5
-  ringGrowthRateIncrease: 0.25
+  ringGrowthRateIncrease: 0.1
 --- !u!4 &1853750444
 Transform:
   m_ObjectHideFlags: 0
