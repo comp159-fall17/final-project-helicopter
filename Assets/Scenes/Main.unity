@@ -604,10 +604,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aead17d4d8020b04ba19a36b48507676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallMusic: {fileID: 8300000, guid: 628327dd5be099149a2eee706465b809, type: 3}
-  forestMusic: {fileID: 8300000, guid: 628327dd5be099149a2eee706465b809, type: 3}
-  snowMusic: {fileID: 8300000, guid: 628327dd5be099149a2eee706465b809, type: 3}
-  bossMusic: {fileID: 8300000, guid: 4398d836b3264f8409cbb06f39826e68, type: 3}
+  fallMusic: {fileID: 8300000, guid: 57320ee17fe21ca4ba4c965c64997f87, type: 3}
+  forestMusic: {fileID: 8300000, guid: 49561a6e3a581f944ab6deec6407b40b, type: 3}
+  snowMusic: {fileID: 8300000, guid: f285c72d9a1ebc24892ffea827f78e83, type: 3}
+  bossMusic: {fileID: 8300000, guid: 0b2faa09f12ccd14a98b6775d9eef379, type: 3}
 --- !u!1 &421848689
 GameObject:
   m_ObjectHideFlags: 0
