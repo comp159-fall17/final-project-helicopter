@@ -13,6 +13,11 @@ public class InGameShop : MonoBehaviour {
 
     //possible items are 4+ pickups, 2+ normal weapon modifiers and the 3 special weapons
     public GameObject[] possibleShopItems;
+    [Space(10)]
+
+    [Header("0: Health, 1: Ammo, 2: Shield, 3: Luck")]
+    [Header("4: Grenade, 5: Shotgun, 6: Ring")]
+    [Header("7: DoubleShot, 8: TripleShot, 9: RapidFire")]
     public int[] itemCosts;
 
     public float playerLuckIncrease;
