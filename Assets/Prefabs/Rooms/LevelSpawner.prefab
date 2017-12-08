@@ -107,4 +107,6 @@ MonoBehaviour:
     - {fileID: 1050792291985166, guid: a4d8e9fbed188f548906a49882bbb89e, type: 2}
     - {fileID: 1944044495778950, guid: d84e027e39758334aae3dd8029383656, type: 2}
     - {fileID: 1047732541245424, guid: af439fb32e56789459dd61d7dbcbba0d, type: 2}
+  DefaultFloor: {fileID: 1544406750864670, guid: 5067b5958eabb4e25bd7e6b08a246d6e,
+    type: 2}
   shopKeep: {fileID: 1014603173338788, guid: c40a2f6cba81bdd499bef2d42132a155, type: 2}
