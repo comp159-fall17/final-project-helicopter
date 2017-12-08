@@ -22,4 +22,10 @@ public class Exploder : Tackler {
             Destroy(gameObject); // sometimes it doesn't go through
         }
     }
+
+    protected override void Die() {
+        GameManager.Instance.EnemyHasDied(transform);
+        GameManager.Instance.PlayDeathSound();
+        Destroy(gameObject);
+    }
 }

@@ -42,34 +42,13 @@ public class Tackler : Wanderer {
 
             if (base.ShouldShoot) {
                 Agent.destination = Target;
-                Agent.speed = runSpeed * 0;
+                Agent.speed = runSpeed;
             } else {
                 Agent.destination = SearchNextDestination();
-                Agent.speed = walkSpeed * 0;
+                Agent.speed = walkSpeed;
             }
 
             yield return new WaitUntil(() => Agent.isActiveAndEnabled && ShouldContinue);
-        }
-    }
-
-    protected override void Update() {
-        base.Update();
-
-        if (base.ShouldShoot) {
-            PlayClip("run");
-        } else {
-            PlayClip("walk");
-        }
-    }
-
-    float lastPlayedTime;
-    string lastPlayedClip = "";
-    void PlayClip(string clipName) {
-        if (Time.time - lastPlayedTime > 0.5f || lastPlayedClip != clipName) {
-            print("played " + clipName);
-            lastPlayedTime = Time.time;
-            Anim.Play(clipName);
-            lastPlayedClip = clipName;
         }
     }
 
@@ -86,14 +65,19 @@ public class Tackler : Wanderer {
         }
     }
 
+    bool startedDeath;
     protected override void Die() {
-        StartCoroutine(DeathProcess());
+        if (!startedDeath) {
+            StartCoroutine(DeathProcess());
+            startedDeath = true;
+        }
     }
 
     IEnumerator DeathProcess() {
         Body.velocity *= 0;
         Agent.speed = 0;
-        yield return new WaitWhile(() => attacking);
+
+        GameManager.Instance.Player.GetComponent<Rigidbody>().isKinematic &= !attacking;
 
         StopCoroutine(WanderCoroutine);
 
