@@ -75,8 +75,7 @@ public class LevelGen : MonoBehaviour {
         for (int unused = 0; unused < 20000 * roomsPerFloor; unused++) {
             // give a pass-through to all nodes
             for (int i = 0; i < 4; i++) {
-                //overallRoomRate
-                if (CheckNodeEmpty(i) && Random.value < -300) {
+                if (CheckNodeEmpty(i) && Random.value < overallRoomRate) {
                     AddRoom(nodes[i]);
                 }
 
