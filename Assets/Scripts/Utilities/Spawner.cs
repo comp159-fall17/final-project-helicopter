@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+[DefaultExecutionOrder(-175)]
 public class Spawner : MonoBehaviour {
     public static Spawner Instance;
 

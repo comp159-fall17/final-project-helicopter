@@ -532,11 +532,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
-        type: 2}
-      propertyPath: roomsPerFloor
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 335fb4bfb5e104172a0a772b4d94c106, type: 2}
   m_IsPrefabParent: 0
@@ -1101,7 +1096,7 @@ MonoBehaviour:
   Enemies:
   - {fileID: 1461053590188184, guid: 49784f793b5ef464ca8f441869953e79, type: 2}
   - {fileID: 1981067816960920, guid: 4b24ef4dde09a40dcb841c05121cc7da, type: 2}
-  - {fileID: 1461053590188184, guid: a1cdf53d2c49f41d491f04734e44ce86, type: 2}
+  - {fileID: 1621063518944008, guid: 74f3b0b77cc254108b4691d21e906962, type: 2}
   - {fileID: 1907644502301192, guid: 655cd8c9b23f143908ed85d95e3a01a2, type: 2}
 --- !u!114 &708106804
 MonoBehaviour:

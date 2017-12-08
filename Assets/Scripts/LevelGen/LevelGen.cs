@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(-170)]
 public class LevelGen : MonoBehaviour {
     public static LevelGen Instance;
 
@@ -96,6 +97,8 @@ public class LevelGen : MonoBehaviour {
                     // Spawns a boss room off to the side
                     spawnedRooms.Add(Instantiate(CurrentBiome.Boss, ReallyFarAway,
                                                  Quaternion.identity));
+                    Spawner.Instance.Enemies = CurrentBiome.Enemies;
+
                     return;
                 }
             }
@@ -206,9 +209,11 @@ public struct Biome {
     public GameObject Boss;
     public GameObject Door;
     [Space(10)]
-    public GameObject[] Enemy;
+    public GameObject[] EnemyRooms;
+    [Space(10)]
+    public GameObject[] Enemies;
 
     public GameObject RandomEnemy() {
-        return Enemy[Random.Range(0, Enemy.Length)];
+        return EnemyRooms[Random.Range(0, EnemyRooms.Length)];
     }
 }
