@@ -286,7 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1719452425394648, guid: 019e76ea5c94ff74281f789932874a68, type: 2}
   specialWeapon: {fileID: 0}
-  fireDelay: 0.5
+  fireDelay: 0.25
   walkSpeed: 10
   runSpeed: 30
   hitPoints: 10

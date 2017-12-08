@@ -1569,7 +1569,7 @@ MonoBehaviour:
   fireDelay: 0
   walkSpeed: 10
   runSpeed: 30
-  hitPoints: 10
+  hitPoints: 15
   wanderSearchRadius: 5
   tackleSound: {fileID: 8300000, guid: 2dc35d77cfe164a2eab57d08500740e2, type: 3}
   minimumDistanceToTarget: 5
