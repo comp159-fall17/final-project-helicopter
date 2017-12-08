@@ -51,20 +51,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d048bbe1b13284cabaafc5d81c44aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomsPerFloor: 10
+  roomsPerFloor: 2
   overallRoomRate: 0.5
   chestRate: 0.1
   shopRate: 0.15
   centralNode: {x: 0, y: 0, z: 0}
   roomSize: 41
-  finalBoss: {fileID: 1287157715842384, guid: b562496bc54d81145a04b56cf2068b51, type: 2}
+  finalBoss: {fileID: 1844546019005000, guid: b562496bc54d81145a04b56cf2068b51, type: 2}
   biomes:
   - Name: fall
     Spawn: {fileID: 1048818662978800, guid: 77bce5369b8fbf94d853b48bb102981f, type: 2}
     Chest: {fileID: 1663561236707392, guid: 9166d654cc474d145b298d0b08c3d7c2, type: 2}
     Shop: {fileID: 1710471831296608, guid: 4c0f77567a5d8ad4eb5bbe65b25f42c9, type: 2}
     Portal: {fileID: 1599026706425516, guid: 23a625dd12253224fb823905ea70e247, type: 2}
-    Boss: {fileID: 1999334883547176, guid: ec5d1d6173d7f8242a7e64ec7c3be581, type: 2}
+    Boss: {fileID: 1950637926411926, guid: ec5d1d6173d7f8242a7e64ec7c3be581, type: 2}
     Door: {fileID: 1768491214232880, guid: 5c990a9bd2110c94fb06e4ed7b6f76b6, type: 2}
     EnemyRooms:
     - {fileID: 1302016213712496, guid: 47b769e4706b9744a82919408f0c84d1, type: 2}
@@ -80,7 +80,7 @@ MonoBehaviour:
     Chest: {fileID: 1223150218728878, guid: 972449c2ec86a7e49b4e803f638c8b3b, type: 2}
     Shop: {fileID: 1536069424163006, guid: 56df11f1fbc57214ab64f3e069301d47, type: 2}
     Portal: {fileID: 1294362737254286, guid: 415596adf6b8f4f4bbb1b1c87488d730, type: 2}
-    Boss: {fileID: 1401762051146892, guid: 25814610f141dfd45b27141f11469c7f, type: 2}
+    Boss: {fileID: 1902702086822942, guid: 25814610f141dfd45b27141f11469c7f, type: 2}
     Door: {fileID: 1768491214232880, guid: 5c990a9bd2110c94fb06e4ed7b6f76b6, type: 2}
     EnemyRooms:
     - {fileID: 1080870887859098, guid: 8b7a2c61f4e03b844b2fead2805522d4, type: 2}
@@ -96,7 +96,7 @@ MonoBehaviour:
     Chest: {fileID: 1811192728431550, guid: 85a1fd7664ee8f84e8b4a9245adf967d, type: 2}
     Shop: {fileID: 1416020413667522, guid: d3783d71977a10740b4311eaf983f7a2, type: 2}
     Portal: {fileID: 1060444952333290, guid: 83afd3589fce9ea44b6a90b7e78632f5, type: 2}
-    Boss: {fileID: 1569648795216202, guid: 65a9746c502c2a64a9bd59177a81f545, type: 2}
+    Boss: {fileID: 1858451038576476, guid: 65a9746c502c2a64a9bd59177a81f545, type: 2}
     Door: {fileID: 1768491214232880, guid: 5c990a9bd2110c94fb06e4ed7b6f76b6, type: 2}
     EnemyRooms:
     - {fileID: 1661968088514744, guid: 5f2afcfd36543d84d946742c0aae0a78, type: 2}
