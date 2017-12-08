@@ -446,7 +446,7 @@ Prefab:
     - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
         type: 2}
       propertyPath: roomsPerFloor
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
         type: 2}
