@@ -91,6 +91,10 @@ public class EnemyRoom : MonoBehaviour {
 
     List<Vector3> GetSpawnPoints() {
         List<Vector3> list = new List<Vector3>();
+        if (SpawnPoints == null) {
+            return list;
+        }
+
         for (int i = 0; i < SpawnPoints.transform.childCount; i++) {
             list.Add(SpawnPoints.transform.GetChild(i).transform.position);
         }
