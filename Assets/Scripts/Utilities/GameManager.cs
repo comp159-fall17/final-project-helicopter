@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void PlayDeathSound() {
-        AudioSource.PlayClipAtPoint(deathSound.clip, Camera.main.transform.position);
+        deathSound.Play();
     }
 
     public void StartGame() {
@@ -102,6 +102,8 @@ public class GameManager : MonoBehaviour {
     }
 
     public IEnumerator GameOver(PlayerControls player) {
+        enemyRoom = false;
+
         // wait for showing to finish
         gameOverPointsText.enabled = false;
         GameOverCanvas.SetActive(true);
