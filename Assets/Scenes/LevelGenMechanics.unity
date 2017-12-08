@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.366821, g: 0.6416299, b: 0.87611616, a: 1}
+  m_IndirectSpecularColor: {r: 0.36677358, g: 0.6417017, b: 0.8760933, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -536,6 +536,29 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
+        type: 2}
+      propertyPath: roomsPerFloor
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
+        type: 2}
+      propertyPath: biomes.Array.data[0].Boss
+      value: 
+      objectReference: {fileID: 1999334883547176, guid: ec5d1d6173d7f8242a7e64ec7c3be581,
+        type: 2}
+    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
+        type: 2}
+      propertyPath: biomes.Array.data[1].Boss
+      value: 
+      objectReference: {fileID: 1401762051146892, guid: 25814610f141dfd45b27141f11469c7f,
+        type: 2}
+    - target: {fileID: 114587285236578816, guid: 335fb4bfb5e104172a0a772b4d94c106,
+        type: 2}
+      propertyPath: biomes.Array.data[2].Boss
+      value: 
+      objectReference: {fileID: 1401762051146892, guid: 25814610f141dfd45b27141f11469c7f,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 335fb4bfb5e104172a0a772b4d94c106, type: 2}
   m_IsPrefabParent: 0
