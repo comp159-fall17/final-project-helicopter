@@ -37,7 +37,7 @@ public class Tackler : Wanderer {
                 GameManager.Instance.playerSound.PlayOneShot(tackleSound, 1);
                 player.Body.isKinematic = false; // free
                 attacking = false;
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(3f);
             }
 
             if (base.ShouldShoot) {
