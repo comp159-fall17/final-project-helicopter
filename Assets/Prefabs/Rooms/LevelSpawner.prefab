@@ -63,7 +63,7 @@ MonoBehaviour:
     Chest: {fileID: 1663561236707392, guid: 9166d654cc474d145b298d0b08c3d7c2, type: 2}
     Shop: {fileID: 1710471831296608, guid: 4c0f77567a5d8ad4eb5bbe65b25f42c9, type: 2}
     Portal: {fileID: 1599026706425516, guid: 23a625dd12253224fb823905ea70e247, type: 2}
-    Boss: {fileID: 1303393270645238, guid: ec5d1d6173d7f8242a7e64ec7c3be581, type: 2}
+    Boss: {fileID: 1999334883547176, guid: ec5d1d6173d7f8242a7e64ec7c3be581, type: 2}
     Door: {fileID: 1768491214232880, guid: 5c990a9bd2110c94fb06e4ed7b6f76b6, type: 2}
     Enemy:
     - {fileID: 1719897346987724, guid: 3bbfac60f22c96041ab02a0e2bc6ac03, type: 2}
@@ -74,7 +74,7 @@ MonoBehaviour:
     Chest: {fileID: 1223150218728878, guid: 972449c2ec86a7e49b4e803f638c8b3b, type: 2}
     Shop: {fileID: 1536069424163006, guid: 56df11f1fbc57214ab64f3e069301d47, type: 2}
     Portal: {fileID: 1294362737254286, guid: 415596adf6b8f4f4bbb1b1c87488d730, type: 2}
-    Boss: {fileID: 1386404385457172, guid: 25814610f141dfd45b27141f11469c7f, type: 2}
+    Boss: {fileID: 1401762051146892, guid: 25814610f141dfd45b27141f11469c7f, type: 2}
     Door: {fileID: 1768491214232880, guid: 5c990a9bd2110c94fb06e4ed7b6f76b6, type: 2}
     Enemy:
     - {fileID: 1621225960674814, guid: 4ce19987fc3e5ed43bdd5f4c8ffbd383, type: 2}
@@ -85,9 +85,10 @@ MonoBehaviour:
     Chest: {fileID: 1811192728431550, guid: 85a1fd7664ee8f84e8b4a9245adf967d, type: 2}
     Shop: {fileID: 1416020413667522, guid: d3783d71977a10740b4311eaf983f7a2, type: 2}
     Portal: {fileID: 1060444952333290, guid: 83afd3589fce9ea44b6a90b7e78632f5, type: 2}
-    Boss: {fileID: 1386404385457172, guid: 25814610f141dfd45b27141f11469c7f, type: 2}
+    Boss: {fileID: 1401762051146892, guid: 25814610f141dfd45b27141f11469c7f, type: 2}
     Door: {fileID: 1768491214232880, guid: 5c990a9bd2110c94fb06e4ed7b6f76b6, type: 2}
     Enemy:
     - {fileID: 1850167449164098, guid: 38bf7cd6ede3a844bb631cbd817e98e5, type: 2}
     - {fileID: 1661968088514744, guid: 5f2afcfd36543d84d946742c0aae0a78, type: 2}
     - {fileID: 1721007045619928, guid: c34524c38ab390042927fdde3fd780c4, type: 2}
+  shopKeep: {fileID: 1014603173338788, guid: c40a2f6cba81bdd499bef2d42132a155, type: 2}
