@@ -45,6 +45,7 @@ public class BossRoomPortal : MonoBehaviour {
 
                 try {
                     GameObject.Find("Music").GetComponent<AudioSource>().clip = GameObject.Find("Music").GetComponent<Music>().bossMusic;
+                    GameObject.Find("Music").GetComponent<AudioSource>().Play();
                 } catch (System.NullReferenceException) {
                     print("couldn't find music");
                 }
