@@ -261,6 +261,7 @@ public class PlayerControls : Shooter {
 
     void CollectMoney() {
         GameManager.Instance.CollectMoney(GameManager.Instance.moneyGain);
+        playUpgradeSound();
     }
 
     public void CollectSpecial(int type) { //type is 1 to 3, corresponding to the special weapon

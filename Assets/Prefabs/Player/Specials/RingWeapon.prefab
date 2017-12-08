@@ -52,4 +52,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAmmo: 5
-  ring: {fileID: 1920214222849782, guid: 130a41d10b73c9c489e7f8941be202bd, type: 2}
+  ring: {fileID: 1688392980060040, guid: fff4e547e2ed8e946bcc225c87546735, type: 2}

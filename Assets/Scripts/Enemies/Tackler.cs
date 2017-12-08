@@ -74,6 +74,10 @@ public class Tackler : Wanderer {
     }
 
     IEnumerator DeathProcess() {
+        //make it so player can move and shoot through the model
+        gameObject.layer = LayerMask.NameToLayer("IgnoreRaycast");
+        gameObject.GetComponent<CapsuleCollider>().isTrigger = true;
+
         Body.velocity *= 0;
         Agent.speed = 0;
 
