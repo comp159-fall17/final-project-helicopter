@@ -261,9 +261,9 @@ MonoBehaviour:
   bullet: {fileID: 0}
   specialWeapon: {fileID: 0}
   fireDelay: 0
-  walkSpeed: 1
-  runSpeed: 1
-  hitPoints: 10
+  walkSpeed: 10
+  runSpeed: 10
+  hitPoints: 15
   wanderSearchRadius: 10
   tackleSound: {fileID: 0}
   minimumDistanceToTarget: 5
