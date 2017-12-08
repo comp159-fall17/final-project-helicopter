@@ -71,11 +71,12 @@ public class LevelGen : MonoBehaviour {
         // spawn room is guaranteed
         spawnedRooms.Add(Instantiate(CurrentBiome.Spawn, nodes[0], Quaternion.identity));
 
-        // keep spawning until enough rooms have been spawned
-        while (true) {
+        // keep spawning until enough rooms have been spawned or broken
+        for (int unused = 0; unused < 20000 * roomsPerFloor; unused++) {
             // give a pass-through to all nodes
             for (int i = 0; i < 4; i++) {
-                if (Random.value < overallRoomRate && CheckNodeEmpty(i)) {
+                //overallRoomRate
+                if (CheckNodeEmpty(i) && Random.value < -300) {
                     AddRoom(nodes[i]);
                 }
 
@@ -91,6 +92,13 @@ public class LevelGen : MonoBehaviour {
             // Moves nodes to last room generated.
             GenerateNodes(spawnedRooms.Last().transform.position);
         }
+
+        // generate floor to go to next one
+        Vector3 nextRoomPos = centralNode;
+        nextRoomPos.z += roomSize;
+        spawnedRooms.Add(Instantiate(CurrentBiome.Portal, nextRoomPos, Quaternion.identity));
+        spawnedRooms.Add(Instantiate(CurrentBiome.Boss, ReallyFarAway, Quaternion.identity));
+        Debug.LogError("Could not generate floor. Please try again.");
     }
 
     /// <summary>
